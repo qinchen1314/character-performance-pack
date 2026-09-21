@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
 from typing import Literal
 
@@ -32,6 +33,12 @@ class SourceRecord(BaseModel):
         "academic_dataset", "behavioral_model", "specification", "original"
     ]
     version: str
+    official_url: str | None = None
+    retrieved_at: date | None = None
+    concepts_used: tuple[str, ...] = ()
+    reviewer: str | None = None
+    reviewed_at: date | None = None
+    content_hash: str | None = None
     usage_mode: Literal[
         "reference_only",
         "derived_metadata",
@@ -102,6 +109,12 @@ class SourceRegistry:
             )
         if record.usage_mode == "blocked":
             raise LicenseGateError(f"source usage is blocked: {record.id}")
+        if record.usage_mode == "reference_only":
+            raise LicenseGateError(f"reference-only source cannot enter pack: {record.id}")
+        if not record.version.strip():
+            raise LicenseGateError(f"source version is missing: {record.id}")
+        if record.source_type != "original" and not record.license.evidence_urls:
+            raise LicenseGateError(f"license evidence is missing: {record.id}")
         if record.isolation == "share_alike" and not policy.allow_share_alike:
             raise LicenseGateError(
                 f"source requires share-alike isolation: {record.id}"
@@ -110,4 +123,3 @@ class SourceRegistry:
             raise LicenseGateError(f"commercial use is not approved: {record.id}")
         if policy.redistribution and record.license.redistribution is not True:
             raise LicenseGateError(f"redistribution is not approved: {record.id}")
-

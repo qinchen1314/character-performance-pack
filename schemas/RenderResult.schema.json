@@ -1,0 +1,45 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "realized_units": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Realized Units",
+      "type": "object"
+    },
+    "omitted_units": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Omitted Units",
+      "type": "array"
+    },
+    "introduced_facts": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Introduced Facts",
+      "type": "array"
+    },
+    "warnings": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "text"
+  ],
+  "title": "RenderResult",
+  "type": "object"
+}

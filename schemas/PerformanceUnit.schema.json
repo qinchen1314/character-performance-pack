@@ -1,0 +1,482 @@
+{
+  "$defs": {
+    "Cooldown": {
+      "additionalProperties": false,
+      "properties": {
+        "turns": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Turns",
+          "type": "integer"
+        },
+        "scene_scope": {
+          "default": true,
+          "title": "Scene Scope",
+          "type": "boolean"
+        }
+      },
+      "title": "Cooldown",
+      "type": "object"
+    },
+    "FacialAction": {
+      "additionalProperties": false,
+      "properties": {
+        "region": {
+          "enum": [
+            "brow",
+            "lips",
+            "jaw",
+            "mouth",
+            "eyelids",
+            "unknown"
+          ],
+          "title": "Region",
+          "type": "string"
+        },
+        "action": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Action",
+          "type": "string"
+        },
+        "intensity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Intensity",
+          "type": "number"
+        },
+        "au_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Au Ref"
+        }
+      },
+      "required": [
+        "region",
+        "action",
+        "intensity"
+      ],
+      "title": "FacialAction",
+      "type": "object"
+    },
+    "IntensityRange": {
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Min",
+          "type": "number"
+        },
+        "max": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Max",
+          "type": "number"
+        }
+      },
+      "required": [
+        "min",
+        "max"
+      ],
+      "title": "IntensityRange",
+      "type": "object"
+    },
+    "MicroTiming": {
+      "additionalProperties": false,
+      "properties": {
+        "onset_ms": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "minimum": 0,
+              "type": "integer"
+            }
+          ],
+          "title": "Onset Ms",
+          "type": "array"
+        },
+        "apex_ms": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "minimum": 0,
+              "type": "integer"
+            }
+          ],
+          "title": "Apex Ms",
+          "type": "array"
+        },
+        "offset_ms": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "minimum": 0,
+              "type": "integer"
+            }
+          ],
+          "title": "Offset Ms",
+          "type": "array"
+        },
+        "total_duration_ms": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "minimum": 0,
+              "type": "integer"
+            }
+          ],
+          "title": "Total Duration Ms",
+          "type": "array"
+        }
+      },
+      "required": [
+        "onset_ms",
+        "apex_ms",
+        "offset_ms",
+        "total_duration_ms"
+      ],
+      "title": "MicroTiming",
+      "type": "object"
+    },
+    "VAD": {
+      "additionalProperties": false,
+      "properties": {
+        "valence": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Valence",
+          "type": "number"
+        },
+        "arousal": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Arousal",
+          "type": "number"
+        },
+        "dominance": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Dominance",
+          "type": "number"
+        }
+      },
+      "required": [
+        "valence",
+        "arousal",
+        "dominance"
+      ],
+      "title": "VAD",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "category": {
+      "enum": [
+        "facial",
+        "micro_expression",
+        "gaze",
+        "body",
+        "spatial",
+        "physiology",
+        "speech",
+        "world_specific",
+        "unknown"
+      ],
+      "title": "Category",
+      "type": "string"
+    },
+    "channel": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Channel",
+      "type": "string"
+    },
+    "atomic_action": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Atomic Action",
+      "type": "string"
+    },
+    "body_parts": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Body Parts",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "semantic_groups": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Semantic Groups",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "semantics": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Semantics",
+      "type": "object"
+    },
+    "emotion_affinity": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Emotion Affinity",
+      "type": "object"
+    },
+    "intensity_range": {
+      "$ref": "#/$defs/IntensityRange"
+    },
+    "context_requirements": {
+      "additionalProperties": true,
+      "title": "Context Requirements",
+      "type": "object"
+    },
+    "physical_requirements": {
+      "additionalProperties": true,
+      "title": "Physical Requirements",
+      "type": "object"
+    },
+    "preconditions": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Preconditions",
+      "type": "array"
+    },
+    "conflicts": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Conflicts",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "compatible_with": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Compatible With",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "visibility": {
+      "enum": [
+        "hidden",
+        "very_subtle",
+        "subtle",
+        "noticeable",
+        "obvious",
+        "unknown"
+      ],
+      "title": "Visibility",
+      "type": "string"
+    },
+    "narrative_weight": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Narrative Weight",
+      "type": "number"
+    },
+    "cooldown": {
+      "$ref": "#/$defs/Cooldown",
+      "default": {
+        "turns": 0,
+        "scene_scope": true
+      }
+    },
+    "repeat_group": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Repeat Group",
+      "type": "string"
+    },
+    "render_hints": {
+      "additionalProperties": true,
+      "title": "Render Hints",
+      "type": "object"
+    },
+    "source_refs": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "license_class": {
+      "enum": [
+        "reference_only",
+        "derived_metadata",
+        "transform_allowed",
+        "redistribution_allowed",
+        "original"
+      ],
+      "title": "License Class",
+      "type": "string"
+    },
+    "status": {
+      "default": "active",
+      "enum": [
+        "active",
+        "deprecated",
+        "disabled",
+        "unknown"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "effects": {
+      "additionalProperties": true,
+      "title": "Effects",
+      "type": "object"
+    },
+    "vad_affinity": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/VAD"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "timing_ms": {
+      "anyOf": [
+        {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "minimum": 0,
+              "type": "integer"
+            }
+          ],
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Timing Ms"
+    },
+    "facial_units": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/FacialAction"
+      },
+      "title": "Facial Units",
+      "type": "array"
+    },
+    "timing": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MicroTiming"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "world_requirements": {
+      "additionalProperties": true,
+      "title": "World Requirements",
+      "type": "object"
+    }
+  },
+  "required": [
+    "id",
+    "category",
+    "channel",
+    "atomic_action",
+    "semantic_groups",
+    "semantics",
+    "intensity_range",
+    "visibility",
+    "narrative_weight",
+    "repeat_group",
+    "source_refs",
+    "license_class"
+  ],
+  "title": "PerformanceUnit",
+  "type": "object"
+}

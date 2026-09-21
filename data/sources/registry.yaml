@@ -1,5 +1,24 @@
 schema_version: 1.0.0
 sources:
+  - id: src.original.performance.v1
+    name: Original Chinese novel atomic behaviours
+    source_type: original
+    official_url: project://character-performance-pack/tools/seed_original_units.py
+    version: 0.2.0
+    retrieved_at: 2026-09-21
+    concepts_used: [atomic-behaviours, chinese-grammar, fictional-world-rules]
+    usage_mode: original
+    review_status: approved
+    reviewer: project-authoring-process
+    reviewed_at: 2026-09-21
+    license:
+      identifier: project-license
+      commercial_use: true
+      redistribution: true
+      attribution_required: false
+      share_alike: false
+      evidence_urls: []
+
   - id: src.original.core.v1
     name: Character Performance Pack original concepts
     source_type: original

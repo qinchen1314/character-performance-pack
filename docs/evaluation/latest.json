@@ -1,0 +1,270 @@
+{
+  "pack_version": "0.2.0",
+  "pack_hash": "0f26409787c41f5c593282751018d63a771924c212de5c251bf172008b2e30f6",
+  "rule_version": "1.0.0",
+  "coverage": {
+    "emotions": 18,
+    "units": 58,
+    "categories": {
+      "body": 15,
+      "facial": 6,
+      "gaze": 5,
+      "micro_expression": 2,
+      "physiology": 4,
+      "spatial": 8,
+      "speech": 8,
+      "world_specific": 10
+    },
+    "body_parts": [
+      "arms",
+      "brow",
+      "eyelids",
+      "eyes",
+      "feet",
+      "hands",
+      "head",
+      "jaw",
+      "left_hand",
+      "legs",
+      "lips",
+      "lungs",
+      "mouth",
+      "neck",
+      "right_hand",
+      "shoulders",
+      "throat",
+      "torso",
+      "voice",
+      "whole_body"
+    ],
+    "emotion_candidates": {
+      "admiration": 2,
+      "anger": 24,
+      "curiosity": 9,
+      "disappointment": 5,
+      "disgust": 5,
+      "embarrassment": 6,
+      "fear": 20,
+      "gratitude": 4,
+      "hope": 5,
+      "jealousy": 2,
+      "joy": 2,
+      "love": 9,
+      "pride": 2,
+      "relief": 5,
+      "remorse": 3,
+      "resentment": 5,
+      "sadness": 6,
+      "surprise": 6
+    },
+    "stateful_units": 10,
+    "modifiers": 6
+  },
+  "metrics": {
+    "persona_mean_jaccard": 0.1111,
+    "signals_20_turns": 29,
+    "max_semantic_group_count": 2,
+    "trope_fraction": 0.1379,
+    "adjacent_3_repeat": false,
+    "no_valid_candidate_rate": 0.25,
+    "planner_p50_ms": 4.181,
+    "planner_p95_ms": 4.975
+  },
+  "gates": {
+    "T1": true,
+    "T4": true,
+    "regression_suite": true
+  },
+  "semantic_counts": {
+    "arm_barrier": 2,
+    "articulation_precise": 1,
+    "brow_tension": 2,
+    "distance_approach": 2,
+    "engagement": 1,
+    "hand_tension": 2,
+    "head_assertion": 2,
+    "jaw_tension": 1,
+    "leg_brace": 1,
+    "lip_restraint": 1,
+    "motor_inhibition": 2,
+    "neck_guard": 1,
+    "orientation_engage": 2,
+    "pace_deliberate": 2,
+    "pace_urgent": 1,
+    "phrase_compression": 2,
+    "speech_inhibition": 2,
+    "target_attention": 2
+  },
+  "rounds": [
+    {
+      "turn": 0,
+      "units": [
+        "facial.brow_contract",
+        "body.arms_fold"
+      ],
+      "text": "他眉间蹙起，双臂交叠在身前。",
+      "revision": 1
+    },
+    {
+      "turn": 1,
+      "units": [
+        "speech.phrase_short",
+        "spatial.step_closer"
+      ],
+      "text": "他话语收得短促，向对方挪近半步。",
+      "revision": 2
+    },
+    {
+      "turn": 2,
+      "units": [
+        "body.finger_still",
+        "gaze.target_lock"
+      ],
+      "text": "他右手指尖停住不动，目光停在对方身上。",
+      "revision": 3
+    },
+    {
+      "turn": 3,
+      "units": [
+        "body.knees_brace",
+        "micro_expression.lip_pause"
+      ],
+      "text": "他双膝绷紧，嘴唇动了一下，又停住。",
+      "revision": 4
+    },
+    {
+      "turn": 4,
+      "units": [
+        "body.chin_raise",
+        "speech.pace_slow"
+      ],
+      "text": "他下巴抬起，语速放慢。",
+      "revision": 5
+    },
+    {
+      "turn": 5,
+      "units": [
+        "body.hand_clench",
+        "spatial.turn_toward"
+      ],
+      "text": "他右手握紧，转向对方。",
+      "revision": 6
+    },
+    {
+      "turn": 6,
+      "units": [
+        "body.torso_forward",
+        "facial.lip_press"
+      ],
+      "text": "他上身倾向前，嘴唇抿紧。",
+      "revision": 7
+    },
+    {
+      "turn": 7,
+      "units": [
+        "facial.jaw_set",
+        "speech.enunciate"
+      ],
+      "text": "他下颌绷紧，字音咬得分明。",
+      "revision": 8
+    },
+    {
+      "turn": 8,
+      "units": [
+        "body.neck_stiffen",
+        "speech.pace_quick"
+      ],
+      "text": "他颈侧绷紧，语速加快。",
+      "revision": 9
+    },
+    {
+      "turn": 9,
+      "units": [],
+      "text": "",
+      "revision": 10
+    },
+    {
+      "turn": 10,
+      "units": [],
+      "text": "",
+      "revision": 11
+    },
+    {
+      "turn": 11,
+      "units": [
+        "body.arms_fold"
+      ],
+      "text": "他双臂交叠在身前。",
+      "revision": 12
+    },
+    {
+      "turn": 12,
+      "units": [],
+      "text": "",
+      "revision": 13
+    },
+    {
+      "turn": 13,
+      "units": [
+        "facial.brow_contract",
+        "speech.phrase_short"
+      ],
+      "text": "他眉间蹙起，话语收得短促。",
+      "revision": 14
+    },
+    {
+      "turn": 14,
+      "units": [
+        "gaze.target_lock",
+        "spatial.step_closer"
+      ],
+      "text": "他目光停在对方身上，向对方挪近半步。",
+      "revision": 15
+    },
+    {
+      "turn": 15,
+      "units": [],
+      "text": "",
+      "revision": 16
+    },
+    {
+      "turn": 16,
+      "units": [],
+      "text": "",
+      "revision": 17
+    },
+    {
+      "turn": 17,
+      "units": [
+        "body.finger_still",
+        "speech.pace_slow"
+      ],
+      "text": "他右手指尖停住不动，语速放慢。",
+      "revision": 18
+    },
+    {
+      "turn": 18,
+      "units": [
+        "micro_expression.lip_pause",
+        "body.chin_raise"
+      ],
+      "text": "他嘴唇动了一下，又停住，下巴抬起。",
+      "revision": 19
+    },
+    {
+      "turn": 19,
+      "units": [
+        "body.hand_clench",
+        "spatial.turn_toward"
+      ],
+      "text": "他右手握紧，转向对方。",
+      "revision": 20
+    }
+  ],
+  "tests": {
+    "tests": 89,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

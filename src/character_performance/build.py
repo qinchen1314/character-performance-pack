@@ -1,19 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from hashlib import sha256
 import json
 from pathlib import Path
 from typing import Any
 
-from pydantic import BaseModel
-
-from character_performance.domain.models import (
-    EmotionState,
-    PerformancePlan,
-    PerformanceUnit,
-)
-from character_performance.ontology.emotion import EmotionOntology
+from character_performance.cli.export_schemas import export_schemas
+from character_performance.ontology.pack import PerformancePack, canonical
 from character_performance.sources.registry import (
     BuildPolicy,
     LicenseGateError,
@@ -32,19 +25,6 @@ class PackBuildResult:
     manifest: dict[str, Any]
 
 
-SCHEMA_MODELS: tuple[type[BaseModel], ...] = (
-    EmotionState,
-    PerformanceUnit,
-    PerformancePlan,
-)
-
-
-def _canonical_json(value: Any) -> bytes:
-    return json.dumps(
-        value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
-    ).encode("utf-8")
-
-
 def build_pack(
     project_root: Path,
     output_dir: Path,
@@ -52,55 +32,35 @@ def build_pack(
     extra_source_ids: tuple[str, ...] = (),
 ) -> PackBuildResult:
     registry = SourceRegistry.from_yaml(project_root / "data" / "sources" / "registry.yaml")
-    ontology = EmotionOntology.from_yaml(
-        project_root / "data" / "ontology" / "emotion" / "emotions.yaml"
-    )
-
-    source_ids = sorted(
-        {
-            source_id
-            for emotion in ontology.all()
-            for source_id in emotion.source_refs
-        }
-        | set(extra_source_ids)
-    )
     try:
-        decision = registry.validate_for_build(source_ids, policy)
-    except LicenseGateError as error:
+        registry.validate_for_build(extra_source_ids, policy)
+        pack = PerformancePack.from_project(project_root, policy)
+    except (LicenseGateError, ValueError) as error:
         raise PackBuildError(str(error)) from error
-
-    emotions = [emotion.model_dump(mode="json") for emotion in ontology.all()]
-    content_hash = sha256(_canonical_json(emotions)).hexdigest()
+    source_ids = sorted(set(pack.source_ids) | set(extra_source_ids))
+    payload = json.loads(canonical(pack.payload()))
     manifest: dict[str, Any] = {
-        "pack_version": "0.1.0",
+        "pack_version": pack.version,
         "schema_version": "1.0.0",
         "source_registry_version": registry.schema_version,
-        "emotion_count": len(emotions),
-        "source_ids": list(decision.approved_source_ids),
-        "content_hash": content_hash,
+        "emotion_count": len(pack.ontology),
+        "unit_count": len(pack.all()),
+        "source_ids": source_ids,
+        "content_hash": pack.content_hash,
+        "build_policy": {"commercial": policy.commercial, "redistribution": policy.redistribution, "allow_share_alike": policy.allow_share_alike},
+        "sources": [registry.get(ref).model_dump(mode="json") for ref in source_ids],
     }
 
     output_dir.mkdir(parents=True, exist_ok=True)
     schema_dir = output_dir / "schemas"
     schema_dir.mkdir(parents=True, exist_ok=True)
 
-    emotion_path = output_dir / "emotions.json"
-    emotion_path.write_text(
-        json.dumps(emotions, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-
-    schema_paths: list[Path] = []
-    for model in SCHEMA_MODELS:
-        path = schema_dir / f"{model.__name__}.schema.json"
-        path.write_text(
-            json.dumps(model.model_json_schema(), ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
-        schema_paths.append(path)
+    for filename, value in [("pack.json", payload), ("emotions.json", payload["emotions"]), ("units.json", payload["units"])]:
+        (output_dir / filename).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    schema_paths = export_schemas(schema_dir)
 
     manifest_path = output_dir / "manifest.json"
     manifest_path.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     return PackBuildResult(manifest_path, tuple(schema_paths), manifest)
-

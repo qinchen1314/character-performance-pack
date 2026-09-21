@@ -5,7 +5,7 @@ from pathlib import Path
 import yaml
 from pydantic import BaseModel, ConfigDict
 
-from character_performance.domain.models import OntologyEmotion
+from character_performance.domain.models import EmotionState, OntologyEmotion
 
 
 class UnknownEmotionError(KeyError):
@@ -59,6 +59,16 @@ class EmotionOntology:
     def all(self) -> tuple[OntologyEmotion, ...]:
         return tuple(self._emotions[key] for key in sorted(self._emotions))
 
+    def validate_state(self, state: EmotionState) -> None:
+        families: set[str] = set()
+        for field in ("primary", "secondary"):
+            label = getattr(state, field)
+            if label is not None:
+                if label not in self._emotions:
+                    raise UnknownEmotionError(f"{field} emotion {label!r} is not registered")
+                families.update(self._emotions[label].families)
+        if not state.families <= families:
+            raise UnknownEmotionError("families do not belong to the supplied emotion labels")
+
     def __len__(self) -> int:
         return len(self._emotions)
-

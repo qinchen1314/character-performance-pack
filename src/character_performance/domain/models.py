@@ -13,7 +13,14 @@ NonEmptyId = Annotated[str, Field(min_length=1, pattern=r"^[a-z][a-z0-9_.-]*$")]
 
 
 class DomainModel(BaseModel):
-    model_config = ConfigDict(extra="forbid", frozen=True)
+    model_config = ConfigDict(extra="forbid", frozen=True, allow_inf_nan=False)
+
+
+class Appraisal(DomainModel):
+    goal_congruence: SignedUnitFloat = 0
+    controllability: UnitFloat = 0.5
+    responsibility: Literal["self", "target", "environment", "unknown"] = "unknown"
+    certainty: UnitFloat = 0.5
 
 
 class VAD(DomainModel):
@@ -44,6 +51,7 @@ class EmotionState(DomainModel):
     duration_ms: NonNegativeInt = 0
     decay_half_life_ms: Annotated[int, Field(gt=0)]
     trigger_refs: tuple[NonEmptyId, ...] = ()
+    appraisal: Appraisal = Appraisal()
 
     def decayed(self, elapsed_ms: int) -> "EmotionState":
         """Return a new state after exponential half-life decay."""
@@ -80,6 +88,30 @@ class Cooldown(DomainModel):
     scene_scope: bool = True
 
 
+class FacialAction(DomainModel):
+    region: Literal["brow", "lips", "jaw", "mouth", "eyelids", "unknown"]
+    action: NonEmptyId
+    intensity: UnitFloat
+    au_ref: str | None = None
+
+
+class MicroTiming(DomainModel):
+    onset_ms: tuple[NonNegativeInt, NonNegativeInt]
+    apex_ms: tuple[NonNegativeInt, NonNegativeInt]
+    offset_ms: tuple[NonNegativeInt, NonNegativeInt]
+    total_duration_ms: tuple[NonNegativeInt, NonNegativeInt]
+
+    @model_validator(mode="after")
+    def consistent(self):
+        for interval in (self.onset_ms, self.apex_ms, self.offset_ms, self.total_duration_ms):
+            if interval[0] > interval[1]:
+                raise ValueError("micro timing intervals must be ordered")
+        for index in (0, 1):
+            if sum(interval[index] for interval in (self.onset_ms, self.apex_ms, self.offset_ms)) != self.total_duration_ms[index]:
+                raise ValueError("micro timing phases must sum to total range")
+        return self
+
+
 class PerformanceUnit(DomainModel):
     id: NonEmptyId
     schema_version: str = "1.0.0"
@@ -92,6 +124,7 @@ class PerformanceUnit(DomainModel):
         "physiology",
         "speech",
         "world_specific",
+        "unknown",
     ]
     channel: NonEmptyId
     atomic_action: NonEmptyId
@@ -105,7 +138,7 @@ class PerformanceUnit(DomainModel):
     preconditions: tuple[NonEmptyId, ...] = ()
     conflicts: frozenset[NonEmptyId] = frozenset()
     compatible_with: frozenset[NonEmptyId] = frozenset()
-    visibility: Literal["hidden", "very_subtle", "subtle", "noticeable", "obvious"]
+    visibility: Literal["hidden", "very_subtle", "subtle", "noticeable", "obvious", "unknown"]
     narrative_weight: UnitFloat
     cooldown: Cooldown = Cooldown()
     repeat_group: NonEmptyId
@@ -118,7 +151,13 @@ class PerformanceUnit(DomainModel):
         "redistribution_allowed",
         "original",
     ]
-    status: Literal["active", "deprecated", "disabled"] = "active"
+    status: Literal["active", "deprecated", "disabled", "unknown"] = "active"
+    effects: dict[str, Any] = Field(default_factory=dict)
+    vad_affinity: VAD | None = None
+    timing_ms: tuple[NonNegativeInt, NonNegativeInt] | None = None
+    facial_units: tuple[FacialAction, ...] = ()
+    timing: MicroTiming | None = None
+    world_requirements: dict[str, Any] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def require_semantics_and_provenance(self) -> "PerformanceUnit":
@@ -128,7 +167,191 @@ class PerformanceUnit(DomainModel):
             raise ValueError("semantics must not be empty")
         if not self.source_refs:
             raise ValueError("source_refs must not be empty")
+        if self.timing_ms and self.timing_ms[0] > self.timing_ms[1]:
+            raise ValueError("timing_ms must be ordered")
         return self
+
+
+class BigFive(DomainModel):
+    openness: UnitFloat = 0.5
+    conscientiousness: UnitFloat = 0.5
+    extraversion: UnitFloat = 0.5
+    agreeableness: UnitFloat = 0.5
+    neuroticism: UnitFloat = 0.5
+
+
+class Personality(DomainModel):
+    big_five: BigFive = BigFive()
+
+
+class ExpressionBaseline(DomainModel):
+    amplitude: UnitFloat = 0.5
+    initiative: UnitFloat = 0.5
+    speech_volume: UnitFloat = 0.5
+    gaze_duration: UnitFloat = 0.5
+
+
+class SignatureBehaviour(DomainModel):
+    unit_id: NonEmptyId
+    affinity: UnitFloat = 0.5
+    cooldown_turns: NonNegativeInt = 9
+
+
+class CharacterProfile(DomainModel):
+    id: NonEmptyId
+    personality: Personality = Personality()
+    expression_baseline: ExpressionBaseline = ExpressionBaseline()
+    capabilities: frozenset[NonEmptyId] = frozenset({
+        "vision", "speech", "hearing", "right_hand_use", "left_hand_use", "walking"
+    })
+    signature_behaviours: tuple[SignatureBehaviour, ...] = ()
+
+
+class RelationshipState(DomainModel):
+    subject_id: NonEmptyId
+    target_id: NonEmptyId
+    type_tags: frozenset[NonEmptyId] = frozenset()
+    affinity: UnitFloat = 0.5
+    trust: UnitFloat = 0.5
+    familiarity: UnitFloat = 0.5
+    dominance: SignedUnitFloat = 0
+    dependence: UnitFloat = 0
+    tension: UnitFloat = 0
+    hostility: UnitFloat = 0
+    intimacy: UnitFloat = 0
+    public_role_constraints: frozenset[NonEmptyId] = frozenset()
+
+
+class Injury(DomainModel):
+    body_part: NonEmptyId
+    severity: UnitFloat
+    constraints: frozenset[NonEmptyId] = frozenset()
+
+
+class PhysicalState(DomainModel):
+    fatigue: UnitFloat = 0
+    pain: UnitFloat = 0
+    injuries: tuple[Injury, ...] = ()
+    mobility: UnitFloat = 1
+    breath_capacity: UnitFloat = 1
+    motor_control: UnitFloat = 1
+    sensory_constraints: frozenset[NonEmptyId] = frozenset()
+
+
+class EmotionalResidue(DomainModel):
+    emotion: NonEmptyId
+    intensity: UnitFloat
+    expires_after_turn: NonNegativeInt
+
+
+class SceneState(DomainModel):
+    scene_id: NonEmptyId
+    turn_index: NonNegativeInt = 0
+    revision: NonNegativeInt = 0
+    pose: Literal["standing", "seated", "leaning_wall", "lying", "unknown"] = "unknown"
+    position: NonEmptyId | None = None
+    orientation_target: NonEmptyId | None = None
+    held_objects: dict[Literal["right_hand", "left_hand"], NonEmptyId] = Field(default_factory=dict)
+    distances: dict[NonEmptyId, Annotated[float, Field(ge=0)]] = Field(default_factory=dict)
+    support_contact: NonEmptyId | None = None
+    unfinished_actions: tuple[NonEmptyId, ...] = ()
+    emotional_residue: tuple[EmotionalResidue, ...] = ()
+
+
+class Event(DomainModel):
+    id: NonEmptyId
+    participants: tuple[NonEmptyId, ...] = ()
+    salience: UnitFloat = 0.5
+    publicness: UnitFloat = 0
+    threat: dict[Literal["physical", "social"], UnitFloat] = Field(default_factory=dict)
+
+
+class Cognition(DomainModel):
+    subject_id: NonEmptyId
+    interpretation: NonEmptyId = "unknown"
+    goal_impact: SignedUnitFloat = 0
+    controllability: UnitFloat = 0.5
+    certainty: UnitFloat = 0.5
+    target_responsibility: UnitFloat = 0
+
+
+class Context(DomainModel):
+    activity: Literal["conversation", "confrontation", "waiting", "unknown"] = "conversation"
+    audience_size: NonNegativeInt = 0
+    privacy: Literal["private", "public", "unknown"] = "private"
+    formality: UnitFloat = 0
+    danger_level: UnitFloat = 0
+
+
+class Director(DomainModel):
+    beat_importance: UnitFloat = 0.5
+    max_signals: Annotated[int, Field(ge=0, le=6)] = 2
+    desired_visibility: Literal["very_subtle", "subtle", "noticeable", "obvious", "unknown"] = "noticeable"
+    allow_world: bool = False
+    disabled_units: frozenset[NonEmptyId] = frozenset()
+
+
+class Masking(DomainModel):
+    displayed_emotion: NonEmptyId = "calm"
+    mask_strength: UnitFloat = 0
+    control_capacity: UnitFloat = 1
+    leak_pressure: UnitFloat = 0.5
+
+
+class WorldState(DomainModel):
+    genre: Literal["general", "xianxia", "unknown"] = "general"
+    realm: Literal["mortal", "qi_refining", "foundation", "golden_core", "unknown"] = "mortal"
+    stage: Annotated[int, Field(ge=1, le=9)] = 1
+    qi: UnitFloat = 1
+    control: UnitFloat = 1
+    target_realm: Literal["mortal", "qi_refining", "foundation", "golden_core", "unknown"] = "unknown"
+    suppressed_capabilities: frozenset[NonEmptyId] = frozenset()
+    active_capabilities: frozenset[NonEmptyId] = frozenset()
+    destruction_limit: UnitFloat = 0
+
+
+class PerformanceRequest(DomainModel):
+    request_id: NonEmptyId
+    character: CharacterProfile
+    relationship: RelationshipState | None = None
+    event: Event | None = None
+    cognition: Cognition | None = None
+    emotion_state: EmotionState | None = None
+    physical_state: PhysicalState = PhysicalState()
+    scene_state: SceneState
+    context: Context = Context()
+    director: Director = Director()
+    masking: Masking | None = None
+    world_state: WorldState = WorldState()
+    seed: int = 0
+
+    @model_validator(mode="after")
+    def subject_matches(self) -> "PerformanceRequest":
+        for state in (self.relationship, self.cognition):
+            if state and state.subject_id != self.character.id:
+                raise ValueError("subject_id must match character.id")
+        return self
+
+
+class HistoryEntry(DomainModel):
+    turn_index: NonNegativeInt
+    unit_id: NonEmptyId
+    semantic_groups: frozenset[NonEmptyId]
+    channel: NonEmptyId
+    intensity: UnitFloat
+    render_features: dict[str, tuple[str, ...]] = Field(default_factory=dict)
+
+
+class StateTransition(DomainModel):
+    before: SceneState
+    after: SceneState
+    world_before: WorldState
+    world_after: WorldState
+
+
+class ValidationReport(DomainModel):
+    valid: bool
+    errors: tuple[str, ...] = ()
 
 
 class PerformancePlan(DomainModel):
@@ -145,4 +368,31 @@ class PerformancePlan(DomainModel):
     leak_signals: tuple[NonEmptyId, ...] = ()
     selected: dict[str, tuple[NonEmptyId, ...]] = Field(default_factory=dict)
     parameters: dict[NonEmptyId, dict[str, Any]] = Field(default_factory=dict)
+    pack_version: str = "0.2.0"
+    pack_hash: str = ""
+    rule_version: str = "1.0.0"
+    input_hash: str = ""
+    emotion_state: EmotionState | None = None
+    state_transition: StateTransition | None = None
+    suppressed_candidates: dict[str, tuple[str, ...]] = Field(default_factory=dict)
+    scores: dict[str, dict[str, float]] = Field(default_factory=dict)
+    world_decisions: dict[str, dict[str, Any]] = Field(default_factory=dict)
+    warnings: tuple[str, ...] = ()
 
+    @property
+    def unit_ids(self) -> tuple[str, ...]:
+        return tuple(unit for units in self.selected.values() for unit in units)
+
+
+class RenderContext(DomainModel):
+    subject_name: Annotated[str, Field(min_length=1, max_length=50)] = "他"
+    target_name: Annotated[str, Field(min_length=1, max_length=50)] = "对方"
+    dialogue: Annotated[str, Field(max_length=2000)] | None = None
+
+
+class RenderResult(DomainModel):
+    text: str
+    realized_units: dict[str, str] = Field(default_factory=dict)
+    omitted_units: tuple[str, ...] = ()
+    introduced_facts: tuple[str, ...] = ()
+    warnings: tuple[str, ...] = ()

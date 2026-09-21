@@ -1,0 +1,36 @@
+schema_version: 1.0.0
+modifiers:
+  - id: modifier.quiet_expression
+    kind: personality
+    when: {personality.extraversion: {lt: 0.25}}
+    effects:
+      score_add: {channel.speech: -0.1}
+      parameter_add: {amplitude: -0.1, volume: -0.1}
+  - id: modifier.formal_restraint
+    kind: context
+    when: {context.formality: {gt: 0.7}}
+    effects:
+      score_add: {semantic.self_control: 0.1}
+      parameter_add: {directness: -0.1}
+  - id: modifier.close_relationship
+    kind: relationship
+    when: {relationship.intimacy: {gt: 0.7}}
+    effects:
+      score_add: {semantic.warmth: 0.15}
+  - id: modifier.fatigue_conservation
+    kind: physical
+    when: {physical.fatigue: {gt: 0.7}}
+    effects:
+      score_add: {semantic.initiative: -0.2}
+      parameter_add: {amplitude: -0.1}
+      budget_add: {total: -1}
+  - id: modifier.transition_economy
+    kind: director
+    when: {director.beat_importance: {lt: 0.25}}
+    effects:
+      score_add: {category.speech: 0.1}
+  - id: modifier.world_control
+    kind: world
+    when: {world.control: {lt: 0.7}}
+    effects:
+      score_add: {category.world_specific: -0.15}

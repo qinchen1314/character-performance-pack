@@ -1,0 +1,159 @@
+{
+  "$defs": {
+    "EmotionalResidue": {
+      "additionalProperties": false,
+      "properties": {
+        "emotion": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Emotion",
+          "type": "string"
+        },
+        "intensity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Intensity",
+          "type": "number"
+        },
+        "expires_after_turn": {
+          "minimum": 0,
+          "title": "Expires After Turn",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "emotion",
+        "intensity",
+        "expires_after_turn"
+      ],
+      "title": "EmotionalResidue",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "scene_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Scene Id",
+      "type": "string"
+    },
+    "turn_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Turn Index",
+      "type": "integer"
+    },
+    "revision": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "pose": {
+      "default": "unknown",
+      "enum": [
+        "standing",
+        "seated",
+        "leaning_wall",
+        "lying",
+        "unknown"
+      ],
+      "title": "Pose",
+      "type": "string"
+    },
+    "position": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Position"
+    },
+    "orientation_target": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Orientation Target"
+    },
+    "held_objects": {
+      "additionalProperties": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "enum": [
+          "right_hand",
+          "left_hand"
+        ]
+      },
+      "title": "Held Objects",
+      "type": "object"
+    },
+    "distances": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Distances",
+      "type": "object"
+    },
+    "support_contact": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Support Contact"
+    },
+    "unfinished_actions": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Unfinished Actions",
+      "type": "array"
+    },
+    "emotional_residue": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EmotionalResidue"
+      },
+      "title": "Emotional Residue",
+      "type": "array"
+    }
+  },
+  "required": [
+    "scene_id"
+  ],
+  "title": "SceneState",
+  "type": "object"
+}

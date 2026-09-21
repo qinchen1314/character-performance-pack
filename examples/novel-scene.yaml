@@ -1,0 +1,35 @@
+request_id: req.public_insult
+character:
+  id: char.luo_han
+  personality:
+    big_five: {openness: 0.42, conscientiousness: 0.88, extraversion: 0.18, agreeableness: 0.31, neuroticism: 0.24}
+  expression_baseline: {amplitude: 0.28, initiative: 0.34, speech_volume: 0.4, gaze_duration: 0.55}
+relationship:
+  subject_id: char.luo_han
+  target_id: char.enemy
+  hostility: 0.8
+  trust: 0.1
+  dominance: 0.3
+emotion_state:
+  primary: anger
+  secondary: disappointment
+  families: [conflict, relational]
+  intensity: 0.7
+  vad: {valence: -0.65, arousal: 0.7, dominance: 0.55}
+  restraint: 0.9
+  decay_half_life_ms: 90000
+context: {activity: confrontation, privacy: public, audience_size: 12, formality: 0.7}
+physical_state:
+  injuries:
+    - {body_part: left_shoulder, severity: 0.45, constraints: [no_overhead_reach]}
+scene_state:
+  scene_id: scene.sect_hall
+  turn_index: 0
+  pose: leaning_wall
+  position: pos.north_wall
+  support_contact: wall.north
+  orientation_target: char.enemy
+  held_objects: {right_hand: object.sword}
+  distances: {char.enemy: 3.2}
+director: {beat_importance: 0.7, max_signals: 3, desired_visibility: subtle}
+seed: 938102

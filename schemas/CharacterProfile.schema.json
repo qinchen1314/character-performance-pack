@@ -1,0 +1,188 @@
+{
+  "$defs": {
+    "BigFive": {
+      "additionalProperties": false,
+      "properties": {
+        "openness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Openness",
+          "type": "number"
+        },
+        "conscientiousness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Conscientiousness",
+          "type": "number"
+        },
+        "extraversion": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Extraversion",
+          "type": "number"
+        },
+        "agreeableness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Agreeableness",
+          "type": "number"
+        },
+        "neuroticism": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Neuroticism",
+          "type": "number"
+        }
+      },
+      "title": "BigFive",
+      "type": "object"
+    },
+    "ExpressionBaseline": {
+      "additionalProperties": false,
+      "properties": {
+        "amplitude": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Amplitude",
+          "type": "number"
+        },
+        "initiative": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Initiative",
+          "type": "number"
+        },
+        "speech_volume": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Speech Volume",
+          "type": "number"
+        },
+        "gaze_duration": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Gaze Duration",
+          "type": "number"
+        }
+      },
+      "title": "ExpressionBaseline",
+      "type": "object"
+    },
+    "Personality": {
+      "additionalProperties": false,
+      "properties": {
+        "big_five": {
+          "$ref": "#/$defs/BigFive",
+          "default": {
+            "openness": 0.5,
+            "conscientiousness": 0.5,
+            "extraversion": 0.5,
+            "agreeableness": 0.5,
+            "neuroticism": 0.5
+          }
+        }
+      },
+      "title": "Personality",
+      "type": "object"
+    },
+    "SignatureBehaviour": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "affinity": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Affinity",
+          "type": "number"
+        },
+        "cooldown_turns": {
+          "default": 9,
+          "minimum": 0,
+          "title": "Cooldown Turns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "unit_id"
+      ],
+      "title": "SignatureBehaviour",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "personality": {
+      "$ref": "#/$defs/Personality",
+      "default": {
+        "big_five": {
+          "agreeableness": 0.5,
+          "conscientiousness": 0.5,
+          "extraversion": 0.5,
+          "neuroticism": 0.5,
+          "openness": 0.5
+        }
+      }
+    },
+    "expression_baseline": {
+      "$ref": "#/$defs/ExpressionBaseline",
+      "default": {
+        "amplitude": 0.5,
+        "initiative": 0.5,
+        "speech_volume": 0.5,
+        "gaze_duration": 0.5
+      }
+    },
+    "capabilities": {
+      "default": [
+        "hearing",
+        "left_hand_use",
+        "right_hand_use",
+        "speech",
+        "vision",
+        "walking"
+      ],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Capabilities",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "signature_behaviours": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/SignatureBehaviour"
+      },
+      "title": "Signature Behaviours",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "title": "CharacterProfile",
+  "type": "object"
+}

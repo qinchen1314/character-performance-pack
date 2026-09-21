@@ -4,6 +4,14 @@ from .models import (
     PerformancePlan,
     PerformanceUnit,
     VAD,
+    CharacterProfile,
+    PerformanceRequest,
+    SceneState,
+    RelationshipState,
+    PhysicalState,
+    RenderContext,
+    RenderResult,
+    WorldState,
 )
 
 __all__ = [
@@ -12,5 +20,6 @@ __all__ = [
     "PerformancePlan",
     "PerformanceUnit",
     "VAD",
+    "CharacterProfile", "PerformanceRequest", "SceneState", "RelationshipState",
+    "PhysicalState", "RenderContext", "RenderResult", "WorldState",
 ]
-

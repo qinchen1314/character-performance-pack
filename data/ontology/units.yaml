@@ -1,0 +1,2497 @@
+schema_version: 1.0.0
+units:
+- id: facial.brow_contract
+  category: facial
+  channel: facial
+  atomic_action: brow_contract
+  body_parts:
+  - brow
+  semantic_groups:
+  - brow_tension
+  semantics:
+    tension: 0.9
+  emotion_affinity:
+    anger: 0.85
+    curiosity: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: brow_tension
+  render_hints:
+    subject: 眉间
+    verb: 蹙
+    complement: 起
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  facial_units:
+  - region: brow
+    action: brow_contract
+    intensity: 0.5
+  vad_affinity:
+    valence: -0.247
+    arousal: 0.5787
+    dominance: 0.355
+- id: facial.lip_press
+  category: facial
+  channel: facial
+  atomic_action: lip_press
+  body_parts:
+  - lips
+  semantic_groups:
+  - lip_restraint
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    anger: 0.85
+    fear: 0.65
+    remorse: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: lip_restraint
+  render_hints:
+    subject: 嘴唇
+    verb: 抿
+    complement: 紧
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  facial_units:
+  - region: lips
+    action: lip_press
+    intensity: 0.5
+  vad_affinity:
+    valence: -0.6742
+    arousal: -0.25
+    dominance: -0.1453
+- id: facial.jaw_set
+  category: facial
+  channel: facial
+  atomic_action: jaw_set
+  body_parts:
+  - jaw
+  semantic_groups:
+  - jaw_tension
+  semantics:
+    aggression: 0.9
+  emotion_affinity:
+    anger: 0.85
+    resentment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: jaw_tension
+  render_hints:
+    subject: 下颌
+    verb: 绷
+    complement: 紧
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  facial_units:
+  - region: jaw
+    action: jaw_set
+    intensity: 0.5
+  vad_affinity:
+    valence: -0.6803
+    arousal: 0.8
+    dominance: 0.3897
+- id: facial.smile_open
+  category: facial
+  channel: facial
+  atomic_action: smile_open
+  body_parts:
+  - mouth
+  semantic_groups:
+  - mouth_change
+  semantics:
+    warmth: 0.9
+  emotion_affinity:
+    joy: 0.85
+    love: 0.65
+    gratitude: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: mouth_change
+  render_hints:
+    subject: 唇角
+    verb: 扬
+    complement: 起
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  facial_units:
+  - region: mouth
+    action: smile_open
+    intensity: 0.5
+  vad_affinity:
+    valence: 0.754
+    arousal: 0.4291
+    dominance: 0.1793
+- id: facial.eyelid_lower
+  category: facial
+  channel: facial
+  atomic_action: eyelid_lower
+  body_parts:
+  - eyelids
+  semantic_groups:
+  - eyelid_cover
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    sadness: 0.85
+    disappointment: 0.65
+    embarrassment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: eyelid_cover
+  render_hints:
+    subject: 眼睑
+    verb: 垂
+    complement: 下
+    alternate_verb: 低垂
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  facial_units:
+  - region: eyelids
+    action: eyelid_lower
+    intensity: 0.5
+  vad_affinity:
+    valence: -0.5821
+    arousal: 0.013
+    dominance: -0.4565
+- id: facial.brow_release
+  category: facial
+  channel: facial
+  atomic_action: brow_release
+  body_parts:
+  - brow
+  semantic_groups:
+  - brow_release
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    relief: 0.85
+    love: 0.65
+    calm: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: brow_release
+  render_hints:
+    subject: 眉间
+    verb: 舒展
+    complement: 开
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  facial_units:
+  - region: brow
+    action: brow_release
+    intensity: 0.5
+  vad_affinity:
+    valence: 0.5137
+    arousal: -0.25
+    dominance: 0.2258
+- id: micro_expression.lip_pause
+  category: micro_expression
+  channel: facial
+  atomic_action: lip_pause
+  body_parts:
+  - lips
+  semantic_groups:
+  - speech_inhibition
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    fear: 0.85
+    anger: 0.65
+    embarrassment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: very_subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: speech_inhibition
+  render_hints:
+    subject: 嘴唇
+    verb: 动
+    complement: 了一下，又停住
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  timing_ms:
+  - 180
+  - 500
+  facial_units:
+  - region: lips
+    action: lip_pause
+    intensity: 0.3
+  timing:
+    onset_ms:
+    - 40
+    - 100
+    apex_ms:
+    - 60
+    - 140
+    offset_ms:
+    - 80
+    - 260
+    total_duration_ms:
+    - 180
+    - 500
+  vad_affinity:
+    valence: -0.6202
+    arousal: -0.25
+    dominance: -0.266
+- id: micro_expression.blink_delay
+  category: micro_expression
+  channel: facial
+  atomic_action: blink_delay
+  body_parts:
+  - eyelids
+  semantic_groups:
+  - blink_delay
+  semantics:
+    tension: 0.9
+  emotion_affinity:
+    fear: 0.85
+    surprise: 0.65
+    jealousy: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: very_subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: blink_delay
+  render_hints:
+    subject: 眼睑
+    verb: 停
+    complement: 了一瞬才落下
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  timing_ms:
+  - 180
+  - 500
+  facial_units:
+  - region: eyelids
+    action: blink_delay
+    intensity: 0.3
+  timing:
+    onset_ms:
+    - 40
+    - 100
+    apex_ms:
+    - 60
+    - 140
+    offset_ms:
+    - 80
+    - 260
+    total_duration_ms:
+    - 180
+    - 500
+  vad_affinity:
+    valence: -0.4449
+    arousal: 0.6607
+    dominance: -0.3235
+- id: gaze.target_lock
+  category: gaze
+  channel: gaze
+  atomic_action: target_lock
+  body_parts:
+  - eyes
+  semantic_groups:
+  - target_attention
+  semantics:
+    aggression: 0.9
+  emotion_affinity:
+    anger: 0.85
+    curiosity: 0.65
+    resentment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - target_known
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - vision
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: target_attention
+  render_hints:
+    subject: 目光
+    verb: 停
+    complement: 在对方身上
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.39
+    arousal: 0.8
+    dominance: 0.3021
+- id: gaze.gaze_avoid
+  category: gaze
+  channel: gaze
+  atomic_action: gaze_avoid
+  body_parts:
+  - eyes
+  semantic_groups:
+  - gaze_avoidance
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    fear: 0.85
+    embarrassment: 0.65
+    remorse: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - target_known
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - vision
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: gaze_avoidance
+  render_hints:
+    subject: 目光
+    verb: 避
+    complement: 开对方
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6233
+    arousal: 0.4884
+    dominance: -0.5986
+- id: gaze.gaze_lower
+  category: gaze
+  channel: gaze
+  atomic_action: gaze_lower
+  body_parts:
+  - eyes
+  semantic_groups:
+  - gaze_lowering
+  semantics:
+    deference: 0.9
+  emotion_affinity:
+    sadness: 0.85
+    disappointment: 0.65
+    admiration: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - vision
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: gaze_lowering
+  render_hints:
+    subject: 目光
+    verb: 垂
+    complement: 下
+    alternate_verb: 低垂
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.2374
+    arousal: -0.0293
+    dominance: -0.3053
+- id: gaze.gaze_return
+  category: gaze
+  channel: gaze
+  atomic_action: gaze_return
+  body_parts:
+  - eyes
+  semantic_groups:
+  - attention_return
+  semantics:
+    warmth: 0.9
+  emotion_affinity:
+    love: 0.85
+    hope: 0.65
+    gratitude: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - target_known
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - vision
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: attention_return
+  render_hints:
+    subject: 目光
+    verb: 转
+    complement: 回对方身上
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.7014
+    arousal: 0.3498
+    dominance: 0.0988
+- id: gaze.gaze_steady
+  category: gaze
+  channel: gaze
+  atomic_action: gaze_steady
+  body_parts:
+  - eyes
+  semantic_groups:
+  - surface_calm
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    calm: 0.85
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - vision
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: surface_calm
+  render_hints:
+    subject: 目光
+    verb: 保持
+    complement: 平稳
+    alternate_verb: 维持
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.2
+    arousal: -0.25
+    dominance: 0.3
+- id: body.chin_raise
+  category: body
+  channel: head
+  atomic_action: chin_raise
+  body_parts:
+  - head
+  semantic_groups:
+  - head_assertion
+  semantics:
+    aggression: 0.9
+  emotion_affinity:
+    anger: 0.85
+    pride: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: head_assertion
+  render_hints:
+    subject: 下巴
+    verb: 抬
+    complement: 起
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.0997
+    arousal: 0.8
+    dominance: 0.602
+- id: body.head_incline
+  category: body
+  channel: head
+  atomic_action: head_incline
+  body_parts:
+  - head
+  semantic_groups:
+  - head_inquiry
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    curiosity: 0.85
+    surprise: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: head_inquiry
+  render_hints:
+    subject: ''
+    verb: 偏
+    complement: 了偏头
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.1803
+    arousal: 0.8
+    dominance: 0.0047
+- id: body.neck_stiffen
+  category: body
+  channel: neck
+  atomic_action: neck_stiffen
+  body_parts:
+  - neck
+  semantic_groups:
+  - neck_guard
+  semantics:
+    tension: 0.9
+  emotion_affinity:
+    fear: 0.85
+    anger: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: neck_guard
+  render_hints:
+    subject: 颈侧
+    verb: 绷
+    complement: 紧
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6897
+    arousal: 0.7
+    dominance: -0.13
+- id: body.shoulder_release
+  category: body
+  channel: shoulders
+  atomic_action: shoulder_release
+  body_parts:
+  - shoulders
+  semantic_groups:
+  - shoulder_release
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    relief: 0.85
+    calm: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: shoulder_release
+  render_hints:
+    subject: 肩膀
+    verb: 松
+    complement: 下来
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.3983
+    arousal: -0.25
+    dominance: 0.2717
+- id: body.shoulder_draw
+  category: body
+  channel: shoulders
+  atomic_action: shoulder_draw
+  body_parts:
+  - shoulders
+  semantic_groups:
+  - shoulder_guard
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    fear: 0.85
+    embarrassment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: shoulder_guard
+  render_hints:
+    subject: 肩膀
+    verb: 缩
+    complement: 起
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6073
+    arousal: 0.622
+    dominance: -0.6197
+- id: body.arms_fold
+  category: body
+  channel: arms
+  atomic_action: arms_fold
+  body_parts:
+  - arms
+  semantic_groups:
+  - arm_barrier
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    anger: 0.85
+    disgust: 0.65
+    resentment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - left_hand_free
+  - right_hand_free
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - left_hand_use
+    - right_hand_use
+  conflicts:
+  - body.palm_open
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: arm_barrier
+  render_hints:
+    subject: 双臂
+    verb: 交叠
+    complement: 在身前
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6863
+    arousal: 0.4974
+    dominance: 0.3323
+- id: body.hand_clench
+  category: body
+  channel: hands
+  atomic_action: hand_clench
+  body_parts:
+  - right_hand
+  semantic_groups:
+  - hand_tension
+  semantics:
+    aggression: 0.9
+  emotion_affinity:
+    anger: 0.85
+    jealousy: 0.65
+    fear: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - right_hand_free
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - right_hand_use
+  conflicts:
+  - body.finger_still
+  - body.transfer_left
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: hand_tension
+  render_hints:
+    subject: 右手
+    verb: 握
+    complement: 紧
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.65
+    arousal: 0.8
+    dominance: -0.0093
+- id: body.palm_open
+  category: body
+  channel: hands
+  atomic_action: palm_open
+  body_parts:
+  - left_hand
+  semantic_groups:
+  - palm_openness
+  semantics:
+    warmth: 0.9
+  emotion_affinity:
+    gratitude: 0.85
+    love: 0.65
+    hope: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - left_hand_free
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - left_hand_use
+  conflicts:
+  - body.arms_fold
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: palm_openness
+  render_hints:
+    subject: 左手
+    verb: 摊
+    complement: 开
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.6958
+    arousal: 0.3442
+    dominance: 0.083
+- id: body.finger_still
+  category: body
+  channel: fingers
+  atomic_action: finger_still
+  body_parts:
+  - right_hand
+  semantic_groups:
+  - motor_inhibition
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    fear: 0.85
+    anger: 0.65
+    embarrassment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - right_hand_free
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - right_hand_use
+  conflicts:
+  - body.hand_clench
+  visibility: very_subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: motor_inhibition
+  render_hints:
+    subject: 右手指尖
+    verb: 停
+    complement: 住不动
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6202
+    arousal: -0.25
+    dominance: -0.266
+- id: body.torso_forward
+  category: body
+  channel: torso
+  atomic_action: torso_forward
+  body_parts:
+  - torso
+  semantic_groups:
+  - engagement
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    curiosity: 0.85
+    anger: 0.65
+    hope: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts:
+  - body.torso_recoil
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: engagement
+  render_hints:
+    subject: 上身
+    verb: 倾
+    complement: 向前
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.0895
+    arousal: 0.8
+    dominance: 0.2723
+- id: body.torso_recoil
+  category: body
+  channel: torso
+  atomic_action: torso_recoil
+  body_parts:
+  - torso
+  semantic_groups:
+  - torso_recoil
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    disgust: 0.85
+    surprise: 0.65
+    fear: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts:
+  - body.torso_forward
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: torso_recoil
+  render_hints:
+    subject: 上身
+    verb: 向后
+    complement: 避了避
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.4793
+    arousal: 0.5677
+    dominance: -0.1537
+- id: body.knees_brace
+  category: body
+  channel: legs
+  atomic_action: knees_brace
+  body_parts:
+  - legs
+  semantic_groups:
+  - leg_brace
+  semantics:
+    tension: 0.9
+  emotion_affinity:
+    fear: 0.85
+    anger: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - standing
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: leg_brace
+  render_hints:
+    subject: 双膝
+    verb: 绷
+    complement: 紧
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6897
+    arousal: 0.7
+    dominance: -0.13
+- id: body.weight_shift
+  category: body
+  channel: feet
+  atomic_action: weight_shift
+  body_parts:
+  - feet
+  semantic_groups:
+  - balance_shift
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    fear: 0.85
+    curiosity: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - standing
+  effects: {}
+  physical_requirements:
+    capabilities: []
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: balance_shift
+  render_hints:
+    subject: 重心
+    verb: 移
+    complement: 向另一只脚
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.2867
+    arousal: 0.5787
+    dominance: -0.325
+- id: spatial.turn_toward
+  category: spatial
+  channel: spatial
+  atomic_action: turn_toward
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - orientation_engage
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    anger: 0.85
+    curiosity: 0.65
+    love: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - standing
+  - target_known
+  effects:
+    orientation: target
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: orientation_engage
+  render_hints:
+    subject: ''
+    verb: 转
+    complement: 向对方
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.0635
+    arousal: 0.8
+    dominance: 0.284
+- id: spatial.turn_away
+  category: spatial
+  channel: spatial
+  atomic_action: turn_away
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - orientation_disengage
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    disgust: 0.85
+    sadness: 0.65
+    resentment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - standing
+  - target_known
+  effects:
+    orientation: away
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: orientation_disengage
+  render_hints:
+    subject: ''
+    verb: 转
+    complement: 开身
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.706
+    arousal: 0.1777
+    dominance: -0.0237
+- id: spatial.step_back
+  category: spatial
+  channel: spatial
+  atomic_action: step_back
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - distance_retreat
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    fear: 0.85
+    disgust: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - standing
+  - distance_known
+  effects:
+    distance_delta: 0.4
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: distance_retreat
+  render_hints:
+    subject: ''
+    verb: 后退
+    complement: 半步
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.7113
+    arousal: 0.5483
+    dominance: -0.2817
+- id: spatial.step_closer
+  category: spatial
+  channel: spatial
+  atomic_action: step_closer
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - distance_approach
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    anger: 0.85
+    love: 0.65
+    hope: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - standing
+  - can_approach
+  effects:
+    distance_delta: -0.4
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: distance_approach
+  render_hints:
+    subject: ''
+    verb: 向对方
+    complement: 挪近半步
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.1542
+    arousal: 0.8
+    dominance: 0.3202
+- id: spatial.stand_up
+  category: spatial
+  channel: spatial
+  atomic_action: stand_up
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - posture_rise
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    anger: 0.85
+    surprise: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - seated
+  effects:
+    pose: standing
+    clear_support: true
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: posture_rise
+  render_hints:
+    subject: ''
+    verb: 站
+    complement: 起身来
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.3467
+    arousal: 0.8
+    dominance: 0.2597
+- id: spatial.sit_down
+  category: spatial
+  channel: spatial
+  atomic_action: sit_down
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - posture_sit
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    sadness: 0.85
+    relief: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - standing
+  - seat_contact
+  effects:
+    pose: seated
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: posture_sit
+  render_hints:
+    subject: ''
+    verb: 坐
+    complement: 下
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.1583
+    arousal: -0.2933
+    dominance: -0.1863
+- id: spatial.leave_wall
+  category: spatial
+  channel: spatial
+  atomic_action: leave_wall
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - support_release
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    anger: 0.85
+    curiosity: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - leaning_wall
+  - wall_contact
+  effects:
+    pose: standing
+    clear_support: true
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: support_release
+  render_hints:
+    subject: 后背
+    verb: 离
+    complement: 开墙面
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.247
+    arousal: 0.8
+    dominance: 0.355
+- id: spatial.lean_wall
+  category: spatial
+  channel: spatial
+  atomic_action: lean_wall
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - support_seek
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    sadness: 0.85
+    disappointment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - standing
+  - wall_contact
+  effects:
+    pose: leaning_wall
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: support_seek
+  render_hints:
+    subject: 后背
+    verb: 靠
+    complement: 向墙面
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.635
+    arousal: -0.2067
+    dominance: -0.403
+- id: body.transfer_left
+  category: body
+  channel: hands
+  atomic_action: transfer_left
+  body_parts:
+  - hands
+  semantic_groups:
+  - object_transfer_left
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    fear: 0.85
+    curiosity: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - right_hand_holding
+  - left_hand_free
+  effects:
+    transfer: right_to_left
+  physical_requirements:
+    capabilities:
+    - left_hand_use
+    - right_hand_use
+  conflicts:
+  - body.hand_clench
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: object_transfer_left
+  render_hints:
+    subject: ''
+    verb: 将右手的东西交
+    complement: 到左手
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.2867
+    arousal: -0.25
+    dominance: -0.325
+- id: body.transfer_right
+  category: body
+  channel: hands
+  atomic_action: transfer_right
+  body_parts:
+  - hands
+  semantic_groups:
+  - object_transfer_right
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    anger: 0.85
+    hope: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions:
+  - left_hand_holding
+  - right_hand_free
+  effects:
+    transfer: left_to_right
+  physical_requirements:
+    capabilities:
+    - left_hand_use
+    - right_hand_use
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: object_transfer_right
+  render_hints:
+    subject: ''
+    verb: 将左手的东西交
+    complement: 到右手
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.117
+    arousal: 0.8
+    dominance: 0.407
+- id: physiology.breath_pause
+  category: physiology
+  channel: breath
+  atomic_action: breath_pause
+  body_parts:
+  - lungs
+  semantic_groups:
+  - breath_pause
+  semantics:
+    tension: 0.9
+  emotion_affinity:
+    fear: 0.85
+    surprise: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+    min_breath: 0.3
+  conflicts: []
+  visibility: very_subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: breath_pause
+  render_hints:
+    subject: 呼吸
+    verb: 停
+    complement: 了一拍
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.3863
+    arousal: 0.7087
+    dominance: -0.4203
+- id: physiology.breath_even
+  category: physiology
+  channel: breath
+  atomic_action: breath_even
+  body_parts:
+  - lungs
+  semantic_groups:
+  - breath_regulation
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    calm: 0.85
+    relief: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+    min_breath: 0.3
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: breath_regulation
+  render_hints:
+    subject: ''
+    verb: 放匀
+    complement: 呼吸
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.3517
+    arousal: -0.25
+    dominance: 0.2783
+- id: physiology.swallow
+  category: physiology
+  channel: throat
+  atomic_action: swallow
+  body_parts:
+  - throat
+  semantic_groups:
+  - swallow_response
+  semantics:
+    tension: 0.9
+  emotion_affinity:
+    fear: 0.85
+    embarrassment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+    min_breath: 0.3
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: swallow_response
+  render_hints:
+    subject: 喉间
+    verb: 动
+    complement: 了一下
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6073
+    arousal: 0.622
+    dominance: -0.6197
+- id: physiology.exhale
+  category: physiology
+  channel: breath
+  atomic_action: exhale
+  body_parts:
+  - lungs
+  semantic_groups:
+  - exhale_release
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    sadness: 0.85
+    relief: 0.65
+    disappointment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities: []
+    min_breath: 0.3
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: exhale_release
+  render_hints:
+    subject: ''
+    verb: 缓缓吐
+    complement: 出一口气
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.2767
+    arousal: -0.25
+    dominance: -0.2056
+- id: speech.voice_low
+  category: speech
+  channel: speech
+  atomic_action: voice_low
+  body_parts:
+  - voice
+  semantic_groups:
+  - volume_reduction
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    fear: 0.85
+    love: 0.65
+    resentment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - speech
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: volume_reduction
+  render_hints:
+    subject: 声音
+    verb: 压
+    complement: 低
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.2665
+    arousal: 0.5065
+    dominance: -0.1663
+- id: speech.pace_slow
+  category: speech
+  channel: speech
+  atomic_action: pace_slow
+  body_parts:
+  - voice
+  semantic_groups:
+  - pace_deliberate
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    anger: 0.85
+    calm: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - speech
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: pace_deliberate
+  render_hints:
+    subject: 语速
+    verb: 放
+    complement: 慢
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.2817
+    arousal: -0.25
+    dominance: 0.4417
+- id: speech.pace_quick
+  category: speech
+  channel: speech
+  atomic_action: pace_quick
+  body_parts:
+  - voice
+  semantic_groups:
+  - pace_urgent
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    joy: 0.85
+    anger: 0.65
+    surprise: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - speech
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: pace_urgent
+  render_hints:
+    subject: 语速
+    verb: 加
+    complement: 快
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.1191
+    arousal: 0.8
+    dominance: 0.2881
+- id: speech.pause_before
+  category: speech
+  channel: speech
+  atomic_action: pause_before
+  body_parts:
+  - voice
+  semantic_groups:
+  - speech_delay
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    fear: 0.85
+    remorse: 0.65
+    disappointment: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - speech
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: speech_delay
+  render_hints:
+    subject: 话音
+    verb: 迟
+    complement: 了一拍
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6505
+    arousal: 0.2858
+    dominance: -0.4988
+- id: speech.enunciate
+  category: speech
+  channel: speech
+  atomic_action: enunciate
+  body_parts:
+  - voice
+  semantic_groups:
+  - articulation_precise
+  semantics:
+    aggression: 0.9
+  emotion_affinity:
+    anger: 0.85
+    pride: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - speech
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: articulation_precise
+  render_hints:
+    subject: 字音
+    verb: 咬
+    complement: 得分明
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.0997
+    arousal: 0.8
+    dominance: 0.602
+- id: speech.voice_soft
+  category: speech
+  channel: speech
+  atomic_action: voice_soft
+  body_parts:
+  - voice
+  semantic_groups:
+  - vocal_warmth
+  semantics:
+    warmth: 0.9
+  emotion_affinity:
+    love: 0.85
+    gratitude: 0.65
+    admiration: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - speech
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: vocal_warmth
+  render_hints:
+    subject: 语气
+    verb: 放
+    complement: 柔
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.7316
+    arousal: 0.3619
+    dominance: 0.0081
+- id: speech.phrase_short
+  category: speech
+  channel: speech
+  atomic_action: phrase_short
+  body_parts:
+  - voice
+  semantic_groups:
+  - phrase_compression
+  semantics:
+    aggression: 0.9
+  emotion_affinity:
+    anger: 0.85
+    disgust: 0.65
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - speech
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: phrase_compression
+  render_hints:
+    subject: 话语
+    verb: 收
+    complement: 得短促
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.6717
+    arousal: 0.8
+    dominance: 0.3983
+- id: speech.voice_level
+  category: speech
+  channel: speech
+  atomic_action: voice_level
+  body_parts:
+  - voice
+  semantic_groups:
+  - surface_composure
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    calm: 0.85
+  intensity_range:
+    min: 0.05
+    max: 1
+  preconditions: []
+  effects: {}
+  physical_requirements:
+    capabilities:
+    - speech
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 4
+    scene_scope: true
+  repeat_group: surface_composure
+  render_hints:
+    subject: 语调
+    verb: 保持
+    complement: 平稳
+    alternate_verb: 维持
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.2
+    arousal: -0.25
+    dominance: 0.3
+- id: world.qi_settle
+  category: world_specific
+  channel: world
+  atomic_action: qi_settle
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - qi_settle
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    calm: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: qi_settle
+  preconditions: []
+  world_requirements:
+    min_realm: qi_refining
+    capability: qi_control
+    cost: 0.02
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+  render_hints:
+    subject: 体内气息
+    verb: 收
+    complement: 稳
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.2
+    arousal: -0.25
+    dominance: 0.3
+- id: world.qi_stir
+  category: world_specific
+  channel: world
+  atomic_action: qi_stir
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - qi_stir
+  semantics:
+    tension: 0.9
+  emotion_affinity:
+    anger: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: qi_stir
+  preconditions: []
+  world_requirements:
+    min_realm: qi_refining
+    capability: qi_control
+    cost: 0.03
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+  render_hints:
+    subject: 体内灵气
+    verb: 微微
+    complement: 一动
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.65
+    arousal: 0.7
+    dominance: 0.55
+- id: world.qi_restrain
+  category: world_specific
+  channel: world
+  atomic_action: qi_restrain
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - qi_restrain
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    fear: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: qi_restrain
+  preconditions: []
+  world_requirements:
+    min_realm: qi_refining
+    capability: qi_control
+    cost: 0.03
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+  render_hints:
+    subject: 体内灵气
+    verb: 缓缓
+    complement: 收拢
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.72
+    arousal: -0.25
+    dominance: -0.65
+- id: world.aura_withdraw
+  category: world_specific
+  channel: world
+  atomic_action: aura_withdraw
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - aura_withdraw
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    fear: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: aura_withdraw
+  preconditions: []
+  world_requirements:
+    min_realm: foundation
+    capability: aura_control
+    cost: 0.06
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+    requires_active:
+    - aura_control
+    deactivate:
+    - aura_control
+  render_hints:
+    subject: 外放气息
+    verb: 收
+    complement: 回体内
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.72
+    arousal: 0.7
+    dominance: -0.65
+- id: world.aura_soften
+  category: world_specific
+  channel: world
+  atomic_action: aura_soften
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - aura_soften
+  semantics:
+    warmth: 0.9
+  emotion_affinity:
+    love: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: aura_soften
+  preconditions: []
+  world_requirements:
+    min_realm: foundation
+    capability: aura_control
+    cost: 0.06
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+    activate:
+    - aura_control
+  render_hints:
+    subject: 周身气息
+    verb: 缓
+    complement: 和下来
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.78
+    arousal: 0.38
+    dominance: 0.12
+- id: world.sense_focus
+  category: world_specific
+  channel: world
+  atomic_action: sense_focus
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - sense_focus
+  semantics:
+    initiative: 0.9
+  emotion_affinity:
+    curiosity: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: sense_focus
+  preconditions:
+  - target_known
+  world_requirements:
+    min_realm: foundation
+    capability: spiritual_sense
+    cost: 0.08
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+    activate:
+    - spiritual_sense
+  render_hints:
+    subject: 神识
+    verb: 凝
+    complement: 向对方
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.28
+    arousal: 0.8
+    dominance: 0.1
+- id: world.sense_retract
+  category: world_specific
+  channel: world
+  atomic_action: sense_retract
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - sense_retract
+  semantics:
+    withdrawal: 0.9
+  emotion_affinity:
+    fear: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: sense_retract
+  preconditions: []
+  world_requirements:
+    min_realm: foundation
+    capability: spiritual_sense
+    cost: 0.08
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+    requires_active:
+    - spiritual_sense
+    deactivate:
+    - spiritual_sense
+  render_hints:
+    subject: 神识
+    verb: 收
+    complement: 回
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.72
+    arousal: 0.7
+    dominance: -0.65
+- id: world.intent_gather
+  category: world_specific
+  channel: world
+  atomic_action: intent_gather
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - intent_gather
+  semantics:
+    aggression: 0.9
+  emotion_affinity:
+    anger: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: intent_gather
+  preconditions: []
+  world_requirements:
+    min_realm: golden_core
+    capability: intent_control
+    cost: 0.12
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+    activate:
+    - intent_control
+  render_hints:
+    subject: 剑意
+    verb: 凝
+    complement: 而未发
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.65
+    arousal: 0.8
+    dominance: 0.55
+- id: world.pressure_release
+  category: world_specific
+  channel: world
+  atomic_action: pressure_release
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - pressure_release
+  semantics:
+    aggression: 0.9
+  emotion_affinity:
+    anger: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: pressure_release
+  preconditions:
+  - target_known
+  world_requirements:
+    min_realm: golden_core
+    capability: pressure_control
+    cost: 0.15
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.7
+    target_dominance: true
+    activate:
+    - pressure_control
+  render_hints:
+    subject: 威压
+    verb: 向对方
+    complement: 逼去
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: -0.65
+    arousal: 0.8
+    dominance: 0.55
+- id: world.intent_quiet
+  category: world_specific
+  channel: world
+  atomic_action: intent_quiet
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - intent_quiet
+  semantics:
+    self_control: 0.9
+  emotion_affinity:
+    calm: 0.9
+  intensity_range:
+    min: 0.25
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.5
+  cooldown:
+    turns: 6
+  repeat_group: intent_quiet
+  preconditions: []
+  world_requirements:
+    min_realm: golden_core
+    capability: intent_control
+    cost: 0.1
+    control: 0.6
+    destruction: 0
+    min_intensity: 0.25
+    target_dominance: false
+    requires_active:
+    - intent_control
+    deactivate:
+    - intent_control
+  render_hints:
+    subject: 剑意
+    verb: 敛
+    complement: 入体内
+  source_refs:
+  - src.original.performance.v1
+  license_class: original
+  status: active
+  vad_affinity:
+    valence: 0.2
+    arousal: -0.25
+    dominance: 0.3

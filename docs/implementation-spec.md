@@ -1,5 +1,7 @@
 # Character Performance Pack V2 实现文档
 
+> 实施进度（2026-09-21）：本地小说运行链已推进至 0.2.0 垂直切片，详见 [阶段总览](phase-reports/runtime-mvp.md) 与 [离线评估](evaluation/latest.md)。本文仍是完整 v1.0 目标规范；未以局部测试通过替代全量退出条件。
+
 > 文档状态：Draft v0.1  
 > 文档类型：架构设计 + 数据契约 + 实施计划  
 > 适用对象：小说 Agent、Character/NPC Agent、Narrator/Director Agent、世界模拟与 RPG/TRPG 系统  

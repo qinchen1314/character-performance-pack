@@ -1,0 +1,91 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "genre": {
+      "default": "general",
+      "enum": [
+        "general",
+        "xianxia",
+        "unknown"
+      ],
+      "title": "Genre",
+      "type": "string"
+    },
+    "realm": {
+      "default": "mortal",
+      "enum": [
+        "mortal",
+        "qi_refining",
+        "foundation",
+        "golden_core",
+        "unknown"
+      ],
+      "title": "Realm",
+      "type": "string"
+    },
+    "stage": {
+      "default": 1,
+      "maximum": 9,
+      "minimum": 1,
+      "title": "Stage",
+      "type": "integer"
+    },
+    "qi": {
+      "default": 1,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Qi",
+      "type": "number"
+    },
+    "control": {
+      "default": 1,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Control",
+      "type": "number"
+    },
+    "target_realm": {
+      "default": "unknown",
+      "enum": [
+        "mortal",
+        "qi_refining",
+        "foundation",
+        "golden_core",
+        "unknown"
+      ],
+      "title": "Target Realm",
+      "type": "string"
+    },
+    "suppressed_capabilities": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Suppressed Capabilities",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "active_capabilities": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Active Capabilities",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "destruction_limit": {
+      "default": 0,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Destruction Limit",
+      "type": "number"
+    }
+  },
+  "title": "WorldState",
+  "type": "object"
+}

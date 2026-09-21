@@ -7,3 +7,7 @@ dist/
 build/
 *.egg-info/
 data/compiled/
+examples/output/
+examples/*.db
+examples/*.db-journal
+docs/evaluation/*.junit.xml

@@ -37,4 +37,3 @@ python -m character_performance.cli.perform examples/novel-scene.yaml --name 洛
 ## 9. 下一阶段依赖
 
 数据规模扩大后才引入更复杂检索；当前保留分项诊断。 总体边界见 [runtime-mvp.md](runtime-mvp.md)。
-

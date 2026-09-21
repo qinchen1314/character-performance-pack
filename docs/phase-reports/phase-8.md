@@ -37,4 +37,3 @@ displayed_emotion 暂只支持 calm；其他展示情绪显式报错，不悄悄
 ## 9. 下一阶段依赖
 
 扩展 displayed 情绪前须增加对应行为与冲突验收。 总体边界见 [runtime-mvp.md](runtime-mvp.md)。
-

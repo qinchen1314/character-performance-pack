@@ -37,4 +37,3 @@ tests/unit/test_runtime_boundaries.py；T3 掩饰场景。 最新全量结果见
 ## 9. 下一阶段依赖
 
 更丰富的微表情组合与盲评集。 总体边界见 [runtime-mvp.md](runtime-mvp.md)。
-

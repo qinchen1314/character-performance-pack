@@ -37,4 +37,3 @@ T5、伤膝承重回归、非法状态规则拒绝。 最新全量结果见 [评
 ## 9. 下一阶段依赖
 
 需要显式场景拓扑才能安全实现 approach → orient → sit。 总体边界见 [runtime-mvp.md](runtime-mvp.md)。
-

@@ -13,9 +13,6 @@ dependencies = [
   "PyYAML>=6,<7",
 ]
 
-[project.optional-dependencies]
-dev = ["pytest>=9,<10"]
-
 [project.scripts]
 cpp-build-pack = "character_performance.cli.build_pack:main"
 cpp-export-schemas = "character_performance.cli.export_schemas:main"
@@ -23,8 +20,3 @@ cpp-perform = "character_performance.cli.perform:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.pytest.ini_options]
-addopts = "-q --basetemp=.pytest-tmp"
-pythonpath = ["src"]
-testpaths = ["tests"]

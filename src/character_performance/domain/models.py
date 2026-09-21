@@ -153,6 +153,7 @@ class PerformanceUnit(DomainModel):
         "original",
     ]
     status: Literal["active", "deprecated", "disabled", "unknown"] = "active"
+    replacement_id: NonEmptyId | None = None
     effects: dict[str, Any] = Field(default_factory=dict)
     vad_affinity: VAD | None = None
     timing_ms: tuple[NonNegativeInt, NonNegativeInt] | None = None
@@ -478,7 +479,7 @@ class PerformancePlan(DomainModel):
     leak_signals: tuple[NonEmptyId, ...] = ()
     selected: dict[str, tuple[NonEmptyId, ...]] = Field(default_factory=dict)
     parameters: dict[NonEmptyId, dict[str, Any]] = Field(default_factory=dict)
-    pack_version: str = "0.4.0"
+    pack_version: str = "0.5.0"
     pack_hash: str = ""
     rule_version: str = "1.2.0"
     input_hash: str = ""

@@ -1,7 +1,7 @@
 """Typed authoring records and deterministic compilation; no combinatorial expansion."""
 from typing import Literal
 
-from pydantic import Field
+from pydantic import Field, model_validator
 
 from character_performance.domain.models import DomainModel, FacialAction, NonEmptyId, PerformanceUnit
 from character_performance.ontology.emotion import EmotionOntology
@@ -25,6 +25,19 @@ class CatalogRecord(DomainModel):
     world: dict = Field(default_factory=dict)
     facial_actions: tuple[FacialAction, ...] = ()
     intensity: tuple[float, float] = (.15, .95)
+    editorial_status: Literal["active", "rejected"] = "active"
+    editorial_note: str = ""
+    replacement_id: NonEmptyId | None = None
+
+    @model_validator(mode="after")
+    def rejected_record_has_audit_reason(self) -> "CatalogRecord":
+        if self.editorial_status == "rejected" and len(self.editorial_note) < 6:
+            raise ValueError("editorially rejected record requires a review note")
+        if self.editorial_status == "rejected" and self.replacement_id is None:
+            raise ValueError("editorially rejected record requires a replacement_id")
+        if self.editorial_status == "active" and self.replacement_id is not None:
+            raise ValueError("active record cannot declare replacement_id")
+        return self
 
 
 def compile_record(record: CatalogRecord, ontology: EmotionOntology) -> PerformanceUnit:
@@ -74,6 +87,8 @@ def compile_record(record: CatalogRecord, ontology: EmotionOntology) -> Performa
         visibility="very_subtle" if record.category == "micro_expression" else record.visibility,
         narrative_weight=.48, cooldown={"turns": 6}, repeat_group=record.family,
         render_hints={"subject": "", "verb": record.clause, "complement": ""},
-        source_refs=("src.original.catalog.v1",), license_class="original", status="active",
+        source_refs=("src.original.catalog.v1",), license_class="original",
+        status="deprecated" if record.editorial_status == "rejected" else "active",
+        replacement_id=record.replacement_id,
         vad_affinity=vad, facial_units=record.facial_actions, world_requirements=record.world,
         description_zh=record.meaning, **extra)

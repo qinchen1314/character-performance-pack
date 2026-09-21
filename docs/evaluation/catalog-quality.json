@@ -1,5 +1,5 @@
 {
-  "pack_hash": "8f608a6010e2a51f5c496137b1eff87fe90c8a516b6ae0d763f742cc5e2b2aaf",
+  "pack_hash": "e6bc828b62cdd9c4457cd6250cb6ad4a32c8d7235d4b0d89041abc1d6b826338",
   "targets": {
     "emotions": 50,
     "micro_expression": 100,
@@ -13,19 +13,20 @@
     "world_specific": 100
   },
   "actual": {
-    "body": 315,
-    "facial": 76,
-    "gaze": 85,
-    "micro_expression": 103,
+    "body": 307,
+    "facial": 75,
+    "gaze": 83,
+    "micro_expression": 101,
     "physiology": 105,
-    "spatial": 115,
-    "speech": 111,
-    "world_specific": 110,
+    "spatial": 112,
+    "speech": 108,
+    "world_specific": 108,
     "emotions": 66,
-    "facial_gaze": 161,
+    "facial_gaze": 158,
     "personality_modifiers": 33,
     "relationship_modifiers": 19
   },
+  "deprecated_count": 21,
   "quantity_gates": {
     "emotions": true,
     "micro_expression": true,
@@ -41,19 +42,11 @@
   "exact_duplicate_pairs": [],
   "near_duplicate_pairs": [],
   "near_duplicate_unit_fraction": 0.0,
-  "semantic_family_count": 393,
+  "semantic_family_count": 388,
   "largest_families": [
     [
       "object_appraisal",
-      22
-    ],
-    [
-      "discourse_structure",
-      10
-    ],
-    [
-      "repair_structure",
-      10
+      21
     ],
     [
       "turn_timing",
@@ -65,6 +58,14 @@
     ],
     [
       "hurt_face",
+      9
+    ],
+    [
+      "discourse_structure",
+      9
+    ],
+    [
+      "repair_structure",
       9
     ],
     [
@@ -114,7 +115,7 @@
       ]
     },
     "ambivalence": {
-      "candidates": 40,
+      "candidates": 38,
       "channels": [
         "body",
         "facial",
@@ -127,7 +128,7 @@
       ]
     },
     "amusement": {
-      "candidates": 39,
+      "candidates": 38,
       "channels": [
         "body",
         "breath",
@@ -160,7 +161,7 @@
       ]
     },
     "annoyance": {
-      "candidates": 39,
+      "candidates": 38,
       "channels": [
         "body",
         "breath",
@@ -187,7 +188,7 @@
       ]
     },
     "anxiety": {
-      "candidates": 99,
+      "candidates": 98,
       "channels": [
         "body",
         "breath",
@@ -258,18 +259,17 @@
       ]
     },
     "confidence": {
-      "candidates": 28,
+      "candidates": 27,
       "channels": [
         "body",
         "hands",
-        "head",
         "spatial",
         "speech",
         "world"
       ]
     },
     "confusion": {
-      "candidates": 55,
+      "candidates": 52,
       "channels": [
         "body",
         "facial",
@@ -291,7 +291,7 @@
       ]
     },
     "contentment": {
-      "candidates": 14,
+      "candidates": 13,
       "channels": [
         "body",
         "facial",
@@ -303,7 +303,7 @@
       ]
     },
     "curiosity": {
-      "candidates": 65,
+      "candidates": 63,
       "channels": [
         "body",
         "facial",
@@ -346,14 +346,13 @@
       ]
     },
     "determination": {
-      "candidates": 70,
+      "candidates": 64,
       "channels": [
         "body",
         "breath",
         "facial",
         "gaze",
         "hands",
-        "head",
         "spatial",
         "speech",
         "world"
@@ -384,7 +383,7 @@
       ]
     },
     "disgust": {
-      "candidates": 33,
+      "candidates": 31,
       "channels": [
         "arms",
         "body",
@@ -399,7 +398,7 @@
       ]
     },
     "dread": {
-      "candidates": 24,
+      "candidates": 23,
       "channels": [
         "breath",
         "facial",
@@ -439,7 +438,7 @@
       ]
     },
     "fear": {
-      "candidates": 87,
+      "candidates": 85,
       "channels": [
         "body",
         "breath",
@@ -461,7 +460,7 @@
       ]
     },
     "frustration": {
-      "candidates": 33,
+      "candidates": 32,
       "channels": [
         "breath",
         "facial",
@@ -486,7 +485,7 @@
       ]
     },
     "grief": {
-      "candidates": 39,
+      "candidates": 38,
       "channels": [
         "breath",
         "facial",
@@ -558,7 +557,7 @@
       ]
     },
     "impatience": {
-      "candidates": 24,
+      "candidates": 23,
       "channels": [
         "body",
         "facial",
@@ -569,7 +568,7 @@
       ]
     },
     "interest": {
-      "candidates": 60,
+      "candidates": 58,
       "channels": [
         "body",
         "facial",
@@ -612,7 +611,7 @@
       ]
     },
     "longing": {
-      "candidates": 22,
+      "candidates": 21,
       "channels": [
         "facial",
         "gaze",
@@ -679,7 +678,7 @@
       ]
     },
     "realization": {
-      "candidates": 23,
+      "candidates": 22,
       "channels": [
         "body",
         "facial",
@@ -692,7 +691,7 @@
       ]
     },
     "relief": {
-      "candidates": 69,
+      "candidates": 67,
       "channels": [
         "body",
         "breath",
@@ -728,7 +727,7 @@
       ]
     },
     "resignation": {
-      "candidates": 30,
+      "candidates": 29,
       "channels": [
         "breath",
         "facial",
@@ -741,7 +740,7 @@
       ]
     },
     "resolve": {
-      "candidates": 76,
+      "candidates": 74,
       "channels": [
         "body",
         "breath",
@@ -811,7 +810,7 @@
       ]
     },
     "shame": {
-      "candidates": 28,
+      "candidates": 27,
       "channels": [
         "body",
         "facial",
@@ -824,7 +823,7 @@
       ]
     },
     "surprise": {
-      "candidates": 51,
+      "candidates": 50,
       "channels": [
         "body",
         "breath",
@@ -840,7 +839,7 @@
       ]
     },
     "suspicion": {
-      "candidates": 95,
+      "candidates": 94,
       "channels": [
         "body",
         "facial",
@@ -866,7 +865,7 @@
       ]
     },
     "trust": {
-      "candidates": 53,
+      "candidates": 52,
       "channels": [
         "facial",
         "gaze",
@@ -879,7 +878,7 @@
       ]
     },
     "unease": {
-      "candidates": 83,
+      "candidates": 80,
       "channels": [
         "body",
         "facial",

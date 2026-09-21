@@ -39,7 +39,7 @@ EFFECTS = {"pose", "orientation", "distance_delta", "transfer", "clear_support"}
 
 
 class PerformancePack:
-    version = "0.4.0"
+    version = "0.5.0"
     schema_version = "1.0.0"
 
     def __init__(self, ontology: EmotionOntology, units: tuple[PerformanceUnit, ...], source_ids: tuple[str, ...], modifiers: tuple[Modifier, ...] = ()):
@@ -79,6 +79,14 @@ class PerformancePack:
             if set(modifier.effects.score_add) - selectors:
                 raise ValueError(f"unreachable modifier selector: {modifier.id}")
         for unit in self.all():
+            if unit.status == "deprecated":
+                if unit.replacement_id is None or unit.replacement_id == unit.id:
+                    raise ValueError(f"deprecated unit requires a replacement: {unit.id}")
+                replacement = self._units.get(unit.replacement_id)
+                if replacement is None or replacement.status != "active":
+                    raise ValueError(f"invalid replacement for deprecated unit: {unit.id}")
+            elif unit.replacement_id is not None:
+                raise ValueError(f"active unit cannot declare a replacement: {unit.id}")
             if unit.invocation == "blocking" and unit.id not in {"navigation.move", "navigation.orient", "navigation.pause", "navigation.resume"}:
                 raise ValueError(f"unsupported blocking unit: {unit.id}")
             if unit.id.startswith("navigation."):

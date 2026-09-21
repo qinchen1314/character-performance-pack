@@ -76,6 +76,9 @@
   },
   {
     "id": "body.neck_lengthen",
+    "editorial_status": "rejected",
+    "editorial_note": "部位说明感强，重新稳住头的措辞机械，跨文风都不像成稿",
+    "replacement_id": "body.shoulder_roll",
     "category": "body",
     "channel": "head",
     "parts": [
@@ -301,6 +304,9 @@
   },
   {
     "id": "body.abdomen_draw",
+    "editorial_status": "rejected",
+    "editorial_note": "腹部与腰背动作被拆成操作说明，正文价值低且节拍生硬",
+    "replacement_id": "body.recoil_torso_reset",
     "category": "body",
     "channel": "body",
     "parts": [
@@ -1563,6 +1569,9 @@
   },
   {
     "id": "body.knees_soften_reset",
+    "editorial_status": "rejected",
+    "editorial_note": "重新撑稳属于状态复述，动作既不鲜明也不值得单独落笔",
+    "replacement_id": "body.foot_catch_balance",
     "category": "body",
     "channel": "body",
     "parts": [
@@ -2083,6 +2092,9 @@
   },
   {
     "id": "body.elbow_point_self",
+    "editorial_status": "rejected",
+    "editorial_note": "用肘尖示意身侧的动作难以自然想象，容易造成读者停顿",
+    "replacement_id": "body.index_point_self",
     "category": "body",
     "channel": "body",
     "parts": [
@@ -3897,6 +3909,9 @@
   },
   {
     "id": "body.scissors_grip_check",
+    "editorial_status": "rejected",
+    "editorial_note": "重新安稳下来搭配剪柄生硬，整体近似器械操作说明",
+    "replacement_id": "body.bow_string_touch",
     "category": "body",
     "channel": "hands",
     "parts": [
@@ -4135,6 +4150,9 @@
   },
   {
     "id": "body.comb_teeth_clear_check",
+    "editorial_status": "rejected",
+    "editorial_note": "看梳齿再重新握稳缺乏角色信息，放进正文只会拖慢节奏",
+    "replacement_id": "body.spoon_surface_check",
     "category": "body",
     "channel": "hands",
     "parts": [
@@ -4300,6 +4318,9 @@
   },
   {
     "id": "body.hammer_head_balance",
+    "editorial_status": "rejected",
+    "editorial_note": "掂锤子的头重语序别扭，且停住收尾呈现明显模板感",
+    "replacement_id": "body.shield_strap_test",
     "category": "body",
     "channel": "hands",
     "parts": [
@@ -6549,6 +6570,9 @@
   },
   {
     "id": "body.palm_balance_options",
+    "editorial_status": "rejected",
+    "editorial_note": "双掌放回平处缺乏可视落点，表达抽象且不像自然叙事",
+    "replacement_id": "body.fingers_link_compare",
     "category": "body",
     "channel": "hands",
     "parts": [

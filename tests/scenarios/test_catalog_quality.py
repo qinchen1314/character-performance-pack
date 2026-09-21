@@ -28,7 +28,7 @@ def test_all_ten_catalog_targets_and_low_textual_duplication(pack):
 @pytest.mark.parametrize("category", ["body", "facial", "gaze", "micro_expression", "spatial", "physiology", "speech", "world_specific"])
 def test_each_authored_unit_has_an_executable_witness(pack, category):
     for unit in pack.all():
-        if unit.category != category or "src.original.catalog.v1" not in unit.source_refs:
+        if unit.status != "active" or unit.category != category or "src.original.catalog.v1" not in unit.source_refs:
             continue
         request = witness_request(unit, pack)
         assert not context_errors(unit, request), unit.id

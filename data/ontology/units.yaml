@@ -3056,8 +3056,8 @@ units:
   channel: facial
   atomic_action: brow_frown_leak
   body_parts:
-  - nose
   - brow
+  - nose
   semantic_groups:
   - brow_check
   semantics:
@@ -4527,6 +4527,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: micro_expression.lid_half_blink
   vad_affinity:
     valence: -0.2487
     arousal: 0.4051
@@ -5401,8 +5403,8 @@ units:
   channel: facial
   atomic_action: cheek_inward_tick
   body_parts:
-  - lips
   - cheeks
+  - lips
   semantic_groups:
   - cheek_restraint
   semantics:
@@ -7653,6 +7655,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: micro_expression.jaw_drop_catch
   vad_affinity:
     valence: -0.711
     arousal: 0.5429
@@ -7680,8 +7684,8 @@ units:
   channel: facial
   atomic_action: chin_dimple_flick
   body_parts:
-  - lips
   - chin
+  - lips
   semantic_groups:
   - chin_hurt
   semantics:
@@ -8304,8 +8308,8 @@ units:
   channel: facial
   atomic_action: smile_tears
   body_parts:
-  - eyelids
   - mouth
+  - eyelids
   semantic_groups:
   - mixed_smile
   semantics:
@@ -8500,8 +8504,8 @@ units:
   channel: facial
   atomic_action: smile_question_brow
   body_parts:
-  - lips
   - brow
+  - lips
   semantic_groups:
   - mixed_smile
   semantics:
@@ -8688,8 +8692,8 @@ units:
   channel: facial
   atomic_action: frown_upper_lip
   body_parts:
-  - lips
   - brow
+  - lips
   semantic_groups:
   - rejection_face
   semantics:
@@ -8760,8 +8764,8 @@ units:
   channel: facial
   atomic_action: frown_open_lips
   body_parts:
-  - lips
   - brow
+  - lips
   semantic_groups:
   - question_face
   semantics:
@@ -8908,8 +8912,8 @@ units:
   channel: facial
   atomic_action: frown_resolve
   body_parts:
-  - lips
   - brow
+  - lips
   semantic_groups:
   - guarded_face
   semantics:
@@ -9023,8 +9027,8 @@ units:
   channel: facial
   atomic_action: brow_down_chin_out
   body_parts:
-  - jaw
   - brow
+  - jaw
   semantic_groups:
   - defiant_face
   semantics:
@@ -9312,8 +9316,8 @@ units:
   channel: facial
   atomic_action: eyes_closed_face_release
   body_parts:
-  - mouth
   - brow
+  - mouth
   - eyelids
   semantic_groups:
   - resting_face
@@ -9652,8 +9656,8 @@ units:
   channel: facial
   atomic_action: mouth_pursed_judge
   body_parts:
-  - lips
   - brow
+  - lips
   semantic_groups:
   - question_face
   semantics:
@@ -9831,8 +9835,8 @@ units:
   channel: facial
   atomic_action: mouth_air_hold
   body_parts:
-  - lips
   - cheeks
+  - lips
   semantic_groups:
   - playful_face
   semantics:
@@ -10157,8 +10161,8 @@ units:
   channel: facial
   atomic_action: jaw_open_doubt
   body_parts:
-  - jaw
   - brow
+  - jaw
   semantic_groups:
   - question_face
   semantics:
@@ -10265,8 +10269,8 @@ units:
   channel: facial
   atomic_action: chin_knotted
   body_parts:
-  - lips
   - chin
+  - lips
   semantic_groups:
   - hurt_face
   semantics:
@@ -10301,8 +10305,8 @@ units:
   channel: facial
   atomic_action: chin_smooth_lips_loose
   body_parts:
-  - lips
   - chin
+  - lips
   semantic_groups:
   - composure_face
   semantics:
@@ -10413,8 +10417,8 @@ units:
   channel: facial
   atomic_action: cheek_sag_mouth_drop
   body_parts:
-  - lips
   - cheeks
+  - lips
   semantic_groups:
   - hurt_face
   semantics:
@@ -10449,8 +10453,8 @@ units:
   channel: facial
   atomic_action: face_blank_reset
   body_parts:
-  - lips
   - brow
+  - lips
   - eyelids
   semantic_groups:
   - composure_face
@@ -10557,6 +10561,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: facial.brow_slow_flatten
   vad_affinity:
     valence: 0.65
     arousal: -0.009
@@ -10567,8 +10573,8 @@ units:
   channel: facial
   atomic_action: face_laugh_to_serious
   body_parts:
-  - lips
   - brow
+  - lips
   - eyelids
   semantic_groups:
   - smile_withdrawal
@@ -11379,6 +11385,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: gaze.familiar_handwriting
   vad_affinity:
     valence: -0.4865
     arousal: 0.2
@@ -12957,6 +12965,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: gaze.map_route
   vad_affinity:
     valence: -0.109
     arousal: 0.65
@@ -13878,8 +13888,8 @@ units:
   channel: head
   atomic_action: listen_ear
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_listening
   semantics:
@@ -13918,8 +13928,8 @@ units:
   channel: head
   atomic_action: head_recoil_reset
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_protection
   semantics:
@@ -13982,6 +13992,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.shoulder_roll
   vad_affinity:
     valence: 0.3846
     arousal: 0.4481
@@ -13992,8 +14004,8 @@ units:
   channel: head
   atomic_action: chin_tuck_reset
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_protection
   semantics:
@@ -14028,8 +14040,8 @@ units:
   channel: head
   atomic_action: head_bow_return
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_deference
   semantics:
@@ -14067,8 +14079,8 @@ units:
   channel: head
   atomic_action: head_tip_measure
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_appraisal
   semantics:
@@ -14254,8 +14266,8 @@ units:
   channel: body
   atomic_action: shoulders_fold_return
   body_parts:
-  - torso
   - shoulders
+  - torso
   semantic_groups:
   - torso_shelter
   semantics:
@@ -14290,8 +14302,8 @@ units:
   channel: body
   atomic_action: shoulder_brace
   body_parts:
-  - torso
   - shoulders
+  - torso
   semantic_groups:
   - torso_readiness
   semantics:
@@ -14329,8 +14341,8 @@ units:
   channel: body
   atomic_action: chest_shrug_laugh
   body_parts:
-  - torso
   - shoulders
+  - torso
   semantic_groups:
   - torso_laughter
   semantics:
@@ -14431,6 +14443,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.recoil_torso_reset
   vad_affinity:
     valence: -0.711
     arousal: 0.5429
@@ -14750,8 +14764,8 @@ units:
   channel: head
   atomic_action: shoulder_peek_reset
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_appraisal
   semantics:
@@ -14790,8 +14804,8 @@ units:
   channel: head
   atomic_action: head_protest_snap
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_refusal
   semantics:
@@ -14826,8 +14840,8 @@ units:
   channel: hands
   atomic_action: forehead_lower_hand
   body_parts:
-  - head
   - right_hand
+  - head
   semantic_groups:
   - self_soothing
   semantics:
@@ -15645,9 +15659,9 @@ units:
   channel: hands
   atomic_action: arms_width_show
   body_parts:
-  - arms
   - right_hand
   - left_hand
+  - arms
   semantic_groups:
   - hand_measurement
   semantics:
@@ -15690,8 +15704,8 @@ units:
   channel: hands
   atomic_action: palm_self_oath
   body_parts:
-  - torso
   - right_hand
+  - torso
   semantic_groups:
   - hand_assurance
   semantics:
@@ -15940,8 +15954,8 @@ units:
   channel: hands
   atomic_action: brush_brow_sweat
   body_parts:
-  - right_hand
   - brow
+  - right_hand
   semantic_groups:
   - self_care
   semantics:
@@ -16193,8 +16207,8 @@ units:
   channel: hands
   atomic_action: self_arm_hold
   body_parts:
-  - right_arm
   - left_hand
+  - right_arm
   semantic_groups:
   - self_shelter
   semantics:
@@ -16232,9 +16246,9 @@ units:
   channel: hands
   atomic_action: hands_rib_guard
   body_parts:
-  - torso
   - right_hand
   - left_hand
+  - torso
   semantic_groups:
   - self_shelter
   semantics:
@@ -16718,8 +16732,8 @@ units:
   channel: body
   atomic_action: weight_shift_reset
   body_parts:
-  - legs
   - feet
+  - legs
   semantic_groups:
   - leg_balance
   semantics:
@@ -16757,8 +16771,8 @@ units:
   channel: body
   atomic_action: knees_soften_reset
   body_parts:
-  - legs
   - feet
+  - legs
   semantic_groups:
   - leg_balance
   semantics:
@@ -16786,6 +16800,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.foot_catch_balance
   vad_affinity:
     valence: 0.2744
     arousal: 0.2399
@@ -16833,8 +16849,8 @@ units:
   channel: body
   atomic_action: feet_uncross
   body_parts:
-  - legs
   - feet
+  - legs
   semantic_groups:
   - leg_composure
   semantics:
@@ -16911,8 +16927,8 @@ units:
   channel: body
   atomic_action: leg_extend_reset
   body_parts:
-  - legs
   - feet
+  - legs
   semantic_groups:
   - leg_release
   semantics:
@@ -16993,8 +17009,8 @@ units:
   channel: body
   atomic_action: foot_catch_balance
   body_parts:
-  - legs
   - feet
+  - legs
   semantic_groups:
   - leg_balance
   semantics:
@@ -17035,8 +17051,8 @@ units:
   channel: body
   atomic_action: knees_bend_greeting
   body_parts:
-  - legs
   - feet
+  - legs
   semantic_groups:
   - leg_deference
   semantics:
@@ -17558,9 +17574,9 @@ units:
   channel: hands
   atomic_action: arms_spread_welcome
   body_parts:
-  - arms
   - right_hand
   - left_hand
+  - arms
   semantic_groups:
   - arm_invitation
   semantics:
@@ -17603,9 +17619,9 @@ units:
   channel: hands
   atomic_action: cross_arms_brief
   body_parts:
-  - arms
   - right_hand
   - left_hand
+  - arms
   semantic_groups:
   - arm_boundary
   semantics:
@@ -17715,6 +17731,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.index_point_self
   vad_affinity:
     valence: 0.0859
     arousal: 0.3122
@@ -17855,8 +17873,8 @@ units:
   channel: hands
   atomic_action: sleeve_cuff_pin
   body_parts:
-  - right_arm
   - left_hand
+  - right_arm
   semantic_groups:
   - clothing_composure
   semantics:
@@ -17940,8 +17958,8 @@ units:
   channel: hands
   atomic_action: lapel_smooth
   body_parts:
-  - torso
   - right_hand
+  - torso
   semantic_groups:
   - clothing_composure
   semantics:
@@ -17982,8 +18000,8 @@ units:
   channel: hands
   atomic_action: button_check
   body_parts:
-  - torso
   - right_hand
+  - torso
   semantic_groups:
   - clothing_check
   semantics:
@@ -18024,8 +18042,8 @@ units:
   channel: hands
   atomic_action: belt_hook_touch
   body_parts:
-  - torso
   - right_hand
+  - torso
   semantic_groups:
   - clothing_check
   semantics:
@@ -18278,8 +18296,8 @@ units:
   channel: hands
   atomic_action: pocket_check
   body_parts:
-  - torso
   - right_hand
+  - torso
   semantic_groups:
   - clothing_check
   semantics:
@@ -18663,8 +18681,8 @@ units:
   channel: hands
   atomic_action: shoe_lace_test
   body_parts:
-  - torso
   - right_hand
+  - torso
   semantic_groups:
   - clothing_check
   semantics:
@@ -20996,6 +21014,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.bow_string_touch
   vad_affinity:
     valence: 0.0032
     arousal: 0.4481
@@ -21427,6 +21447,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.spoon_surface_check
   vad_affinity:
     valence: -0.0135
     arousal: 0.2827
@@ -21727,6 +21749,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.shield_strap_test
   vad_affinity:
     valence: 0.0032
     arousal: 0.4481
@@ -22774,9 +22798,9 @@ units:
   channel: hands
   atomic_action: embrace_press_brief
   body_parts:
-  - arms
   - right_hand
   - left_hand
+  - arms
   semantic_groups:
   - touch_reassurance
   semantics:
@@ -22863,8 +22887,8 @@ units:
   channel: head
   atomic_action: forehead_contact_brief
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - touch_intimacy
   semantics:
@@ -23368,8 +23392,8 @@ units:
   channel: head
   atomic_action: ear_door_listen
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - surface_listening
   semantics:
@@ -23449,9 +23473,9 @@ units:
   channel: hands
   atomic_action: armrest_press_release
   body_parts:
-  - arms
   - right_hand
   - left_hand
+  - arms
   semantic_groups:
   - surface_readiness
   semantics:
@@ -23785,8 +23809,8 @@ units:
   channel: hands
   atomic_action: palm_soil_test
   body_parts:
-  - torso
   - right_hand
+  - torso
   semantic_groups:
   - surface_appraisal
   semantics:
@@ -23993,8 +24017,8 @@ units:
   channel: body
   atomic_action: cough_elbow_cover
   body_parts:
-  - head
   - right_arm
+  - head
   semantic_groups:
   - self_cover
   semantics:
@@ -24075,8 +24099,8 @@ units:
   atomic_action: fingers_ear_plug_brief
   body_parts:
   - right_hand
-  - ears
   - left_hand
+  - ears
   semantic_groups:
   - self_protection
   semantics:
@@ -24745,9 +24769,9 @@ units:
   channel: hands
   atomic_action: ankle_touch_check
   body_parts:
+  - right_hand
   - right_ankle
   - torso
-  - right_hand
   semantic_groups:
   - self_appraisal
   semantics:
@@ -24954,8 +24978,8 @@ units:
   channel: body
   atomic_action: shoulder_under_gap
   body_parts:
-  - torso
   - shoulders
+  - torso
   semantic_groups:
   - torso_clearance
   semantics:
@@ -24995,8 +25019,8 @@ units:
   channel: head
   atomic_action: head_duck_reset
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_clearance
   semantics:
@@ -25110,8 +25134,8 @@ units:
   channel: body
   atomic_action: heel_toe_rock_once
   body_parts:
-  - legs
   - feet
+  - legs
   semantic_groups:
   - foot_deliberation
   semantics:
@@ -25312,8 +25336,8 @@ units:
   channel: body
   atomic_action: standing_tiptoe_peek
   body_parts:
-  - legs
   - feet
+  - legs
   - head
   semantic_groups:
   - leg_appraisal
@@ -25695,9 +25719,9 @@ units:
   channel: hands
   atomic_action: arms_draw_circle
   body_parts:
-  - arms
   - right_hand
   - left_hand
+  - arms
   semantic_groups:
   - hand_enclosure
   semantics:
@@ -25815,6 +25839,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.fingers_link_compare
   vad_affinity:
     valence: -0.0949
     arousal: 0.25
@@ -26166,8 +26192,8 @@ units:
   channel: head
   atomic_action: head_laugh_bow
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - torso_laughter
   semantics:
@@ -26205,8 +26231,8 @@ units:
   channel: head
   atomic_action: chin_ear_alignment
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - head_listening
   semantics:
@@ -26665,8 +26691,8 @@ units:
   channel: spatial
   atomic_action: high_seat_deference
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - status_elevation
   semantics:
@@ -26750,8 +26776,8 @@ units:
   channel: spatial
   atomic_action: shared_level_acknowledge
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - status_elevation
   semantics:
@@ -27087,8 +27113,8 @@ units:
   channel: spatial
   atomic_action: backlit_distance_read
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - lighting_boundary
   semantics:
@@ -27551,8 +27577,8 @@ units:
   channel: spatial
   atomic_action: rain_drip_edge
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - weather_shelter
   semantics:
@@ -28471,8 +28497,8 @@ units:
   channel: spatial
   atomic_action: pillar_cover_peek
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - cover_peeking
   semantics:
@@ -28512,8 +28538,8 @@ units:
   channel: spatial
   atomic_action: screen_gap_listen
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - cover_listening
   semantics:
@@ -28553,8 +28579,8 @@ units:
   channel: spatial
   atomic_action: door_crack_peek
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - cover_peeking
   semantics:
@@ -28594,8 +28620,8 @@ units:
   channel: spatial
   atomic_action: low_beam_duck
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - overhead_clearance
   semantics:
@@ -28842,8 +28868,8 @@ units:
   channel: spatial
   atomic_action: head_between_posts
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - sightline_repair
   semantics:
@@ -28927,8 +28953,8 @@ units:
   channel: spatial
   atomic_action: head_turn_speaker
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - orientation_attention
   semantics:
@@ -29087,6 +29113,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: spatial.turn_away_boundary
   vad_affinity:
     valence: -0.3808
     arousal: 0.3051
@@ -29139,8 +29167,8 @@ units:
   channel: spatial
   atomic_action: sun_angle_head_shadow
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - lighting_adaptation
   semantics:
@@ -29179,8 +29207,8 @@ units:
   channel: spatial
   atomic_action: smoke_head_side
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - airflow_adaptation
   semantics:
@@ -29261,8 +29289,8 @@ units:
   channel: spatial
   atomic_action: floor_tilt_balance
   body_parts:
-  - legs
   - feet
+  - legs
   semantic_groups:
   - terrain_balance
   semantics:
@@ -29293,6 +29321,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: body.foot_catch_balance
   vad_affinity:
     valence: -0.0532
     arousal: 0.4019
@@ -29933,8 +29963,8 @@ units:
   channel: spatial
   atomic_action: altar_sightline_lower
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - ritual_spacing
   semantics:
@@ -30184,8 +30214,8 @@ units:
   channel: spatial
   atomic_action: private_corner_voice
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - acoustic_privacy
   semantics:
@@ -30227,8 +30257,8 @@ units:
   channel: spatial
   atomic_action: wall_echo_listen
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - acoustic_appraisal
   semantics:
@@ -30258,6 +30288,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: spatial.outside_room_listen
   vad_affinity:
     valence: -0.2397
     arousal: 0.2949
@@ -30562,8 +30594,8 @@ units:
   channel: spatial
   atomic_action: portrait_alignment_check
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - viewing_geometry
   semantics:
@@ -30602,8 +30634,8 @@ units:
   channel: spatial
   atomic_action: reflection_angle_peek
   body_parts:
-  - head
   - neck
+  - head
   semantic_groups:
   - viewing_geometry
   semantics:
@@ -31015,8 +31047,8 @@ units:
   channel: breath
   atomic_action: exhale_pursed
   body_parts:
-  - lungs
   - lips
+  - lungs
   semantic_groups:
   - respiratory_regulation
   semantics:
@@ -31051,8 +31083,8 @@ units:
   channel: breath
   atomic_action: breath_nasal_switch
   body_parts:
-  - lungs
   - nose
+  - lungs
   semantic_groups:
   - respiratory_regulation
   semantics:
@@ -31090,8 +31122,8 @@ units:
   channel: breath
   atomic_action: breath_mouth_switch
   body_parts:
-  - lungs
   - mouth
+  - lungs
   semantic_groups:
   - respiratory_regulation
   semantics:
@@ -33316,8 +33348,8 @@ units:
   channel: physiology
   atomic_action: retch_dry
   body_parts:
-  - abdomen
   - throat
+  - abdomen
   semantic_groups:
   - visceral_reflex
   semantics:
@@ -34271,8 +34303,8 @@ units:
   channel: breath
   atomic_action: fatigue_yawn
   body_parts:
-  - lungs
   - jaw
+  - lungs
   semantic_groups:
   - respiratory_reflex
   semantics:
@@ -34310,8 +34342,8 @@ units:
   channel: breath
   atomic_action: yawn_suppress
   body_parts:
-  - lungs
   - jaw
+  - lungs
   semantic_groups:
   - respiratory_reflex
   semantics:
@@ -35784,6 +35816,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: speech.consonants_clipped
   vad_affinity:
     valence: -0.1917
     arousal: 0.3295
@@ -36551,6 +36585,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: speech.false_start_abandon
   vad_affinity:
     valence: -0.0378
     arousal: 0.2051
@@ -37684,6 +37720,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: speech.return_after_aside
   vad_affinity:
     valence: 0.2665
     arousal: 0.5232
@@ -38782,6 +38820,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: world.qi_cycle_close
   vad_affinity:
     valence: 0.1462
     arousal: -0.4173
@@ -40209,6 +40249,8 @@ units:
   source_refs:
   - src.original.catalog.v1
   license_class: original
+  status: deprecated
+  replacement_id: world.sense_merge_attention
   vad_affinity:
     valence: 0.4012
     arousal: 0.0969

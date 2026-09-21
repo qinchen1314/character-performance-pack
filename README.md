@@ -14,6 +14,7 @@ Character Performance Pack 是一个面向**中文小说创作**的本地角色�
 - 相同 Pack、输入和 seed 会得到相同计划，便于复现、测试和审阅。
 - 输出动作计划、最终正文、渲染覆盖情况及下一回合请求，选择过程可追踪。
 - 核心运行完全本地，不需要联网，也不需要模型 API Key。
+- 可生成目录身份隔离的真人盲评包，并按独立评审人数门禁汇总保留、重写或删除决定。
 
 ## 环境要求
 
@@ -32,11 +33,30 @@ python -m pip install -e .
 
 后续命令默认在仓库根目录运行，以便读取 `data/` 下的表现目录。用于应用集成时，也可以通过 `--project-root` 指定仓库位置，或先编译 Pack 后通过 `--pack` 指定编译目录。
 
-安装后提供三个命令：
+安装后提供四个命令：
 
 - `cpp-perform`：根据 YAML/JSON 请求生成角色表现。
 - `cpp-build-pack`：校验并编译表现包。
 - `cpp-export-schemas`：导出所有公开数据模型的 JSON Schema。
+- `cpp-blind-review`：生成匿名真人盲评包，或汇总多名评审的评分。
+
+## 真人盲评与目录清理
+
+盲评包把动作目录 ID、语义家族和分类元数据留在单独的答案文件中；评审者只看到题材、文风、角色壳与待评片段。内置评审壳覆盖武侠、都市情感、刑侦、校园、古言、科幻和仙侠等题材，并包含冷硬、细腻、白描、明快、清雅和清峻等文风。
+
+```bash
+cpp-blind-review prepare --project-root . --output review/run-01 --seed 20260921
+```
+
+把 `packet.json` 发给评审者，保留 `answer-key.json` 不公开。每位评审提交一个 JSON 数组；每项填写匿名 `case_id`、稳定且不泄露身份的 `reviewer_id`，以及 `prose_value`、`naturalness`、`character_fit` 三项 1—5 分。可选问题标记为 `mechanical`、`stiff`、`not_worth_prose` 或 `characterless`。
+
+```bash
+cpp-blind-review aggregate --key review/run-01/answer-key.json \
+  --ratings review/reader-a.json review/reader-b.json \
+  --output review/run-01/report.json --minimum-reviewers 2
+```
+
+同一评审者评价多个角色壳只计一名独立评审。未达到最少独立评审数时决定保持 `pending`，不会伪装成真人结论。目录记录可用 `editorial_status: rejected` 和 `replacement_id` 保留淘汰依据；它仍以 `deprecated` 进入 Pack 供旧计划兼容，但规划器不会再把它选入新正文。当前已完成的编辑预清理不等同于真人投票，结果见 `docs/evaluation/editorial-preclean.md`。
 
 也可以不安装命令入口，在仓库根目录使用 `python -m character_performance.cli.perform` 等模块命令。
 
@@ -212,4 +232,4 @@ character-performance-pack/
 
 ## 版本
 
-当前版本为 **0.4.0**。
+当前版本为 **0.5.0**。

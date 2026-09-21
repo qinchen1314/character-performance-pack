@@ -1,0 +1,155 @@
+{
+  "review_type": "editorial_preclean",
+  "human_blind_review_completed": false,
+  "decision_policy": "编辑预清理仅淘汰明显机械、生硬或正文价值过低的条目；不得计作独立真人盲评票。",
+  "rejected_count": 21,
+  "rejected": [
+    {
+      "id": "micro_expression.lid_unexpected_hold",
+      "category": "micro_expression",
+      "clause": "眼睑停在将闭未闭的位置，旋即重新撑开",
+      "reason": "眼睑撑开的解剖描述突兀，多个文风下都显得刻意和机械",
+      "replacement_id": "micro_expression.lid_half_blink"
+    },
+    {
+      "id": "micro_expression.jaw_tuck_release",
+      "category": "micro_expression",
+      "clause": "下颌朝颈间缩了一下，又放回原处",
+      "reason": "下颌放回原处是机械复位措辞，画面不自然且正文收益很低",
+      "replacement_id": "micro_expression.jaw_drop_catch"
+    },
+    {
+      "id": "facial.face_grimace_drop",
+      "category": "facial",
+      "clause": "鬼脸收回去后，眉眼重新归于自然",
+      "reason": "眉眼重新归于自然是概括性结论，不是值得保留的具体表现",
+      "replacement_id": "facial.brow_slow_flatten"
+    },
+    {
+      "id": "gaze.portrait_face_search",
+      "category": "gaze",
+      "clause": "细看画像上的眉眼，像要重新认一遍",
+      "reason": "像要重新认一遍直接解释意图，跨角色试读时显得用力过度",
+      "replacement_id": "gaze.familiar_handwriting"
+    },
+    {
+      "id": "gaze.cloth_signal",
+      "category": "gaze",
+      "clause": "看清远处旗面的变动，便重新查看队伍的位置",
+      "reason": "查看旗面再查看队伍是流程记录，缺少可进入正文的表现价值",
+      "replacement_id": "gaze.map_route"
+    },
+    {
+      "id": "body.neck_lengthen",
+      "category": "body",
+      "clause": "伸展了一下后颈，重新稳住头",
+      "reason": "部位说明感强，重新稳住头的措辞机械，跨文风都不像成稿",
+      "replacement_id": "body.shoulder_roll"
+    },
+    {
+      "id": "body.abdomen_draw",
+      "category": "body",
+      "clause": "腹部往里一收，腰背随即重新稳住",
+      "reason": "腹部与腰背动作被拆成操作说明，正文价值低且节拍生硬",
+      "replacement_id": "body.recoil_torso_reset"
+    },
+    {
+      "id": "body.knees_soften_reset",
+      "category": "body",
+      "clause": "膝盖略弯了一下，随即重新撑稳",
+      "reason": "重新撑稳属于状态复述，动作既不鲜明也不值得单独落笔",
+      "replacement_id": "body.foot_catch_balance"
+    },
+    {
+      "id": "body.elbow_point_self",
+      "category": "body",
+      "clause": "用肘尖示意了一下身侧，便收住",
+      "reason": "用肘尖示意身侧的动作难以自然想象，容易造成读者停顿",
+      "replacement_id": "body.index_point_self"
+    },
+    {
+      "id": "body.scissors_grip_check",
+      "category": "body",
+      "clause": "右指在剪柄内重新安稳下来，刀口仍闭着",
+      "reason": "重新安稳下来搭配剪柄生硬，整体近似器械操作说明",
+      "replacement_id": "body.bow_string_touch"
+    },
+    {
+      "id": "body.comb_teeth_clear_check",
+      "category": "body",
+      "clause": "沿着右手梳齿看了一遍，把梳背重新握稳",
+      "reason": "看梳齿再重新握稳缺乏角色信息，放进正文只会拖慢节奏",
+      "replacement_id": "body.spoon_surface_check"
+    },
+    {
+      "id": "body.hammer_head_balance",
+      "category": "body",
+      "clause": "右腕掂了掂锤子的头重，随即停住",
+      "reason": "掂锤子的头重语序别扭，且停住收尾呈现明显模板感",
+      "replacement_id": "body.shield_strap_test"
+    },
+    {
+      "id": "body.palm_balance_options",
+      "category": "body",
+      "clause": "双掌一高一低比了比，又放回平处",
+      "reason": "双掌放回平处缺乏可视落点，表达抽象且不像自然叙事",
+      "replacement_id": "body.fingers_link_compare"
+    },
+    {
+      "id": "spatial.shoulder_angle_partial",
+      "category": "spatial",
+      "clause": "肩膀向旁边偏了一瞬，又回到原来的朝向",
+      "reason": "肩膀回到原来的朝向近似参数复位，不符合自然叙事表达",
+      "replacement_id": "spatial.turn_away_boundary"
+    },
+    {
+      "id": "spatial.floor_tilt_balance",
+      "category": "spatial",
+      "clause": "在倾斜的地面上重新分了分脚底的力，仍守住原位",
+      "reason": "重新分脚底的力口吻技术化，人物表现价值不足",
+      "replacement_id": "body.foot_catch_balance"
+    },
+    {
+      "id": "spatial.wall_echo_listen",
+      "category": "spatial",
+      "clause": "朝墙面的回声偏耳辨了一下，又回到原向",
+      "reason": "回到原向措辞僵硬，整句更像动作标注而不是小说正文",
+      "replacement_id": "spatial.outside_room_listen"
+    },
+    {
+      "id": "speech.articulation_separate",
+      "category": "speech",
+      "clause": "把原本连在一起的几个音重新拆开，说得清楚",
+      "reason": "把音拆开属于作者解释而非可感知表现，正文中机械感明显",
+      "replacement_id": "speech.consonants_clipped"
+    },
+    {
+      "id": "speech.rephrase_syntax",
+      "category": "speech",
+      "clause": "说到一半改了句式，把同一个意思重新组织",
+      "reason": "改句式和重新组织是语言学说明，不是可直接采用的小说句子",
+      "replacement_id": "speech.false_start_abandon"
+    },
+    {
+      "id": "speech.callback_previous",
+      "category": "speech",
+      "clause": "重新拾起前面已经提过的那个话头",
+      "reason": "那个话头指代空泛，独立输出没有信息且容易形成套话",
+      "replacement_id": "speech.return_after_aside"
+    },
+    {
+      "id": "world.qi_cycle_finish",
+      "category": "world_specific",
+      "clause": "让最后一缕周天气流归回丹田，停下这一轮运转",
+      "reason": "归回丹田搭配生硬，整句像修炼步骤说明而非人物表现",
+      "replacement_id": "world.qi_cycle_close"
+    },
+    {
+      "id": "world.sense_filter_release",
+      "category": "world_specific",
+      "clause": "撤下神识里那道隔层，让原先被隔开的回响重新进入",
+      "reason": "隔层与回响的关系抽象难懂，试读时需要反向解释动作",
+      "replacement_id": "world.sense_merge_attention"
+    }
+  ]
+}

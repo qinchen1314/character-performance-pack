@@ -1,6 +1,6 @@
 # Character Performance Pack V2 实现文档
 
-> 实施进度（2026-09-21）：已推进至 0.4.0，完成用户确认的十类高覆盖目录目标，并保留 0.3 的已知路径导航、持续移动与暂停恢复。详见 [0.4 阶段报告](phase-reports/catalog-0.4.md)、[目录质量报告](evaluation/catalog-quality.json) 与 [离线评估](evaluation/latest.md)。本文仍保留完整 v1.0 生产目标；机器门禁不替代独立人类文学盲评。
+> 实施进度（2026-09-21）：已推进至 0.5.0，在 0.4 十类高覆盖目录和 0.3 连续走位之上，新增匿名真人盲评闭环并完成首轮编辑预清理。详见 [0.5 阶段报告](phase-reports/blind-review-0.5.md)、[目录质量报告](evaluation/catalog-quality.json) 与 [离线评估](evaluation/latest.md)。截至本版尚未收集足量外部真人评分；机器门禁和编辑预清理均不冒充独立人类文学盲评。
 
 > 文档状态：Draft v0.1  
 > 文档类型：架构设计 + 数据契约 + 实施计划  

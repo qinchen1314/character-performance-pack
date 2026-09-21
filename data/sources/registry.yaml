@@ -4,7 +4,7 @@ sources:
     name: Original expanded Chinese narrative behaviour catalog
     source_type: original
     official_url: project://character-performance-pack/data/catalog/FORMAT.md
-    version: 0.4.0
+    version: 0.5.0
     retrieved_at: 2026-09-21
     usage_mode: original
     review_status: approved

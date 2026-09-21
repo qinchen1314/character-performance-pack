@@ -1,0 +1,1120 @@
+[
+  {
+    "id": "modifier.exploratory_attention",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "gt": 0.75
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.18
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "乐于接触陌生信息，增加主动试探",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.familiar_routine",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "lt": 0.25
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.16
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "偏好熟悉程序，减少行为随意性",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.deliberate_completion",
+    "kind": "personality",
+    "when": {
+      "personality.conscientiousness": {
+        "gt": 0.75
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.2
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "在结果未定时维持有节制的表达",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.spontaneous_release",
+    "kind": "personality",
+    "when": {
+      "personality.conscientiousness": {
+        "lt": 0.25
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.16
+      },
+      "parameter_add": {
+        "amplitude": 0.04
+      }
+    },
+    "description_zh": "较少预先修整动作，表达更直接流出",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.social_entry",
+    "kind": "personality",
+    "when": {
+      "personality.extraversion": {
+        "gt": 0.75
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.22
+      },
+      "parameter_add": {
+        "directness": 0.04
+      }
+    },
+    "description_zh": "主动加入互动，不强制某个手势",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.watchful_reserve",
+    "kind": "personality",
+    "when": {
+      "personality.extraversion": {
+        "lt": 0.25
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.withdrawal": 0.14
+      },
+      "parameter_add": {
+        "directness": -0.04
+      }
+    },
+    "description_zh": "先观察再参与，仍可在安全关系中回应",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.affiliative_response",
+    "kind": "personality",
+    "when": {
+      "personality.agreeableness": {
+        "gt": 0.75
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.22
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "重视关系修复和友善反馈",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.boundary_assertion",
+    "kind": "personality",
+    "when": {
+      "personality.agreeableness": {
+        "lt": 0.25
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.aggression": 0.13
+      },
+      "parameter_add": {
+        "directness": 0.04
+      }
+    },
+    "description_zh": "明确自己的边界，不等同于必然敌意",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.stress_sensitivity",
+    "kind": "personality",
+    "when": {
+      "personality.neuroticism": {
+        "gt": 0.75
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.tension": 0.18
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "不确定条件下更容易泄露紧张",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.emotional_recovery",
+    "kind": "personality",
+    "when": {
+      "personality.neuroticism": {
+        "lt": 0.25
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.15
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "倾向恢复表达节律，不假定没有情绪",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.curious_but_cautious",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "gt": 0.7
+      },
+      "personality.neuroticism": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.12,
+        "semantic.withdrawal": 0.1
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "希望探究同时保留退路",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.curious_and_assured",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "gt": 0.7
+      },
+      "personality.neuroticism": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.2
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "面对新线索较少提前退缩",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.imaginative_deliberation",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "gt": 0.7
+      },
+      "personality.conscientiousness": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.15,
+        "semantic.initiative": 0.1
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "先整理新线索再回应",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.improvising_curiosity",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "gt": 0.7
+      },
+      "personality.conscientiousness": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.17
+      },
+      "parameter_add": {
+        "pace": 0.03
+      }
+    },
+    "description_zh": "探索过程更易即时变换表达",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.private_curiosity",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "gt": 0.7
+      },
+      "personality.extraversion": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.1
+      },
+      "parameter_add": {
+        "volume": -0.04
+      }
+    },
+    "description_zh": "保留探究意愿而降低对外声量",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.shared_discovery",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "gt": 0.7
+      },
+      "personality.extraversion": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.12
+      },
+      "parameter_add": {
+        "directness": 0.03
+      }
+    },
+    "description_zh": "把新发现引入共同注意",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.protective_conventionality",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "lt": 0.3
+      },
+      "personality.agreeableness": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.deference": 0.12,
+        "semantic.warmth": 0.08
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "用熟悉的礼节降低他人不适",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.rigid_boundary",
+    "kind": "personality",
+    "when": {
+      "personality.openness": {
+        "lt": 0.3
+      },
+      "personality.agreeableness": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.12,
+        "semantic.aggression": 0.1
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "不轻易改变已经表达的界限",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.careful_empathy",
+    "kind": "personality",
+    "when": {
+      "personality.conscientiousness": {
+        "gt": 0.7
+      },
+      "personality.agreeableness": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.13,
+        "semantic.self_control": 0.1
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "善意经过节制后表达，避免压迫对方",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.disciplined_dissent",
+    "kind": "personality",
+    "when": {
+      "personality.conscientiousness": {
+        "gt": 0.7
+      },
+      "personality.agreeableness": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.17,
+        "semantic.aggression": 0.08
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "反对时保持控制而不自动爆发",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.anxious_preparation",
+    "kind": "personality",
+    "when": {
+      "personality.conscientiousness": {
+        "gt": 0.7
+      },
+      "personality.neuroticism": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.12,
+        "semantic.tension": 0.12
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "在担忧中试图修整可控细节",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.steady_followthrough",
+    "kind": "personality",
+    "when": {
+      "personality.conscientiousness": {
+        "gt": 0.7
+      },
+      "personality.neuroticism": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.16
+      },
+      "parameter_add": {
+        "pace": -0.02
+      }
+    },
+    "description_zh": "保持已经选择的表达节奏",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.impulsive_alarm",
+    "kind": "personality",
+    "when": {
+      "personality.conscientiousness": {
+        "lt": 0.3
+      },
+      "personality.neuroticism": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.tension": 0.18
+      },
+      "parameter_add": {
+        "amplitude": 0.04
+      }
+    },
+    "description_zh": "受刺激时较难延迟外显反应",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.easygoing_flexibility",
+    "kind": "personality",
+    "when": {
+      "personality.conscientiousness": {
+        "lt": 0.3
+      },
+      "personality.neuroticism": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.1
+      },
+      "parameter_add": {
+        "pace": 0.02
+      }
+    },
+    "description_zh": "低威胁下少做紧绷的自我校正",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.warm_assertiveness",
+    "kind": "personality",
+    "when": {
+      "personality.extraversion": {
+        "gt": 0.7
+      },
+      "personality.agreeableness": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.12,
+        "semantic.warmth": 0.15
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "积极表达仍顾及互动对象",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.competitive_presence",
+    "kind": "personality",
+    "when": {
+      "personality.extraversion": {
+        "gt": 0.7
+      },
+      "personality.agreeableness": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.aggression": 0.18
+      },
+      "parameter_add": {
+        "volume": 0.03
+      }
+    },
+    "description_zh": "争夺表达空间但不绕过冲突约束",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.quiet_support",
+    "kind": "personality",
+    "when": {
+      "personality.extraversion": {
+        "lt": 0.3
+      },
+      "personality.agreeableness": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.2
+      },
+      "parameter_add": {
+        "amplitude": -0.03
+      }
+    },
+    "description_zh": "以较低幅度维持支持",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.detached_observation",
+    "kind": "personality",
+    "when": {
+      "personality.extraversion": {
+        "lt": 0.3
+      },
+      "personality.agreeableness": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.withdrawal": 0.12,
+        "semantic.self_control": 0.08
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "减少关系性回应而保留观察",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.uneasy_sociability",
+    "kind": "personality",
+    "when": {
+      "personality.extraversion": {
+        "gt": 0.7
+      },
+      "personality.neuroticism": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.initiative": 0.1,
+        "semantic.tension": 0.13
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "想参与互动但紧张仍可泄露",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.calm_reserve",
+    "kind": "personality",
+    "when": {
+      "personality.extraversion": {
+        "lt": 0.3
+      },
+      "personality.neuroticism": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.2
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "安静源于稳定而非畏惧",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.sensitive_concern",
+    "kind": "personality",
+    "when": {
+      "personality.agreeableness": {
+        "gt": 0.7
+      },
+      "personality.neuroticism": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.12,
+        "semantic.tension": 0.1
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "对他人的状态敏感并容易忧心",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.composed_firmness",
+    "kind": "personality",
+    "when": {
+      "personality.agreeableness": {
+        "lt": 0.3
+      },
+      "personality.neuroticism": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.aggression": 0.13,
+        "semantic.self_control": 0.1
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "坚定拒绝而不靠紧张幅度支撑",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.earned_trust",
+    "kind": "relationship",
+    "when": {
+      "relationship.trust": {
+        "gt": 0.75
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.08,
+        "semantic.warmth": 0.13
+      },
+      "parameter_add": {
+        "amplitude": 0.03
+      }
+    },
+    "description_zh": "信任允许较少防御性的回应",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.guarded_trust",
+    "kind": "relationship",
+    "when": {
+      "relationship.trust": {
+        "lt": 0.25
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.withdrawal": 0.18,
+        "semantic.self_control": 0.08
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "信任不足时保留信息和身体边界",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.familiar_ease",
+    "kind": "relationship",
+    "when": {
+      "relationship.familiarity": {
+        "gt": 0.8
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.12
+      },
+      "parameter_add": {
+        "directness": 0.04
+      }
+    },
+    "description_zh": "熟悉降低表达中的试探成本",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.stranger_calibration",
+    "kind": "relationship",
+    "when": {
+      "relationship.familiarity": {
+        "lt": 0.2
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.13
+      },
+      "parameter_add": {
+        "amplitude": -0.03
+      }
+    },
+    "description_zh": "不熟悉对象时先校准表现强度",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.positive_regard",
+    "kind": "relationship",
+    "when": {
+      "relationship.affinity": {
+        "gt": 0.8
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.15
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "好感增加积极回应但不自动亲密接触",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.cool_regard",
+    "kind": "relationship",
+    "when": {
+      "relationship.affinity": {
+        "lt": 0.2
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.withdrawal": 0.14
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "低好感减少关系投入但不自动攻击",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.dependent_appeal",
+    "kind": "relationship",
+    "when": {
+      "relationship.dependence": {
+        "gt": 0.7
+      },
+      "relationship.dominance": {
+        "lt": 0.0
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.deference": 0.17
+      },
+      "parameter_add": {
+        "directness": -0.04
+      }
+    },
+    "description_zh": "有求于强势对象时更注意保留余地",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.independent_boundary",
+    "kind": "relationship",
+    "when": {
+      "relationship.dependence": {
+        "lt": 0.2
+      },
+      "relationship.tension": {
+        "gt": 0.6
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.1
+      },
+      "parameter_add": {
+        "directness": 0.06
+      }
+    },
+    "description_zh": "冲突中不依赖对方时更易表明边界",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.unresolved_tension",
+    "kind": "relationship",
+    "when": {
+      "relationship.tension": {
+        "gt": 0.7
+      },
+      "relationship.hostility": {
+        "lt": 0.5
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.tension": 0.18
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "关系紧绷但尚未进入明确敌意",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.hostile_vigilance",
+    "kind": "relationship",
+    "when": {
+      "relationship.hostility": {
+        "gt": 0.75
+      },
+      "relationship.trust": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.aggression": 0.14,
+        "semantic.withdrawal": 0.1
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "敌意与不信任并存，保留进退选择",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.trusted_disagreement",
+    "kind": "relationship",
+    "when": {
+      "relationship.trust": {
+        "gt": 0.7
+      },
+      "relationship.tension": {
+        "gt": 0.6
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.15
+      },
+      "parameter_add": {
+        "volume": -0.03
+      }
+    },
+    "description_zh": "冲突未抹去信任时偏向控制表达",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.intimate_safety",
+    "kind": "relationship",
+    "when": {
+      "relationship.intimacy": {
+        "gt": 0.75
+      },
+      "relationship.trust": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.2
+      },
+      "parameter_add": {
+        "amplitude": 0.04
+      }
+    },
+    "description_zh": "亲密且可信时允许较充分的温柔",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.intimate_hurt",
+    "kind": "relationship",
+    "when": {
+      "relationship.intimacy": {
+        "gt": 0.7
+      },
+      "relationship.tension": {
+        "gt": 0.65
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.tension": 0.12,
+        "semantic.withdrawal": 0.1
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "亲密关系中的受伤既牵挂又防御",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.formal_deference",
+    "kind": "relationship",
+    "when": {
+      "relationship.dominance": {
+        "lt": -0.6
+      },
+      "relationship.familiarity": {
+        "lt": 0.4
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.deference": 0.18
+      },
+      "parameter_add": {
+        "directness": -0.05
+      }
+    },
+    "description_zh": "地位差和陌生感共同增强礼节性收敛",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.responsible_authority",
+    "kind": "relationship",
+    "when": {
+      "relationship.dominance": {
+        "gt": 0.6
+      },
+      "relationship.affinity": {
+        "gt": 0.6
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.self_control": 0.1,
+        "semantic.warmth": 0.08
+      },
+      "parameter_add": {
+        "pace": -0.03
+      }
+    },
+    "description_zh": "较强地位伴随好感时倾向稳住互动",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.coercive_distance",
+    "kind": "relationship",
+    "when": {
+      "relationship.dominance": {
+        "gt": 0.6
+      },
+      "relationship.hostility": {
+        "gt": 0.7
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.aggression": 0.18
+      },
+      "parameter_add": {
+        "directness": 0.05
+      }
+    },
+    "description_zh": "强势敌意增加压迫性表达但不自动造成伤害",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.ambivalent_attachment",
+    "kind": "relationship",
+    "when": {
+      "relationship.affinity": {
+        "gt": 0.7
+      },
+      "relationship.trust": {
+        "lt": 0.3
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.1,
+        "semantic.withdrawal": 0.13
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "仍有好感却不敢交付信任，形成接近退避混合",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  },
+  {
+    "id": "modifier.reconciliation_opening",
+    "kind": "relationship",
+    "when": {
+      "relationship.tension": {
+        "gt": 0.5
+      },
+      "relationship.trust": {
+        "gt": 0.6
+      },
+      "relationship.affinity": {
+        "gt": 0.6
+      }
+    },
+    "effects": {
+      "score_add": {
+        "semantic.warmth": 0.16,
+        "semantic.self_control": 0.08
+      },
+      "parameter_add": {}
+    },
+    "description_zh": "有修复基础的冲突允许试探性缓和",
+    "source_refs": [
+      "src.original.catalog.v1"
+    ]
+  }
+]

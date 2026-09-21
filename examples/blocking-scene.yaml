@@ -1,0 +1,31 @@
+request_id: req.take_a_seat
+character:
+  id: char.luo_han
+  personality:
+    big_five: {conscientiousness: 0.9, extraversion: 0.2, agreeableness: 0.4}
+relationship: {subject_id: char.luo_han, target_id: char.enemy}
+emotion_state:
+  primary: anger
+  intensity: 0.7
+  restraint: 0.9
+  vad: {valence: -0.65, arousal: 0.7, dominance: 0.55}
+  decay_half_life_ms: 90000
+physical_state:
+  injuries: [{body_part: left_shoulder, severity: 0.45}]
+scene_state:
+  scene_id: scene.blocking_demo
+  pose: leaning_wall
+  position: pos.wall
+  support_contact: wall.north
+  held_objects: {right_hand: object.sword}
+  distances: {char.enemy: 3.2}
+  layout:
+    landmarks:
+      - {id: pos.wall, label_zh: 墙边}
+      - {id: pos.table, label_zh: 桌边, seat_id: seat.table, seat_label: 椅子}
+    edges:
+      - {origin: pos.wall, destination: pos.table, duration_ms: 2000}
+blocking_goal: {destination: pos.table, pose: seated, interruption_policy: pause}
+elapsed_ms: 700
+director: {beat_importance: 0.8, max_signals: 4, desired_visibility: noticeable}
+seed: 938102

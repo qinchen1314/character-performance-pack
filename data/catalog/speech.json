@@ -1,0 +1,2255 @@
+[
+  {
+    "id": "speech.pitch_lift_end",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pitch_contour",
+    "meaning": "句尾上扬音高，区别于音量提高",
+    "clause": "尾音向上挑起，留下一个未落定的问势",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pitch_drop_end",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pitch_contour",
+    "meaning": "句尾降调的收束，不压缩字数",
+    "clause": "话到末尾，声调清楚地落了下去",
+    "emotions": [
+      "resolve",
+      "confidence"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pitch_arc",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pitch_contour",
+    "meaning": "整句拱形音高轨迹，与单一升降区分",
+    "clause": "一句话的声调先扬起，又缓缓落回原处",
+    "emotions": [
+      "amusement",
+      "approval"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pitch_stair",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pitch_contour",
+    "meaning": "分句间阶梯升调，不等同持续喊叫",
+    "clause": "几个短句的调子逐级抬高，末了才收住",
+    "emotions": [
+      "frustration",
+      "excitement"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pitch_dip",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pitch_contour",
+    "meaning": "句中局部音高凹陷，不为整体低声同义词",
+    "clause": "话说到中段，声音忽然陷低，随后才提回来",
+    "emotions": [
+      "shame",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pitch_monotone",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pitch_contour",
+    "meaning": "跨句音高变化被压缩，非速度或音量变化",
+    "clause": "一句句用几乎相同的调子接下去，起伏很少",
+    "emotions": [
+      "resignation",
+      "boredom"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pitch_break",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "局部破音，区别于有意升调",
+    "clause": "话音在一个字上忽然翻高，随即落回原来的音域",
+    "emotions": [
+      "fear",
+      "embarrassment"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.volume_surge",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "volume_envelope",
+    "meaning": "句内声量突增，不只是全程大声",
+    "clause": "一句话开头还压得住，中途声量忽然冲了上去",
+    "emotions": [
+      "anger",
+      "frustration"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.volume_fade",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "volume_envelope",
+    "meaning": "句内音量衰减，与句尾音高下降不同",
+    "clause": "话声越到后面越轻，末几个字几乎贴着气息",
+    "emotions": [
+      "shame",
+      "sadness"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.volume_project",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "volume_envelope",
+    "meaning": "投送声音的发声方式，不虚构听众反应",
+    "clause": "把声音送得清清楚楚，让远处也能听见",
+    "emotions": [
+      "confidence",
+      "determination"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "environment.distant_audience"
+    ]
+  },
+  {
+    "id": "speech.volume_pulse",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "volume_envelope",
+    "meaning": "分段的音量脉冲强调，不等同全句加重",
+    "clause": "每说完一小段，声音才短促地加重一下",
+    "emotions": [
+      "defiance",
+      "annoyance"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.voice_breathy",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "气声占比增大，非音量降低同义词",
+    "clause": "字音裹着明显的气息，听来有些虚浮",
+    "emotions": [
+      "vulnerability",
+      "desire"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.voice_rough",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "粗糙音质，依赖已有嗓音状态",
+    "clause": "声音带着粗粝的摩擦感，字尾也磨得发哑",
+    "emotions": [
+      "frustration",
+      "grief"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.voice_hoarse"
+    ]
+  },
+  {
+    "id": "speech.voice_nasal",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "鼻腔共鸣加重，需明确鼻音前态",
+    "clause": "鼻音比平时更重，字音像隔着一层软布",
+    "emotions": [
+      "hurt",
+      "embarrassment"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.voice_nasal"
+    ]
+  },
+  {
+    "id": "speech.voice_creak",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "低声区的嘎裂音质，不是笼统低声",
+    "clause": "话音落到低处时，喉间带出细细的沙裂声",
+    "emotions": [
+      "resentment",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.voice_tremor",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "发声震颤，区别于指尖或呼气颤抖",
+    "clause": "声音在几个字之间细细颤动，音高始终稳不住",
+    "emotions": [
+      "fear",
+      "gratitude"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.voice_smile",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "发声中的笑意，非生成笑容动作",
+    "clause": "字音带着笑意，连句尾也显得轻快",
+    "emotions": [
+      "amusement",
+      "joy"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.voice_flatten_laugh",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "从既存含笑声音转为中性音质",
+    "clause": "把笑音从喉间压了回去，后半句忽然正经起来",
+    "emotions": [
+      "embarrassment",
+      "calm"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.voice_smiling"
+    ]
+  },
+  {
+    "id": "speech.voice_tears",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "既有哭泣对声质的影响，不创造哭泣",
+    "clause": "话音被哭腔托着，几个尾字收不成完整的音",
+    "emotions": [
+      "grief",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.crying"
+    ]
+  },
+  {
+    "id": "speech.voice_hiss",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "voice_quality",
+    "meaning": "齿缝发声的音质，不同于普通低音量",
+    "clause": "把声音挤过齿缝，字音贴着细细的气响",
+    "emotions": [
+      "anger",
+      "resentment"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.stress_keyword",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "stress_pattern",
+    "meaning": "既有关键词的选择性重音，不决定词义",
+    "clause": "只把已经提到的那个词咬重，其余字一带而过",
+    "emotions": [
+      "suspicion",
+      "determination"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.keyword_available"
+    ]
+  },
+  {
+    "id": "speech.stress_contrast",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "stress_pattern",
+    "meaning": "已提供对照结构的重音反差，不发明论点",
+    "clause": "前一项平平说过，后一项却陡然加了重音",
+    "emotions": [
+      "disapproval",
+      "defiance"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.contrast_pair_available"
+    ]
+  },
+  {
+    "id": "speech.stress_each_syllable",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "stress_pattern",
+    "meaning": "音节均等重击，区别于普通精确咬字",
+    "clause": "把几个字一字一顿地送出来，每个字都落得实",
+    "emotions": [
+      "anger",
+      "resolve"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.stress_initial",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "stress_pattern",
+    "meaning": "句首重音位置，非全句音量改变",
+    "clause": "把一句话的力气压在开头，后面才渐渐放松",
+    "emotions": [
+      "confidence",
+      "impatience"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.stress_final",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "stress_pattern",
+    "meaning": "句尾局部重音，区别于降调",
+    "clause": "前面的字说得平，最后一个字却压得很重",
+    "emotions": [
+      "resentment",
+      "defiance"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.stress_shift_repeat",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "stress_pattern",
+    "meaning": "已有话语复述中的信息焦点改变",
+    "clause": "重复那句话时，特意把重音换到了另一个词上",
+    "emotions": [
+      "frustration",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.self_utterance_available"
+    ]
+  },
+  {
+    "id": "speech.unstressed_link",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "articulation_pattern",
+    "meaning": "弱读词串连读，非整体语速快",
+    "clause": "几个轻读的字连成一串，几乎没有拆开",
+    "emotions": [
+      "serenity",
+      "contentment"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.consonants_clipped",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "articulation_pattern",
+    "meaning": "辅音起音硬断，与短句语法不同",
+    "clause": "每个字的起音都短而硬，接缝处不留余音",
+    "emotions": [
+      "annoyance",
+      "defiance"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.vowels_lengthened",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "articulation_pattern",
+    "meaning": "局部元音延长，不把全句慢速当新项",
+    "clause": "把一个元音拖开，让后面的字迟了一拍才跟上",
+    "emotions": [
+      "ambivalence",
+      "curiosity"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.end_syllable_cut",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "articulation_pattern",
+    "meaning": "最后音节的截尾，不是整段被打断",
+    "clause": "尾字才吐出半截，声音就利落地截断",
+    "emotions": [
+      "disgust",
+      "impatience"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.articulation_blur",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "articulation_pattern",
+    "meaning": "局部含混连音，不引入内容错误",
+    "clause": "相邻几个字黏在了一起，字界不再清楚",
+    "emotions": [
+      "embarrassment",
+      "nervousness"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.articulation_separate",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "articulation_pattern",
+    "meaning": "纠正已有连音含混，需要前态",
+    "clause": "把原本连在一起的几个音重新拆开，说得清楚",
+    "emotions": [
+      "resolve",
+      "frustration"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.speech_blurred"
+    ]
+  },
+  {
+    "id": "speech.syllable_restart",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "音节起始自修复，区别于整句改写",
+    "clause": "第一个音才出口便断住，隔了一拍又重新起头",
+    "emotions": [
+      "nervousness",
+      "embarrassment"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.phrase_accelerate_end",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "tempo_shape",
+    "meaning": "句内加速轨迹，不是整体快语速",
+    "clause": "前半句说得从容，后半句却赶着挤了出来",
+    "emotions": [
+      "anxiety",
+      "impatience"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.phrase_decelerate_end",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "tempo_shape",
+    "meaning": "句内减速，区别于单纯慢说",
+    "clause": "起头说得急，越往后越慢，最后停得很稳",
+    "emotions": [
+      "realization",
+      "determination"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pace_burst_pause",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "tempo_shape",
+    "meaning": "成组爆发后停顿，非平均语速",
+    "clause": "几句赶在一起说完，中间忽然空出很长一拍",
+    "emotions": [
+      "excitement",
+      "frustration"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pace_even_beats",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "tempo_shape",
+    "meaning": "句组等时节奏，不等同音高平稳",
+    "clause": "每一小句都占着差不多的时长，听来节拍分明",
+    "emotions": [
+      "resolve",
+      "confidence"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pace_stumble",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "tempo_shape",
+    "meaning": "词间节奏失衡，不声称口吃诊断",
+    "clause": "话到衔接处绊了一下，后面的字接得参差不齐",
+    "emotions": [
+      "nervousness",
+      "confusion"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pace_resume_original",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "tempo_shape",
+    "meaning": "恢复已有中断前节奏，不决定说话内容",
+    "clause": "停过那一拍后，又接回先前的语速",
+    "emotions": [
+      "resolve",
+      "relief"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.self_speech_paused"
+    ]
+  },
+  {
+    "id": "speech.pause_mid_clause",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pause_position",
+    "meaning": "句法未完成处静默，非开口前迟疑",
+    "clause": "一句话还没说完，便在中间停住了",
+    "emotions": [
+      "fear",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pause_before_name",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pause_position",
+    "meaning": "既定称呼前的停顿，不编造人名",
+    "clause": "说到那个称呼之前，声音空了一拍",
+    "emotions": [
+      "longing",
+      "resentment"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.address_term_available"
+    ]
+  },
+  {
+    "id": "speech.pause_after_question",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pause_position",
+    "meaning": "既有问句后的答话空间，不替角色拟问句",
+    "clause": "问句落下后便不再接话，给回答留出空处",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.self_asked_question"
+    ]
+  },
+  {
+    "id": "speech.pause_between_items",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pause_position",
+    "meaning": "列举结构边界停顿，不发明项目",
+    "clause": "列举时每说完一项便稍作停顿，把各项分开",
+    "emotions": [
+      "confidence",
+      "determination"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.list_available"
+    ]
+  },
+  {
+    "id": "speech.pause_before_final_word",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pause_position",
+    "meaning": "延后既有句尾的释放，不等于句尾重音",
+    "clause": "把最后一个字留在一拍静默之后才说出",
+    "emotions": [
+      "defiance",
+      "anticipation"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.pause_after_address",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pause_position",
+    "meaning": "称呼后的注意召集停顿，不编造姓名",
+    "clause": "喊出那个称呼后便停了一下，才往下说",
+    "emotions": [
+      "tenderness",
+      "annoyance"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.address_term_available"
+    ]
+  },
+  {
+    "id": "speech.pause_breath_boundary",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "pause_position",
+    "meaning": "按语法边界换气，区别于句中受阻",
+    "clause": "在句子边界换过一口气，下一句才接上",
+    "emotions": [
+      "serenity",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.filled_hesitation",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "hesitation_form",
+    "meaning": "非词汇填充停顿，不生成具体台词",
+    "clause": "喉间拖出一个没有成词的迟疑音",
+    "emotions": [
+      "confusion",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.false_start_abandon",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "放弃话语起始结构，不宣布内容变化",
+    "clause": "起了个话头又自己截住，换个起头重新说",
+    "emotions": [
+      "embarrassment",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.restart_same_sentence",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "同一未完成话语的重启，不新增观点",
+    "clause": "把刚才没说完的那一句从头接着说了一遍",
+    "emotions": [
+      "resolve",
+      "frustration"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.self_incomplete_utterance_available"
+    ]
+  },
+  {
+    "id": "speech.repeat_last_word",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "以已有末词维持话轮，区别于整句重复",
+    "clause": "先重复了自己刚才的末尾词，才往下续",
+    "emotions": [
+      "confusion",
+      "nervousness"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.self_last_word_available"
+    ]
+  },
+  {
+    "id": "speech.repair_pronunciation",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "发音自修复，不改语义或捏造错词",
+    "clause": "察觉刚才的字音含混，停下重发了一次",
+    "emotions": [
+      "embarrassment",
+      "determination"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.self_pronunciation_unclear"
+    ]
+  },
+  {
+    "id": "speech.rephrase_syntax",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "句法重组保持已提供原意，不生成新信息",
+    "clause": "说到一半改了句式，把同一个意思重新组织",
+    "emotions": [
+      "confusion",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.self_proposition_available"
+    ]
+  },
+  {
+    "id": "speech.repair_word_choice",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "替换明确提供的措辞候选，不由引擎造词",
+    "clause": "将刚出口的那个词收住，换成已斟酌好的说法",
+    "emotions": [
+      "ambivalence",
+      "caring"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.replacement_word_available"
+    ]
+  },
+  {
+    "id": "speech.qualifier_insert",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "已提供限定语的插入组织，不凭空增加条件",
+    "clause": "在一句话中间补进既定的限定语，再接回主句",
+    "emotions": [
+      "unease",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.qualifier_available"
+    ]
+  },
+  {
+    "id": "speech.parenthetic_drop",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "插入句的韵律括号，不编造插说内容",
+    "clause": "插说的那一小段压得很轻，随后回到原来的声调",
+    "emotions": [
+      "embarrassment",
+      "amusement"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.aside_available"
+    ]
+  },
+  {
+    "id": "speech.self_correction_mark",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "repair_structure",
+    "meaning": "明确更正的边界标记，不决定真假内容",
+    "clause": "话音一顿，用短促的改口节奏接回刚才的更正",
+    "emotions": [
+      "realization",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.correction_available"
+    ]
+  },
+  {
+    "id": "speech.sentence_trail",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "completion_shape",
+    "meaning": "渐弱的未完成句，区别于突发截断",
+    "clause": "话说到半截便散进了气息里，没有收成一句",
+    "emotions": [
+      "sadness",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.sentence_abort",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "completion_shape",
+    "meaning": "突然终止当前话语，非局部音节修复",
+    "clause": "还在句子中段，便突然把整段话截住",
+    "emotions": [
+      "fear",
+      "anger"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.sentence_complete_hold",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "completion_shape",
+    "meaning": "抵住已有打断冲动完成句子",
+    "clause": "把最后半句稳稳说完，才放下声音",
+    "emotions": [
+      "determination",
+      "defiance"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.self_speech_in_progress"
+    ]
+  },
+  {
+    "id": "speech.fragment_answer",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "completion_shape",
+    "meaning": "问答中片段式回应，不杜撰回答内容",
+    "clause": "回答只留了短短一截，没有展开成完整的长句",
+    "emotions": [
+      "boredom",
+      "resentment"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.target_asked_question"
+    ]
+  },
+  {
+    "id": "speech.single_word_response",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "completion_shape",
+    "meaning": "单词话轮结构，回应词需预先提供",
+    "clause": "只用那个回应词结束这一轮",
+    "emotions": [
+      "approval",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.response_word_available"
+    ]
+  },
+  {
+    "id": "speech.clause_chain",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "completion_shape",
+    "meaning": "连锁分句维持话轮，不生成论述",
+    "clause": "几个分句贴着接下去，暂时没给话尾落点",
+    "emotions": [
+      "excitement",
+      "impatience"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.question_echo",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "response_structure",
+    "meaning": "回声问句，依赖对方已提供问句",
+    "clause": "把对方刚才的问句重复了一遍，尾音仍悬着",
+    "emotions": [
+      "surprise",
+      "confusion"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.target_question_available"
+    ]
+  },
+  {
+    "id": "speech.keyphrase_echo",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "response_structure",
+    "meaning": "既有关键短语的局部回声，不复述整句",
+    "clause": "只复述了对方话里那一小段，随后便停住",
+    "emotions": [
+      "suspicion",
+      "realization"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.target_keyphrase_available"
+    ]
+  },
+  {
+    "id": "speech.answer_after_breath",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "response_structure",
+    "meaning": "回答前呼吸准备，问句必须存在",
+    "clause": "先吸进一口气，才开始回答对方的问题",
+    "emotions": [
+      "fear",
+      "determination"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.target_asked_question"
+    ]
+  },
+  {
+    "id": "speech.acknowledgment_hum",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "response_structure",
+    "meaning": "非词汇回馈，不推断赞同内容",
+    "clause": "从鼻间应出一声短音，让话轮回到对方那里",
+    "emotions": [
+      "caring",
+      "trust"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.target_speaking"
+    ]
+  },
+  {
+    "id": "speech.acknowledgment_repeat",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "response_structure",
+    "meaning": "既有回馈形式重复，不创造承诺",
+    "clause": "沿用先前的回应词，接住对方这一段话",
+    "emotions": [
+      "approval",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.target_speaking",
+      "discourse.response_word_available"
+    ]
+  },
+  {
+    "id": "speech.answer_question_form",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "response_structure",
+    "meaning": "问答形式切换，不生成反问内容",
+    "clause": "接话时用了问句的形式，把话轮递回去",
+    "emotions": [
+      "suspicion",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.reply_question_available"
+    ]
+  },
+  {
+    "id": "speech.response_delayed_tail",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "response_structure",
+    "meaning": "延迟衔接的轮替时机，与开口前紧张区分",
+    "clause": "等对方末音散尽，才接上自己的第一句",
+    "emotions": [
+      "reverence",
+      "caring"
+    ],
+    "axis": "deference",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.target_finished_speaking"
+    ]
+  },
+  {
+    "id": "speech.response_latched",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "无缝轮替而不声称打断",
+    "clause": "紧挨着对方的最后一个音接了上去",
+    "emotions": [
+      "excitement",
+      "impatience"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.target_finishing_speaking"
+    ]
+  },
+  {
+    "id": "speech.interrupt_overlap",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "重叠抢入话轮，不判断抢话内容",
+    "clause": "对方话还没收尾，声音便叠了上去",
+    "emotions": [
+      "anger",
+      "impatience"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.target_speaking"
+    ]
+  },
+  {
+    "id": "speech.interrupt_self_stop",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "重叠后的主动退让，依赖已知重叠",
+    "clause": "刚与对方撞了话头，便先收声让了出去",
+    "emotions": [
+      "embarrassment",
+      "caring"
+    ],
+    "axis": "deference",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.speech_overlap"
+    ]
+  },
+  {
+    "id": "speech.hold_floor_overlap",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "重叠中维持已存在话轮，不控制对方",
+    "clause": "两人的声音撞在一起，仍把自己的那半句说完",
+    "emotions": [
+      "defiance",
+      "frustration"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.speech_overlap",
+      "state.self_speech_in_progress"
+    ]
+  },
+  {
+    "id": "speech.floor_offer_pause",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "以韵律交还话轮，不发明手势",
+    "clause": "把话尾留成一个清楚的停顿，示意这一轮说完了",
+    "emotions": [
+      "trust",
+      "approval"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.floor_keep_inhale",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "呼吸准备维持话轮，不实际创造句子",
+    "clause": "尾音尚未全落便接着吸气，把下一句蓄在口边",
+    "emotions": [
+      "determination",
+      "excitement"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.floor_reenter",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "中断后寻找空隙重入，不抢断",
+    "clause": "等到对方两句话之间的空隙，才重新开口",
+    "emotions": [
+      "resolve",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.self_interrupted",
+      "event.target_pause"
+    ]
+  },
+  {
+    "id": "speech.floor_withhold",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "明确轮替机会中的沉默，不普遍性不说话",
+    "clause": "轮到自己时没有立刻出声，把那一段空白留在那里",
+    "emotions": [
+      "resentment",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.self_turn_available"
+    ]
+  },
+  {
+    "id": "speech.floor_yield_short",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "缩短已有话轮计划以让话，不新增内容",
+    "clause": "把本来要展开的那句话收短，让对方接着说",
+    "emotions": [
+      "caring",
+      "reverence"
+    ],
+    "axis": "deference",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.self_utterance_available",
+      "event.target_wants_turn"
+    ]
+  },
+  {
+    "id": "speech.listen_no_overlap",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "turn_timing",
+    "meaning": "以持续不重叠完成聆听，需对方发言事件",
+    "clause": "直到对方整段说完都没有插入一个音",
+    "emotions": [
+      "trust",
+      "compassion"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.target_finished_speaking"
+    ]
+  },
+  {
+    "id": "speech.callback_previous",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "恢复现有话题，不能任意制造旧事",
+    "clause": "重新拾起前面已经提过的那个话头",
+    "emotions": [
+      "curiosity",
+      "determination"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.previous_topic_available"
+    ]
+  },
+  {
+    "id": "speech.return_after_aside",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "旁支结束后回归主线，不创建支线内容",
+    "clause": "插说完那句旁话，又把声调接回原来的主句",
+    "emotions": [
+      "resolve",
+      "serenity"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.aside_finished",
+      "discourse.main_clause_available"
+    ]
+  },
+  {
+    "id": "speech.enumeration_cadence",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "列表平行韵律，不发明计数项目",
+    "clause": "把列出的几项按次序说开，每项都用相似的起调",
+    "emotions": [
+      "confidence",
+      "determination"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.list_available"
+    ]
+  },
+  {
+    "id": "speech.contrast_pause",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "已有对照结构的边界提示，不是重音同义词",
+    "clause": "说完前一项后顿住，后一项换了个更明晰的起调",
+    "emotions": [
+      "disapproval",
+      "realization"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.contrast_pair_available"
+    ]
+  },
+  {
+    "id": "speech.quotation_register",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "引用话语的声区标记，不编造被引台词",
+    "clause": "复述那段引语时换了声调，结束后又回到本声",
+    "emotions": [
+      "amusement",
+      "resentment"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.quotation_available"
+    ]
+  },
+  {
+    "id": "speech.summary_compress",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "压缩提供的内容结构，不能擅自总结未知信息",
+    "clause": "把前面的几层意思收成短句，逐项说清",
+    "emotions": [
+      "resolve",
+      "impatience"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.summary_available"
+    ]
+  },
+  {
+    "id": "speech.address_then_wait",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "独立召唤话轮，与句内称呼停顿不同",
+    "clause": "只说出那个称呼便等着，没立刻接下面的话",
+    "emotions": [
+      "longing",
+      "nervousness"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.address_term_available"
+    ]
+  },
+  {
+    "id": "speech.self_address_low",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "自语定向，不擅生内心内容",
+    "clause": "把已经准备好的那句自语说给自己听",
+    "emotions": [
+      "confusion",
+      "resolve"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.self_talk_available"
+    ]
+  },
+  {
+    "id": "speech.reading_cadence",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "阅读既有文本的朗读组织，有文本事实",
+    "clause": "照着眼前的文字逐句读，句界分得清楚",
+    "emotions": [
+      "interest",
+      "determination"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "prop.readable_text"
+    ]
+  },
+  {
+    "id": "speech.recite_from_memory",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "discourse_structure",
+    "meaning": "记忆中的已知文本，非创造回忆",
+    "clause": "把已熟记的那段话连贯地复述出来",
+    "emotions": [
+      "confidence",
+      "nostalgia"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.memorized_passage_available"
+    ]
+  },
+  {
+    "id": "speech.whisper_close",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "vocal_projection",
+    "meaning": "近距耳语发声，有近距事实，不等于低音量",
+    "clause": "只送出贴近耳语的气声，把字音留在近处",
+    "emotions": [
+      "trust",
+      "suspicion"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "context.listener_near"
+    ]
+  },
+  {
+    "id": "speech.call_across",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "vocal_projection",
+    "meaning": "远距离呼叫形式，有远处对象事实",
+    "clause": "把开口的音拖长，让声音送到远处",
+    "emotions": [
+      "impatience",
+      "longing"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "context.listener_far"
+    ]
+  },
+  {
+    "id": "speech.stage_aside",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "vocal_projection",
+    "meaning": "旁白定向投射，不创造秘密信息或改变位置",
+    "clause": "将那句旁话压成短短一束声音，只朝近处送去",
+    "emotions": [
+      "amusement",
+      "caring"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "context.listener_near",
+      "discourse.aside_available"
+    ]
+  },
+  {
+    "id": "speech.voice_rebound",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "volume_envelope",
+    "meaning": "声学反馈触发音量调节，环境回声显式已知",
+    "clause": "话音碰上四周的回声，下一句便收了些声量",
+    "emotions": [
+      "embarrassment",
+      "unease"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "environment.echoing_space"
+    ]
+  },
+  {
+    "id": "speech.noise_compensate",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "vocal_projection",
+    "meaning": "噪声空隙中的发言选择，不虚构环境声音",
+    "clause": "等那阵噪声稍歇，才把下一句话送出去",
+    "emotions": [
+      "impatience",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.background_noise_lulls"
+    ]
+  },
+  {
+    "id": "speech.noise_raise",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "vocal_projection",
+    "meaning": "已知噪声中的声乐投射，不保证他人听见",
+    "clause": "为了让字音越过周围的杂响，抬高了发声的位置",
+    "emotions": [
+      "frustration",
+      "determination"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "environment.noisy"
+    ]
+  },
+  {
+    "id": "speech.laugh_in_word",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "nonlexical_boundary",
+    "meaning": "发音内嵌笑，不同于句后笑",
+    "clause": "笑音从一个字中间漏了出来，把那个音折成两段",
+    "emotions": [
+      "amusement",
+      "joy"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.sigh_before_words",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "nonlexical_boundary",
+    "meaning": "话轮前叹息的组合边界，不只生理呼气",
+    "clause": "先让一声叹息过去，再接上准备好的话",
+    "emotions": [
+      "resignation",
+      "disappointment"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.self_utterance_available"
+    ]
+  },
+  {
+    "id": "speech.chuckle_after_phrase",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "nonlexical_boundary",
+    "meaning": "句末笑回馈，不生成台词",
+    "clause": "说完那一小句，才从喉间漏出一声短笑",
+    "emotions": [
+      "amusement",
+      "schadenfreude"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.self_finished_phrase"
+    ]
+  },
+  {
+    "id": "speech.sob_between_words",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "nonlexical_boundary",
+    "meaning": "既有哭声插入言语，对照纯哭腔",
+    "clause": "哭声挤进两个字之间，后一个字迟迟没能接上",
+    "emotions": [
+      "grief",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.crying",
+      "state.self_speech_in_progress"
+    ]
+  },
+  {
+    "id": "speech.swallow_mid_speech",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "nonlexical_boundary",
+    "meaning": "话语中吞咽边界，与独立吞咽反射区分",
+    "clause": "说到一半先咽过一口，才把后面的字补齐",
+    "emotions": [
+      "nervousness",
+      "hurt"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "state.self_speech_in_progress"
+    ]
+  },
+  {
+    "id": "speech.throat_clear_take_turn",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "nonlexical_boundary",
+    "meaning": "清嗓作为话轮起始信号，有话轮机会",
+    "clause": "先清了清嗓子，用那点声响接住轮到自己的空隙",
+    "emotions": [
+      "embarrassment",
+      "confidence"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "event.self_turn_available"
+    ]
+  },
+  {
+    "id": "speech.wordless_huff",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "nonlexical_boundary",
+    "meaning": "非词汇鼻哼回馈，非声明反对内容",
+    "clause": "没有接成词，只从鼻间短短哼出一口气",
+    "emotions": [
+      "annoyance",
+      "contempt"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle"
+  },
+  {
+    "id": "speech.question_end_suspend",
+    "category": "speech",
+    "channel": "speech",
+    "parts": [
+      "voice"
+    ],
+    "family": "completion_shape",
+    "meaning": "已知问句的悬置尾音，不生成问题",
+    "clause": "问句末端没有明显落调，听来仍在等对方接上",
+    "emotions": [
+      "anticipation",
+      "vulnerability"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "speech"
+    ],
+    "visibility": "subtle",
+    "facts": [
+      "discourse.self_question_available"
+    ]
+  }
+]

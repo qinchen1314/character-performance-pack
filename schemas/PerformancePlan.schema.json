@@ -1,0 +1,988 @@
+{
+  "$defs": {
+    "ActiveAction": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "navigation",
+          "default": "navigation",
+          "title": "Kind",
+          "type": "string"
+        },
+        "status": {
+          "default": "running",
+          "enum": [
+            "running",
+            "paused"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "goal": {
+          "$ref": "#/$defs/BlockingGoal"
+        },
+        "route": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Route",
+          "type": "array"
+        },
+        "edge_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Edge Index",
+          "type": "integer"
+        },
+        "elapsed_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Elapsed Ms",
+          "type": "integer"
+        },
+        "pack_hash": {
+          "title": "Pack Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "goal",
+        "route",
+        "pack_hash"
+      ],
+      "title": "ActiveAction",
+      "type": "object"
+    },
+    "Appraisal": {
+      "additionalProperties": false,
+      "properties": {
+        "goal_congruence": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Goal Congruence",
+          "type": "number"
+        },
+        "controllability": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Controllability",
+          "type": "number"
+        },
+        "responsibility": {
+          "default": "unknown",
+          "enum": [
+            "self",
+            "target",
+            "environment",
+            "unknown"
+          ],
+          "title": "Responsibility",
+          "type": "string"
+        },
+        "certainty": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Certainty",
+          "type": "number"
+        }
+      },
+      "title": "Appraisal",
+      "type": "object"
+    },
+    "BlockingGoal": {
+      "additionalProperties": false,
+      "properties": {
+        "destination": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Destination",
+          "type": "string"
+        },
+        "pose": {
+          "default": "standing",
+          "enum": [
+            "standing",
+            "seated"
+          ],
+          "title": "Pose",
+          "type": "string"
+        },
+        "interruption_policy": {
+          "default": "pause",
+          "enum": [
+            "pause",
+            "forbid"
+          ],
+          "title": "Interruption Policy",
+          "type": "string"
+        }
+      },
+      "required": [
+        "destination"
+      ],
+      "title": "BlockingGoal",
+      "type": "object"
+    },
+    "BlockingStep": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "instant",
+            "start",
+            "continue",
+            "complete",
+            "pause",
+            "resume"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "destination": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination"
+        },
+        "elapsed_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Elapsed Ms",
+          "type": "integer"
+        },
+        "duration_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "render": {
+          "default": true,
+          "title": "Render",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "unit_id",
+        "phase"
+      ],
+      "title": "BlockingStep",
+      "type": "object"
+    },
+    "EmotionState": {
+      "additionalProperties": false,
+      "properties": {
+        "primary": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Primary",
+          "type": "string"
+        },
+        "secondary": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Secondary"
+        },
+        "families": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Families",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "intensity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Intensity",
+          "type": "number"
+        },
+        "vad": {
+          "$ref": "#/$defs/VAD"
+        },
+        "restraint": {
+          "default": 0.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Restraint",
+          "type": "number"
+        },
+        "awareness": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Awareness",
+          "type": "number"
+        },
+        "duration_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "decay_half_life_ms": {
+          "exclusiveMinimum": 0,
+          "title": "Decay Half Life Ms",
+          "type": "integer"
+        },
+        "trigger_refs": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Trigger Refs",
+          "type": "array"
+        },
+        "appraisal": {
+          "$ref": "#/$defs/Appraisal",
+          "default": {
+            "goal_congruence": 0.0,
+            "controllability": 0.5,
+            "responsibility": "unknown",
+            "certainty": 0.5
+          }
+        }
+      },
+      "required": [
+        "primary",
+        "intensity",
+        "vad",
+        "decay_half_life_ms"
+      ],
+      "title": "EmotionState",
+      "type": "object"
+    },
+    "EmotionalResidue": {
+      "additionalProperties": false,
+      "properties": {
+        "emotion": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Emotion",
+          "type": "string"
+        },
+        "intensity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Intensity",
+          "type": "number"
+        },
+        "expires_after_turn": {
+          "minimum": 0,
+          "title": "Expires After Turn",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "emotion",
+        "intensity",
+        "expires_after_turn"
+      ],
+      "title": "EmotionalResidue",
+      "type": "object"
+    },
+    "Landmark": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label_zh": {
+          "maxLength": 60,
+          "minLength": 1,
+          "title": "Label Zh",
+          "type": "string"
+        },
+        "seat_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Id"
+        },
+        "seat_label": {
+          "anyOf": [
+            {
+              "maxLength": 60,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Label"
+        },
+        "distances": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Distances",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "label_zh"
+      ],
+      "title": "Landmark",
+      "type": "object"
+    },
+    "PathEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Origin",
+          "type": "string"
+        },
+        "destination": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Destination",
+          "type": "string"
+        },
+        "duration_ms": {
+          "exclusiveMinimum": 0,
+          "maximum": 3600000,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "blocked": {
+          "default": false,
+          "title": "Blocked",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origin",
+        "destination",
+        "duration_ms"
+      ],
+      "title": "PathEdge",
+      "type": "object"
+    },
+    "SceneLayout": {
+      "additionalProperties": false,
+      "properties": {
+        "landmarks": {
+          "items": {
+            "$ref": "#/$defs/Landmark"
+          },
+          "title": "Landmarks",
+          "type": "array"
+        },
+        "edges": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PathEdge"
+          },
+          "title": "Edges",
+          "type": "array"
+        }
+      },
+      "required": [
+        "landmarks"
+      ],
+      "title": "SceneLayout",
+      "type": "object"
+    },
+    "SceneState": {
+      "additionalProperties": false,
+      "properties": {
+        "scene_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "turn_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Turn Index",
+          "type": "integer"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "pose": {
+          "default": "unknown",
+          "enum": [
+            "standing",
+            "seated",
+            "leaning_wall",
+            "lying",
+            "unknown"
+          ],
+          "title": "Pose",
+          "type": "string"
+        },
+        "position": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Position"
+        },
+        "orientation_target": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Orientation Target"
+        },
+        "held_objects": {
+          "additionalProperties": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "propertyNames": {
+            "enum": [
+              "right_hand",
+              "left_hand"
+            ]
+          },
+          "title": "Held Objects",
+          "type": "object"
+        },
+        "object_tags": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "items": {
+                "minLength": 1,
+                "pattern": "^[a-z][a-z0-9_.-]*$",
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Object Tags",
+          "type": "object"
+        },
+        "distances": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Distances",
+          "type": "object"
+        },
+        "support_contact": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Support Contact"
+        },
+        "unfinished_actions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Unfinished Actions",
+          "type": "array"
+        },
+        "emotional_residue": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/EmotionalResidue"
+          },
+          "title": "Emotional Residue",
+          "type": "array"
+        },
+        "layout": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SceneLayout"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "active_action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ActiveAction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "time_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Time Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "scene_id"
+      ],
+      "title": "SceneState",
+      "type": "object"
+    },
+    "StateTransition": {
+      "additionalProperties": false,
+      "properties": {
+        "before": {
+          "$ref": "#/$defs/SceneState"
+        },
+        "after": {
+          "$ref": "#/$defs/SceneState"
+        },
+        "world_before": {
+          "$ref": "#/$defs/WorldState"
+        },
+        "world_after": {
+          "$ref": "#/$defs/WorldState"
+        }
+      },
+      "required": [
+        "before",
+        "after",
+        "world_before",
+        "world_after"
+      ],
+      "title": "StateTransition",
+      "type": "object"
+    },
+    "VAD": {
+      "additionalProperties": false,
+      "properties": {
+        "valence": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Valence",
+          "type": "number"
+        },
+        "arousal": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Arousal",
+          "type": "number"
+        },
+        "dominance": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Dominance",
+          "type": "number"
+        }
+      },
+      "required": [
+        "valence",
+        "arousal",
+        "dominance"
+      ],
+      "title": "VAD",
+      "type": "object"
+    },
+    "WorldState": {
+      "additionalProperties": false,
+      "properties": {
+        "genre": {
+          "default": "general",
+          "enum": [
+            "general",
+            "xianxia",
+            "unknown"
+          ],
+          "title": "Genre",
+          "type": "string"
+        },
+        "realm": {
+          "default": "mortal",
+          "enum": [
+            "mortal",
+            "qi_refining",
+            "foundation",
+            "golden_core",
+            "unknown"
+          ],
+          "title": "Realm",
+          "type": "string"
+        },
+        "stage": {
+          "default": 1,
+          "maximum": 9,
+          "minimum": 1,
+          "title": "Stage",
+          "type": "integer"
+        },
+        "qi": {
+          "default": 1,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Qi",
+          "type": "number"
+        },
+        "control": {
+          "default": 1,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Control",
+          "type": "number"
+        },
+        "target_realm": {
+          "default": "unknown",
+          "enum": [
+            "mortal",
+            "qi_refining",
+            "foundation",
+            "golden_core",
+            "unknown"
+          ],
+          "title": "Target Realm",
+          "type": "string"
+        },
+        "suppressed_capabilities": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Suppressed Capabilities",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "active_capabilities": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Active Capabilities",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "destruction_limit": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Destruction Limit",
+          "type": "number"
+        }
+      },
+      "title": "WorldState",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "plan_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "subject_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Subject Id",
+      "type": "string"
+    },
+    "target_ids": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Target Ids",
+      "type": "array"
+    },
+    "scene_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Scene Id",
+      "type": "string"
+    },
+    "turn_index": {
+      "minimum": 0,
+      "title": "Turn Index",
+      "type": "integer"
+    },
+    "seed": {
+      "title": "Seed",
+      "type": "integer"
+    },
+    "primary_signal": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Primary Signal"
+    },
+    "secondary_signals": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Secondary Signals",
+      "type": "array"
+    },
+    "surface_signals": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Surface Signals",
+      "type": "array"
+    },
+    "leak_signals": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Leak Signals",
+      "type": "array"
+    },
+    "selected": {
+      "additionalProperties": {
+        "items": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Selected",
+      "type": "object"
+    },
+    "parameters": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "additionalProperties": true,
+          "type": "object"
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Parameters",
+      "type": "object"
+    },
+    "pack_version": {
+      "default": "0.4.0",
+      "title": "Pack Version",
+      "type": "string"
+    },
+    "pack_hash": {
+      "default": "",
+      "title": "Pack Hash",
+      "type": "string"
+    },
+    "rule_version": {
+      "default": "1.2.0",
+      "title": "Rule Version",
+      "type": "string"
+    },
+    "input_hash": {
+      "default": "",
+      "title": "Input Hash",
+      "type": "string"
+    },
+    "emotion_state": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EmotionState"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "state_transition": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StateTransition"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "suppressed_candidates": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Suppressed Candidates",
+      "type": "object"
+    },
+    "scores": {
+      "additionalProperties": {
+        "additionalProperties": {
+          "type": "number"
+        },
+        "type": "object"
+      },
+      "title": "Scores",
+      "type": "object"
+    },
+    "world_decisions": {
+      "additionalProperties": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "World Decisions",
+      "type": "object"
+    },
+    "warnings": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "sequence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/BlockingStep"
+      },
+      "title": "Sequence",
+      "type": "array"
+    },
+    "continuation_signals": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Continuation Signals",
+      "type": "array"
+    }
+  },
+  "required": [
+    "plan_id",
+    "subject_id",
+    "scene_id",
+    "turn_index",
+    "seed"
+  ],
+  "title": "PerformancePlan",
+  "type": "object"
+}

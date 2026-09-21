@@ -1,0 +1,160 @@
+{
+  "$defs": {
+    "Condition": {
+      "additionalProperties": false,
+      "properties": {
+        "lt": {
+          "anyOf": [
+            {
+              "maximum": 2,
+              "minimum": -2,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lt"
+        },
+        "gt": {
+          "anyOf": [
+            {
+              "maximum": 2,
+              "minimum": -2,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gt"
+        }
+      },
+      "title": "Condition",
+      "type": "object"
+    },
+    "ModifierEffects": {
+      "additionalProperties": false,
+      "properties": {
+        "score_add": {
+          "additionalProperties": {
+            "maximum": 2,
+            "minimum": -2,
+            "type": "number"
+          },
+          "title": "Score Add",
+          "type": "object"
+        },
+        "parameter_add": {
+          "additionalProperties": {
+            "maximum": 2,
+            "minimum": -2,
+            "type": "number"
+          },
+          "propertyNames": {
+            "enum": [
+              "amplitude",
+              "directness",
+              "volume",
+              "pace"
+            ]
+          },
+          "title": "Parameter Add",
+          "type": "object"
+        },
+        "budget_add": {
+          "additionalProperties": {
+            "maximum": 6,
+            "minimum": -6,
+            "type": "integer"
+          },
+          "propertyNames": {
+            "enum": [
+              "total",
+              "speech",
+              "body",
+              "facial",
+              "gaze",
+              "spatial",
+              "physiology",
+              "world_specific"
+            ]
+          },
+          "title": "Budget Add",
+          "type": "object"
+        }
+      },
+      "title": "ModifierEffects",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "personality",
+        "relationship",
+        "context",
+        "physical",
+        "director",
+        "world"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "when": {
+      "additionalProperties": {
+        "$ref": "#/$defs/Condition"
+      },
+      "title": "When",
+      "type": "object"
+    },
+    "effects": {
+      "$ref": "#/$defs/ModifierEffects"
+    },
+    "priority": {
+      "default": 50,
+      "title": "Priority",
+      "type": "integer"
+    },
+    "stacking": {
+      "const": "additive_clamped",
+      "default": "additive_clamped",
+      "title": "Stacking",
+      "type": "string"
+    },
+    "source_refs": {
+      "default": [
+        "src.original.performance.v1"
+      ],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "description_zh": {
+      "default": "",
+      "title": "Description Zh",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "kind",
+    "when",
+    "effects"
+  ],
+  "title": "Modifier",
+  "type": "object"
+}

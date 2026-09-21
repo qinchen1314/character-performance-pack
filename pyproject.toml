@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "character-performance-pack"
+version = "0.4.0"
+description = "Deterministic character performance ontology and composition engine"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "pydantic>=2.10,<3",
+  "PyYAML>=6,<7",
+]
+
+[project.scripts]
+cpp-build-pack = "character_performance.cli.build_pack:main"
+cpp-export-schemas = "character_performance.cli.export_schemas:main"
+cpp-perform = "character_performance.cli.perform:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

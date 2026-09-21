@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "subject_name": {
+      "default": "他",
+      "maxLength": 50,
+      "minLength": 1,
+      "title": "Subject Name",
+      "type": "string"
+    },
+    "target_name": {
+      "default": "对方",
+      "maxLength": 50,
+      "minLength": 1,
+      "title": "Target Name",
+      "type": "string"
+    },
+    "dialogue": {
+      "anyOf": [
+        {
+          "maxLength": 2000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Dialogue"
+    }
+  },
+  "title": "RenderContext",
+  "type": "object"
+}

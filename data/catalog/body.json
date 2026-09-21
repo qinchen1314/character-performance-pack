@@ -1,0 +1,6826 @@
+[
+  {
+    "id": "body.acknowledge_once",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head"
+    ],
+    "family": "head_acknowledgment",
+    "meaning": "以单次点头确认已听见，不重复表态",
+    "clause": "点了一下头，随即停住",
+    "emotions": [
+      "approval",
+      "trust"
+    ],
+    "axis": "warmth"
+  },
+  {
+    "id": "body.refuse_shake",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head"
+    ],
+    "family": "head_refusal",
+    "meaning": "明确否定而不让全身后撤",
+    "clause": "摇了摇头便收住动作",
+    "emotions": [
+      "disapproval",
+      "resolve"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "body.listen_ear",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_listening",
+    "meaning": "暂时改变耳朵朝向争取听清",
+    "clause": "侧过耳朵听了一瞬，又摆正头",
+    "emotions": [
+      "interest",
+      "confusion"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "sound.audible"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.head_recoil_reset",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_protection",
+    "meaning": "仅头部躲避近处突然出现的刺激",
+    "clause": "头往后一缩，随即定住",
+    "emotions": [
+      "surprise",
+      "dread"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "stimulus.near_face"
+    ]
+  },
+  {
+    "id": "body.neck_lengthen",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "neck"
+    ],
+    "family": "head_composure",
+    "meaning": "解除颈部蜷缩以整理仪态",
+    "clause": "伸展了一下后颈，重新稳住头",
+    "emotions": [
+      "determination",
+      "confidence"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "body.chin_tuck_reset",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_protection",
+    "meaning": "短时保护颈前而非低头回避目光",
+    "clause": "下巴向胸前收了一瞬，又回到原位",
+    "emotions": [
+      "unease",
+      "fear"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "body.head_bow_return",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_deference",
+    "meaning": "完成可辨认的礼貌致意动作",
+    "clause": "垂首致意后重新抬起头",
+    "emotions": [
+      "gratitude",
+      "reverence"
+    ],
+    "axis": "deference",
+    "facts": [
+      "interaction.greeting"
+    ]
+  },
+  {
+    "id": "body.head_tip_measure",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_appraisal",
+    "meaning": "用较小转头角度核对眼前形状",
+    "clause": "头向侧面转了一小段，停下来辨认",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "object.visible"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.nod_delayed",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head"
+    ],
+    "family": "head_acknowledgment",
+    "meaning": "犹疑接受而非完全赞同",
+    "clause": "听完才缓缓点头，动作到一半便收住",
+    "emotions": [
+      "ambivalence",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "speech.just_finished"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.head_no_midway",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head"
+    ],
+    "family": "head_refusal",
+    "meaning": "终止尚未完成的同意动作",
+    "clause": "刚要点头，便把动作截住了",
+    "emotions": [
+      "suspicion",
+      "realization"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "head.nod_starting"
+    ]
+  },
+  {
+    "id": "body.shrug_release",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "shoulders"
+    ],
+    "family": "shoulder_uncertainty",
+    "meaning": "短促耸肩表示缺乏答案",
+    "clause": "双肩一耸，旋即落回原处",
+    "emotions": [
+      "confusion",
+      "helplessness"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "body.shoulder_roll",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "shoulders"
+    ],
+    "family": "shoulder_release",
+    "meaning": "以环转解除肩部紧绷",
+    "clause": "把肩膀向后绕了一圈，重新放稳",
+    "emotions": [
+      "relief",
+      "resolve"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "body.shoulders_fold_return",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "shoulders",
+      "torso"
+    ],
+    "family": "torso_shelter",
+    "meaning": "短时自我包裹后恢复原有姿态",
+    "clause": "双肩向胸前合了一瞬，又勉强展开",
+    "emotions": [
+      "vulnerability",
+      "shame"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "body.shoulder_brace",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "shoulders",
+      "torso"
+    ],
+    "family": "torso_readiness",
+    "meaning": "预先稳定肩带所承担的负荷",
+    "clause": "绷住肩背，承住身上重量",
+    "emotions": [
+      "determination",
+      "anxiety"
+    ],
+    "axis": "tension",
+    "facts": [
+      "body.carrying_load"
+    ]
+  },
+  {
+    "id": "body.chest_shrug_laugh",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "shoulders",
+      "torso"
+    ],
+    "family": "torso_laughter",
+    "meaning": "抑制笑声伴随的躯干起伏",
+    "clause": "肩头随笑声颠了一下，很快压平",
+    "emotions": [
+      "amusement",
+      "joy"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.laughing"
+    ]
+  },
+  {
+    "id": "body.back_unhunch",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_composure",
+    "meaning": "从已知短暂含胸恢复原先姿态",
+    "clause": "把微弯的背一点点挺回原样",
+    "emotions": [
+      "confidence",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.back_hunched"
+    ]
+  },
+  {
+    "id": "body.abdomen_draw",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_protection",
+    "meaning": "防护腹前的短时收缩",
+    "clause": "腹部往里一收，腰背随即重新稳住",
+    "emotions": [
+      "fear",
+      "disgust"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "body.waist_twist_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_appraisal",
+    "meaning": "通过躯干扭转探查而不改变站位",
+    "clause": "腰身朝声源拧了一下，脚下仍不动",
+    "emotions": [
+      "curiosity",
+      "unease"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "sound.audible"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "body.lean_listen_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_listening",
+    "meaning": "短时探身听取而不缩短脚下距离",
+    "clause": "上身略向前探，听清后便收回",
+    "emotions": [
+      "interest",
+      "caring"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.quiet"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.recoil_torso_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_protection",
+    "meaning": "仅躯干退避，不声称整个人后退",
+    "clause": "上身往后一仰，又在原地稳住",
+    "emotions": [
+      "surprise",
+      "disgust"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "body.bow_waist_return",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_deference",
+    "meaning": "完成腰部鞠躬礼节后恢复站姿",
+    "clause": "躬身行了一礼，然后直起腰",
+    "emotions": [
+      "reverence",
+      "gratitude"
+    ],
+    "axis": "deference",
+    "facts": [
+      "interaction.formal_greeting"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "body.lateral_dodge_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_protection",
+    "meaning": "躯干局部闪避经过身侧的东西",
+    "clause": "腰身侧让了一下，随即回正",
+    "emotions": [
+      "fear",
+      "annoyance"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "stimulus.passing_torso"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "body.suppress_rock",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_composure",
+    "meaning": "停止已知摇晃而非凭空新增摇晃",
+    "clause": "止住了上身的晃动",
+    "emotions": [
+      "calm",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.rocking"
+    ]
+  },
+  {
+    "id": "body.brace_sneeze",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_reflex",
+    "meaning": "喷嚏带来的瞬时躯干运动",
+    "clause": "上身随着喷嚏往前一顿，又重新直起",
+    "emotions": [
+      "embarrassment",
+      "annoyance"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "body.sneezing"
+    ]
+  },
+  {
+    "id": "body.chest_pride_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_assertion",
+    "meaning": "可见的自我肯定并保持分寸",
+    "clause": "胸膛挺出一瞬，又收回平常的幅度",
+    "emotions": [
+      "pride",
+      "satisfaction"
+    ],
+    "axis": "initiative"
+  },
+  {
+    "id": "body.shoulder_peek_reset",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_appraisal",
+    "meaning": "检查背后而不改变身体朝向",
+    "clause": "越过肩头看了一眼，随即回正",
+    "emotions": [
+      "suspicion",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.behind_visible"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.head_protest_snap",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_refusal",
+    "meaning": "打断被动接受姿态的短促反应",
+    "clause": "头猛地一偏，又克制地摆正",
+    "emotions": [
+      "defiance",
+      "anger"
+    ],
+    "axis": "aggression"
+  },
+  {
+    "id": "body.forehead_lower_hand",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "head",
+      "right_hand"
+    ],
+    "family": "self_soothing",
+    "meaning": "以额头接触暂时缓解心智负担",
+    "clause": "用右手托了片刻额头，便把手放下",
+    "emotions": [
+      "helplessness",
+      "frustration"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.nape_rub",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "neck"
+    ],
+    "family": "self_soothing",
+    "meaning": "触摸颈后缓解局促",
+    "clause": "右手在后颈揉了两下便停住",
+    "emotions": [
+      "embarrassment",
+      "nervousness"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.ear_lobe_touch",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "ears"
+    ],
+    "family": "self_soothing",
+    "meaning": "借低显著触觉动作稳定情绪",
+    "clause": "右手碰了碰耳垂，随即离开",
+    "emotions": [
+      "unease",
+      "shame"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.thumb_press_palm",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_restraint",
+    "meaning": "把冲动限制在单手内部",
+    "clause": "右拇指抵住掌心片刻，随即松开",
+    "emotions": [
+      "anger",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.finger_count",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_enumeration",
+    "meaning": "以手指标记逐项核对",
+    "clause": "依次屈起右手的手指，数完便松开",
+    "emotions": [
+      "confusion",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "task.counting"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.fingers_steeple",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_deliberation",
+    "meaning": "对称指尖支撑体现慎重权衡",
+    "clause": "双手指尖相抵片刻，再各自分开",
+    "emotions": [
+      "suspicion",
+      "confidence"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.palms_rub_warm",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_warming",
+    "meaning": "摩擦双掌以应对明确寒冷",
+    "clause": "搓了搓双手，把掌心的暖意留住",
+    "emotions": [
+      "unease",
+      "hope"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "environment.cold"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.knuckles_fold",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_deliberation",
+    "meaning": "以相互包覆限制手部动作",
+    "clause": "双手交握，把指节收在掌间",
+    "emotions": [
+      "nervousness",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_down_calm",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_pacing",
+    "meaning": "以向下手势请求场面缓和",
+    "clause": "右掌朝下压了压，随即收回",
+    "emotions": [
+      "caring",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "interaction.active"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.stop_palm_return",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_boundary",
+    "meaning": "提出明确停止信号",
+    "clause": "右掌竖起示停，示意后便放下",
+    "emotions": [
+      "disapproval",
+      "fear"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "interaction.active"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.beckon_finger",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_invitation",
+    "meaning": "用单指邀请接近而不移动对方",
+    "clause": "右手食指向里招了一下便收回",
+    "emotions": [
+      "interest",
+      "confidence"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "interaction.active"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.wave_farewell",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_departure",
+    "meaning": "发出离别信号而非自身离开",
+    "clause": "抬起右手挥别，随后垂下手臂",
+    "emotions": [
+      "sadness",
+      "gratitude"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "interaction.farewell"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_offer_turn",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_turn_taking",
+    "meaning": "以开放手势让出发言回合",
+    "clause": "右手摊向对方，示意由对方先说",
+    "emotions": [
+      "trust",
+      "interest"
+    ],
+    "axis": "deference",
+    "facts": [
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.finger_lips_silence",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "lips"
+    ],
+    "family": "hand_quiet",
+    "meaning": "请求安静且不预言对方会服从",
+    "clause": "把右手食指竖在唇前，示意后便移开",
+    "emotions": [
+      "anxiety",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "interaction.active"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.index_point_self",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_reference",
+    "meaning": "把讨论中的指称落到自身",
+    "clause": "用右手指了指自己，便收回手",
+    "emotions": [
+      "surprise",
+      "confusion"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.two_fingers_quote",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_quotation",
+    "meaning": "以成对指势标记对用词的保留",
+    "clause": "双手各屈了两下手指，随即放下",
+    "emotions": [
+      "contempt",
+      "amusement"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.quoting"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.thumb_approval",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_approval",
+    "meaning": "给出可视化肯定信号",
+    "clause": "右手竖起拇指，点明赞许后便收起",
+    "emotions": [
+      "approval",
+      "admiration"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "interaction.active"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hand_circle_continue",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_pacing",
+    "meaning": "用循环手势维持对话进度",
+    "clause": "右手在空中画了个小圈，示意继续",
+    "emotions": [
+      "interest",
+      "impatience"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_cut_topic",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_boundary",
+    "meaning": "以截断手势结束当前话题",
+    "clause": "右手横着一划，便停在身侧",
+    "emotions": [
+      "disapproval",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.fingers_gap_measure",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_measurement",
+    "meaning": "强调差距很小而非标明方向",
+    "clause": "右手拇指与食指比出一道窄缝，再合拢",
+    "emotions": [
+      "confidence",
+      "frustration"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.comparing_small_gap"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.arms_width_show",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand",
+      "arms"
+    ],
+    "family": "hand_measurement",
+    "meaning": "用两手间距表达尺寸",
+    "clause": "双手拉开示出宽度，随即收回",
+    "emotions": [
+      "excitement",
+      "interest"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.describing_width"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_self_oath",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "torso"
+    ],
+    "family": "hand_assurance",
+    "meaning": "以自我接触加重承诺",
+    "clause": "右掌贴胸作保，停了一瞬便移开",
+    "emotions": [
+      "resolve",
+      "trust"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "speech.promise"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hands_plead_return",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_appeal",
+    "meaning": "暂时合掌请求让步",
+    "clause": "双掌相合请求了一下，随后分开",
+    "emotions": [
+      "helplessness",
+      "hope"
+    ],
+    "axis": "deference",
+    "facts": [
+      "interaction.request"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.hand_roll_uncertain",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_uncertainty",
+    "meaning": "把无法决断呈现为来回权衡",
+    "clause": "右手在掌心朝上与朝下之间翻了翻，又停住",
+    "emotions": [
+      "ambivalence",
+      "confusion"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_hide_smile",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "mouth"
+    ],
+    "family": "self_cover",
+    "meaning": "遮住正在发生的笑而非生成笑",
+    "clause": "右手掩住笑意，笑声低下去后便移开",
+    "emotions": [
+      "amusement",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.laughing"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.cover_yawn",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "mouth"
+    ],
+    "family": "self_cover",
+    "meaning": "为已有哈欠补上礼貌遮挡",
+    "clause": "右手掩过嘴前，等哈欠过去再放下",
+    "emotions": [
+      "boredom",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.yawning"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.wipe_known_tear",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "eyes"
+    ],
+    "family": "self_care",
+    "meaning": "清理已存在泪水，不创造哭泣",
+    "clause": "用右手指背拭去眼角的泪，再垂下手",
+    "emotions": [
+      "grief",
+      "hurt"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.tears_at_eye"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.brush_brow_sweat",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "brow"
+    ],
+    "family": "self_care",
+    "meaning": "清理眉部汗液避免流入眼睛",
+    "clause": "右手从眉上抹过，擦去汗",
+    "emotions": [
+      "anxiety",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.sweat_on_brow"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.scratch_cheek",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "cheek"
+    ],
+    "family": "self_soothing",
+    "meaning": "短暂处理已知皮肤痒感",
+    "clause": "右手在脸颊轻挠了一下便离开",
+    "emotions": [
+      "embarrassment",
+      "annoyance"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "body.cheek_itch"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.press_temples",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand",
+      "head"
+    ],
+    "family": "self_care",
+    "meaning": "双侧加压缓解既有头部不适",
+    "clause": "双手按了片刻太阳穴，再慢慢放下",
+    "emotions": [
+      "frustration",
+      "helplessness"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.head_discomfort"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.cup_ear_listen",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "ears"
+    ],
+    "family": "hand_listening",
+    "meaning": "以手掌改善接收方向的听觉动作",
+    "clause": "把右手拢在耳后，听清便放下",
+    "emotions": [
+      "interest",
+      "confusion"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "sound.faint"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.shade_eyes",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "eyes"
+    ],
+    "family": "hand_shading",
+    "meaning": "短时遮挡已知强光以辨物",
+    "clause": "右手挡了片刻刺眼的光，随后收回",
+    "emotions": [
+      "curiosity",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "environment.glare"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.rub_chin",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "jaw"
+    ],
+    "family": "hand_deliberation",
+    "meaning": "触摸下颌伴随斟酌而非发言",
+    "clause": "右手在下巴上摩挲一下，随即停住",
+    "emotions": [
+      "suspicion",
+      "curiosity"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.self_arm_hold",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_arm"
+    ],
+    "family": "self_shelter",
+    "meaning": "单手抱臂给自身触觉安抚",
+    "clause": "左手握了握自己的右上臂，随后松开",
+    "emotions": [
+      "vulnerability",
+      "loneliness"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.hands_rib_guard",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand",
+      "torso"
+    ],
+    "family": "self_shelter",
+    "meaning": "对躯干两侧采取临时保护",
+    "clause": "双手护在肋前一瞬，又松回身侧",
+    "emotions": [
+      "fear",
+      "dread"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.finger_unhook",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_restraint",
+    "meaning": "解除已存在的双手紧扣",
+    "clause": "把勾在一起的手指逐一松开",
+    "emotions": [
+      "relief",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "hands.interlocked"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_check_tremor",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_appraisal",
+    "meaning": "检查自身手部是否能稳定控制",
+    "clause": "摊开右手看了一瞬，随即把手收回",
+    "emotions": [
+      "anxiety",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.hand_tremor"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.rub_knuckle",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "self_soothing",
+    "meaning": "以跨手的局部按摩调节紧张",
+    "clause": "左拇指从右手指节上挨个揉过，便停下",
+    "emotions": [
+      "nervousness",
+      "unease"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.finger_drumming_stop",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_restraint",
+    "meaning": "停止已知节奏性小动作",
+    "clause": "把正敲动的右手指尖按住了",
+    "emotions": [
+      "impatience",
+      "calm"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "hand.fingers_drumming"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.wrist_circle",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_readiness",
+    "meaning": "检查腕部活动度而不接触器物",
+    "clause": "右腕转过一圈，重新放松",
+    "emotions": [
+      "determination",
+      "anticipation"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.fingers_fan_reset",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_release",
+    "meaning": "释放指部屈曲后的局部紧张",
+    "clause": "右手五指张开伸展了一下，又合拢",
+    "emotions": [
+      "relief",
+      "serenity"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.thumb_nail_rub",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "self_soothing",
+    "meaning": "局部指间摩擦作为不显眼的迟疑",
+    "clause": "右拇指在食指甲缘蹭了一下便停住",
+    "emotions": [
+      "nervousness",
+      "shame"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_touch_forearm",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_arm"
+    ],
+    "family": "hand_assurance",
+    "meaning": "通过自我轻压稳住即将抬起的手臂",
+    "clause": "右掌压了压自己的左前臂，随即离开",
+    "emotions": [
+      "anger",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "arm.left_restless"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.knee_tap_stop",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "left_leg",
+      "right_leg"
+    ],
+    "family": "leg_restraint",
+    "meaning": "控制已经出现的坐姿抖腿",
+    "clause": "止住了膝头颠动",
+    "emotions": [
+      "impatience",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.knee_bouncing"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.heels_lift_return",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_readiness",
+    "meaning": "不迈步的起动预备随后取消",
+    "clause": "双脚后跟提起一瞬，又压回地面",
+    "emotions": [
+      "anticipation",
+      "excitement"
+    ],
+    "axis": "initiative",
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.toe_curl_release",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_restraint",
+    "meaning": "用脚趾局部发力承受紧张",
+    "clause": "脚趾扣住地面片刻，又缓缓松开",
+    "emotions": [
+      "fear",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "feet.bare_on_floor"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.weight_shift_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "legs",
+      "feet"
+    ],
+    "family": "leg_balance",
+    "meaning": "临时卸去一侧负荷并恢复平衡",
+    "clause": "重心挪到一条腿上，片刻后又站匀",
+    "emotions": [
+      "boredom",
+      "unease"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.knees_soften_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "legs",
+      "feet"
+    ],
+    "family": "leg_balance",
+    "meaning": "吸收短时失衡而不跪下",
+    "clause": "膝盖略弯了一下，随即重新撑稳",
+    "emotions": [
+      "surprise",
+      "relief"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.ankle_rotate_seated",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_readiness",
+    "meaning": "坐姿检验踝部活动度",
+    "clause": "坐着转了转脚踝，再把脚放稳",
+    "emotions": [
+      "boredom",
+      "anticipation"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.feet_uncross",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "legs",
+      "feet"
+    ],
+    "family": "leg_composure",
+    "meaning": "解除已有脚踝交叉并建立支撑",
+    "clause": "把交叠的双脚分开，重新踩稳",
+    "emotions": [
+      "determination",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "feet.crossed"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.knees_together",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "legs"
+    ],
+    "family": "leg_shelter",
+    "meaning": "坐姿临时收缩占用空间",
+    "clause": "双膝靠拢了一瞬，又松开些许",
+    "emotions": [
+      "shame",
+      "vulnerability"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.leg_extend_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "legs",
+      "feet"
+    ],
+    "family": "leg_release",
+    "meaning": "短时舒展膝部不改变座位",
+    "clause": "将一条腿向前伸展，随即收回原处",
+    "emotions": [
+      "boredom",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.legroom"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.heel_grind_stop",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_restraint",
+    "meaning": "中止已存在的脚跟磨蹭",
+    "clause": "停下了鞋跟在地上的碾动",
+    "emotions": [
+      "annoyance",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "feet.heel_grinding"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.foot_catch_balance",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "legs",
+      "feet"
+    ],
+    "family": "leg_balance",
+    "meaning": "用足部支撑恢复而不移动位置",
+    "clause": "脚掌一紧，在原地把失去的平衡找回来",
+    "emotions": [
+      "fear",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.balance_wavering"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.knees_bend_greeting",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "legs",
+      "feet"
+    ],
+    "family": "leg_deference",
+    "meaning": "用短屈膝完成已约定礼节",
+    "clause": "屈膝致意后便重新站直",
+    "emotions": [
+      "reverence",
+      "gratitude"
+    ],
+    "axis": "deference",
+    "facts": [
+      "custom.knee_greeting"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.toe_test_floor",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_appraisal",
+    "meaning": "试探落脚材质而不踏入新位置",
+    "clause": "用脚尖点了点脚边地面，随即收回",
+    "emotions": [
+      "suspicion",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.floor_within_reach"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.feet_set_quiet",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_composure",
+    "meaning": "消除原地足部摩擦发声",
+    "clause": "把脚掌贴稳，止住鞋底的小响动",
+    "emotions": [
+      "anxiety",
+      "calm"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "feet.soles_rustling"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.seated_hip_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso",
+      "legs"
+    ],
+    "family": "torso_comfort",
+    "meaning": "座内重新分配压力不更换座椅",
+    "clause": "在座位上调整了一下承重，随后坐稳",
+    "emotions": [
+      "unease",
+      "boredom"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.back_rest_brief",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_comfort",
+    "meaning": "利用明确可用椅背短时减负",
+    "clause": "向椅背靠了一瞬，又恢复原来的坐姿",
+    "emotions": [
+      "relief",
+      "contentment"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "seat.back_reachable"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.sit_forward_return",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_listening",
+    "meaning": "坐姿躯干探听且保持座位",
+    "clause": "坐着探身听了一下，随后回到原处",
+    "emotions": [
+      "interest",
+      "caring"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.quiet"
+    ],
+    "preconditions": [
+      "seated"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.seated_twist_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_appraisal",
+    "meaning": "座位固定的后方查察",
+    "clause": "坐着拧身看了看侧后方，随即回正",
+    "emotions": [
+      "suspicion",
+      "curiosity"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.side_rear_visible"
+    ],
+    "preconditions": [
+      "seated"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.press_thigh_self",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "right_leg"
+    ],
+    "family": "self_grounding",
+    "meaning": "以大腿支点抑制冲动",
+    "clause": "右掌压了压自己的大腿，又松开",
+    "emotions": [
+      "anger",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free",
+      "seated"
+    ]
+  },
+  {
+    "id": "body.hands_knees_pause",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand",
+      "legs"
+    ],
+    "family": "hand_composure",
+    "meaning": "将双手短时固定在自身体表",
+    "clause": "双手在膝上放了一会儿，随即回到原处",
+    "emotions": [
+      "resolve",
+      "serenity"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free",
+      "seated"
+    ]
+  },
+  {
+    "id": "body.palm_thigh_rub",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "right_leg"
+    ],
+    "family": "self_soothing",
+    "meaning": "利用自体摩擦消耗局促",
+    "clause": "右掌在大腿上来回擦过一次便停住",
+    "emotions": [
+      "nervousness",
+      "embarrassment"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hand_reach_abort",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_hesitation",
+    "meaning": "在接触发生前撤销伸手意图",
+    "clause": "右手伸到半途便折了回来",
+    "emotions": [
+      "ambivalence",
+      "vulnerability"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "hand.reach_intended"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.gesture_lower_finish",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_restraint",
+    "meaning": "主动结束过多手势",
+    "clause": "把正比划的右手缓缓放回身侧",
+    "emotions": [
+      "embarrassment",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "hand.gesturing"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.elbows_tuck_return",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "arms"
+    ],
+    "family": "arm_shelter",
+    "meaning": "短时减少横向占幅并保护肋部",
+    "clause": "双肘贴近身体一瞬，又松开",
+    "emotions": [
+      "unease",
+      "shame"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "body.arms_spread_welcome",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "arms",
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "arm_invitation",
+    "meaning": "可见邀请而不假定发生拥抱",
+    "clause": "双臂张开作出欢迎的姿势，随后放下",
+    "emotions": [
+      "joy",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "interaction.greeting"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.cross_arms_brief",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "arms",
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "arm_boundary",
+    "meaning": "临时建立防御边界",
+    "clause": "双臂在胸前交叠片刻，又放开",
+    "emotions": [
+      "disapproval",
+      "suspicion"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.forearm_shield_reset",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_arm",
+      "right_hand"
+    ],
+    "family": "arm_protection",
+    "meaning": "临时遮护面部而不声称挡住攻击",
+    "clause": "右前臂横到面前挡了一下，随即落下",
+    "emotions": [
+      "fear",
+      "surprise"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "stimulus.near_face"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.elbow_point_self",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "right_arm"
+    ],
+    "family": "arm_reference",
+    "meaning": "手被占用时以肘部指示已知方向",
+    "clause": "用肘尖示意了一下身侧，便收住",
+    "emotions": [
+      "interest",
+      "impatience"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "space.side_subject_known"
+    ]
+  },
+  {
+    "id": "body.hands_clap_once",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_approval",
+    "meaning": "用单次击掌表达赞许",
+    "clause": "双掌拍合一声，便停了下来",
+    "emotions": [
+      "joy",
+      "admiration"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "interaction.performance_finished"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.fist_palm_salute",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_deference",
+    "meaning": "使用明确习俗中的抱拳礼",
+    "clause": "抱拳行礼，礼毕便分开双手",
+    "emotions": [
+      "reverence",
+      "gratitude"
+    ],
+    "axis": "deference",
+    "facts": [
+      "custom.fist_palm_salute"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.hand_brush_hair",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "self_grooming",
+    "meaning": "移开已知遮挡视线的头发",
+    "clause": "右手拂开挡在眼前的发丝，随即垂下",
+    "emotions": [
+      "annoyance",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "hair.over_eyes"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.sleeve_cuff_pin",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_arm"
+    ],
+    "family": "clothing_composure",
+    "meaning": "以衣袖接触限制手臂小动作",
+    "clause": "左手捏住右袖口片刻，又松开",
+    "emotions": [
+      "nervousness",
+      "shame"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.right_sleeve"
+    ],
+    "preconditions": [
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.collar_air",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "neck"
+    ],
+    "family": "clothing_comfort",
+    "meaning": "处理已知领口闷热而不脱衣",
+    "clause": "右手把领口撑开一瞬透气，再松开",
+    "emotions": [
+      "unease",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.tight_collar",
+      "body.hot"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.lapel_smooth",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "torso"
+    ],
+    "family": "clothing_composure",
+    "meaning": "整理前襟的既有褶皱以恢复体面",
+    "clause": "右掌从起皱的衣襟上抚过，便收回",
+    "emotions": [
+      "embarrassment",
+      "confidence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.wrinkled_lapel"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.button_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "torso"
+    ],
+    "family": "clothing_check",
+    "meaning": "检查扣件是否仍在原位而非扣合新状态",
+    "clause": "右手逐个触过衣扣，确认后收回",
+    "emotions": [
+      "anxiety",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.front_buttons"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.belt_hook_touch",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "torso"
+    ],
+    "family": "clothing_check",
+    "meaning": "验证腰间束带牢靠程度",
+    "clause": "右指扣住腰带边缘试了试，随即放开",
+    "emotions": [
+      "determination",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.belt"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.scarf_edge_nest",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "neck"
+    ],
+    "family": "clothing_shelter",
+    "meaning": "借衣物临时遮护裸露颈部",
+    "clause": "右手将围巾边暂时拢到颈前，再松回原处",
+    "emotions": [
+      "vulnerability",
+      "unease"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "clothing.scarf"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.cloak_weight_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "shoulders"
+    ],
+    "family": "clothing_check",
+    "meaning": "检查肩上衣物重量而不改变穿戴",
+    "clause": "右手托了托披风的下垂处，随即放开",
+    "emotions": [
+      "annoyance",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.cloak"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hat_brim_salute",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "clothing_greeting",
+    "meaning": "用帽檐接触完成社交礼节",
+    "clause": "右手轻点帽檐致意，随后放下",
+    "emotions": [
+      "approval",
+      "confidence"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "clothing.brimmed_hat",
+      "custom.hat_greeting"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.shoe_tip_dust",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "clothing_cleaning",
+    "meaning": "借鞋缘清理已知鞋尖浮尘",
+    "clause": "鞋尖在另一只鞋边蹭了一下，又落回原位",
+    "emotions": [
+      "embarrassment",
+      "annoyance"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.shoes",
+      "shoes.dust_on_toe"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.trouser_knee_brush",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "right_leg"
+    ],
+    "family": "clothing_cleaning",
+    "meaning": "清理裤膝已附着的灰尘",
+    "clause": "右手拍了拍膝上的浮灰，便垂下",
+    "emotions": [
+      "embarrassment",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.trousers",
+      "clothing.dust_on_knee"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.pocket_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "torso"
+    ],
+    "family": "clothing_check",
+    "meaning": "检查口袋已有物品的轮廓而不取出",
+    "clause": "隔着衣料按了按右侧口袋，随后收回手",
+    "emotions": [
+      "anxiety",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.right_pocket",
+      "object.in_right_pocket"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hem_hold_wind",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "clothing_shelter",
+    "meaning": "短时制止衣摆翻动不改变服装状态",
+    "clause": "右手压住正被风掀起的衣摆，风缓后松开",
+    "emotions": [
+      "embarrassment",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.hem",
+      "wind.lifting_hem"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.cuff_hide_thumb",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "clothing_shelter",
+    "meaning": "利用现有衣袖暂时遮藏小动作",
+    "clause": "右拇指缩进袖口一会儿，又伸出来",
+    "emotions": [
+      "shame",
+      "vulnerability"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "clothing.long_right_sleeve"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.ring_turn_seated",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_fidget",
+    "meaning": "转动佩戴物消耗等待时的紧张",
+    "clause": "右指把左手上的戒环转了一下，随即停住",
+    "emotions": [
+      "nervousness",
+      "longing"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "jewelry.left_ring"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.pendant_cup",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_reassurance",
+    "meaning": "借已有贴身信物获得触觉支持",
+    "clause": "用右掌托住胸前坠饰一瞬，便放回原处",
+    "emotions": [
+      "nostalgia",
+      "hope"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "jewelry.pendant"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.bracelet_pause",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_fidget",
+    "meaning": "抑制既有佩饰响动",
+    "clause": "左手止住了右腕手镯的滑动，片刻后松开",
+    "emotions": [
+      "anxiety",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "jewelry.right_bracelet",
+      "jewelry.bracelet_sliding"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.ribbon_ends_match",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "clothing_composure",
+    "meaning": "核对已有系带是否整齐而不重新打结",
+    "clause": "把颈前系带的两端并着比了比，便松手",
+    "emotions": [
+      "embarrassment",
+      "satisfaction"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.neck_ribbon"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.seam_trace",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "clothing_fidget",
+    "meaning": "通过衣物边界触觉转移注意",
+    "clause": "右手沿袖缝摸到线头处，停了一下便收回",
+    "emotions": [
+      "nervousness",
+      "boredom"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "clothing.reachable_seam"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.glove_fit_press",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "clothing_check",
+    "meaning": "确认已戴手套贴合度",
+    "clause": "右手按了按左手套的指根，随后放开",
+    "emotions": [
+      "anticipation",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.left_glove"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.shoe_lace_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "torso"
+    ],
+    "family": "clothing_check",
+    "meaning": "测试既有鞋带结不拆解穿戴",
+    "clause": "俯身拉了一下鞋带结，确认牢靠后直起腰",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.tied_shoelace",
+      "shoe.within_reach"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "seated"
+    ]
+  },
+  {
+    "id": "body.sleeve_cover_wound",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_arm"
+    ],
+    "family": "self_protection",
+    "meaning": "临时遮护明确伤处而不治疗",
+    "clause": "右手把左袖压在伤处片刻，再松回原样",
+    "emotions": [
+      "hurt",
+      "vulnerability"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "clothing.left_sleeve",
+      "body.left_forearm_wound"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.lapel_droplet_shake",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "clothing_cleaning",
+    "meaning": "甩去衣物表面已有水滴",
+    "clause": "捏住衣襟抖落表面的水珠，随即松手",
+    "emotions": [
+      "annoyance",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.lapel",
+      "clothing.water_drops"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hairline_comb",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "self_grooming",
+    "meaning": "整理散乱发际而非改变发型",
+    "clause": "右手顺着发际理了一下，便停住",
+    "emotions": [
+      "embarrassment",
+      "confidence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "hair.disordered_hairline"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.loose_pin_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "self_grooming",
+    "meaning": "检查已佩戴簪具是否松动",
+    "clause": "右手摸了摸发间的簪子，确认后移开",
+    "emotions": [
+      "anxiety",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "hair.pin"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.beard_twist_release",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "jaw"
+    ],
+    "family": "self_grooming",
+    "meaning": "胡须触觉伴随推敲",
+    "clause": "右指拈住一小绺胡须转了转，便放开",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.beard"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.cup_heat_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "在不放开已持杯子的情况下测试烫手程度",
+    "clause": "右手挪开一根手指试杯壁温度，随即握回原处",
+    "emotions": [
+      "unease",
+      "curiosity"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.cup"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.cup_rim_hover",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "object_hesitation",
+    "meaning": "临饮撤回表现有所顾虑而不消耗饮品",
+    "clause": "把右手的杯沿送近唇边，却停了一瞬又降回原位",
+    "emotions": [
+      "suspicion",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "held.right.cup"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.cup_swirl_watch",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_deliberation",
+    "meaning": "搅动已持液体作为思量停顿",
+    "clause": "右腕带着杯中水转出一圈涟漪，随后握稳",
+    "emotions": [
+      "boredom",
+      "nostalgia"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.cup",
+      "cup.has_liquid"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.cup_handle_reset",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_grip",
+    "meaning": "调整同一只手对已持杯具的支点",
+    "clause": "右手在杯柄上换了个更稳的握法",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.handled_cup"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.cup_lid_listen",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "压住已有杯盖以免其振动作响",
+    "clause": "左指按住右手杯上的盖，听了片刻才松开",
+    "emotions": [
+      "unease",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.lidded_cup",
+      "lid.rattling"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.cup_toast_return",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_greeting",
+    "meaning": "借既有杯具完成社交致意",
+    "clause": "举起右手的杯子致意，示意后仍握回身前",
+    "emotions": [
+      "gratitude",
+      "approval"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "held.right.cup",
+      "interaction.toast"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.bowl_two_hand_support",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_grip",
+    "meaning": "临时分担单手持碗负担而不转移所有权",
+    "clause": "左掌托了托右手碗的底部，又撤回",
+    "emotions": [
+      "anxiety",
+      "caring"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.bowl"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.spoon_surface_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查既有餐具的表面状态",
+    "clause": "把右手的勺面转向光处看了一眼，又握正",
+    "emotions": [
+      "suspicion",
+      "disgust"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.spoon",
+      "environment.light"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.chopsticks_align",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_composure",
+    "meaning": "在不放下餐具的情况下校准筷尖",
+    "clause": "把右手的一双筷子在掌中理齐",
+    "emotions": [
+      "embarrassment",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.chopsticks"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.bread_press_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "以局部压力检查既有食物触感",
+    "clause": "指腹压了一下右手面包的外皮，随后停住",
+    "emotions": [
+      "curiosity",
+      "disappointment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.bread"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.fruit_turn_blemish",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "旋转已有果实检查明确瑕疵",
+    "clause": "把右手的果子转到斑痕朝上，停下来细看",
+    "emotions": [
+      "suspicion",
+      "disappointment"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "held.right.fruit",
+      "fruit.blemish"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.bottle_neck_secure",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_grip",
+    "meaning": "调整持瓶重心而不倾倒液体",
+    "clause": "将右手瓶身的重量重新落回掌根",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.bottle"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.bottle_ear_tilt",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "object_appraisal",
+    "meaning": "利用内部声响评估已封瓶内容",
+    "clause": "把右手瓶子略倾向耳边听了一下，再握回原位",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "held.right.closed_bottle",
+      "bottle.contents_move"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.tray_level_correct",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_balance",
+    "meaning": "纠正已持托盘角度避免进一步失衡",
+    "clause": "把双手承着的托盘扶平，稳住倾斜",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.both.tray",
+      "tray.tilting"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_holding"
+    ]
+  },
+  {
+    "id": "body.plate_thumb_edge",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_grip",
+    "meaning": "增强单手已持盘具的边缘支撑",
+    "clause": "右拇指扣稳盘沿，止住盘子的晃动",
+    "emotions": [
+      "anxiety",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.plate",
+      "plate.wobbling"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.book_mark_finger",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_placekeeping",
+    "meaning": "短时标记阅读位置而不新增书签",
+    "clause": "左指压住右手书中那一行，片刻后移开",
+    "emotions": [
+      "interest",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.open_book"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.book_spine_cradle",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_grip",
+    "meaning": "改善已持书册的承托而不合上书",
+    "clause": "把右手的书脊往掌心收了收",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.book"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.page_corner_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_hesitation",
+    "meaning": "开始翻页却撤销，保留阅读位置",
+    "clause": "左指捻住右手书的一角，犹豫后仍放回原页",
+    "emotions": [
+      "ambivalence",
+      "nostalgia"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "held.right.open_book"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.page_trace_note",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_attention",
+    "meaning": "追踪明确存在的批注信息",
+    "clause": "左指沿右手书上的批注划过一遍，便停下",
+    "emotions": [
+      "interest",
+      "realization"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "held.right.open_book",
+      "book.has_annotation"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.book_cover_stroke",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_reassurance",
+    "meaning": "对既有书册的珍惜触摸",
+    "clause": "左掌抚了抚右手书册的封面，随后离开",
+    "emotions": [
+      "nostalgia",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "held.right.book"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.letter_hold_light",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "利用透光检查已有纸张",
+    "clause": "把右手的信纸举到亮处辨了一下，又降回来",
+    "emotions": [
+      "suspicion",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "held.right.letter",
+      "environment.light"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.letter_edge_grip",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_restraint",
+    "meaning": "压抑撕毁冲动而不破坏纸张",
+    "clause": "右指在信纸边缘收紧了一瞬，又松回原来的力道",
+    "emotions": [
+      "anger",
+      "hurt"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.letter"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.paper_square_stack",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_composure",
+    "meaning": "把已有纸叠对齐且留在原手",
+    "clause": "左掌把右手纸叠的散边压齐，随即放开",
+    "emotions": [
+      "frustration",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.paper_stack",
+      "paper_stack.uneven"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.map_fold_line_trace",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_attention",
+    "meaning": "关注已知地图折痕所指区域",
+    "clause": "左指循着右手地图的折痕走了一遍，随即移开",
+    "emotions": [
+      "curiosity",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.map",
+      "map.fold_visible"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.scroll_rolling_arrest",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_restraint",
+    "meaning": "暂时止住已有卷轴回弹",
+    "clause": "左手挡住右手卷轴将要回卷的一端，随后松开",
+    "emotions": [
+      "annoyance",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.scroll",
+      "scroll.recoiling"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.pen_rotate_thought",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_fidget",
+    "meaning": "持笔中的停顿动作不落笔",
+    "clause": "右手把笔转了半圈，又捏回原来的位置",
+    "emotions": [
+      "boredom",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.pen"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.pen_nib_inspect",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查书写端而不新增墨迹",
+    "clause": "把右手笔尖转向自己，辨认片刻后握正",
+    "emotions": [
+      "suspicion",
+      "frustration"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.pen"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.brush_hover_reset",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_hesitation",
+    "meaning": "落笔前撤回以表现难以下定论",
+    "clause": "右手的笔悬到纸上片刻，终究又收回来",
+    "emotions": [
+      "ambivalence",
+      "anxiety"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "held.right.brush",
+      "paper.reachable"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.seal_face_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查印面而不盖印授权",
+    "clause": "翻过右手的印章看了看印面，又握回掌中",
+    "emotions": [
+      "suspicion",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.seal"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.inkstone_contact",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_deliberation",
+    "meaning": "仅触摸明确可达砚边借以思索",
+    "clause": "右指沿砚池干燥的外沿走了一小段，随后离开",
+    "emotions": [
+      "confusion",
+      "nostalgia"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "object.inkstone_reachable",
+      "inkstone.dry_rim"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.abacus_bead_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_hesitation",
+    "meaning": "计算前犹豫而不改写算盘数值",
+    "clause": "右指碰了碰算盘上的珠子，没拨动便收回",
+    "emotions": [
+      "confusion",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "object.abacus_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.coin_edge_roll",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_fidget",
+    "meaning": "用单枚硬币的边缘旋转消磨等待",
+    "clause": "让右手的硬币在指间翻过一道边，又握稳",
+    "emotions": [
+      "boredom",
+      "confidence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.coin"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.coin_ring_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "通过共振检查既有硬币",
+    "clause": "左指轻弹右手硬币的边，听过响声便收回",
+    "emotions": [
+      "suspicion",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "held.right.coin"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.purse_weight",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "估量已持软袋重量而不清点或取钱",
+    "clause": "把右手钱袋在掌中掂了一下，随即握稳",
+    "emotions": [
+      "anxiety",
+      "disappointment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.purse"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.key_teeth_trace",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_attention",
+    "meaning": "检查钥匙齿形而不启动锁具",
+    "clause": "左指划过右手钥匙的齿口，便停下来",
+    "emotions": [
+      "suspicion",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.key"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.key_jingle_still",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_restraint",
+    "meaning": "压住已有钥匙碰撞避免出声",
+    "clause": "握拢右手的钥匙串，止住金属相碰的响声",
+    "emotions": [
+      "anxiety",
+      "shame"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.keyring",
+      "keyring.jingling"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.stone_texture",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "感知已持石子表面纹理",
+    "clause": "右拇指从掌中石子的粗面碾过，随即停住",
+    "emotions": [
+      "curiosity",
+      "nostalgia"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.stone"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.bead_cycle_pause",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_fidget",
+    "meaning": "中断已持念珠的连续计数",
+    "clause": "右手拨过一颗珠子，到下一颗前便停住",
+    "emotions": [
+      "anxiety",
+      "realization"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.beads"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.token_emboss_touch",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_reassurance",
+    "meaning": "触摸已有身份凭据确认自身处境",
+    "clause": "右指顺着令牌的凸纹摸了一遍，又扣回牌边",
+    "emotions": [
+      "confidence",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.token",
+      "token.embossed"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.fan_rib_press",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_restraint",
+    "meaning": "借已合拢的扇具约束手部冲动",
+    "clause": "右手捏紧合扇的扇骨片刻，又松下来",
+    "emotions": [
+      "annoyance",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.closed_fan"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.fan_air_two_beats",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_comfort",
+    "meaning": "短时扇风应对已知闷热",
+    "clause": "右手的开扇摇出两阵风，随后停住",
+    "emotions": [
+      "annoyance",
+      "contentment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.open_fan",
+      "body.hot"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.fan_face_hide",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_shelter",
+    "meaning": "用既有开扇临时遮住表情",
+    "clause": "把右手开扇举到脸前遮了一瞬，又降下",
+    "emotions": [
+      "embarrassment",
+      "amusement"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "held.right.open_fan"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.handkerchief_fold_edge",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_composure",
+    "meaning": "整理已持织物边缘不改变所属",
+    "clause": "左指把右手帕子的卷边抚平，随后分开",
+    "emotions": [
+      "nervousness",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.handkerchief",
+      "handkerchief.curled_edge"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.cloth_wring_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查已有湿布含水触感",
+    "clause": "双手把湿布轻绞一下，又松回原形",
+    "emotions": [
+      "annoyance",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.both.wet_cloth"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_holding"
+    ]
+  },
+  {
+    "id": "body.cord_tension_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检验既有绳段张力不松脱绳端",
+    "clause": "把双手原本握着的绳段拉直试了一下，又放松",
+    "emotions": [
+      "suspicion",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.both.cord"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_holding"
+    ]
+  },
+  {
+    "id": "body.knot_thumb_probe",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查绳结紧度而不解开",
+    "clause": "右拇指顶了顶手中绳结的中心，随即收力",
+    "emotions": [
+      "anxiety",
+      "curiosity"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.knotted_cord"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.needle_eye_inspect",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查已有细小工具通孔",
+    "clause": "把右手针眼凑近亮处看了看，又收回",
+    "emotions": [
+      "frustration",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.needle",
+      "environment.light"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.thread_taut_pause",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_hesitation",
+    "meaning": "用线段张力停顿不新增针脚",
+    "clause": "让两手间线绷直一瞬，又放回松弛的弧度",
+    "emotions": [
+      "nervousness",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.both.thread"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_holding"
+    ]
+  },
+  {
+    "id": "body.scissors_grip_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_readiness",
+    "meaning": "准备工具握姿而不剪裁",
+    "clause": "右指在剪柄内重新安稳下来，刀口仍闭着",
+    "emotions": [
+      "determination",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.closed_scissors"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.needlework_smooth",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_care",
+    "meaning": "展开已有作品局部皱折以查看",
+    "clause": "左掌从右手绣片的折处抚过，便移开",
+    "emotions": [
+      "tenderness",
+      "disappointment"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "held.right.embroidery",
+      "embroidery.folded_area"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.basket_handle_brace",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_grip",
+    "meaning": "在同一握持点附近修正已有篮子平衡",
+    "clause": "右手往篮柄中央挪了挪，让重量落稳",
+    "emotions": [
+      "anxiety",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.basket"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.bundle_knot_cover",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_shelter",
+    "meaning": "遮护现有包袱封口而不打开",
+    "clause": "左掌护住右手包袱的结，片刻后撤开",
+    "emotions": [
+      "suspicion",
+      "anxiety"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "held.right.bundle"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.box_lid_press",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_restraint",
+    "meaning": "确认盒盖仍闭合不揭示内容",
+    "clause": "左掌压了一下右手盒盖，确认合住便移开",
+    "emotions": [
+      "anxiety",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.closed_box"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.box_listen_shift",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "object_appraisal",
+    "meaning": "听查已封容器内部运动",
+    "clause": "把右手封盒靠近耳侧晃了一下，听完便收回",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "held.right.sealed_box",
+      "box.movable_contents"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.umbrella_balance",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_balance",
+    "meaning": "调整已撑伞角度不改变位置或开闭状态",
+    "clause": "扶正右手的伞柄，稳住倾斜的伞面",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.open_umbrella",
+      "umbrella.tilting"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.lantern_swing_damp",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_restraint",
+    "meaning": "主动消减已持灯笼摆动",
+    "clause": "右腕顺着灯笼的摆幅缓了一下，等它稳住",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.lantern",
+      "lantern.swinging"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.candle_flame_shield",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_protection",
+    "meaning": "临时保护既有火焰，不点燃新火",
+    "clause": "左掌替右手烛火挡了一阵风，随后撤开",
+    "emotions": [
+      "anxiety",
+      "caring"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.lit_candle",
+      "environment.wind"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.mirror_angle_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查已有镜面中的自身状态",
+    "clause": "把右手小镜偏转一个角度，照过便转回",
+    "emotions": [
+      "embarrassment",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.mirror",
+      "environment.light"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.comb_teeth_clear_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查工具而不新增梳发动作",
+    "clause": "沿着右手梳齿看了一遍，把梳背重新握稳",
+    "emotions": [
+      "annoyance",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.comb"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "body.flute_holes_cover",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_rehearsal",
+    "meaning": "无声核对指法不虚构演奏声音",
+    "clause": "双手在已握的笛孔上试按了一遍，没有吹响",
+    "emotions": [
+      "anticipation",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.both.flute"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_holding"
+    ]
+  },
+  {
+    "id": "body.bow_string_touch",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_readiness",
+    "meaning": "检查弦张力而不搭箭或发射",
+    "clause": "左手稳住弓，右指试了试弦便松开",
+    "emotions": [
+      "determination",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.left.bow",
+      "bow.strung"
+    ],
+    "preconditions": [
+      "left_hand_holding",
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.sheathed_sword_guard",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_restraint",
+    "meaning": "暂时抑制拔出已持鞘内兵器的意图",
+    "clause": "左掌压在右手鞘口上，停了一瞬便移开",
+    "emotions": [
+      "anger",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.sheathed_sword"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.sword_grip_reset",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_readiness",
+    "meaning": "修正既有握剑姿态不攻击",
+    "clause": "右手在剑柄上重新压稳指节，剑仍留在原处",
+    "emotions": [
+      "determination",
+      "defiance"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.sword"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.staff_weight_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_balance",
+    "meaning": "验证持杖支撑手感不改变所在位置",
+    "clause": "右手沿杖柄试着分了一下力，随即握稳",
+    "emotions": [
+      "unease",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.staff"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.shield_strap_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_readiness",
+    "meaning": "检查已装备盾牌的固定带",
+    "clause": "右手扯了扯左臂盾带，试牢后松开",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "equipment.left_shield_strap"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hammer_head_balance",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_readiness",
+    "meaning": "测试重头工具握持平衡而不敲击",
+    "clause": "右腕掂了掂锤子的头重，随即停住",
+    "emotions": [
+      "determination",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.hammer"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.chisel_edge_hover",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_hesitation",
+    "meaning": "下凿前犹豫不新造刻痕",
+    "clause": "右手的凿尖停在那道刻痕上方，片刻后撤回",
+    "emotions": [
+      "anxiety",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "held.right.chisel",
+      "workpiece.mark_reachable"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.brush_bristle_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查刷毛柔韧性",
+    "clause": "左指拨过右手刷毛的末端，试了弹性便放开",
+    "emotions": [
+      "interest",
+      "disappointment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.brush_tool"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.rope_coil_secure",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_grip",
+    "meaning": "收拢同手已持的松散绳圈",
+    "clause": "右手把散开的绳圈拢回掌内，仍握住原来的绳段",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.rope_coil",
+      "rope_coil.loose"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.reins_tension_ease",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_restraint",
+    "meaning": "细调现有握缰力度不宣称动物移动",
+    "clause": "双手把缰绳的张力缓了一瞬，再稳住",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.both.reins",
+      "reins.taut"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_holding"
+    ]
+  },
+  {
+    "id": "body.sack_seam_feel",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查已持袋子的接缝完整程度",
+    "clause": "左指在右手袋子的接缝上摸了一段，随即收回",
+    "emotions": [
+      "suspicion",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.sack"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.clay_cup_crack_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "object_appraisal",
+    "meaning": "检查明确既有裂纹而不制造损坏",
+    "clause": "左指顺着右手陶杯的裂纹摸过，停在纹路尽头",
+    "emotions": [
+      "disappointment",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.clay_cup",
+      "cup.cracked"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.folded_note_cover",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_shelter",
+    "meaning": "将已持信息转离旁人视线，所有权不变",
+    "clause": "右手把纸条的字面扣向掌心",
+    "emotions": [
+      "suspicion",
+      "shame"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "held.right.note",
+      "note.writing_visible"
+    ],
+    "preconditions": [
+      "right_hand_holding"
+    ]
+  },
+  {
+    "id": "body.small_gift_cradle",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_care",
+    "meaning": "加一层临时承托体现珍惜而不交换礼物",
+    "clause": "左掌托在右手礼物下片刻，再缓缓离开",
+    "emotions": [
+      "gratitude",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "held.right.small_gift"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.shoulder_pat_companion",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_reassurance",
+    "meaning": "在明确可达的肩部给出一次安慰触碰",
+    "clause": "右掌在对方肩头轻拍一下，随后收回",
+    "emotions": [
+      "compassion",
+      "caring"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.shoulder_reachable",
+      "interaction.touch_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.back_support_brief",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "right_arm"
+    ],
+    "family": "touch_support",
+    "meaning": "短时加强既存背部承托，不宣称扶起对方",
+    "clause": "右掌托住对方依靠的背部片刻，再收回",
+    "emotions": [
+      "caring",
+      "anxiety"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.back_already_supported",
+      "target.back_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.handshake_squeeze",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_greeting",
+    "meaning": "回应正在进行的握手而非新抓握",
+    "clause": "在握手中回握一下，便恢复原来的力度",
+    "emotions": [
+      "trust",
+      "gratitude"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "interaction.right_handshake_active"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.wrist_touch_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_appraisal",
+    "meaning": "短时检查对方主动伸出的手腕",
+    "clause": "右指在对方伸来的腕侧停了一瞬，随后移开",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "target.wrist_offered",
+      "target.wrist_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.forearm_hold_release",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_appeal",
+    "meaning": "以短暂接触请求对方留意，不移动对方",
+    "clause": "右手轻扶对方前臂，停了一下便放开",
+    "emotions": [
+      "hope",
+      "vulnerability"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.forearm_reachable",
+      "interaction.touch_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.palm_meet_highfive",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_celebration",
+    "meaning": "完成被邀请的击掌庆祝",
+    "clause": "右掌迎上对方举起的手，碰过便收回",
+    "emotions": [
+      "joy",
+      "excitement"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.high_five_offered",
+      "target.palm_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.fist_bump_return",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_greeting",
+    "meaning": "回应明确邀约的碰拳",
+    "clause": "右拳与对方伸来的拳面碰了一下，随即松回原处",
+    "emotions": [
+      "approval",
+      "trust"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.fist_bump_offered",
+      "target.fist_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.hair_pat_child",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_care",
+    "meaning": "对已允许触碰发顶的人表达关怀",
+    "clause": "右掌在对方发顶停了一瞬，随后移开",
+    "emotions": [
+      "tenderness",
+      "compassion"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.crown_reachable",
+      "interaction.head_touch_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.tear_cheek_dab",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_care",
+    "meaning": "清理可见泪痕而不预设对方哭得更厉害",
+    "clause": "右指抹去对方颊边泪痕，便收回",
+    "emotions": [
+      "compassion",
+      "love"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.tears_on_cheek",
+      "target.cheek_reachable",
+      "interaction.face_touch_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.collar_dust_pick",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_grooming",
+    "meaning": "清理已明确附着的小异物",
+    "clause": "右手拈掉对方领边的绒絮，随即退回身侧",
+    "emotions": [
+      "caring",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.collar_lint",
+      "target.collar_reachable",
+      "interaction.grooming_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.hand_over_hand_steady",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand"
+    ],
+    "family": "touch_support",
+    "meaning": "用短时覆盖提供安抚，不断言颤抖停止",
+    "clause": "左掌压在对方发抖的手背上片刻，再慢慢离开",
+    "emotions": [
+      "caring",
+      "compassion"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.hand_trembling",
+      "target.hand_reachable",
+      "interaction.touch_welcome"
+    ],
+    "preconditions": [
+      "left_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.elbow_prompt",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_attention",
+    "meaning": "以低显著触碰争取注意",
+    "clause": "右指点了点对方肘边，提醒后便缩回",
+    "emotions": [
+      "anxiety",
+      "interest"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "target.elbow_reachable",
+      "interaction.touch_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.sleeve_tug_release",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_appeal",
+    "meaning": "拉扯衣物边缘表达挽留，不拖动人物",
+    "clause": "右指牵了牵对方袖缘，随即松开",
+    "emotions": [
+      "longing",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "target.sleeve_reachable",
+      "interaction.touch_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.fingers_offer_contact",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_invitation",
+    "meaning": "试探回应接触邀约，不强制牵手",
+    "clause": "把右手指尖递到对方已伸来的掌边，停一下又收回",
+    "emotions": [
+      "vulnerability",
+      "hope"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.open_hand_offered",
+      "target.palm_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.palm_release_existing",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_boundary",
+    "meaning": "主动结束明确已有的肩部接触",
+    "clause": "把右掌从对方肩上撤回身侧",
+    "emotions": [
+      "ambivalence",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "contact.right_palm_target_shoulder"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.hand_pullback_touch",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_boundary",
+    "meaning": "在已发生接触后收回自身边界",
+    "clause": "对方碰到右手时，把手抽回自己身侧",
+    "emotions": [
+      "disgust",
+      "suspicion"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "contact.target_touching_right_hand"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.embrace_press_brief",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "arms",
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "touch_reassurance",
+    "meaning": "给正在发生的拥抱加一瞬力度不改变位置",
+    "clause": "在拥抱中收紧双臂一瞬，又恢复原来的力度",
+    "emotions": [
+      "love",
+      "grief"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "interaction.embrace_active"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.embrace_pat_rhythm",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_reassurance",
+    "meaning": "拥抱内部用拍背代替语言安抚",
+    "clause": "在拥抱中拍了拍对方的背，随后停下",
+    "emotions": [
+      "compassion",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "interaction.embrace_active",
+      "target.back_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.forehead_contact_brief",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "touch_intimacy",
+    "meaning": "仅微调已存在亲密接触不挪动脚步",
+    "clause": "在额头相抵中轻轻压了一下，便退回原来的接触力度",
+    "emotions": [
+      "love",
+      "grief"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "contact.foreheads_touching"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.linked_arm_ease",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "left_arm"
+    ],
+    "family": "touch_boundary",
+    "meaning": "放松既存挽臂压力不改变双方距离",
+    "clause": "把已经相挽的左臂松缓些许，位置仍留在原处",
+    "emotions": [
+      "ambivalence",
+      "tenderness"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "contact.left_arm_linked"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.hand_warm_cover",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "touch_care",
+    "meaning": "临时包覆对方手部传递暖意",
+    "clause": "双手拢住对方已经递来的手片刻，随后放回原处",
+    "emotions": [
+      "compassion",
+      "caring"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.cold_hands_offered",
+      "target.hands_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.clothing_hold_damp",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_care",
+    "meaning": "保护已有穿戴物而不替对方改装",
+    "clause": "右掌压住对方被风吹起的帽沿，风缓后收回",
+    "emotions": [
+      "caring",
+      "amusement"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.hat_lifting_in_wind",
+      "target.hat_reachable",
+      "interaction.touch_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.boundary_hand_between",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_boundary",
+    "meaning": "用自身手势拒绝明确的递交，不拿走物品",
+    "clause": "右掌竖在彼此伸来的手之间，随即收回",
+    "emotions": [
+      "disapproval",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "interaction.object_offer_near",
+      "target.hand_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.tap_shared_signal",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_coordination",
+    "meaning": "执行已经建立的无声协作信号",
+    "clause": "按约定在对方手背点了两下，随后撤回",
+    "emotions": [
+      "trust",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "custom.two_tap_signal",
+      "target.hand_reachable",
+      "interaction.touch_welcome"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.finger_follow_trace",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "touch_instruction",
+    "meaning": "用自己的手复核示范而不控制对方手",
+    "clause": "右指顺着对方刚示过的线条走了一遍，随即离开",
+    "emotions": [
+      "interest",
+      "realization"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "surface.demonstrated_line_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.palm_table_ground",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_grounding",
+    "meaning": "利用已知稳定平面让动作定下来",
+    "clause": "右掌压住眼前桌面片刻，随后收回",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.table_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.knuckle_table_rap",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_attention",
+    "meaning": "用单次撞击获取注意而不持续敲击",
+    "clause": "右指节在桌沿叩了一声，便停住",
+    "emotions": [
+      "impatience",
+      "disapproval"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "surface.table_edge_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.finger_table_path",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_deliberation",
+    "meaning": "借平面轨迹梳理思考而非写字",
+    "clause": "右指在桌面划出一个无痕的弧，随后停下",
+    "emotions": [
+      "confusion",
+      "boredom"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.table_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_wall_temperature",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_appraisal",
+    "meaning": "以手掌检测可达墙面温度",
+    "clause": "右掌贴了贴身旁墙面，试过温度便收回",
+    "emotions": [
+      "curiosity",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.wall_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.fingers_door_knock",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_attention",
+    "meaning": "向门另一侧发出存在信号，不打开门",
+    "clause": "右指在门板上叩了两下，随后垂下",
+    "emotions": [
+      "hope",
+      "nervousness"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "surface.door_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.ear_door_listen",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "surface_listening",
+    "meaning": "原地探听已近耳边的门后声音",
+    "clause": "把耳朵凑近门板听了一瞬，随后回正",
+    "emotions": [
+      "suspicion",
+      "curiosity"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.door_next_to_head"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.rail_grip_release",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_grounding",
+    "meaning": "短时借可达栏杆稳定自身",
+    "clause": "右手握住近旁栏杆片刻，稳住后便松开",
+    "emotions": [
+      "fear",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.rail_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.armrest_press_release",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand",
+      "arms"
+    ],
+    "family": "surface_readiness",
+    "meaning": "起身意图被撤销，姿态始终为坐姿",
+    "clause": "双掌在扶手上试着用力，最终仍坐回原来的承重",
+    "emotions": [
+      "ambivalence",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "seat.two_armrests"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free",
+      "seated"
+    ]
+  },
+  {
+    "id": "body.bedcover_smooth",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_care",
+    "meaning": "整理已近手边的布面局部",
+    "clause": "右掌抚过身旁被褥的一道皱褶，便收回",
+    "emotions": [
+      "caring",
+      "loneliness"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "surface.bedcover_reachable",
+      "bedcover.wrinkled"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.chair_back_pat",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_invitation",
+    "meaning": "指明可用座位，不把自己或别人移过去",
+    "clause": "右掌拍了拍身旁的椅背，示意后放下",
+    "emotions": [
+      "trust",
+      "hope"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "surface.empty_chair_back_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.window_glass_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_appraisal",
+    "meaning": "通过已有窗面判断温度",
+    "clause": "右指轻触窗玻璃，试过冷暖便离开",
+    "emotions": [
+      "curiosity",
+      "homesickness"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.window_glass_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.curtain_edge_hold",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_hesitation",
+    "meaning": "开始掀帘的意图终止，保持遮挡状态",
+    "clause": "右指捏住帘缘，想了想又原样松开",
+    "emotions": [
+      "suspicion",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "surface.curtain_edge_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.lock_touch_recognize",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_appraisal",
+    "meaning": "以触觉辨识明确可达锁具而不解锁",
+    "clause": "右指沿锁孔外缘摸了一圈，随即离开",
+    "emotions": [
+      "curiosity",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.lock_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.latch_test_without_open",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_appraisal",
+    "meaning": "验证既有闭锁而不改变门状态",
+    "clause": "右手试了试门闩的牢靠，没挪动便松开",
+    "emotions": [
+      "anxiety",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.latched_bar_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.rough_wood_splinter_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_appraisal",
+    "meaning": "识别接触表面的明确刺点",
+    "clause": "右指沿木面停在毛刺前，避开后便收回",
+    "emotions": [
+      "unease",
+      "annoyance"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "surface.wood_reachable",
+      "wood.splinter_visible"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_soil_test",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "torso"
+    ],
+    "family": "surface_appraisal",
+    "meaning": "原地探查地表湿度而不走入泥地",
+    "clause": "俯身用右指试了试脚边泥土，随后直起腰",
+    "emotions": [
+      "suspicion",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "ground.soil_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "standing"
+    ]
+  },
+  {
+    "id": "body.bench_edge_find",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_grounding",
+    "meaning": "确认自身座面边缘以稳定坐姿",
+    "clause": "右手沿已坐的凳沿摸到边界，随后收回",
+    "emotions": [
+      "unease",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "seat.bench_edge_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "seated"
+    ]
+  },
+  {
+    "id": "body.carving_groove_follow",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_attention",
+    "meaning": "触觉读取已有凹纹走向",
+    "clause": "右指循着近处刻纹摸到转折，便停下来",
+    "emotions": [
+      "curiosity",
+      "awe"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "surface.carving_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.bell_rope_hold_abort",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_hesitation",
+    "meaning": "请求注意的意图被取消，不造铃声",
+    "clause": "右手捏住铃绳，最终没拉动便松开",
+    "emotions": [
+      "anxiety",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "surface.bell_rope_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.water_ripple_touch",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "surface_appraisal",
+    "meaning": "触试已有水面的冷暖并产生局部波纹",
+    "clause": "右指触了一下近处水面，随即离开",
+    "emotions": [
+      "curiosity",
+      "serenity"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "surface.water_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.cough_elbow_cover",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "right_arm",
+      "head"
+    ],
+    "family": "self_cover",
+    "meaning": "为已有咳嗽加上肘部遮挡",
+    "clause": "把脸掩向右肘咳了两声，咳过便回正",
+    "emotions": [
+      "embarrassment",
+      "caring"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.coughing"
+    ]
+  },
+  {
+    "id": "body.arm_stretch_overhead",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "arms",
+      "shoulders"
+    ],
+    "family": "arm_release",
+    "meaning": "以肩肘伸展解除上肢疲劳",
+    "clause": "双臂向上伸展片刻，又落回身侧",
+    "emotions": [
+      "relief",
+      "contentment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.overhead_clear"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.fingers_ear_plug_brief",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand",
+      "ears"
+    ],
+    "family": "self_protection",
+    "meaning": "短时屏蔽已知刺耳声响",
+    "clause": "双指堵住耳孔一瞬，又慢慢放开",
+    "emotions": [
+      "disgust",
+      "dread"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "sound.painfully_loud"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_cheek_cool",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "cheek"
+    ],
+    "family": "self_care",
+    "meaning": "用掌面感知脸部已知发热",
+    "clause": "右掌贴住发热的脸颊片刻，随后放下",
+    "emotions": [
+      "embarrassment",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.cheek_hot"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.self_forehead_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "self_appraisal",
+    "meaning": "自测额部热感，不作医学结论",
+    "clause": "右手背碰了碰自己的额头，确认后移开",
+    "emotions": [
+      "anxiety",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.lip_trace_cut_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "lips"
+    ],
+    "family": "self_care",
+    "meaning": "检查已有唇部裂口，不新增伤情",
+    "clause": "右指停在唇边旧裂口旁，轻触后便收回",
+    "emotions": [
+      "hurt",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.lip_crack"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.self_wrist_pulse",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "self_appraisal",
+    "meaning": "感知自身脉搏作为稳定动作",
+    "clause": "右指搭在自己的左腕片刻，随后移开",
+    "emotions": [
+      "anxiety",
+      "realization"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.forearm_brush_goosebumps",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_arm"
+    ],
+    "family": "self_care",
+    "meaning": "触摸已知皮肤起粒后的自我确认",
+    "clause": "右掌在左前臂疙瘩上抚过，便收回",
+    "emotions": [
+      "awe",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.left_forearm_goosebumps"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.self_shoulder_massage",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_shoulder"
+    ],
+    "family": "self_care",
+    "meaning": "处理明确肩部紧张而非无端伤情",
+    "clause": "右手揉了揉自己发紧的左肩，随即离开",
+    "emotions": [
+      "frustration",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.left_shoulder_tight"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.head_scratch_puzzle",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "self_soothing",
+    "meaning": "困惑时的短暂头部自触",
+    "clause": "右指在头顶抓了一下，很快收回",
+    "emotions": [
+      "confusion",
+      "embarrassment"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.nostril_rub_irritation",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "nose"
+    ],
+    "family": "self_care",
+    "meaning": "处理鼻侧明确痒感而非制造感冒",
+    "clause": "右指揉了一下发痒的鼻侧，随即移开",
+    "emotions": [
+      "annoyance",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.nose_itch"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.chin_rest_brief",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "self_support",
+    "meaning": "短时承托头部表达停留思考",
+    "clause": "用右手托住下巴片刻，又独自稳住头",
+    "emotions": [
+      "boredom",
+      "longing"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "surface.elbow_support_available"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "seated"
+    ]
+  },
+  {
+    "id": "body.cheek_palm_bury",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand",
+      "head"
+    ],
+    "family": "self_cover",
+    "meaning": "短暂屏蔽社交刺激后恢复",
+    "clause": "把脸埋进双掌一瞬，随后重新抬起",
+    "emotions": [
+      "shame",
+      "despair"
+    ],
+    "axis": "withdrawal",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.finger_bite_abort",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "mouth"
+    ],
+    "family": "hand_restraint",
+    "meaning": "在咬指习惯发生前拦住动作",
+    "clause": "右指刚送到唇边，便克制地移开",
+    "emotions": [
+      "anxiety",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "habit.finger_biting"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hand_flatten_tremble",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_composure",
+    "meaning": "用另一手的接触约束既有颤抖",
+    "clause": "左掌覆住发颤的右手片刻，再慢慢离开",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.right_hand_trembling"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.thumb_forehead_press",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "head"
+    ],
+    "family": "self_grounding",
+    "meaning": "单点压触给思绪一个停顿",
+    "clause": "右拇指在额心按了一下，便放下手",
+    "emotions": [
+      "frustration",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.arm_shake_water",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "right_arm"
+    ],
+    "family": "self_cleaning",
+    "meaning": "去除手面已有水滴而非发抖",
+    "clause": "甩了甩右手水，随后把手垂稳",
+    "emotions": [
+      "annoyance",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.right_hand_wet"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palms_dry_cloth",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "self_cleaning",
+    "meaning": "利用既有衣料擦去已知掌汗",
+    "clause": "双掌在自己衣上擦过一遍，随后分开",
+    "emotions": [
+      "nervousness",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "clothing.front_fabric",
+      "body.sweaty_palms"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.ankle_touch_check",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "right_ankle",
+      "torso"
+    ],
+    "family": "self_appraisal",
+    "meaning": "检查已有踝部不适不诊断伤情",
+    "clause": "俯身触了触自己的右踝，确认后直起腰",
+    "emotions": [
+      "anxiety",
+      "frustration"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.right_ankle_discomfort"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "seated"
+    ]
+  },
+  {
+    "id": "body.toe_flex_seated",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_release",
+    "meaning": "在非承重姿态舒展足趾",
+    "clause": "坐着把脚趾屈伸了一次，随后放松",
+    "emotions": [
+      "relief",
+      "boredom"
+    ],
+    "axis": "self_control",
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.leg_thigh_pat_ready",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand",
+      "legs"
+    ],
+    "family": "leg_readiness",
+    "meaning": "开始行动前的自我动员，不实际起身",
+    "clause": "双掌在大腿上拍了一下，便停住",
+    "emotions": [
+      "determination",
+      "excitement"
+    ],
+    "axis": "initiative",
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free",
+      "seated"
+    ]
+  },
+  {
+    "id": "body.arms_shake_loose",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "arms"
+    ],
+    "family": "arm_release",
+    "meaning": "以摆臂消除已知紧绷后恢复静止",
+    "clause": "松松地甩动双臂两下，随后站稳",
+    "emotions": [
+      "relief",
+      "anticipation"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.arms_tight",
+      "space.arm_swing_clear"
+    ],
+    "preconditions": [
+      "standing",
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.hips_hinge_balance",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso",
+      "legs"
+    ],
+    "family": "torso_balance",
+    "meaning": "应对短暂前倾失衡而不走步",
+    "clause": "腰向前折了一瞬又立刻撑回来，双脚仍在原处",
+    "emotions": [
+      "surprise",
+      "fear"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.tipping_forward"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.shoulder_under_gap",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "shoulders",
+      "torso"
+    ],
+    "family": "torso_clearance",
+    "meaning": "用姿态测试通行余量，不穿越缝隙",
+    "clause": "侧肩试过身旁窄缝的宽度，随即回正",
+    "emotions": [
+      "curiosity",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.narrow_gap_adjacent"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "body.head_duck_reset",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_clearance",
+    "meaning": "原地短时避让明确低空物体",
+    "clause": "低头让过头顶掠来的东西，随即抬回",
+    "emotions": [
+      "surprise",
+      "annoyance"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "object.passing_overhead"
+    ]
+  },
+  {
+    "id": "body.back_arch_release",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "torso"
+    ],
+    "family": "torso_release",
+    "meaning": "后向短时伸展而非长期倚靠",
+    "clause": "把腰背向后舒展一下，再回到原来的姿态",
+    "emotions": [
+      "relief",
+      "contentment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.behind_torso_clear"
+    ]
+  },
+  {
+    "id": "body.elbow_rest_reset",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "right_arm"
+    ],
+    "family": "self_support",
+    "meaning": "利用可达支点短时卸载手臂",
+    "clause": "右肘借近旁台面撑了一瞬，便收回原处",
+    "emotions": [
+      "boredom",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "surface.elbow_height_reachable"
+    ]
+  },
+  {
+    "id": "body.heel_toe_rock_once",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet",
+      "legs"
+    ],
+    "family": "foot_deliberation",
+    "meaning": "前后足底滚动表达等待，不左右迈步",
+    "clause": "重心从脚跟滚向前掌一次，又站回平衡点",
+    "emotions": [
+      "anticipation",
+      "impatience"
+    ],
+    "axis": "initiative",
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.foot_scrape_mud",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_cleaning",
+    "meaning": "借明确硬沿清除已有鞋底泥",
+    "clause": "鞋底沿脚边硬沿刮了一下，随即踩回原处",
+    "emotions": [
+      "annoyance",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "shoes.muddy_sole",
+      "surface.scraper_edge_at_feet"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.toe_point_signal",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_reference",
+    "meaning": "用脚部指示近地信息而不踩过去",
+    "clause": "用鞋尖示了示脚边的标记，随后收回",
+    "emotions": [
+      "interest",
+      "realization"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "ground.mark_at_feet"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "body.knee_press_cushion",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "legs"
+    ],
+    "family": "leg_appraisal",
+    "meaning": "试坐垫回弹不更换姿势",
+    "clause": "膝头往软垫里沉了一下，又恢复原先承重",
+    "emotions": [
+      "curiosity",
+      "disappointment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "seat.soft_cushion"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.heel_anchor_seated",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet"
+    ],
+    "family": "foot_grounding",
+    "meaning": "建立坐姿足部支点，非站起动作",
+    "clause": "坐着把双脚跟压实，稳住了下身",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "feet.floor_contact"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "body.standing_tiptoe_peek",
+    "category": "body",
+    "channel": "body",
+    "parts": [
+      "feet",
+      "legs",
+      "head"
+    ],
+    "family": "leg_appraisal",
+    "meaning": "短时增高视点而不改变地面位置",
+    "clause": "原地踮脚看了一眼，随后落回脚跟",
+    "emotions": [
+      "curiosity",
+      "hope"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "space.view_blocked_low"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "vision",
+      "walking"
+    ]
+  },
+  {
+    "id": "body.hand_shield_small_object",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "object_protection",
+    "meaning": "保护明确易受风影响的既有轻物",
+    "clause": "左掌替右手小物遮了一阵风，随后移开",
+    "emotions": [
+      "caring",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "held.right.fragile_light_object",
+      "environment.wind"
+    ],
+    "preconditions": [
+      "right_hand_holding",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_explain_route",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_mapping",
+    "meaning": "以手势概括已知路线不执行移动",
+    "clause": "右手在空中描出先折后直的路线，画完便停住",
+    "emotions": [
+      "confidence",
+      "interest"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.known_route"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.fingers_link_compare",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_comparison",
+    "meaning": "用并列指势强调两个对象的关联",
+    "clause": "把两只食指并在一起比了比，再各自收回",
+    "emotions": [
+      "realization",
+      "interest"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.comparing_two_items"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.thumb_over_shoulder",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "right_arm"
+    ],
+    "family": "hand_reference",
+    "meaning": "指称已知身后事物而不回身",
+    "clause": "右拇指向肩后示意一下，随后收回",
+    "emotions": [
+      "confidence",
+      "annoyance"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "space.behind_subject_known"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_turn_question",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_inquiry",
+    "meaning": "将提问交给对方且不发出具体话语",
+    "clause": "右掌向上翻出一个问询的手势，便停住",
+    "emotions": [
+      "confusion",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.index_up_remember",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_turn_taking",
+    "meaning": "争取追加发言而不替用户写台词",
+    "clause": "右手食指竖起一瞬，示意还有一件事",
+    "emotions": [
+      "realization",
+      "excitement"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.finger_cross_hope",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_wishing",
+    "meaning": "执行明确文化中的祝愿手势",
+    "clause": "把右手两根手指交叠一下，又松开",
+    "emotions": [
+      "hope",
+      "anticipation"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "custom.crossed_fingers_wish"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_show_empty",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_assurance",
+    "meaning": "展示双手空置以降低对方戒心",
+    "clause": "双掌朝外摊开一瞬，随后垂回身侧",
+    "emotions": [
+      "trust",
+      "anxiety"
+    ],
+    "axis": "deference",
+    "facts": [
+      "interaction.confrontation"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.arms_draw_circle",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "arms",
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_enclosure",
+    "meaning": "用闭合轮廓强调讨论边界",
+    "clause": "双手在胸前圈出一块范围，随即收回",
+    "emotions": [
+      "determination",
+      "interest"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.describing_boundary"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.finger_to_floor_here",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_reference",
+    "meaning": "强调此处而不指向新地点",
+    "clause": "右手食指向脚边点了一下，随后收回",
+    "emotions": [
+      "resolve",
+      "defiance"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.location_emphasis"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_balance_options",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_comparison",
+    "meaning": "以对照手势比较不等价的选项",
+    "clause": "双掌一高一低比了比，又放回平处",
+    "emotions": [
+      "ambivalence",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "speech.weighing_options"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.hand_small_circle_patience",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_pacing",
+    "meaning": "在自身掌面标示等待的范围与限度",
+    "clause": "右指在左掌中点出一个小圈，点完便停住",
+    "emotions": [
+      "impatience",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "speech.waiting_limit"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.thumb_back_self",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_responsibility",
+    "meaning": "把责任归到自己而非一般指称自身",
+    "clause": "右拇指朝自己胸前一扣，随即收回",
+    "emotions": [
+      "guilt",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "speech.accepting_responsibility"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.hand_side_wave_dismiss",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_boundary",
+    "meaning": "结束当前提议而非挥别人物",
+    "clause": "右手向旁边摆了一下，随后放下",
+    "emotions": [
+      "disapproval",
+      "annoyance"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "interaction.proposal"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_gather_group",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_coordination",
+    "meaning": "向已在场的多人发出协作提示，不移动他们",
+    "clause": "双掌向中间拢出一个集合的手势，随后分开",
+    "emotions": [
+      "determination",
+      "hope"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "interaction.group_present"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.finger_tap_palm_reminder",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand",
+      "left_hand"
+    ],
+    "family": "hand_enumeration",
+    "meaning": "以分段触点复述明确的三项安排",
+    "clause": "右指在左掌敲过三处，最后停在掌心",
+    "emotions": [
+      "determination",
+      "confidence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "speech.three_part_plan"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.hands_vertical_limit",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_measurement",
+    "meaning": "用上下边界说明已知高度上限",
+    "clause": "一掌横在另一掌上方，比过高度便收回",
+    "emotions": [
+      "anxiety",
+      "interest"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "speech.height_limit"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  },
+  {
+    "id": "body.palm_tilt_concession",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_negotiation",
+    "meaning": "对明确争议作局部让步信号",
+    "clause": "右掌朝对方略倾一下，随即收回",
+    "emotions": [
+      "resignation",
+      "trust"
+    ],
+    "axis": "deference",
+    "facts": [
+      "interaction.negotiation"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "body.hand_stop_self_word",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "hand_restraint",
+    "meaning": "取消争夺话语权的动作",
+    "clause": "右手才抬起要插话，便自行落下",
+    "emotions": [
+      "shame",
+      "calm"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "speech.interruption_intended"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "body.head_laugh_bow",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "torso_laughter",
+    "meaning": "利用头部姿态抑制已有笑声",
+    "clause": "低头把一阵笑压住，随后抬回头",
+    "emotions": [
+      "amusement",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "body.laughing"
+    ]
+  },
+  {
+    "id": "body.chin_ear_alignment",
+    "category": "body",
+    "channel": "head",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "head_listening",
+    "meaning": "为明确不清声源重新校正听觉方向",
+    "clause": "把头摆到两耳受声更清楚的位置，听过便回正",
+    "emotions": [
+      "confusion",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "sound.direction_unclear"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "body.fingers_reset_formal",
+    "category": "body",
+    "channel": "hands",
+    "parts": [
+      "left_hand",
+      "right_hand"
+    ],
+    "family": "hand_composure",
+    "meaning": "结束细碎手部动作进入正式交流",
+    "clause": "双手指尖一一理顺，随后自然垂下",
+    "emotions": [
+      "nervousness",
+      "confidence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "interaction.formal_opening"
+    ],
+    "preconditions": [
+      "right_hand_free",
+      "left_hand_free"
+    ]
+  }
+]

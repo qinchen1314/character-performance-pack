@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest-review-navigation/
+.pytest-tmp/
+.venv/
+.kim-orchestrator/
+dist/
+build/
+*.egg-info/
+data/compiled*/
+examples/output/
+examples/output-*/
+examples/*.db
+examples/*.db-journal
+
+# Local development and planning materials are intentionally not published.
+tests/
+docs/

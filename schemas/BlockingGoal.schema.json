@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "destination": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Destination",
+      "type": "string"
+    },
+    "pose": {
+      "default": "standing",
+      "enum": [
+        "standing",
+        "seated"
+      ],
+      "title": "Pose",
+      "type": "string"
+    },
+    "interruption_policy": {
+      "default": "pause",
+      "enum": [
+        "pause",
+        "forbid"
+      ],
+      "title": "Interruption Policy",
+      "type": "string"
+    }
+  },
+  "required": [
+    "destination"
+  ],
+  "title": "BlockingGoal",
+  "type": "object"
+}

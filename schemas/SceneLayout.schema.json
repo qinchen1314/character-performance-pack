@@ -1,0 +1,126 @@
+{
+  "$defs": {
+    "Landmark": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label_zh": {
+          "maxLength": 60,
+          "minLength": 1,
+          "title": "Label Zh",
+          "type": "string"
+        },
+        "seat_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Id"
+        },
+        "seat_label": {
+          "anyOf": [
+            {
+              "maxLength": 60,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Label"
+        },
+        "distances": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Distances",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "label_zh"
+      ],
+      "title": "Landmark",
+      "type": "object"
+    },
+    "PathEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Origin",
+          "type": "string"
+        },
+        "destination": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Destination",
+          "type": "string"
+        },
+        "duration_ms": {
+          "exclusiveMinimum": 0,
+          "maximum": 3600000,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "blocked": {
+          "default": false,
+          "title": "Blocked",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origin",
+        "destination",
+        "duration_ms"
+      ],
+      "title": "PathEdge",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "landmarks": {
+      "items": {
+        "$ref": "#/$defs/Landmark"
+      },
+      "title": "Landmarks",
+      "type": "array"
+    },
+    "edges": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PathEdge"
+      },
+      "title": "Edges",
+      "type": "array"
+    }
+  },
+  "required": [
+    "landmarks"
+  ],
+  "title": "SceneLayout",
+  "type": "object"
+}

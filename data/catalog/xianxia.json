@@ -1,0 +1,3368 @@
+[
+  {
+    "id": "world.qi_breath_sync",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_circulation",
+    "meaning": "将气流相位与呼吸同步，区别于笼统平息灵气",
+    "clause": "让一缕灵气贴着呼吸的节拍行过经脉",
+    "emotions": [
+      "serenity",
+      "determination"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "breath_cycle",
+      "cost": 0.015,
+      "control": 0.25,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "breath_cycle"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_cycle_close",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_circulation",
+    "meaning": "接合已运行周天的末端，不增加灵气量",
+    "clause": "把行到半途的灵气接回周天起点，合成一条闭路",
+    "emotions": [
+      "resolve",
+      "relief"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "breath_cycle",
+      "cost": 0.015,
+      "control": 0.35,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "breath_cycle"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_hold_node",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_circulation",
+    "meaning": "把已运行气流暂存于关节，与收回丹田不同",
+    "clause": "将正在流转的灵气暂压在一处经脉关节，缓住周天",
+    "emotions": [
+      "fear",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "breath_cycle",
+      "cost": 0.01,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "breath_cycle"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_cycle_finish",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_circulation",
+    "meaning": "结束已激活周天，不描写补满真气",
+    "clause": "让最后一缕周天气流归回丹田，停下这一轮运转",
+    "emotions": [
+      "relief",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "breath_cycle",
+      "cost": 0.005,
+      "control": 0.25,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "breath_cycle"
+      ],
+      "activate": [],
+      "deactivate": [
+        "breath_cycle"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_filament_draw",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_shaping",
+    "meaning": "自有能量拉成线形而非吞吐外界灵气",
+    "clause": "从自身灵气中分出一缕细丝，停在指前",
+    "emotions": [
+      "curiosity",
+      "interest"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_filament",
+      "cost": 0.025,
+      "control": 0.35,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "qi_filament"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_filament_knot",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_shaping",
+    "meaning": "改变细丝拓扑，区别于强弱变化",
+    "clause": "把指前的灵气细丝弯成一个不闭合的结",
+    "emotions": [
+      "confusion",
+      "determination"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_filament",
+      "cost": 0.015,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "qi_filament"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_filament_unwind",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_shaping",
+    "meaning": "收束已存在细丝，不回复资源",
+    "clause": "拆开外放的灵气细丝，让残光在指前散尽",
+    "emotions": [
+      "relief",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_filament",
+      "cost": 0.005,
+      "control": 0.3,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "qi_filament"
+      ],
+      "activate": [],
+      "deactivate": [
+        "qi_filament"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_palm_disc",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_shaping",
+    "meaning": "构造平面而非线形气流，不强控他人",
+    "clause": "在掌前凝出一层薄圆的灵气面，边缘尚不外推",
+    "emotions": [
+      "defiance",
+      "fear"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_disc",
+      "cost": 0.04,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "qi_disc"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_disc_tilt",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_shaping",
+    "meaning": "已有气面的朝向调整，不改变人物朝向或距离",
+    "clause": "令掌前的灵气薄面倾斜，避开正对旁人的方向",
+    "emotions": [
+      "caring",
+      "compassion"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_disc",
+      "cost": 0.01,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "qi_disc"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "context.bystander_present"
+    ]
+  },
+  {
+    "id": "world.qi_disc_dissolve",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_shaping",
+    "meaning": "已有平面结构撤销，区别于回收气量",
+    "clause": "从边缘撤去那层灵气薄面，直到掌前再无光影",
+    "emotions": [
+      "relief",
+      "trust"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_disc",
+      "cost": 0.005,
+      "control": 0.35,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "qi_disc"
+      ],
+      "activate": [],
+      "deactivate": [
+        "qi_disc"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_pulse_single",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_metering",
+    "meaning": "一次能量计量脉冲，不产生攻击或冲击波",
+    "clause": "把一小团灵气压成单次脉冲，止在自身经脉之内",
+    "emotions": [
+      "anger",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_control",
+      "cost": 0.02,
+      "control": 0.35,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_split_stream",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_circulation",
+    "meaning": "流路分叉，与左右肢体枚举无关",
+    "clause": "将一股灵气分成两道，分别沿身内不同经络游走",
+    "emotions": [
+      "ambivalence",
+      "curiosity"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "split_flow",
+      "cost": 0.035,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "split_flow"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_stream_rejoin",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_circulation",
+    "meaning": "已分叉流路重新汇合，不凭空出现双流",
+    "clause": "把分行的两道气流接回同一条经脉",
+    "emotions": [
+      "resolve",
+      "realization"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "split_flow",
+      "cost": 0.015,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "split_flow"
+      ],
+      "activate": [],
+      "deactivate": [
+        "split_flow"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_dantian_seal",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_containment",
+    "meaning": "限制自身流量的阀门动作，非封印他人",
+    "clause": "在丹田出口收成一道窄环，暂缓灵气向外涌出",
+    "emotions": [
+      "fear",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "dantian_gate",
+      "cost": 0.02,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "dantian_gate"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_gate_open",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_containment",
+    "meaning": "撤销已有流量限制，不恢复气量",
+    "clause": "缓缓松开丹田前的那道窄环，留出受控的气流口",
+    "emotions": [
+      "confidence",
+      "determination"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "dantian_gate",
+      "cost": 0.01,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "dantian_gate"
+      ],
+      "activate": [],
+      "deactivate": [
+        "dantian_gate"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.qi_eddy_brake",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_metering",
+    "meaning": "已有旋流的局部减速，不泛化为情绪平静",
+    "clause": "在体内气流转弯处添了一道逆向缓冲，让旋势钝下来",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_control",
+      "cost": 0.025,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.qi_eddy_present"
+    ]
+  },
+  {
+    "id": "world.qi_leak_plug",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_containment",
+    "meaning": "限制明确已知灵气泄漏，不宣称治疗经脉",
+    "clause": "把漏向体外的那一缕灵气截在经脉末端",
+    "emotions": [
+      "fear",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_control",
+      "cost": 0.02,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.qi_leaking"
+    ]
+  },
+  {
+    "id": "world.qi_trace_replay",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_metering",
+    "meaning": "复核已知身内路径，区别于凭空升级功法",
+    "clause": "依着刚才留下的行气感，再走了一遍原来的短路",
+    "emotions": [
+      "curiosity",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_control",
+      "cost": 0.025,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "discourse.qi_route_known"
+    ]
+  },
+  {
+    "id": "world.qi_channel_bypass",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_circulation",
+    "meaning": "已授权路线绕行，不修复伤势或创建新经脉",
+    "clause": "让气流绕开那条不宜运气的支脉，沿熟悉的路径过去",
+    "emotions": [
+      "unease",
+      "determination"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_control",
+      "cost": 0.035,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.channel_restricted",
+      "knowledge.safe_qi_bypass"
+    ]
+  },
+  {
+    "id": "world.qi_measure_reserve",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "qi_metering",
+    "meaning": "察看自身储量边缘，不给数值或恢复资源",
+    "clause": "将神意沉入丹田，只沿现有灵气的边界探了一周",
+    "emotions": [
+      "anxiety",
+      "interest"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "qi_control",
+      "cost": 0.01,
+      "control": 0.25,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.sense_fan",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_projection",
+    "meaning": "定向感知几何扇面，不声称已探得秘密",
+    "clause": "把神识展成一片窄扇，探向那片空地",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_fan",
+      "cost": 0.06,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "sense_fan"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "location.open_ground_known"
+    ]
+  },
+  {
+    "id": "world.sense_edge_fold",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_projection",
+    "meaning": "感知范围避让明确在场人物，不强查他人",
+    "clause": "将神识扇面的边缘折回，留出旁人所占的那一角",
+    "emotions": [
+      "caring",
+      "reverence"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_fan",
+      "cost": 0.02,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "sense_fan"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "context.bystander_present"
+    ]
+  },
+  {
+    "id": "world.sense_fan_close",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_projection",
+    "meaning": "撤销已存在扇形外探，区别于笼统神识回收",
+    "clause": "把扇开的神识一层层合回，只余自身周围的觉知",
+    "emotions": [
+      "trust",
+      "relief"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_fan",
+      "cost": 0.015,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "sense_fan"
+      ],
+      "activate": [],
+      "deactivate": [
+        "sense_fan"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.sense_surface",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_sampling",
+    "meaning": "表面采样而非穿透读取，不输出未知鉴定结果",
+    "clause": "让神识沿面前器物的表面滑过，不往内部探入",
+    "emotions": [
+      "interest",
+      "unease"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "spiritual_sense",
+      "cost": 0.035,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.inspectable_artifact"
+    ]
+  },
+  {
+    "id": "world.sense_threshold",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_sampling",
+    "meaning": "感知边界前的克制，不穿越未知屏障",
+    "clause": "将神识停在结界边缘，未向内越过",
+    "emotions": [
+      "suspicion",
+      "reverence"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "spiritual_sense",
+      "cost": 0.035,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "environment.barrier_known"
+    ]
+  },
+  {
+    "id": "world.sense_anchor_sound",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_sampling",
+    "meaning": "从已发生声音定向，不推断声源身份",
+    "clause": "把神识束向刚才声响传来的方位",
+    "emotions": [
+      "surprise",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "spiritual_sense",
+      "cost": 0.04,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "event.sound_direction_known"
+    ]
+  },
+  {
+    "id": "world.sense_probe_ground",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_sampling",
+    "meaning": "沿地表采样，不探出地下宝物或暗道",
+    "clause": "将一道神识贴着脚下地面延出去，只探表层",
+    "emotions": [
+      "suspicion",
+      "interest"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "spiritual_sense",
+      "cost": 0.045,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "location.ground_surface_known"
+    ]
+  },
+  {
+    "id": "world.sense_recall_trace",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_sampling",
+    "meaning": "寻访既有自留标记，不凭空定位人物",
+    "clause": "沿记得的那道神识标记重新探去，停在标记外缘",
+    "emotions": [
+      "longing",
+      "determination"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "spiritual_sense",
+      "cost": 0.05,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "knowledge.own_sense_mark"
+    ]
+  },
+  {
+    "id": "world.sense_self_boundary",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_regulation",
+    "meaning": "自身边界校准，不检测他人情绪真假",
+    "clause": "把神识贴回自身轮廓，逐处辨认外探与内守的界线",
+    "emotions": [
+      "unease",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "spiritual_sense",
+      "cost": 0.025,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.sense_dual_attention",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_regulation",
+    "meaning": "注意资源分流，区别于两个新感知目标",
+    "clause": "将神识分出极细的一线，其余仍守在自身周围",
+    "emotions": [
+      "anxiety",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_split",
+      "cost": 0.055,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "sense_split"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.sense_merge_attention",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_regulation",
+    "meaning": "已分流注意重新合并，不恢复神识资源",
+    "clause": "把分出的那一线神识接回主识，不再兼顾外侧",
+    "emotions": [
+      "relief",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_split",
+      "cost": 0.015,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "sense_split"
+      ],
+      "activate": [],
+      "deactivate": [
+        "sense_split"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.sense_mute_channel",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_regulation",
+    "meaning": "过滤已知噪声通道，不让引擎凭空读取念头",
+    "clause": "把神识中那股杂乱的回响暂时隔开",
+    "emotions": [
+      "frustration",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_filter",
+      "cost": 0.035,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "sense_filter"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.spiritual_noise"
+    ]
+  },
+  {
+    "id": "world.sense_filter_release",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_regulation",
+    "meaning": "撤销感知过滤，需要已有隔层",
+    "clause": "撤下神识里那道隔层，让原先被隔开的回响重新进入",
+    "emotions": [
+      "curiosity",
+      "trust"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_filter",
+      "cost": 0.01,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "sense_filter"
+      ],
+      "activate": [],
+      "deactivate": [
+        "sense_filter"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.sense_touch_own_mark",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_signalling",
+    "meaning": "自有印记的握手信号，不获得所有权或强控",
+    "clause": "用神识轻触自己留在器物上的印记，让印记明灭一次",
+    "emotions": [
+      "hope",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_marking",
+      "cost": 0.035,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_marked_artifact"
+    ]
+  },
+  {
+    "id": "world.sense_mark_fade",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "sense_signalling",
+    "meaning": "移除已有自留印记，不撤他人禁制",
+    "clause": "将自己留在器物表面的感知印记一点点抹去",
+    "emotions": [
+      "resignation",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "sense_mark",
+      "cost": 0.02,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "sense_mark"
+      ],
+      "activate": [],
+      "deactivate": [
+        "sense_mark"
+      ]
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_marked_artifact"
+    ]
+  },
+  {
+    "id": "world.aura_shell",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_boundary",
+    "meaning": "界定自身外放气场边界，区别于完全收回",
+    "clause": "把气息收成贴身的一层薄壳，不再向旁边散开",
+    "emotions": [
+      "unease",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_shell",
+      "cost": 0.045,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "aura_shell"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_shell_open",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_boundary",
+    "meaning": "已有薄壳的局部开口，不威逼旁人",
+    "clause": "在贴身气息上留出一道窄口，露出自己的一线灵压",
+    "emotions": [
+      "trust",
+      "confidence"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_shell",
+      "cost": 0.02,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "aura_shell"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_shell_remove",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_boundary",
+    "meaning": "解除已激活薄壳，不宣称提升防御后恢复资源",
+    "clause": "撤去贴在体外的气息薄壳，任余息自行散尽",
+    "emotions": [
+      "relief",
+      "serenity"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_shell",
+      "cost": 0.015,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "aura_shell"
+      ],
+      "activate": [],
+      "deactivate": [
+        "aura_shell"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_hem_lift",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_shape",
+    "meaning": "调整已外放气场下边界，有尘土地面事实",
+    "clause": "将外放气息的下缘提离地面，不去搅动脚边尘土",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_control",
+      "cost": 0.025,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "aura_control"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "environment.dusty_ground"
+    ]
+  },
+  {
+    "id": "world.aura_notch_person",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_shape",
+    "meaning": "已外放气场避让旁人，不造成角色移动",
+    "clause": "在外放气息中让出一处缺口，避开近旁的人",
+    "emotions": [
+      "compassion",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_control",
+      "cost": 0.025,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "aura_control"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "context.bystander_near"
+    ]
+  },
+  {
+    "id": "world.aura_ring",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_shape",
+    "meaning": "环形自身气场，区别于具有防护功效的结界",
+    "clause": "把气息排成一道环，悬在自己身外而不扩散",
+    "emotions": [
+      "pride",
+      "resolve"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_ring",
+      "cost": 0.05,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "aura_ring"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_ring_break",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_shape",
+    "meaning": "拆除已有环状气息，非静态弱化同义词",
+    "clause": "断开围身气息的一段，让整道气环从缺口散开",
+    "emotions": [
+      "trust",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_ring",
+      "cost": 0.015,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "aura_ring"
+      ],
+      "activate": [],
+      "deactivate": [
+        "aura_ring"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_pulse_signal",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_signal",
+    "meaning": "使用明确约定信号，不生成通信内容",
+    "clause": "让贴身灵压按一个已约定的节拍起落，随即收住",
+    "emotions": [
+      "hope",
+      "determination"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_signalling",
+      "cost": 0.045,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "knowledge.agreed_aura_signal"
+    ]
+  },
+  {
+    "id": "world.aura_name_signature",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_signal",
+    "meaning": "主动提供自有气息签名，不替对方宣布识别结果",
+    "clause": "放出自己的气息特征，只够近处辨认其来处",
+    "emotions": [
+      "confidence",
+      "trust"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_signalling",
+      "cost": 0.035,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "context.listener_near"
+    ]
+  },
+  {
+    "id": "world.aura_signature_mask",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_signal",
+    "meaning": "抑制个人签名不等于完全隐身或骗过强者",
+    "clause": "将自身气息里鲜明的那一缕特征压入底层",
+    "emotions": [
+      "suspicion",
+      "fear"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "signature_mask",
+      "cost": 0.06,
+      "control": 0.7,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "signature_mask"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_mask_remove",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_signal",
+    "meaning": "撤销已激活气息遮掩，不造新身份",
+    "clause": "解开气息里的遮掩，让自己的灵息特征重新显出",
+    "emotions": [
+      "trust",
+      "defiance"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "signature_mask",
+      "cost": 0.02,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "signature_mask"
+      ],
+      "activate": [],
+      "deactivate": [
+        "signature_mask"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_pressure_cap",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_regulation",
+    "meaning": "约束已有威压的作用范围，不自动伤人",
+    "clause": "把正在外放的灵压截在自身周围，不让它再往前推",
+    "emotions": [
+      "caring",
+      "remorse"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "pressure_control",
+      "cost": 0.035,
+      "control": 0.7,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "pressure_control"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_pressure_end",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_regulation",
+    "meaning": "结束威压状态，避免无前态收回",
+    "clause": "撤下已外放的威压，连最后一丝压迫气息也收尽",
+    "emotions": [
+      "relief",
+      "compassion"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "pressure_control",
+      "cost": 0.025,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "pressure_control"
+      ],
+      "activate": [],
+      "deactivate": [
+        "pressure_control"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.aura_rhythm_break",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_regulation",
+    "meaning": "已有周期波动脱耦，不消除人物情绪",
+    "clause": "打散外放气息的周期，让它不再随怒意冲涨",
+    "emotions": [
+      "anger",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_control",
+      "cost": 0.035,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "aura_control"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.aura_pulsing"
+    ]
+  },
+  {
+    "id": "world.aura_resonance_check",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "aura_regulation",
+    "meaning": "避让已知共鸣而非破坏环境或强行压制",
+    "clause": "将外放气息避开那段共鸣，减去牵引",
+    "emotions": [
+      "unease",
+      "reverence"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "aura_control",
+      "cost": 0.035,
+      "control": 0.7,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "aura_control"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.external_resonance_known"
+    ]
+  },
+  {
+    "id": "world.intent_edge",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_geometry",
+    "meaning": "构造无接触意象锋面，不斩伤实体",
+    "clause": "在神意中竖起一道极窄的锋意，止于自己身前",
+    "emotions": [
+      "anger",
+      "determination"
+    ],
+    "axis": "aggression",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_edge",
+      "cost": 0.08,
+      "control": 0.7,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "intent_edge"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.intent_edge_turn",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_geometry",
+    "meaning": "调转已有意象朝向，不移动武器或人物",
+    "clause": "把已凝成的锋意转向空处，避开旁人所在的一线",
+    "emotions": [
+      "compassion",
+      "remorse"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_edge",
+      "cost": 0.025,
+      "control": 0.75,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "intent_edge"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "location.empty_direction_known",
+      "context.bystander_present"
+    ]
+  },
+  {
+    "id": "world.intent_edge_end",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_geometry",
+    "meaning": "撤销锋意结构，不发射攻击",
+    "clause": "将身前那线锋意从两端拆散，收尽余势",
+    "emotions": [
+      "relief",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_edge",
+      "cost": 0.02,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "intent_edge"
+      ],
+      "activate": [],
+      "deactivate": [
+        "intent_edge"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.intent_blunt",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_regulation",
+    "meaning": "已激活剑意的形态钝化，非只调强弱",
+    "clause": "把已聚起的剑意锋芒磨成圆钝的轮廓",
+    "emotions": [
+      "caring",
+      "trust"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_control",
+      "cost": 0.03,
+      "control": 0.75,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "intent_control"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.intent_inward",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_regulation",
+    "meaning": "意向内收至自我练习，不产生伤害",
+    "clause": "把剑意的指向转回自己的运功轨迹，不再朝向外界",
+    "emotions": [
+      "resolve",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_control",
+      "cost": 0.035,
+      "control": 0.75,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "intent_control"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.intent_unsent_arc",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_geometry",
+    "meaning": "内演已掌握剑路，不制造实体攻击",
+    "clause": "在意念中走完一道弧形剑路，体外没有发出剑气",
+    "emotions": [
+      "longing",
+      "determination"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_rehearsal",
+      "cost": 0.06,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "knowledge.arc_sword_form"
+    ]
+  },
+  {
+    "id": "world.intent_halt_form",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_regulation",
+    "meaning": "暂停已有内演路径，区别于完成或取消剑气",
+    "clause": "将演到一半的意中剑路停在转折处，不往下续",
+    "emotions": [
+      "confusion",
+      "unease"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_rehearsal",
+      "cost": 0.025,
+      "control": 0.7,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.intent_form_in_progress"
+    ]
+  },
+  {
+    "id": "world.intent_parallel_guard",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_geometry",
+    "meaning": "自身动作预备的双路径分配，不承诺防住外物",
+    "clause": "把意势分置在自身两条可能发力的路径上，俱未催发",
+    "emotions": [
+      "fear",
+      "determination"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_guard",
+      "cost": 0.065,
+      "control": 0.8,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "intent_guard"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.intent_guard_release",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_regulation",
+    "meaning": "解除已激活预备意势，不算同义回收普通灵气",
+    "clause": "撤去分守自身发力路径的意势，让起手余地空下来",
+    "emotions": [
+      "trust",
+      "relief"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_guard",
+      "cost": 0.02,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "intent_guard"
+      ],
+      "activate": [],
+      "deactivate": [
+        "intent_guard"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.intent_form_compare",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "intent_regulation",
+    "meaning": "比较已知招式衔接，不创造新技能和领悟结果",
+    "clause": "将熟悉的两式剑意在心中相接，辨清转换时的滞处",
+    "emotions": [
+      "curiosity",
+      "frustration"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "golden_core",
+      "min_stage": 1,
+      "capability": "intent_rehearsal",
+      "cost": 0.055,
+      "control": 0.75,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "knowledge.two_sword_forms"
+    ]
+  },
+  {
+    "id": "world.artifact_sheath_hum",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_resonance",
+    "meaning": "仅驱动明确法器共鸣，不拔剑攻击",
+    "clause": "向鞘中之剑送入一缕灵气，让鞘内传出短鸣",
+    "emotions": [
+      "anger",
+      "anticipation"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "sword_hum",
+      "cost": 0.035,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "sword_hum"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.sheathed_bound_sword"
+    ]
+  },
+  {
+    "id": "world.artifact_hum_dampen",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_resonance",
+    "meaning": "抑制已有法器声响，不假设每次都有剑",
+    "clause": "沿自身与剑的联系压下那阵剑鸣",
+    "emotions": [
+      "calm",
+      "caring"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "sword_hum",
+      "cost": 0.02,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "sword_hum"
+      ],
+      "activate": [],
+      "deactivate": [
+        "sword_hum"
+      ]
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.bound_sword",
+      "state.sword_humming"
+    ]
+  },
+  {
+    "id": "world.artifact_lamp_ignite",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_activation",
+    "meaning": "启动明确法器，不凭空生成灯具",
+    "clause": "向面前的灵灯送入细流，让灯芯亮起",
+    "emotions": [
+      "hope",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "spirit_lamp",
+      "cost": 0.04,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "spirit_lamp"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.spirit_lamp_near"
+    ]
+  },
+  {
+    "id": "world.artifact_lamp_shutter",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_activation",
+    "meaning": "调节已激活灯具的供气及遮光结构，需器具能力",
+    "clause": "在已亮灵灯的供气处添了一道窄闸，把光聚向下方",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "spirit_lamp",
+      "cost": 0.015,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "spirit_lamp"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.directional_spirit_lamp_near"
+    ]
+  },
+  {
+    "id": "world.artifact_lamp_extinguish",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_activation",
+    "meaning": "终止已激活灯具，不制造黑暗范围效果",
+    "clause": "切断送往灵灯的那股气流，让灯芯自行暗下",
+    "emotions": [
+      "resignation",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "spirit_lamp",
+      "cost": 0.005,
+      "control": 0.3,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "spirit_lamp"
+      ],
+      "activate": [],
+      "deactivate": [
+        "spirit_lamp"
+      ]
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.spirit_lamp_near"
+    ]
+  },
+  {
+    "id": "world.artifact_jade_warm",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_resonance",
+    "meaning": "自有玉佩认主回馈，不新建所有权",
+    "clause": "让自身灵气轻触玉佩的认主纹，玉面浮出微光",
+    "emotions": [
+      "nostalgia",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "artifact_attunement",
+      "cost": 0.025,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_attuned_jade"
+    ]
+  },
+  {
+    "id": "world.artifact_lock_test",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_resonance",
+    "meaning": "探测已知锁口接触，不开锁或绕过禁制",
+    "clause": "把一缕灵气送到法器锁口前，触到界线便止住",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "artifact_attunement",
+      "cost": 0.04,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.locked_artifact_known"
+    ]
+  },
+  {
+    "id": "world.artifact_tone_signal",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_resonance",
+    "meaning": "发送已有信号形式，不编造消息台词",
+    "clause": "依约定给传音器送入一段短促的起伏，随即断开",
+    "emotions": [
+      "hope",
+      "anticipation"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "artifact_messaging",
+      "cost": 0.055,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.authorized_message_artifact",
+      "knowledge.agreed_signal"
+    ]
+  },
+  {
+    "id": "world.artifact_supply_stop",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_activation",
+    "meaning": "停止已授权持续供能，需运行状态和自有权限",
+    "clause": "撤下供给面前法器的灵气支线，让其运转缓缓停住",
+    "emotions": [
+      "unease",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "artifact_supply",
+      "cost": 0.015,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "artifact_supply"
+      ],
+      "activate": [],
+      "deactivate": [
+        "artifact_supply"
+      ]
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_powered_artifact"
+    ]
+  },
+  {
+    "id": "world.artifact_supply_start",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "artifact_activation",
+    "meaning": "启动授权法器供能，不决定器物具体攻击效果",
+    "clause": "分出一股灵气接上面前法器的供能口",
+    "emotions": [
+      "determination",
+      "interest"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "artifact_supply",
+      "cost": 0.07,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "artifact_supply"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_safe_artifact",
+      "knowledge.artifact_power_port"
+    ]
+  },
+  {
+    "id": "world.talisman_trace_air",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_structure",
+    "meaning": "练习符形，不制作可消耗实体符箓",
+    "clause": "循着已掌握的符路，在指前描出不落物的光纹",
+    "emotions": [
+      "interest",
+      "determination"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "practice_glyph",
+      "cost": 0.035,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "practice_glyph"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "knowledge.practice_glyph"
+    ]
+  },
+  {
+    "id": "world.talisman_trace_erase",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_structure",
+    "meaning": "撤销已激活练习符形，不新增法术效果",
+    "clause": "把悬在指前的练习光纹从收笔处倒着撤去",
+    "emotions": [
+      "frustration",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "practice_glyph",
+      "cost": 0.01,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "practice_glyph"
+      ],
+      "activate": [],
+      "deactivate": [
+        "practice_glyph"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.talisman_join_gap",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_structure",
+    "meaning": "补足已知练习结构，不修补他人符禁",
+    "clause": "沿着练习光纹中的缺口补上一笔，让线路接通",
+    "emotions": [
+      "realization",
+      "satisfaction"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "practice_glyph",
+      "cost": 0.025,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "practice_glyph"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.practice_glyph_gap_known"
+    ]
+  },
+  {
+    "id": "world.talisman_suspend_last",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_structure",
+    "meaning": "在完成前保持开放回路，不激活攻击",
+    "clause": "把练习符纹的末笔悬住，不让整道光纹闭合",
+    "emotions": [
+      "unease",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "practice_glyph",
+      "cost": 0.02,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "practice_glyph"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "state.practice_glyph_final_stroke_pending"
+    ]
+  },
+  {
+    "id": "world.talisman_read_groove",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_sampling",
+    "meaning": "读取可见纹路结构，不辨真假或恢复符力",
+    "clause": "以灵气轻触面前旧符的纹路，只沿刻痕游走",
+    "emotions": [
+      "nostalgia",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "talisman_sensing",
+      "cost": 0.03,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.inspectable_old_talisman"
+    ]
+  },
+  {
+    "id": "world.talisman_light_ready",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_activation",
+    "meaning": "启动明确无破坏照明符，不消耗未追踪物件",
+    "clause": "向照明符的起笔处送入灵气，符面亮出柔光",
+    "emotions": [
+      "hope",
+      "caring"
+    ],
+    "axis": "warmth",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "light_talisman",
+      "cost": 0.04,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "light_talisman"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.reusable_light_talisman"
+    ]
+  },
+  {
+    "id": "world.talisman_light_stop",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_activation",
+    "meaning": "关闭已激活可重复照明符，不让符纸自动烧毁",
+    "clause": "掐断照明符里的供气，等符面余光一寸寸退去",
+    "emotions": [
+      "resignation",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "light_talisman",
+      "cost": 0.01,
+      "control": 0.35,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "light_talisman"
+      ],
+      "activate": [],
+      "deactivate": [
+        "light_talisman"
+      ]
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.reusable_light_talisman"
+    ]
+  },
+  {
+    "id": "world.talisman_seal_practice",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_structure",
+    "meaning": "练习结构封边，与真实封印人物区别",
+    "clause": "在练习光纹外添一道收束边，止住灵气旁逸",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "practice_glyph",
+      "cost": 0.035,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "practice_glyph"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.talisman_pulse_test",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_sampling",
+    "meaning": "自有安全测试装置验证，不断言成功效果",
+    "clause": "向自有试符板送入一次短脉冲，只看纹路明灭",
+    "emotions": [
+      "anticipation",
+      "interest"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "talisman_testing",
+      "cost": 0.03,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.safe_talisman_test_board"
+    ]
+  },
+  {
+    "id": "world.talisman_reverse_read",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "talisman_sampling",
+    "meaning": "逆序检查已知结构，不逆转时间或符效",
+    "clause": "从符纹的收笔处往回探，逐处停在转折点",
+    "emotions": [
+      "suspicion",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "talisman_sensing",
+      "cost": 0.045,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.inspectable_talisman"
+    ]
+  },
+  {
+    "id": "world.formation_node_touch",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_sampling",
+    "meaning": "阵眼外围采样，不擅自夺阵",
+    "clause": "把一缕灵气停在阵眼外沿，未触及核心",
+    "emotions": [
+      "awe",
+      "unease"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "formation_sensing",
+      "cost": 0.05,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "knowledge.formation_node"
+    ]
+  },
+  {
+    "id": "world.formation_line_follow",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_sampling",
+    "meaning": "检查已知连线拓扑，不宣称探明全阵",
+    "clause": "沿可见阵线向前探了一段，到分叉处便止住",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "formation_sensing",
+      "cost": 0.05,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "environment.visible_formation_line"
+    ]
+  },
+  {
+    "id": "world.formation_own_beacon",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_signalling",
+    "meaning": "明确自有阵盘信标激活，不设环境结界",
+    "clause": "唤亮自有阵盘上的定位点，只作应答而不展开阵域",
+    "emotions": [
+      "hope",
+      "confidence"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "formation_beacon",
+      "cost": 0.055,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "formation_beacon"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_formation_plate"
+    ]
+  },
+  {
+    "id": "world.formation_beacon_off",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_signalling",
+    "meaning": "关闭已激活自有信标",
+    "clause": "抹去阵盘定位点上的供气，让应答光点沉下去",
+    "emotions": [
+      "calm",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "formation_beacon",
+      "cost": 0.015,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "formation_beacon"
+      ],
+      "activate": [],
+      "deactivate": [
+        "formation_beacon"
+      ]
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_formation_plate"
+    ]
+  },
+  {
+    "id": "world.formation_circuit_count",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_sampling",
+    "meaning": "顺序检查授权阵路，不编造阵法知识结果",
+    "clause": "沿小阵的边线逐段送入气息，每到节点便停一拍",
+    "emotions": [
+      "determination",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "formation_sensing",
+      "cost": 0.06,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "knowledge.own_small_formation"
+    ]
+  },
+  {
+    "id": "world.formation_link_halt",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_regulation",
+    "meaning": "局部暂停授权供能，不停全场或控制他阵",
+    "clause": "暂时截住自有阵盘的一条供气支线，其余仍循原路",
+    "emotions": [
+      "unease",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "own_formation",
+      "cost": 0.04,
+      "control": 0.7,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "own_formation"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_formation_plate",
+      "knowledge.safe_formation_branch"
+    ]
+  },
+  {
+    "id": "world.formation_desync",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_regulation",
+    "meaning": "已授权练习阵时序调节，不造成爆炸",
+    "clause": "错开自有练习阵的两道脉冲，不让它们在节点相撞",
+    "emotions": [
+      "frustration",
+      "calm"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "own_formation",
+      "cost": 0.055,
+      "control": 0.75,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "own_formation"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_practice_formation",
+      "state.formation_pulses_close"
+    ]
+  },
+  {
+    "id": "world.formation_start",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_regulation",
+    "meaning": "无破坏练习阵启动，权限和设施都必须已知",
+    "clause": "将灵气送进自有练习阵的起点，让阵线依次泛亮",
+    "emotions": [
+      "interest",
+      "anticipation"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "own_formation",
+      "cost": 0.08,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "own_formation"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_safe_practice_formation"
+    ]
+  },
+  {
+    "id": "world.formation_close",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_regulation",
+    "meaning": "结束已激活练习阵，不摧毁节点",
+    "clause": "依次撤下自有练习阵的供气，留到最后的阵眼也暗了",
+    "emotions": [
+      "relief",
+      "satisfaction"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "own_formation",
+      "cost": 0.025,
+      "control": 0.6,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "own_formation"
+      ],
+      "activate": [],
+      "deactivate": [
+        "own_formation"
+      ]
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_safe_practice_formation"
+    ]
+  },
+  {
+    "id": "world.formation_boundary_respect",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "formation_sampling",
+    "meaning": "沿已知边界采样，不跨越传送或禁制",
+    "clause": "让探出的灵气贴着阵界转过一个折角，始终留在外侧",
+    "emotions": [
+      "reverence",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "foundation",
+      "min_stage": 1,
+      "capability": "formation_sensing",
+      "cost": 0.045,
+      "control": 0.65,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "environment.formation_boundary_known"
+    ]
+  },
+  {
+    "id": "world.spirit_light_mote",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "light_shaping",
+    "meaning": "能量光点而非实体火焰，不自动改变环境资源",
+    "clause": "在指前凝出一点无热灵光，只照亮自身近旁",
+    "emotions": [
+      "hope",
+      "joy"
+    ],
+    "axis": "warmth",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "light_mote",
+      "cost": 0.035,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "light_mote"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.spirit_light_shade",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "light_shaping",
+    "meaning": "光点方向遮蔽，不造第二光源",
+    "clause": "把灵光遮成一面明一面暗，让亮处朝向空处",
+    "emotions": [
+      "caring",
+      "tenderness"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "light_mote",
+      "cost": 0.02,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "light_mote"
+      ],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "location.empty_direction_known"
+    ]
+  },
+  {
+    "id": "world.spirit_light_off",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "light_shaping",
+    "meaning": "关闭已激活光点，不回补真气",
+    "clause": "收断那点灵光的供气，等最后的亮意熄尽",
+    "emotions": [
+      "sadness",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "light_mote",
+      "cost": 0.005,
+      "control": 0.3,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "light_mote"
+      ],
+      "activate": [],
+      "deactivate": [
+        "light_mote"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.water_surface_touch",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "element_sensing",
+    "meaning": "已知水面轻扰，无取水/造水/攻击",
+    "clause": "以灵气轻触面前水面的边缘，激起一圈小纹",
+    "emotions": [
+      "curiosity",
+      "serenity"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "water_attunement",
+      "cost": 0.03,
+      "control": 0.4,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "environment.water_surface_near"
+    ]
+  },
+  {
+    "id": "world.wind_palm_eddy",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "element_shaping",
+    "meaning": "限定局部空气涡，不飞行不控制他人",
+    "clause": "把一小缕气流圈在掌前，只拨动自己指边的空气",
+    "emotions": [
+      "amusement",
+      "interest"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "palm_eddy",
+      "cost": 0.035,
+      "control": 0.45,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [
+        "palm_eddy"
+      ],
+      "deactivate": []
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.wind_eddy_end",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "element_shaping",
+    "meaning": "解除已激活局部空气涡，不额外制造风暴",
+    "clause": "松开掌前气流的旋势，让它融回周遭空气",
+    "emotions": [
+      "relief",
+      "serenity"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "palm_eddy",
+      "cost": 0.005,
+      "control": 0.3,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [
+        "palm_eddy"
+      ],
+      "activate": [],
+      "deactivate": [
+        "palm_eddy"
+      ]
+    },
+    "visibility": "subtle"
+  },
+  {
+    "id": "world.stone_resonance_touch",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "element_sensing",
+    "meaning": "石材表层感知，不破坏石块或透视矿脉",
+    "clause": "向面前的石块送入一缕探查气息，触到表层便收住",
+    "emotions": [
+      "interest",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "earth_attunement",
+      "cost": 0.035,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.stone_near"
+    ]
+  },
+  {
+    "id": "world.flame_distance_check",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "element_sensing",
+    "meaning": "已知火焰边界采样，不点火或灭火",
+    "clause": "将灵气停在火焰的热界之外，试探外缘的起伏",
+    "emotions": [
+      "awe",
+      "unease"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "fire_attunement",
+      "cost": 0.04,
+      "control": 0.55,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "environment.flame_known"
+    ]
+  },
+  {
+    "id": "world.wood_grain_follow",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "element_sensing",
+    "meaning": "可见材质纹理感知，不让植物生长恢复",
+    "clause": "沿眼前木器的可见纹理送出细气，到节疤处便停下",
+    "emotions": [
+      "nostalgia",
+      "interest"
+    ],
+    "axis": "self_control",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "wood_attunement",
+      "cost": 0.035,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.visible_wooden_object"
+    ]
+  },
+  {
+    "id": "world.metal_ring_listen",
+    "category": "world_specific",
+    "channel": "world",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "element_sensing",
+    "meaning": "授权金属器物共鸣采样，不改变硬度或碎裂",
+    "clause": "以灵气轻叩自有金属法器，等那一点共鸣自行散去",
+    "emotions": [
+      "curiosity",
+      "anticipation"
+    ],
+    "axis": "initiative",
+    "world": {
+      "min_realm": "qi_refining",
+      "min_stage": 1,
+      "capability": "metal_attunement",
+      "cost": 0.035,
+      "control": 0.5,
+      "destruction": 0.0,
+      "min_intensity": 0.15,
+      "target_dominance": false,
+      "requires_active": [],
+      "activate": [],
+      "deactivate": []
+    },
+    "visibility": "subtle",
+    "facts": [
+      "prop.own_metal_artifact"
+    ]
+  }
+]

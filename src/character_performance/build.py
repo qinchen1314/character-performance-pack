@@ -7,6 +7,7 @@ from typing import Any
 
 from character_performance.cli.export_schemas import export_schemas
 from character_performance.ontology.pack import PerformancePack, canonical
+from character_performance.quality import catalog_report, require_catalog_quality
 from character_performance.sources.registry import (
     BuildPolicy,
     LicenseGateError,
@@ -35,6 +36,8 @@ def build_pack(
     try:
         registry.validate_for_build(extra_source_ids, policy)
         pack = PerformancePack.from_project(project_root, policy)
+        quality = catalog_report(pack)
+        require_catalog_quality(quality)
     except (LicenseGateError, ValueError) as error:
         raise PackBuildError(str(error)) from error
     source_ids = sorted(set(pack.source_ids) | set(extra_source_ids))
@@ -45,6 +48,9 @@ def build_pack(
         "source_registry_version": registry.schema_version,
         "emotion_count": len(pack.ontology),
         "unit_count": len(pack.all()),
+        "catalog_quality": {"targets": quality["targets"], "actual": quality["actual"],
+            "exact_duplicate_pairs": len(quality["exact_duplicate_pairs"]),
+            "near_duplicate_unit_fraction": quality["near_duplicate_unit_fraction"]},
         "source_ids": source_ids,
         "content_hash": pack.content_hash,
         "build_policy": {"commercial": policy.commercial, "redistribution": policy.redistribution, "allow_share_alike": policy.allow_share_alike},

@@ -1,0 +1,2979 @@
+[
+  {
+    "id": "micro_expression.brow_inner_flick",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_question",
+    "meaning": "内眉短暂上提后复位，呈现未展开的迟疑",
+    "clause": "眉头向上一动，随即落回原位",
+    "emotions": [
+      "confusion",
+      "unease"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "inner_raise_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_outer_flick",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_question",
+    "meaning": "外眉上挑后收回，与内眉忧惧不同",
+    "clause": "眉梢忽地扬起，又很快放平",
+    "emotions": [
+      "surprise",
+      "interest"
+    ],
+    "axis": "initiative",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "outer_raise_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_cross_release",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_check",
+    "meaning": "皱折起始即停止，适合疑问被暂时搁置",
+    "clause": "眉心刚挤出一道折痕，便松开了",
+    "emotions": [
+      "suspicion",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "medial_contract_abort",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_arch_break",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "eyelids"
+    ],
+    "family": "brow_question",
+    "meaning": "一侧眉峰上提后被双眼闭合截断，眉峰随之归位，区别持续单眉扬起",
+    "clause": "一边眉峰先抬起，紧接着两眼一合，眉峰也回落了",
+    "emotions": [
+      "disapproval",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "unilateral_arch_return_on_eye_close",
+        "intensity": 0.35
+      },
+      {
+        "region": "eyelids",
+        "action": "bilateral_close_after_single_arch",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_lower_bounce",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_guard",
+    "meaning": "下压与回弹形成一次短促防御反应",
+    "clause": "眉骨上方的皮肤一沉，马上又弹松",
+    "emotions": [
+      "anger",
+      "dread"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "depress_rebound",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_inner_split",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_check",
+    "meaning": "内眉靠拢后分开，疑惑短暂进入再撤出",
+    "clause": "两道眉头先挨近，旋即向两边散开",
+    "emotions": [
+      "confusion",
+      "realization"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "medial_approach_separate",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_answer_lift",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_question",
+    "meaning": "以明确答复为触发的对称眉上提",
+    "clause": "听到答复时，双眉同时跳了一下",
+    "emotions": [
+      "surprise",
+      "relief"
+    ],
+    "axis": "initiative",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "bilateral_raise_pulse",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "answer_heard"
+    ]
+  },
+  {
+    "id": "micro_expression.brow_name_stall",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_interrupted",
+    "meaning": "眉尾正在上扬时被特定名字截住",
+    "clause": "听见那个名字，眉尾的起势顿住了",
+    "emotions": [
+      "dread",
+      "longing"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "outer_raise_brake",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "name_heard",
+      "brows_rising"
+    ]
+  },
+  {
+    "id": "micro_expression.brow_frown_leak",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "nose"
+    ],
+    "family": "brow_check",
+    "meaning": "舒展前态被眉间收缩和鼻根起皱同时打断，随后共同解除，区别单独持续皱眉",
+    "clause": "眉间忽然夹紧，鼻根也随之一皱，转眼又都舒展开",
+    "emotions": [
+      "annoyance",
+      "hurt"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "medial_squeeze_with_nasal_release",
+        "intensity": 0.35
+      },
+      {
+        "region": "nose",
+        "action": "root_wrinkle_with_brow_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "brows_relaxed"
+    ]
+  },
+  {
+    "id": "micro_expression.brow_frown_soften",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_interrupted",
+    "meaning": "原有皱眉中出现一次短促软化",
+    "clause": "紧蹙的眉头松了一线，随即又合拢",
+    "emotions": [
+      "compassion",
+      "ambivalence"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "contract_release_recontract",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "brows_furrowed"
+    ]
+  },
+  {
+    "id": "micro_expression.brow_peak_shift",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_guard",
+    "meaning": "短时收缩重心由外向内，区别整体下压",
+    "clause": "眉峰一瞬间朝眉头挤了过去",
+    "emotions": [
+      "suspicion",
+      "interest"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "arch_medial_shift_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_forehead_flash",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_question",
+    "meaning": "上额横纹短时出现后消退",
+    "clause": "额上横纹浮出一瞬，眉眼很快恢复平静",
+    "emotions": [
+      "surprise",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "frontal_raise_fold_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_no_follow",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_interrupted",
+    "meaning": "内侧发起、外侧不跟随的局部反应",
+    "clause": "眉头动了动，眉尾仍压在原处",
+    "emotions": [
+      "grief",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "inner_lift_outer_hold",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_down_then_inner",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_guard",
+    "meaning": "一次下压转为内眉上提，呈现反应改向",
+    "clause": "双眉往下一落，眉头却又立刻挑起来",
+    "emotions": [
+      "anger",
+      "hurt"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "depress_then_inner_raise",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_asymmetry_even",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_check",
+    "meaning": "不对称眉态被主动消除",
+    "clause": "先抬起的那道眉很快落下，重新与另一道齐平",
+    "emotions": [
+      "disapproval",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "raised_side_level",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "one_brow_raised"
+    ]
+  },
+  {
+    "id": "micro_expression.brow_small_wave",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_question",
+    "meaning": "上提沿内外传递但未形成持续表情",
+    "clause": "眉头、眉峰先后动了一下，没连成完整的扬眉",
+    "emotions": [
+      "curiosity",
+      "anticipation"
+    ],
+    "axis": "initiative",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "inner_outer_ripple",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_laugh_catch",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_interrupted",
+    "meaning": "已有笑容中的眉间负向插入；可承载受辱时尚未撤去社交笑容的冲突",
+    "clause": "笑意还留在嘴边，眉头却短促地拧了一下",
+    "emotions": [
+      "hurt",
+      "ambivalence",
+      "humiliation"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "smile_medial_contract",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "smiling"
+    ]
+  },
+  {
+    "id": "micro_expression.brow_release_lag",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_interrupted",
+    "meaning": "既有紧眉分区恢复，区别一齐舒展",
+    "clause": "眉尾先舒展开，眉心的紧处慢了半拍才松开",
+    "emotions": [
+      "relief",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "outer_then_inner_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "brows_furrowed"
+    ]
+  },
+  {
+    "id": "micro_expression.brow_startle_fold",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_question",
+    "meaning": "上提顶点插入聚拢，短时惊讶转向审视",
+    "clause": "双眉猛地一提，又在最高处向内挤了一下",
+    "emotions": [
+      "surprise",
+      "suspicion"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "raise_apex_contract",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.brow_composure_reset",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "brow_check",
+    "meaning": "内眉收拢时前额上提先解除，既有横纹与新起竖纹反向变化，区别起褶后简单复平",
+    "clause": "眉头朝中间一收，额上的横纹反倒先散开了",
+    "emotions": [
+      "embarrassment",
+      "resentment"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "brow",
+        "action": "medial_contract_frontal_raise_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "forehead_horizontal_folds"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_upper_flash",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_opening",
+    "meaning": "仅上睑瞬时提升，不等同完整瞪眼",
+    "clause": "上眼睑骤然提起一点，又落回原处",
+    "emotions": [
+      "surprise",
+      "interest"
+    ],
+    "axis": "initiative",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "upper_raise_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_lower_catch",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_guard",
+    "meaning": "下睑短促收紧，区别闭眼或眨眼",
+    "clause": "下眼睑往上一紧，很快松了",
+    "emotions": [
+      "anger",
+      "unease"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "lower_tighten_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_half_blink",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "blink_disruption",
+    "meaning": "闭合未完成的中断眨眼",
+    "clause": "眼皮落到一半便重新抬起",
+    "emotions": [
+      "confusion",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "incomplete_close_reopen",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_doublet",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "blink_disruption",
+    "meaning": "双次闭开后停止，区别眨眼延迟",
+    "clause": "极快地连眨了两下，随后停住",
+    "emotions": [
+      "surprise",
+      "embarrassment"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "paired_close_open",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_squeeze_pulse",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_guard",
+    "meaning": "外眼角短时挤压而不完全闭眼",
+    "clause": "眼角突然收紧，下一瞬又舒开",
+    "emotions": [
+      "hurt",
+      "disgust"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "outer_squeeze_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_close_release",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "blink_reset",
+    "meaning": "完整闭眼和放松重开组成一次复位",
+    "clause": "双眼短促地合了一下，睁开时已不再用力",
+    "emotions": [
+      "frustration",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "close_relaxed_reopen",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_open_brake",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_opening",
+    "meaning": "扩张起势被主动压回，区别自然复位",
+    "clause": "眼睛才睁大，便立刻收窄回去",
+    "emotions": [
+      "surprise",
+      "dread"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "open_check_narrow",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_uneven_blink",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "blink_disruption",
+    "meaning": "短时闭合不同步，不按左右生成镜像条目",
+    "clause": "两只眼睛的闭合错开了一瞬",
+    "emotions": [
+      "nervousness",
+      "confusion"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "asynchronous_close_open",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_read_break",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_trigger",
+    "meaning": "明确阅读刺激触发局部眼睑轻动",
+    "clause": "读到那几个字时，眼皮忽然一跳",
+    "emotions": [
+      "surprise",
+      "anxiety"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "reading_upper_twitch",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "reading_text"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_tremor_stop",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_guard",
+    "meaning": "连续微颤终止于控制，区别一次上提",
+    "clause": "上眼皮颤了两下，又被稳稳压住",
+    "emotions": [
+      "fear",
+      "vulnerability"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "upper_tremor_arrest",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_lower_retreat",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_release",
+    "meaning": "既有下睑紧张撤去，形成防御空隙",
+    "clause": "绷着的下眼睑忽地松开，露出一点倦意",
+    "emotions": [
+      "resignation",
+      "sadness"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "lower_tension_drop",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "lower_lids_tense"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_closed_flit",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "blink_disruption",
+    "meaning": "闭眼前态中的眼睑微动，不推断注视对象",
+    "clause": "闭着的眼皮下轻轻动了一下",
+    "emotions": [
+      "unease",
+      "anticipation"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "closed_lid_flit",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "eyes_closed"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_smile_crimp",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_release",
+    "meaning": "已有笑容中眼周参与短暂出现",
+    "clause": "嘴边的笑没动，眼尾只短暂地弯了一下",
+    "emotions": [
+      "tenderness",
+      "gratitude"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "smile_outer_crimp_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "smiling"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_smile_unhook",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_interrupted",
+    "meaning": "笑容中的眼周参与退出，不能据此断言虚假",
+    "clause": "嘴角仍翘着，眼尾的细纹却一闪便散了",
+    "emotions": [
+      "ambivalence",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "smile_outer_crimp_drop",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "smiling",
+      "eye_smile_present"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_tears_hold",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "blink_reset",
+    "meaning": "已有泪水前态下以闭开恢复睁眼",
+    "clause": "含着泪的眼睛急促地眨了一次，又撑住了",
+    "emotions": [
+      "grief",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "wet_blink_hold_open",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "tearful"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_unexpected_hold",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "blink_disruption",
+    "meaning": "下落中短暂停驻再打开，不是睁眼等待",
+    "clause": "眼睑停在将闭未闭的位置，旋即重新撑开",
+    "emotions": [
+      "realization",
+      "dread"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "descending_hold_reopen",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_squint_peel",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_release",
+    "meaning": "原有眯眼从外侧解除",
+    "clause": "眯着的眼睛先松开眼尾，才恢复原来的宽度",
+    "emotions": [
+      "realization",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "outer_squint_release_first",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "eyes_squinted"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_startle_recover",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_opening",
+    "meaning": "先扩大后闭开，是惊动后恢复序列",
+    "clause": "眼睛一张，紧跟着便眨了一下",
+    "emotions": [
+      "surprise",
+      "nervousness"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "widen_then_blink",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lid_downcast_blink",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "blink_reset",
+    "meaning": "低垂睑态中的一次闭合回归",
+    "clause": "垂下的眼睑短促一合，又回到半遮的位置",
+    "emotions": [
+      "shame",
+      "sadness"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "lowered_close_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "eyelids_lowered"
+    ]
+  },
+  {
+    "id": "micro_expression.lid_corner_quiver",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "lid_guard",
+    "meaning": "外侧微颤以闭眼结束，区别上睑震动",
+    "clause": "眼尾轻颤，随即被一次闭眼收住",
+    "emotions": [
+      "hurt",
+      "grief"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "eyelids",
+        "action": "outer_quiver_close",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.nose_root_wrinkle",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_recoil",
+    "meaning": "鼻根皮肤短促起皱，非持续皱鼻",
+    "clause": "鼻根皱了一下，纹路转眼就散了",
+    "emotions": [
+      "disgust",
+      "disapproval"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "root_wrinkle_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.nose_wing_flare",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_tension",
+    "meaning": "鼻翼开张后回缩，只描写形变",
+    "clause": "鼻翼向外一张，马上收拢",
+    "emotions": [
+      "anger",
+      "nervousness"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "alar_flare_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.nose_bridge_pull",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_recoil",
+    "meaning": "鼻侧短时向上牵拉，区别鼻翼横向扩张",
+    "clause": "鼻梁两侧的皮肤轻轻往上一提",
+    "emotions": [
+      "disgust",
+      "contempt"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "lateral_skin_raise_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.nose_tip_lift",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_recoil",
+    "meaning": "鼻尖与上唇联动的短促反感形态",
+    "clause": "鼻尖随着上唇一抬，又迅速落回去",
+    "emotions": [
+      "disgust",
+      "annoyance"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "tip_upper_lip_lift_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.nose_flare_brake",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_tension",
+    "meaning": "鼻翼扩张起始被中止，不等同完成张合",
+    "clause": "鼻翼刚要张开，便绷在了原处",
+    "emotions": [
+      "anger",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "alar_flare_arrest",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.nose_wrinkle_smile",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_interrupted",
+    "meaning": "已有笑容中短促鼻皱，不做真假判断",
+    "clause": "笑容间忽地掠过一道皱鼻的动作",
+    "emotions": [
+      "amusement",
+      "ambivalence"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "smiling_root_wrinkle",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "smiling"
+    ]
+  },
+  {
+    "id": "micro_expression.nose_side_twitch",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_tension",
+    "meaning": "鼻侧单次牵动，无左右镜像扩充",
+    "clause": "鼻侧向唇边牵了一下，旋即停住",
+    "emotions": [
+      "unease",
+      "disapproval"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "lateral_nasolabial_twitch",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.nose_wrinkle_unfold",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_interrupted",
+    "meaning": "既有鼻皱部分消退，区别新发皱鼻",
+    "clause": "鼻根绷出的褶子忽然松了一道",
+    "emotions": [
+      "relief",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "root_fold_partial_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "nose_wrinkled"
+    ]
+  },
+  {
+    "id": "micro_expression.nose_flare_after_pause",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_tension",
+    "meaning": "已有屏息条件下鼻翼先动，避开无根据生理状态",
+    "clause": "短暂屏息后，鼻翼先张了一下才恢复呼吸",
+    "emotions": [
+      "fear",
+      "resolve"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "alar_release_after_hold",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "breath_held"
+    ]
+  },
+  {
+    "id": "micro_expression.nose_upper_ripple",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "nose"
+    ],
+    "family": "nose_recoil",
+    "meaning": "鼻皱向上唇传递后被压止",
+    "clause": "鼻梁刚起褶，上唇就把这点牵动收住了",
+    "emotions": [
+      "disgust",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "nose",
+        "action": "root_wrinkle_lip_brake",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_dimple_flash",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_warmth",
+    "meaning": "颊窝短促出现，无完整笑容必需",
+    "clause": "颊边露出一个浅窝，随即平了",
+    "emotions": [
+      "amusement",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "dimple_onset_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_upper_pulse",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_warmth",
+    "meaning": "上颊提升而唇部不必展开",
+    "clause": "颧骨上方的皮肤短短地一提",
+    "emotions": [
+      "joy",
+      "approval"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "upper_raise_pulse",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_inward_tick",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks",
+      "lips"
+    ],
+    "family": "cheek_restraint",
+    "meaning": "收颊起势被唇角外展主动打断，呈现收缩与反向解除；区别持续吸颊",
+    "clause": "腮部才往里收，唇角便朝两边撑开，把那点凹陷解了",
+    "emotions": [
+      "nervousness",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "buccal_inward_onset",
+        "intensity": 0.35
+      },
+      {
+        "region": "lips",
+        "action": "corner_expand_releases_cheek",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_air_check",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_restraint",
+    "meaning": "鼓颊起始被制止，区别内吸",
+    "clause": "腮帮刚鼓起一点，便被压平了",
+    "emotions": [
+      "frustration",
+      "impatience"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "inflate_onset_flatten",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_teeth_press",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_guard",
+    "meaning": "咬肌区域短暂隆起与消退",
+    "clause": "腮侧的肌肉顶了一下，又退回去",
+    "emotions": [
+      "anger",
+      "resentment"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "masseter_bulge_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_laugh_collapse",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_interrupted",
+    "meaning": "既有颊部笑态的短暂塌落恢复",
+    "clause": "笑着的面颊忽然松落一瞬，又重新提起",
+    "emotions": [
+      "hurt",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "smile_raise_drop_restore",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "smiling"
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_nasolabial_cut",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_guard",
+    "meaning": "鼻唇沟短时加深，以表面形态叙述",
+    "clause": "鼻唇沟忽地深了一线，转眼变浅",
+    "emotions": [
+      "disapproval",
+      "unease"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "nasolabial_deepen_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_chew_abort",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_restraint",
+    "meaning": "咀嚼前态之外的未完成颊肌起势",
+    "clause": "腮边刚出现咬动的起势，便停了下来",
+    "emotions": [
+      "nervousness",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "chewing_onset_arrest",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_eye_pull",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_warmth",
+    "meaning": "短促颊眼联动，区别单纯眼角收紧",
+    "clause": "颊肌一提，眼尾也被带动了一下",
+    "emotions": [
+      "amusement",
+      "gratitude"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "upper_raise_outer_lid_pull",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.cheek_stiffen_soften",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "cheek_interrupted",
+    "meaning": "僵硬短暂起始后由下向上消退",
+    "clause": "面颊先僵住一瞬，随后从嘴边松开",
+    "emotions": [
+      "surprise",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "cheeks",
+        "action": "buccal_freeze_lower_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_corner_catch",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_smile_check",
+    "meaning": "抬唇角的笑容起始被截断",
+    "clause": "唇角刚向上走了一点，就被收了回去",
+    "emotions": [
+      "amusement",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "corner_lift_arrest",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_corner_drop",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_hurt",
+    "meaning": "唇角下牵并复位，区别原有笑容消退",
+    "clause": "嘴角朝下扯了一瞬，又恢复平直",
+    "emotions": [
+      "disappointment",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "corner_depress_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_upper_roll",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_restraint",
+    "meaning": "上唇内卷后复位，区别双唇用力相压",
+    "clause": "上唇往里一卷，很快又翻了出来",
+    "emotions": [
+      "shame",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "upper_inroll_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_lower_tuck",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_restraint",
+    "meaning": "下唇短时内收，不指定牙齿咬压",
+    "clause": "下唇忽地收进齿间，转眼又松开",
+    "emotions": [
+      "vulnerability",
+      "embarrassment"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "lower_tuck_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_gap_flick",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_speech_check",
+    "meaning": "无发声的短时唇间缝隙",
+    "clause": "双唇突然分开一道缝，又迅速合上",
+    "emotions": [
+      "surprise",
+      "realization"
+    ],
+    "axis": "initiative",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "part_slit_close",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_word_abort",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_speech_check",
+    "meaning": "言语起势已明确，口型启动后截断",
+    "clause": "一个字刚要出口，唇形便收住了",
+    "emotions": [
+      "fear",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "articulation_onset_abort",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "about_to_speak"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_purse_release",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_restraint",
+    "meaning": "短时噘拢而非横向压紧",
+    "clause": "嘴唇向前拢了一下，便放松开",
+    "emotions": [
+      "disapproval",
+      "confusion"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "pucker_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_side_pull",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_skew",
+    "meaning": "整段唇线侧移，区别单侧嘴角上提",
+    "clause": "嘴唇横向偏了一点，很快回到正中",
+    "emotions": [
+      "contempt",
+      "annoyance"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "lateral_shift_center",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_lower_quiver",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_hurt",
+    "meaning": "下唇微颤终止于两唇接触",
+    "clause": "下唇轻颤一下，被上唇挡住了",
+    "emotions": [
+      "grief",
+      "fear"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "lower_tremor_upper_cover",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_upper_notch",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_recoil",
+    "meaning": "上唇中央短时上提，区别全唇抬高",
+    "clause": "上唇中央忽地一提，随即落下",
+    "emotions": [
+      "disgust",
+      "disapproval"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "central_upper_raise_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_teeth_flash",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_guard",
+    "meaning": "横拉露齿并覆盖，区别张口",
+    "clause": "双唇横向绷开一瞬，露出的牙很快被遮住",
+    "emotions": [
+      "fear",
+      "anger"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "stretch_teeth_recover",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_smile_edge_break",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_smile_check",
+    "meaning": "笑态不同步退出，不能从中推断欺骗",
+    "clause": "笑容的一角先落了下去，另一角才跟着收住",
+    "emotions": [
+      "hurt",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "smile_unilateral_then_bilateral_drop",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "smiling"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_smile_pinch",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_smile_check",
+    "meaning": "笑容与中央唇压短时并存",
+    "clause": "翘起的嘴角在中途顿住，唇心却压紧了",
+    "emotions": [
+      "amusement",
+      "shame"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "raised_corners_central_press",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "smiling"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_press_flicker",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_guard",
+    "meaning": "已有唇压的一次失守与恢复",
+    "clause": "抿紧的唇线忽然裂开一点，又重新合拢",
+    "emotions": [
+      "fear",
+      "vulnerability"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "pressed_part_reseal",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "lips_pressed"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_lower_forward",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_hurt",
+    "meaning": "下唇前突起落，区别两唇同向噘起",
+    "clause": "下唇独自向前送了一点，又缩回去",
+    "emotions": [
+      "disappointment",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "lower_protrude_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_upper_shiver",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_guard",
+    "meaning": "上唇微颤伴鼻下牵动",
+    "clause": "上唇颤了一下，连带鼻下也轻轻抽动",
+    "emotions": [
+      "anger",
+      "disgust"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "upper_tremor_philtrum_pull",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_bite_release",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_restraint",
+    "meaning": "已有咬唇前态下，唇角外挣导致齿唇接触短时失守，又主动收回；区别咬住、等待、放开",
+    "clause": "齿间的下唇忽地挣开一点，又被嘴角往里收住",
+    "emotions": [
+      "nervousness",
+      "desire"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "bitten_lower_lateral_escape_retuck",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "lower_lip_bitten"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_wet_interrupt",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_speech_check",
+    "meaning": "舔唇起势中断，不渲染不存在的干裂",
+    "clause": "舌尖刚碰到唇边，便又收了回去",
+    "emotions": [
+      "anxiety",
+      "anticipation"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "tongue_edge_touch_retract",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_inner_touch",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_restraint",
+    "meaning": "闭唇内侧短促抵触，形成局部外观变化",
+    "clause": "嘴唇向内收住，舌尖在唇内顶了一下",
+    "emotions": [
+      "impatience",
+      "annoyance"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "inner_tongue_press_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_bottom_flatten",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_hurt",
+    "meaning": "下唇中央扁平化与复位，区别整体抿嘴",
+    "clause": "下唇的弧度忽然变平，片刻便恢复",
+    "emotions": [
+      "hurt",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "lower_curve_flatten_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_round_abort",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_speech_check",
+    "meaning": "圆唇起势而非泛指张口",
+    "clause": "嘴唇才拢成圆形，就迅速松散开",
+    "emotions": [
+      "surprise",
+      "confusion"
+    ],
+    "axis": "initiative",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "round_onset_disperse",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_corner_tremor",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_hurt",
+    "meaning": "唇角震动未形成持续提拉",
+    "clause": "嘴角细细一颤，没能拉成笑容",
+    "emotions": [
+      "gratitude",
+      "grief"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "corner_tremor_no_lift",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_asymmetry_pass",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_guard",
+    "meaning": "唇张力横向传递，不生成左右两份",
+    "clause": "一边嘴角先绷紧，紧意很快传到了另一边",
+    "emotions": [
+      "anger",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "lateral_tension_spread",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_smile_press_flat",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_smile_check",
+    "meaning": "完整笑容起始后被双唇压平",
+    "clause": "笑容刚显出来，便被一条平直的唇线盖住",
+    "emotions": [
+      "joy",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "smile_onset_press_flat",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.lip_exhale_open",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_speech_check",
+    "meaning": "呼气已在进行时的唇开合联动",
+    "clause": "原本合着的唇随着一口气开了一瞬",
+    "emotions": [
+      "relief",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "exhaling_part_close",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "exhaling"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_silent_no",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_speech_check",
+    "meaning": "可见否定口型不实际生成台词内容",
+    "clause": "唇间滑过一个无声的“不”，随即闭住",
+    "emotions": [
+      "dread",
+      "defiance"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "silent_negation_close",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "silent_negation_intended"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_silent_name",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_speech_check",
+    "meaning": "明确名字记忆触发的未完成口型",
+    "clause": "唇边浮出那个名字的起音，又被吞回去",
+    "emotions": [
+      "longing",
+      "grief"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "name_onset_retract",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "name_about_to_be_spoken"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_after_laugh",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_smile_check",
+    "meaning": "已结束笑声后的短时牵拉余波",
+    "clause": "笑声刚停，唇角抽回了一下",
+    "emotions": [
+      "amusement",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "post_laugh_corner_retract",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "laughter_just_ended"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_cover_teeth",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_guard",
+    "meaning": "已有露齿前态被覆盖，无新增牙齿运动",
+    "clause": "露着的牙被嘴唇飞快遮了回去",
+    "emotions": [
+      "shame",
+      "fear"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "teeth_exposure_cover",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "teeth_exposed"
+    ]
+  },
+  {
+    "id": "micro_expression.lip_release_corner",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "lip_restraint",
+    "meaning": "既有唇压从一端向中间解除",
+    "clause": "紧压的嘴唇先松开一角，才恢复自然",
+    "emotions": [
+      "relief",
+      "trust"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "pressed_corner_first_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "lips_pressed"
+    ]
+  },
+  {
+    "id": "micro_expression.jaw_drop_catch",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "jaw"
+    ],
+    "family": "jaw_startle",
+    "meaning": "下颌下落起势被截断",
+    "clause": "下颌往下一落，尚未张开嘴便收住",
+    "emotions": [
+      "surprise",
+      "dread"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "jaw",
+        "action": "drop_before_open_arrest",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.jaw_lateral_tick",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "jaw"
+    ],
+    "family": "jaw_guard",
+    "meaning": "短时横向位移，区别咬紧",
+    "clause": "下颌横移了一点，又回到原位",
+    "emotions": [
+      "annoyance",
+      "nervousness"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "jaw",
+        "action": "lateral_shift_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.jaw_unlock_flash",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "jaw"
+    ],
+    "family": "jaw_release",
+    "meaning": "已有牙关紧张短暂解除",
+    "clause": "咬住的下颌忽然松了一瞬，又重新稳住",
+    "emotions": [
+      "ambivalence",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "jaw",
+        "action": "locked_release_reset",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "jaw_clenched"
+    ]
+  },
+  {
+    "id": "micro_expression.jaw_forward_check",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "jaw"
+    ],
+    "family": "jaw_guard",
+    "meaning": "前探起势被收束，不抬头",
+    "clause": "下颌刚向前送出，就被收回了",
+    "emotions": [
+      "defiance",
+      "anger"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "jaw",
+        "action": "protrude_abort",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.jaw_tuck_release",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "jaw"
+    ],
+    "family": "jaw_recoil",
+    "meaning": "短促后缩，区别身体后退",
+    "clause": "下颌朝颈间缩了一下，又放回原处",
+    "emotions": [
+      "fear",
+      "disgust"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "jaw",
+        "action": "retract_return",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.chin_dimple_flick",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "chin",
+      "lips"
+    ],
+    "family": "chin_hurt",
+    "meaning": "颏肌局部收缩被下唇内收接替，同一区域张力重新分配，区别持续皱下巴",
+    "clause": "下巴中央才皱起一点，下唇便向内收住，把那点褶子压平",
+    "emotions": [
+      "hurt",
+      "grief"
+    ],
+    "axis": "withdrawal",
+    "facial_actions": [
+      {
+        "region": "chin",
+        "action": "central_mentalis_contract_release",
+        "intensity": 0.35
+      },
+      {
+        "region": "lips",
+        "action": "lower_tuck_after_mentalis",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.chin_raise_quiver",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "chin"
+    ],
+    "family": "chin_hurt",
+    "meaning": "颏肌上收兼颤动，不是抬下颌",
+    "clause": "下巴的皮肤往上一挤，轻颤随即停住",
+    "emotions": [
+      "grief",
+      "vulnerability"
+    ],
+    "axis": "tension",
+    "facial_actions": [
+      {
+        "region": "chin",
+        "action": "mentalis_raise_tremor_stop",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  },
+  {
+    "id": "micro_expression.jaw_speech_freeze",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "jaw"
+    ],
+    "family": "jaw_speech_check",
+    "meaning": "已准备说话的下颌起势冻结并闭合",
+    "clause": "下颌停在话音将出的地方，很快闭合",
+    "emotions": [
+      "fear",
+      "shame"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "jaw",
+        "action": "speech_open_freeze_close",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "about_to_speak"
+    ]
+  },
+  {
+    "id": "micro_expression.chin_fold_release",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "chin"
+    ],
+    "family": "chin_hurt",
+    "meaning": "已有颏唇沟紧张短时消退",
+    "clause": "下唇下方的横褶突然松开了一瞬",
+    "emotions": [
+      "relief",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "chin",
+        "action": "labiomental_fold_release",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "chin_tense"
+    ]
+  },
+  {
+    "id": "micro_expression.jaw_open_reset",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "jaw"
+    ],
+    "family": "jaw_startle",
+    "meaning": "已有张口前态的局部收回",
+    "clause": "张着的下颌合上一点，又停在半开的位置",
+    "emotions": [
+      "confusion",
+      "realization"
+    ],
+    "axis": "self_control",
+    "facial_actions": [
+      {
+        "region": "jaw",
+        "action": "open_partial_close_hold",
+        "intensity": 0.35
+      }
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ],
+    "facts": [
+      "mouth_open"
+    ]
+  },
+  {
+    "id": "micro_expression.nod_releases_smile",
+    "category": "micro_expression",
+    "channel": "facial",
+    "parts": [
+      "lips",
+      "eyelids"
+    ],
+    "family": "lip_smile_check",
+    "meaning": "看见肯定点头后，原有唇压先解除、眼角随后参与；收到可继续的信号而恢复积极预期",
+    "clause": "看见对方点头，压着的唇角先松开，眼尾随即弯了一下",
+    "emotions": [
+      "optimism",
+      "relief",
+      "hope"
+    ],
+    "axis": "warmth",
+    "facial_actions": [
+      {
+        "region": "lips",
+        "action": "pressed_corner_release_lift",
+        "intensity": 0.35
+      },
+      {
+        "region": "eyelids",
+        "action": "affirmation_outer_crimp_follow",
+        "intensity": 0.35
+      }
+    ],
+    "facts": [
+      "target_affirmative_nod_visible",
+      "lips_pressed"
+    ],
+    "preconditions": [
+      "target_known"
+    ],
+    "capabilities": [
+      "vision"
+    ],
+    "visibility": "subtle",
+    "intensity": [
+      0.15,
+      0.65
+    ]
+  }
+]

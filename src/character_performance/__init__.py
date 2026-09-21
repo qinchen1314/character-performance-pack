@@ -6,4 +6,4 @@ from .ontology.pack import PerformancePack
 from .renderer import ChineseNovelRenderer, ConstrainedLLMRenderer
 
 __all__ = ["PackBuildError", "PackBuildResult", "build_pack", "PerformanceEngine", "PerformancePack", "ChineseNovelRenderer", "ConstrainedLLMRenderer"]
-__version__ = "0.3.0"
+__version__ = "0.4.0"

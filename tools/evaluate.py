@@ -19,6 +19,7 @@ from character_performance.domain.models import CharacterProfile, EmotionState, 
 from character_performance.engine import PerformanceEngine
 from character_performance.ontology.pack import PerformancePack
 from character_performance.scoring import ScoringRules
+from character_performance.quality import catalog_report
 
 
 def evaluate() -> dict:
@@ -53,6 +54,7 @@ def evaluate() -> dict:
     trope = sum(groups[key] for key in ("brow_tension", "hand_tension", "mouth_change", "gaze_flash", "deep_breath"))
     recent_repeat = any(set(row["units"]) & {key for previous in rounds[max(0, i-3):i] for key in previous["units"]} for i, row in enumerate(rounds))
     units = pack.all()
+    quality = catalog_report(pack)
     return {
         "pack_version": pack.version, "pack_hash": pack.content_hash, "rule_version": ScoringRules().version,
         "coverage": {"emotions": len(pack.ontology), "units": len(units),
@@ -65,7 +67,11 @@ def evaluate() -> dict:
             "max_semantic_group_count": max(groups.values(), default=0), "trope_fraction": round(trope / total, 4) if total else 0,
             "adjacent_3_repeat": recent_repeat, "no_valid_candidate_rate": sum(not row["units"] for row in rounds) / 20,
             "planner_p50_ms": round(median(timings), 3), "planner_p95_ms": round(sorted(timings)[18], 3)},
-        "gates": {"T1": jaccard <= .55, "T4": max(groups.values(), default=0) <= 4 and not recent_repeat and trope / max(1, total) <= .3},
+        "catalog_quality": quality,
+        "gates": {"T1": jaccard <= .55, "T4": max(groups.values(), default=0) <= 4 and not recent_repeat and trope / max(1, total) <= .3,
+            "catalog_quantity": all(quality["quantity_gates"].values()),
+            "catalog_duplicate": not quality["exact_duplicate_pairs"] and quality["near_duplicate_unit_fraction"] <= .05,
+            "emotion_coverage": all(value["candidates"] >= 3 and len(value["channels"]) >= 2 for value in quality["emotion_coverage"].values())},
         "semantic_counts": dict(sorted(groups.items())), "rounds": rounds,
     }
 

@@ -15,7 +15,7 @@ def noise(seed: int, unit_id: str) -> float:
 
 @dataclass(frozen=True)
 class ScoringRules:
-    version: str = "1.1.0"
+    version: str = "1.2.0"
     emotion: float = 1.2
     vad: float = .8
     narrative: float = .55

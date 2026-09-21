@@ -1,0 +1,3131 @@
+[
+  {
+    "id": "facial.smile_lips_closed",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "social_smile",
+    "meaning": "闭唇维持笑形，区别开放露齿的笑",
+    "clause": "含着一个不露齿的笑",
+    "emotions": [
+      "contentment",
+      "approval"
+    ],
+    "axis": "warmth"
+  },
+  {
+    "id": "facial.smile_eye_first",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "lips"
+    ],
+    "family": "social_smile",
+    "meaning": "眼周先进入、唇角后跟随的温和笑序列",
+    "clause": "先弯起眼睛，笑意才慢慢来到嘴边",
+    "emotions": [
+      "tenderness",
+      "love"
+    ],
+    "axis": "warmth"
+  },
+  {
+    "id": "facial.smile_teeth_together",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth",
+      "jaw"
+    ],
+    "family": "mixed_smile",
+    "meaning": "笑与牙关紧张并存，适合带阻力的友好",
+    "clause": "露出牙齿笑着，牙关却没有松开",
+    "emotions": [
+      "ambivalence",
+      "nervousness"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.smile_lowered_head",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth"
+    ],
+    "family": "private_smile",
+    "meaning": "低头已成立时仍保持可见笑意",
+    "clause": "垂着头，笑容藏在低下的脸上",
+    "emotions": [
+      "shame",
+      "joy"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "head_lowered"
+    ]
+  },
+  {
+    "id": "facial.smile_nose_wrinkle",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth",
+      "nose"
+    ],
+    "family": "playful_face",
+    "meaning": "笑中加入持续鼻皱，区别礼仪笑",
+    "clause": "笑得鼻尖也跟着皱起来",
+    "emotions": [
+      "amusement",
+      "joy"
+    ],
+    "axis": "warmth"
+  },
+  {
+    "id": "facial.smile_one_corner",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "mixed_smile",
+    "meaning": "持续的不对称笑形，可用于玩味或不满",
+    "clause": "只把一侧唇角勾起，另一侧仍平着",
+    "emotions": [
+      "amusement",
+      "contempt"
+    ],
+    "axis": "initiative"
+  },
+  {
+    "id": "facial.smile_without_eye",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips",
+      "eyelids"
+    ],
+    "family": "mixed_smile",
+    "meaning": "唇笑与眼周不参与的形态，不等同说谎证据",
+    "clause": "唇边留着笑，眼周却一直平静",
+    "emotions": [
+      "approval",
+      "ambivalence"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.smile_trembling",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "mixed_smile",
+    "meaning": "笑形保持与唇角颤动存在张力",
+    "clause": "努力撑着笑，嘴角却稳不住",
+    "emotions": [
+      "gratitude",
+      "grief"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.smile_tears",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth",
+      "eyelids"
+    ],
+    "family": "mixed_smile",
+    "meaning": "已含泪条件下形成笑容，不凭空制造泪水",
+    "clause": "隔着泪水露出笑容",
+    "emotions": [
+      "relief",
+      "gratitude"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "tearful"
+    ]
+  },
+  {
+    "id": "facial.smile_invitation",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "social_smile",
+    "meaning": "向已知对象送出开放社交邀请；预期会得到回应，支持乐观的关系接近",
+    "clause": "放松嘴角，露出一个等待回应的笑",
+    "emotions": [
+      "trust",
+      "hope",
+      "optimism"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "target_present"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "facial.smile_answer",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth"
+    ],
+    "family": "social_smile",
+    "meaning": "明确对方笑容在先的情绪回应",
+    "clause": "接住对方的笑，也缓缓笑了起来",
+    "emotions": [
+      "trust",
+      "approval"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target_smiling"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "facial.smile_aside",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth"
+    ],
+    "family": "private_smile",
+    "meaning": "侧脸前态下让笑容保持非正面对视",
+    "clause": "侧着脸笑开，避开了对方的正面",
+    "emotions": [
+      "embarrassment",
+      "amusement"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "face_turned_aside",
+      "target_present"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "facial.smile_pride_rest",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "social_smile",
+    "meaning": "安定保持的收敛满足，非快速闪笑",
+    "clause": "闭着嘴笑，唇线舒展得很稳",
+    "emotions": [
+      "satisfaction",
+      "pride"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.smile_question_brow",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips",
+      "brow"
+    ],
+    "family": "mixed_smile",
+    "meaning": "持续笑与询问眉态并存",
+    "clause": "嘴边带笑，眉梢却保持扬起",
+    "emotions": [
+      "curiosity",
+      "amusement"
+    ],
+    "axis": "initiative"
+  },
+  {
+    "id": "facial.smile_wait_fade",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth"
+    ],
+    "family": "smile_withdrawal",
+    "meaning": "社交回应缺席造成缓慢撤笑",
+    "clause": "没有等到回应，笑容一点点退了下去",
+    "emotions": [
+      "hurt",
+      "disappointment"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "smiling",
+      "response_absent"
+    ]
+  },
+  {
+    "id": "facial.smile_formal_finish",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth"
+    ],
+    "family": "social_smile",
+    "meaning": "社交仪式明确结束时撤去维持的笑",
+    "clause": "把笑意停在嘴边，直到寒暄结束才收回",
+    "emotions": [
+      "approval",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "greeting_exchange"
+    ]
+  },
+  {
+    "id": "facial.smile_self_correction",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth",
+      "cheeks"
+    ],
+    "family": "private_smile",
+    "meaning": "已有笑声后闭口仍有颊部笑态",
+    "clause": "刚笑出声便合住嘴，仍掩不住颊边的笑纹",
+    "emotions": [
+      "amusement",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "laughter_just_started"
+    ]
+  },
+  {
+    "id": "facial.smile_face_soften",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "lips"
+    ],
+    "family": "social_smile",
+    "meaning": "全脸防备缓解后进入温和状态",
+    "clause": "眼角和嘴边一齐松下来，显出柔和的笑意",
+    "emotions": [
+      "trust",
+      "compassion"
+    ],
+    "axis": "warmth"
+  },
+  {
+    "id": "facial.frown_upper_lip",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "lips"
+    ],
+    "family": "rejection_face",
+    "meaning": "眉收缩与上唇提升共同形成排斥表情",
+    "clause": "眉心挤紧，上唇也提了起来",
+    "emotions": [
+      "disgust",
+      "anger"
+    ],
+    "axis": "aggression"
+  },
+  {
+    "id": "facial.frown_tilted_mouth",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "mouth"
+    ],
+    "family": "rejection_face",
+    "meaning": "审视眉态与偏唇并存的保留意见",
+    "clause": "眉头皱着，嘴却偏向一边",
+    "emotions": [
+      "suspicion",
+      "disapproval"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.frown_open_lips",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "lips"
+    ],
+    "family": "question_face",
+    "meaning": "眉间疑惑和无言张唇持续并存",
+    "clause": "皱起眉，双唇分开却没接上话",
+    "emotions": [
+      "confusion",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "conversation_underway"
+    ]
+  },
+  {
+    "id": "facial.frown_listening",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "question_face",
+    "meaning": "随已知听取过程累计的眉间收缩",
+    "clause": "一边听，一边把眉头越收越近",
+    "emotions": [
+      "confusion",
+      "suspicion"
+    ],
+    "axis": "tension",
+    "facts": [
+      "listening"
+    ]
+  },
+  {
+    "id": "facial.frown_inner_raised",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "hurt_face",
+    "meaning": "内侧提升与外侧下降形成不同于愤怒的眉形",
+    "clause": "内眉挑着，眉峰却向下压住",
+    "emotions": [
+      "sadness",
+      "compassion"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.frown_upper_fixed",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "eyelids"
+    ],
+    "family": "guarded_face",
+    "meaning": "上脸持续紧张而下脸保持中性",
+    "clause": "上半张脸绷着，嘴边始终没有变化",
+    "emotions": [
+      "suspicion",
+      "dread"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.frown_resolve",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "lips"
+    ],
+    "family": "guarded_face",
+    "meaning": "已有忧苦表情中下脸先恢复控制",
+    "clause": "眉心仍拧着，唇角却不再往下坠",
+    "emotions": [
+      "resolve",
+      "grief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "brows_furrowed",
+      "mouth_corners_down"
+    ]
+  },
+  {
+    "id": "facial.brow_double_arch",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "question_face",
+    "meaning": "持续对称扬眉，区别瞬时眉跳",
+    "clause": "双眉拱起来，额头的横纹一直没有退",
+    "emotions": [
+      "surprise",
+      "confusion"
+    ],
+    "axis": "initiative"
+  },
+  {
+    "id": "facial.brow_one_raised_hold",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "question_face",
+    "meaning": "持续不对称眉态配合已知听话情境",
+    "clause": "一边眉梢高着，等着对方把话说完",
+    "emotions": [
+      "suspicion",
+      "amusement"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "target_speaking"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "facial.brow_down_chin_out",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "jaw"
+    ],
+    "family": "defiant_face",
+    "meaning": "眉压与下颌前送组合为持续抵抗姿态",
+    "clause": "眉压低了，下颌仍朝前抵着",
+    "emotions": [
+      "defiance",
+      "anger"
+    ],
+    "axis": "aggression"
+  },
+  {
+    "id": "facial.brow_inner_sorrow",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "hurt_face",
+    "meaning": "内眉上聚形成持续忧苦形状",
+    "clause": "眉头往上聚拢，额心挤出短短的竖褶",
+    "emotions": [
+      "grief",
+      "helplessness"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.brow_slow_flatten",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow"
+    ],
+    "family": "composure_face",
+    "meaning": "缓慢恢复中性眉态，有明确紧眉前态",
+    "clause": "眉间的褶子一点点抹平，直到只剩平直的眉线",
+    "emotions": [
+      "resignation",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "brows_furrowed"
+    ]
+  },
+  {
+    "id": "facial.eyes_round_mouth_still",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "lips"
+    ],
+    "family": "startled_face",
+    "meaning": "眼部惊动与闭唇克制持续共存",
+    "clause": "眼睛睁圆，嘴唇仍闭得严整",
+    "emotions": [
+      "surprise",
+      "dread"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.eyes_half_open_rest",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "resting_face",
+    "meaning": "放松而非用力眯眼的低睑状态",
+    "clause": "眼睛半开着，眼周的肌肉全松了",
+    "emotions": [
+      "serenity",
+      "contentment"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.eyes_squint_mouth_flat",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "lips"
+    ],
+    "family": "guarded_face",
+    "meaning": "审视用眯眼配合平唇，区别生理避光",
+    "clause": "眼睛眯起来，唇线拉得平直",
+    "emotions": [
+      "suspicion",
+      "disapproval"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.eyes_bright_smile_hold",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "mouth"
+    ],
+    "family": "private_smile",
+    "meaning": "笑意主要停留眼周的收敛正向表达",
+    "clause": "眼尾弯着，嘴边却没有笑开",
+    "emotions": [
+      "amusement",
+      "tenderness"
+    ],
+    "axis": "warmth"
+  },
+  {
+    "id": "facial.eyes_closed_brow_knit",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "brow"
+    ],
+    "family": "hurt_face",
+    "meaning": "闭眼不能解除的眉部持续紧张；不依赖眼泪，容纳绝望中的无从缓解",
+    "clause": "闭上眼后，眉头依旧没有松开",
+    "emotions": [
+      "frustration",
+      "grief",
+      "despair"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.eyes_closed_face_release",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "brow",
+      "mouth"
+    ],
+    "family": "resting_face",
+    "meaning": "闭眼后逐区解除面部张力",
+    "clause": "合起眼睛，让整张脸慢慢松下来",
+    "emotions": [
+      "relief",
+      "serenity"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.eyes_wide_jaw_slack",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "jaw"
+    ],
+    "family": "startled_face",
+    "meaning": "上脸扩大与下颌放松的完整惊讶",
+    "clause": "眼睛睁大，下颌也松落下来",
+    "emotions": [
+      "awe",
+      "surprise"
+    ],
+    "axis": "tension"
+  },
+  {
+    "id": "facial.eyes_narrow_nose_wrinkle",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "nose"
+    ],
+    "family": "rejection_face",
+    "meaning": "眯眼和皱鼻同时持续的排斥",
+    "clause": "眼睛收成窄缝，鼻梁上叠起褶子",
+    "emotions": [
+      "disgust",
+      "disapproval"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.eyes_lid_heavy",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "resting_face",
+    "meaning": "困倦事实下持续抗拒闭眼的周期",
+    "clause": "上眼皮一再往下坠，又被勉强撑起",
+    "emotions": [
+      "boredom",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "sleepy"
+    ]
+  },
+  {
+    "id": "facial.eyes_dry_blink",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "composure_face",
+    "meaning": "明确眼干时以多次眨眼缓解紧张",
+    "clause": "眨了几次眼，才缓下紧绷的眼周",
+    "emotions": [
+      "unease",
+      "frustration"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "eyes_dry"
+    ]
+  },
+  {
+    "id": "facial.eyes_tear_lower_lid",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids"
+    ],
+    "family": "hurt_face",
+    "meaning": "已含泪的边缘积聚与持续睁眼",
+    "clause": "眼泪停在下眼睑边，眼睛始终睁着",
+    "emotions": [
+      "grief",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "tearful"
+    ]
+  },
+  {
+    "id": "facial.eyes_tear_squeeze",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "brow"
+    ],
+    "family": "hurt_face",
+    "meaning": "已有泪水下闭眼紧眉的持续苦态",
+    "clause": "用力闭住含泪的眼睛，眉心一并挤紧",
+    "emotions": [
+      "grief",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "tearful"
+    ]
+  },
+  {
+    "id": "facial.eyes_smile_drain",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "eyelids",
+      "mouth"
+    ],
+    "family": "smile_withdrawal",
+    "meaning": "笑容退出从眼周到唇部，有阶段差",
+    "clause": "眼角先不再弯着，嘴边的笑才慢慢散去",
+    "emotions": [
+      "disappointment",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "smiling",
+      "eye_smile_present"
+    ]
+  },
+  {
+    "id": "facial.mouth_ajar_listen",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "question_face",
+    "meaning": "在听话结束后保留开放口型",
+    "clause": "嘴唇微张着，听完也没有立刻合上",
+    "emotions": [
+      "confusion",
+      "surprise"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "listening_just_ended"
+    ]
+  },
+  {
+    "id": "facial.mouth_pursed_judge",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips",
+      "brow"
+    ],
+    "family": "question_face",
+    "meaning": "持续圆唇与审视眉态共存",
+    "clause": "把嘴唇拢成小小的圆，眉间留着疑色",
+    "emotions": [
+      "suspicion",
+      "confusion"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.mouth_cheek_bite",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth",
+      "cheeks"
+    ],
+    "family": "guarded_face",
+    "meaning": "持续内侧接触抑制外显动作",
+    "clause": "从口内抵住颊侧，腮边绷出浅浅一道痕",
+    "emotions": [
+      "nervousness",
+      "impatience"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.mouth_teeth_clenched",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "jaw",
+      "lips"
+    ],
+    "family": "defiant_face",
+    "meaning": "齿接触与唇分离的持续张力",
+    "clause": "上下齿抵在一起，双唇却留着一道缝",
+    "emotions": [
+      "anger",
+      "defiance"
+    ],
+    "axis": "aggression"
+  },
+  {
+    "id": "facial.mouth_lower_bite_hold",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "guarded_face",
+    "meaning": "齿唇接触保持一段时间，区别微动作",
+    "clause": "轻轻咬住下唇，过了一会儿才放开",
+    "emotions": [
+      "anxiety",
+      "desire"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.mouth_cheek_hollow",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "cheeks",
+      "mouth"
+    ],
+    "family": "guarded_face",
+    "meaning": "持续收颊带动下脸收窄",
+    "clause": "把两颊向里收住，让嘴边的线条紧起来",
+    "emotions": [
+      "annoyance",
+      "nervousness"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.mouth_air_hold",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "cheeks",
+      "lips"
+    ],
+    "family": "playful_face",
+    "meaning": "闭口鼓颊持留后释放，不宣称气息情绪真值",
+    "clause": "鼓着腮停了一会儿，才让双颊落回去",
+    "emotions": [
+      "frustration",
+      "amusement"
+    ],
+    "axis": "tension"
+  },
+  {
+    "id": "facial.mouth_lopsided_grimace",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "rejection_face",
+    "meaning": "不对称的横向牵拉，区别一侧微笑",
+    "clause": "嘴角往两边扯，却没拉出对称的弧线",
+    "emotions": [
+      "embarrassment",
+      "disgust"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.mouth_tongue_cheek",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth",
+      "cheeks"
+    ],
+    "family": "playful_face",
+    "meaning": "持续口内顶颊的表面可见动作",
+    "clause": "舌头隔着面颊顶出一小块隆起",
+    "emotions": [
+      "impatience",
+      "amusement"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.mouth_lower_out",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "hurt_face",
+    "meaning": "下唇突出和唇角下压组合",
+    "clause": "下唇往前送着，嘴角却朝下压",
+    "emotions": [
+      "disappointment",
+      "hurt"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.mouth_corner_braced",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "guarded_face",
+    "meaning": "中心收敛和外围撑开并存的下脸张力",
+    "clause": "两边嘴角撑着，唇心却被紧紧收住",
+    "emotions": [
+      "nervousness",
+      "ambivalence"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.mouth_quiet_articulate",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth"
+    ],
+    "family": "speech_face",
+    "meaning": "已明确准备措辞的口型排演",
+    "clause": "无声地动着嘴，把将说的话又过了一遍",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "rehearsing_words"
+    ]
+  },
+  {
+    "id": "facial.mouth_count_silent",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "speech_face",
+    "meaning": "明确计数任务下的口型序列",
+    "clause": "嘴唇无声开合，把数目逐一数过去",
+    "emotions": [
+      "interest",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "counting_task"
+    ]
+  },
+  {
+    "id": "facial.mouth_repeat_last",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "lips"
+    ],
+    "family": "speech_face",
+    "meaning": "明确已闻词汇后的短语口型回放",
+    "clause": "无声地重复了一遍刚听到的词",
+    "emotions": [
+      "confusion",
+      "realization"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "word_just_heard"
+    ]
+  },
+  {
+    "id": "facial.mouth_laugh_no_sound",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "mouth"
+    ],
+    "family": "private_smile",
+    "meaning": "完整无声笑，区别单次微笑",
+    "clause": "张开嘴笑了一会儿，却没有放出声音",
+    "emotions": [
+      "amusement",
+      "joy"
+    ],
+    "axis": "warmth"
+  },
+  {
+    "id": "facial.jaw_open_doubt",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "jaw",
+      "brow"
+    ],
+    "family": "question_face",
+    "meaning": "开放下颌和渐进疑眉形成困惑",
+    "clause": "下颌悬着，眉头朝中间慢慢靠拢",
+    "emotions": [
+      "confusion",
+      "surprise"
+    ],
+    "axis": "tension"
+  },
+  {
+    "id": "facial.jaw_back_lips_part",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "jaw",
+      "lips"
+    ],
+    "family": "hurt_face",
+    "meaning": "下颌后缩与唇分开共存的退缩形态",
+    "clause": "下颌往里收，双唇却没有合拢",
+    "emotions": [
+      "fear",
+      "helplessness"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.jaw_work_side",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "jaw",
+      "cheeks"
+    ],
+    "family": "guarded_face",
+    "meaning": "持续周期性颌部调节，无食物暗示",
+    "clause": "牙关松了又合，腮侧随着缓慢起伏",
+    "emotions": [
+      "impatience",
+      "anger"
+    ],
+    "axis": "self_control"
+  },
+  {
+    "id": "facial.chin_knotted",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "chin",
+      "lips"
+    ],
+    "family": "hurt_face",
+    "meaning": "颏肌持续收缩及下唇上推",
+    "clause": "下巴的皮肤皱成一小团，下唇被顶了起来",
+    "emotions": [
+      "grief",
+      "vulnerability"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.chin_smooth_lips_loose",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "chin",
+      "lips"
+    ],
+    "family": "composure_face",
+    "meaning": "已有下脸紧张中颏肌和唇压先后解除",
+    "clause": "下巴舒展开，嘴唇也不再用力相抵",
+    "emotions": [
+      "relief",
+      "trust"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "chin_tense",
+      "lips_pressed"
+    ]
+  },
+  {
+    "id": "facial.nose_wrinkled_upper_teeth",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "nose",
+      "lips"
+    ],
+    "family": "rejection_face",
+    "meaning": "鼻皱与露上齿持续结合的嫌恶形态",
+    "clause": "皱着鼻子，上排牙齿露在提起的唇下",
+    "emotions": [
+      "disgust",
+      "contempt"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.nose_flared_lips_thin",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "nose",
+      "lips"
+    ],
+    "family": "defiant_face",
+    "meaning": "鼻翼开放和唇压同时持续",
+    "clause": "鼻翼张着，嘴唇压成了一道细线",
+    "emotions": [
+      "anger",
+      "defiance"
+    ],
+    "axis": "aggression"
+  },
+  {
+    "id": "facial.cheek_sag_mouth_drop",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "cheeks",
+      "lips"
+    ],
+    "family": "hurt_face",
+    "meaning": "下脸整体失去支撑的静态失落形态",
+    "clause": "面颊松下来，两边嘴角也垂了下去",
+    "emotions": [
+      "despair",
+      "resignation"
+    ],
+    "axis": "withdrawal"
+  },
+  {
+    "id": "facial.face_blank_reset",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "eyelids",
+      "lips"
+    ],
+    "family": "composure_face",
+    "meaning": "面部主动回到中性并保留听话状态",
+    "clause": "把眉眼和嘴角都收回平静，等着下一句话",
+    "emotions": [
+      "determination",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "conversation_underway"
+    ]
+  },
+  {
+    "id": "facial.face_deliberate_grimace",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "nose",
+      "mouth"
+    ],
+    "family": "playful_face",
+    "meaning": "明确逗乐意图下的整脸表演",
+    "clause": "挤起鼻子，把嘴角夸张地扯开，做了个鬼脸",
+    "emotions": [
+      "amusement",
+      "caring"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "playful_intent"
+    ]
+  },
+  {
+    "id": "facial.face_grimace_drop",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "mouth"
+    ],
+    "family": "composure_face",
+    "meaning": "已有故意鬼脸的撤回过程",
+    "clause": "鬼脸收回去后，眉眼重新归于自然",
+    "emotions": [
+      "amusement",
+      "contentment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "grimacing_playfully"
+    ]
+  },
+  {
+    "id": "facial.face_laugh_to_serious",
+    "category": "facial",
+    "channel": "facial",
+    "parts": [
+      "brow",
+      "eyelids",
+      "lips"
+    ],
+    "family": "smile_withdrawal",
+    "meaning": "从笑到认真状态的完整慢转换",
+    "clause": "笑容缓缓收净，嘴唇重新合拢，眉眼也安定下来",
+    "emotions": [
+      "resolve",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "smiling"
+    ]
+  },
+  {
+    "id": "gaze.target_eye_mouth_triangle",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "social_reading",
+    "meaning": "面部信息分区核对而非单点盯视",
+    "clause": "视线在对方的双眼和嘴唇之间转了一圈",
+    "emotions": [
+      "suspicion",
+      "interest"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_hand_before_face",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "social_reading",
+    "meaning": "先验证手势再读取脸部反应",
+    "clause": "先看清对方摊开的手，才抬眼辨认神情",
+    "emotions": [
+      "trust",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_open_hand_visible",
+      "target_face_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_answer_seek",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "response_seeking",
+    "meaning": "本人已发言后以注视请求反馈",
+    "clause": "话说完后便看着对方，等一个表示",
+    "emotions": [
+      "hope",
+      "vulnerability"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "own_turn_just_ended",
+      "target_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_response_hold",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "response_seeking",
+    "meaning": "别人先撤走对视后仍保持关注",
+    "clause": "对方移开目光时，视线仍留在那张脸上",
+    "emotions": [
+      "longing",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_gaze_just_averted",
+      "target_face_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_gaze_allow",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "gaze_accommodation",
+    "meaning": "主动解除目光压力的照顾行为",
+    "clause": "把目光移到一旁，让对方不必与自己对视",
+    "emotions": [
+      "compassion",
+      "caring"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "mutual_eye_contact",
+      "target_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_speaker_follow",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "turn_tracking",
+    "meaning": "多人会话按发言权转移注意",
+    "clause": "谁接着开口，目光便转到谁身上",
+    "emotions": [
+      "interest",
+      "approval"
+    ],
+    "axis": "deference",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "multiple_speakers_visible",
+      "conversation_turn_changes_visible"
+    ]
+  },
+  {
+    "id": "gaze.target_silent_member",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "turn_tracking",
+    "meaning": "主动关注未发言成员，区别追随当前说话者",
+    "clause": "越过正在说话的人，留意那个始终沉默的同伴",
+    "emotions": [
+      "caring",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "silent_companion_visible",
+      "speaker_visible"
+    ]
+  },
+  {
+    "id": "gaze.target_shared_glance",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "affiliative_gaze",
+    "meaning": "隐蔽共享注意要求同伴回应事实",
+    "clause": "趁旁人转开脸，与同伴交换了一个眼神",
+    "emotions": [
+      "trust",
+      "amusement"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "companion_returns_glance",
+      "bystander_turned_away"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_confirmation",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "response_seeking",
+    "meaning": "明示点头后进行确认性观察",
+    "clause": "眼睛追着对方的点头，确认那一下不是错觉",
+    "emotions": [
+      "hope",
+      "relief"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_nodding_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_wound_check",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "care_gaze",
+    "meaning": "因明确伤处把关注从社交转为关怀",
+    "clause": "目光避开对方的脸，停在那处伤上",
+    "emotions": [
+      "compassion",
+      "anxiety"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_wound_visible",
+      "target_face_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_tremor_notice",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "care_gaze",
+    "meaning": "对既有手颤进行持续注意，不新增手颤",
+    "clause": "视线落在对方发颤的手上，没有立刻移走",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_hand_trembling_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_laugh_echo",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "affiliative_gaze",
+    "meaning": "明确笑容延长社交注意",
+    "clause": "看见对方笑起来，目光便多停了一会儿",
+    "emotions": [
+      "tenderness",
+      "love"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_smiling_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_badge_face",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "identity_check",
+    "meaning": "身份标记与人脸核对",
+    "clause": "先看对方胸前的标记，再看那人的脸",
+    "emotions": [
+      "suspicion",
+      "interest"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_chest_badge_visible",
+      "target_face_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_rank_defer",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "gaze_accommodation",
+    "meaning": "明确长幼礼仪前提下的目光降压",
+    "clause": "与长者目光一碰，便恭敬地移到对方肩侧",
+    "emotions": [
+      "reverence",
+      "embarrassment"
+    ],
+    "axis": "deference",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_elder",
+      "mutual_eye_contact",
+      "target_shoulders_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_challenge_return",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "challenge_gaze",
+    "meaning": "在他人挑战已成立时维持互看，区别无触发凝视",
+    "clause": "对上逼来的目光后，没有让视线往旁边偏",
+    "emotions": [
+      "defiance",
+      "resolve"
+    ],
+    "axis": "aggression",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_challenging_gaze",
+      "mutual_eye_contact"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.target_apology_eyes",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "social_reading",
+    "meaning": "明确道歉之后查看接触而非立即认可",
+    "clause": "听完道歉，先看了看对方的眼睛",
+    "emotions": [
+      "ambivalence",
+      "resentment"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "apology_heard",
+      "target_eyes_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.empty_chair_linger",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "absence_gaze",
+    "meaning": "已知空席引发缺席者注意，不增加人物",
+    "clause": "目光在空着的那把椅子上停留许久",
+    "emotions": [
+      "loneliness",
+      "longing"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "empty_chair_visible"
+    ]
+  },
+  {
+    "id": "gaze.old_threshold_trace",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "memory_gaze",
+    "meaning": "故地已知磨痕的缓慢重访",
+    "clause": "顺着旧屋门槛的磨痕，一寸寸看过去",
+    "emotions": [
+      "nostalgia",
+      "homesickness"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "familiar_worn_threshold_visible"
+    ]
+  },
+  {
+    "id": "gaze.portrait_face_search",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "memory_gaze",
+    "meaning": "具名画像中的面部核认任务",
+    "clause": "细看画像上的眉眼，像要重新认一遍",
+    "emotions": [
+      "longing",
+      "grief"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "familiar_portrait_visible"
+    ]
+  },
+  {
+    "id": "gaze.familiar_handwriting",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "memory_gaze",
+    "meaning": "已知熟悉字迹延长笔画关注",
+    "clause": "目光沿熟悉的笔画走得很慢",
+    "emotions": [
+      "nostalgia",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "familiar_handwriting_visible"
+    ]
+  },
+  {
+    "id": "gaze.distant_road_home",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "memory_gaze",
+    "meaning": "已知归乡方向引发重复定向注意",
+    "clause": "反复看向通往故乡的那条路口",
+    "emotions": [
+      "homesickness",
+      "longing"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "homeward_road_visible"
+    ]
+  },
+  {
+    "id": "gaze.keepsake_turn",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "memory_gaze",
+    "meaning": "持有并已翻转物件的视觉跟随",
+    "clause": "目光追着手中信物翻转后露出的另一面",
+    "emotions": [
+      "nostalgia",
+      "grief"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "keepsake_held_and_turning"
+    ]
+  },
+  {
+    "id": "gaze.empty_door_wait",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "absence_gaze",
+    "meaning": "期待具体入口来人，门仍空的事实已知",
+    "clause": "一遍遍把目光投向尚未出现人影的门口",
+    "emotions": [
+      "anticipation",
+      "loneliness"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "expected_person",
+      "empty_doorway_visible"
+    ]
+  },
+  {
+    "id": "gaze.place_after_departure",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "absence_gaze",
+    "meaning": "明确离开事实后对空位置保持关注",
+    "clause": "人已经走开，目光还留在原先的位置",
+    "emotions": [
+      "longing",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_just_departed",
+      "former_target_place_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.reflection_self_meet",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "self_gaze",
+    "meaning": "镜面已知时的自我目光接触",
+    "clause": "与镜中的自己对上了眼，停了好一会儿",
+    "emotions": [
+      "shame",
+      "vulnerability"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "self_reflection_visible"
+    ]
+  },
+  {
+    "id": "gaze.reflection_avoid_face",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "self_gaze",
+    "meaning": "同一镜面环境中回避自我面部",
+    "clause": "视线沿镜框走了一圈，却没有停到自己的脸上",
+    "emotions": [
+      "guilt",
+      "humiliation"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "self_reflection_visible",
+      "mirror_frame_visible"
+    ]
+  },
+  {
+    "id": "gaze.text_line_return",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "reading_gaze",
+    "meaning": "阅读重扫单行，用于不确定或核对",
+    "clause": "读到行末，又把视线移回这一行开头",
+    "emotions": [
+      "confusion",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "reading_text"
+    ]
+  },
+  {
+    "id": "gaze.text_skip_find",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "reading_gaze",
+    "meaning": "明确检索目标的跳读定位",
+    "clause": "目光迅速越过几段文字，停在要找的名字上",
+    "emotions": [
+      "anticipation",
+      "anxiety"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "search_name_in_text"
+    ]
+  },
+  {
+    "id": "gaze.text_margin_notes",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "reading_gaze",
+    "meaning": "正文到旁注的注意转移",
+    "clause": "不再看正文，转而细读页边的小字",
+    "emotions": [
+      "curiosity",
+      "interest"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "text_with_margin_notes_visible"
+    ]
+  },
+  {
+    "id": "gaze.text_two_columns",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "comparison_gaze",
+    "meaning": "明确双列数字的比较任务",
+    "clause": "在两列数目之间来回对照",
+    "emotions": [
+      "suspicion",
+      "frustration"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "two_number_columns_visible"
+    ]
+  },
+  {
+    "id": "gaze.text_signature",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "identity_check",
+    "meaning": "粗读后核验署名信息",
+    "clause": "通篇扫过之后，把视线压在末尾的落款上",
+    "emotions": [
+      "suspicion",
+      "realization"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "signed_document_visible"
+    ]
+  },
+  {
+    "id": "gaze.text_blank_gap",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "reading_gaze",
+    "meaning": "已知文本缺口中断阅读",
+    "clause": "目光卡在那处空白上，迟迟没接着往下读",
+    "emotions": [
+      "confusion",
+      "dread"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "reading_text",
+      "unexpected_text_gap"
+    ]
+  },
+  {
+    "id": "gaze.text_erasure",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "comparison_gaze",
+    "meaning": "可用光照下辨识修订痕迹，无添加擦改",
+    "clause": "迎着光看那块涂改过的字迹",
+    "emotions": [
+      "suspicion",
+      "interest"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "erased_text_visible",
+      "light_on_text"
+    ]
+  },
+  {
+    "id": "gaze.text_last_sentence",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "reading_gaze",
+    "meaning": "结尾已明确时反复确认最终内容",
+    "clause": "把最后一句来回看了几遍",
+    "emotions": [
+      "surprise",
+      "grief"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "last_sentence_visible"
+    ]
+  },
+  {
+    "id": "gaze.map_route",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "planning_gaze",
+    "meaning": "地图已知路径的顺序读取",
+    "clause": "沿着图上的路线从起点看到终点",
+    "emotions": [
+      "determination",
+      "interest"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "map_route_visible"
+    ]
+  },
+  {
+    "id": "gaze.map_missing_link",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "planning_gaze",
+    "meaning": "地图断点的局部问题定位",
+    "clause": "视线停在地图上两段没有接拢的线之间",
+    "emotions": [
+      "confusion",
+      "frustration"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "map_route_gap_visible"
+    ]
+  },
+  {
+    "id": "gaze.letter_fold_reveal",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "reading_gaze",
+    "meaning": "对象展开揭示新信息后跟随阅读",
+    "clause": "等信纸展开，才把目光移向刚露出的几行字",
+    "emotions": [
+      "anticipation",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "letter_unfolding_visible"
+    ]
+  },
+  {
+    "id": "gaze.document_compare",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "comparison_gaze",
+    "meaning": "明确两份文件的匹配阅读",
+    "clause": "在原件和抄本之间逐行核对",
+    "emotions": [
+      "suspicion",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "original_and_copy_visible"
+    ]
+  },
+  {
+    "id": "gaze.exit_route_check",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "safety_gaze",
+    "meaning": "已知出口与通道的可行性观察，不产生位移",
+    "clause": "目光沿出口前的通路扫过去，确认有没有阻挡",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "exit_and_approach_visible"
+    ]
+  },
+  {
+    "id": "gaze.dark_corner_watch",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "safety_gaze",
+    "meaning": "明确暗角和先前动静触发守候",
+    "clause": "紧盯那片看不清的角落，等里面再有动静",
+    "emotions": [
+      "dread",
+      "suspicion"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "dark_corner_visible",
+      "prior_movement_in_corner"
+    ]
+  },
+  {
+    "id": "gaze.crowd_gap_search",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "search_gaze",
+    "meaning": "已知寻找对象、人群遮挡下的搜寻",
+    "clause": "透过人群不断变换的空隙寻找那张脸",
+    "emotions": [
+      "anxiety",
+      "longing"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "crowd_visible",
+      "searching_known_face"
+    ]
+  },
+  {
+    "id": "gaze.weapon_reach_check",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "safety_gaze",
+    "meaning": "明确手与武器的接近关系观察",
+    "clause": "在对方的手和兵刃之间量了一眼",
+    "emotions": [
+      "fear",
+      "suspicion"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_hand_and_weapon_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.floor_footing_check",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "safety_gaze",
+    "meaning": "行进前已知地面的视觉检查，不实际迈步",
+    "clause": "先看落脚处，再看前面的路面",
+    "emotions": [
+      "unease",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "ground_and_route_visible"
+    ]
+  },
+  {
+    "id": "gaze.overhead_balance",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "safety_gaze",
+    "meaning": "已知不稳横梁的运动跟踪",
+    "clause": "目光随着头顶摇晃的横梁左右摆动",
+    "emotions": [
+      "fear",
+      "dread"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "swaying_overhead_beam_visible"
+    ]
+  },
+  {
+    "id": "gaze.shadow_source",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "safety_gaze",
+    "meaning": "已知移动影子引发源头核查",
+    "clause": "看完移动的影子，又去找投下影子的地方",
+    "emotions": [
+      "suspicion",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "moving_shadow_and_source_area_visible"
+    ]
+  },
+  {
+    "id": "gaze.door_latch_check",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "safety_gaze",
+    "meaning": "明确门部构件的封闭状态观察",
+    "clause": "把门闩和门缝都看了一遍",
+    "emotions": [
+      "unease",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "door_latch_and_seam_visible"
+    ]
+  },
+  {
+    "id": "gaze.stain_boundary",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "evidence_gaze",
+    "meaning": "已知地面痕迹的边界注意，不指定污物性质",
+    "clause": "沿着地上污迹的边缘看，避开中心",
+    "emotions": [
+      "disgust",
+      "suspicion"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "floor_stain_visible"
+    ]
+  },
+  {
+    "id": "gaze.trail_direction",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "evidence_gaze",
+    "meaning": "明确足迹的连续线索追踪",
+    "clause": "目光追着断续的足迹向远处延伸",
+    "emotions": [
+      "curiosity",
+      "determination"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "footprints_visible"
+    ]
+  },
+  {
+    "id": "gaze.room_count",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "identity_check",
+    "meaning": "已知名单和缺位的点名式观察",
+    "clause": "将屋里的人逐个看过，最后停在空缺的位置",
+    "emotions": [
+      "anxiety",
+      "realization"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "room_people_visible",
+      "expected_person_missing_place_known"
+    ]
+  },
+  {
+    "id": "gaze.sound_source_turn",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "safety_gaze",
+    "meaning": "听觉定位已知区域触发视觉检查，头身不转",
+    "clause": "听见响动后，眼睛先转向声音传来的地方",
+    "emotions": [
+      "surprise",
+      "unease"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "sound_direction_known",
+      "source_area_visible"
+    ]
+  },
+  {
+    "id": "gaze.falling_object",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "motion_tracking",
+    "meaning": "完整可见坠落轨迹的视觉跟踪",
+    "clause": "目光跟着那件东西下坠，直到它碰到地面",
+    "emotions": [
+      "surprise",
+      "helplessness"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "object_falling_to_floor_visible"
+    ]
+  },
+  {
+    "id": "gaze.departing_back",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "separation_gaze",
+    "meaning": "离去者可见轨迹到遮挡终点",
+    "clause": "一直看着那个背影，直到被拐角遮住",
+    "emotions": [
+      "longing",
+      "grief"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_departing_to_corner_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.approaching_figure",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "identity_check",
+    "meaning": "接近者逐步识别，区别已知脸搜索",
+    "clause": "目光从来人的脚步移到面孔，等着认清是谁",
+    "emotions": [
+      "anticipation",
+      "unease"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "approaching_person_visible"
+    ]
+  },
+  {
+    "id": "gaze.moving_hand",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "motion_tracking",
+    "meaning": "已知伸手事件触发关注行动而非表情",
+    "clause": "随着对方伸来的手挪动视线，没急着看脸",
+    "emotions": [
+      "trust",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_reaching_hand_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.thrown_arc",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "motion_tracking",
+    "meaning": "可见抛物线上下两段跟踪",
+    "clause": "顺着抛起的弧线往上看，又追着它落下来",
+    "emotions": [
+      "excitement",
+      "nervousness"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "thrown_object_visible"
+    ]
+  },
+  {
+    "id": "gaze.animal_flight",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "motion_tracking",
+    "meaning": "已知起飞事件后从运动回到残留空处",
+    "clause": "看着鸟群从枝头腾起，目光停在空下来的枝条上",
+    "emotions": [
+      "serenity",
+      "loneliness"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "birds_leaving_branch_visible"
+    ]
+  },
+  {
+    "id": "gaze.water_rings",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "sensory_gaze",
+    "meaning": "已知水面涟漪的扩张边缘关注",
+    "clause": "看水纹一圈圈向外推开，直到彼此叠在一起",
+    "emotions": [
+      "serenity",
+      "contentment"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "overlapping_water_ripples_visible"
+    ]
+  },
+  {
+    "id": "gaze.flame_change",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "sensory_gaze",
+    "meaning": "已知火苗方向改变引发环境定向",
+    "clause": "盯着火苗由直变斜，顺着偏去的方向看了一眼",
+    "emotions": [
+      "unease",
+      "interest"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "flame_bending_visible"
+    ]
+  },
+  {
+    "id": "gaze.cloth_signal",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "planning_gaze",
+    "meaning": "明确旗语变化后检查集体位置关系",
+    "clause": "看清远处旗面的变动，便重新查看队伍的位置",
+    "emotions": [
+      "determination",
+      "anxiety"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "signal_flag_change_visible",
+      "formation_visible"
+    ]
+  },
+  {
+    "id": "gaze.swinging_pendant",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "sensory_gaze",
+    "meaning": "已知饰物摆动的衰减跟踪",
+    "clause": "视线跟着坠子的摆幅走，直到摆动渐渐停下",
+    "emotions": [
+      "contentment",
+      "interest"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "swinging_pendant_visible"
+    ]
+  },
+  {
+    "id": "gaze.gift_receiver",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "affiliative_gaze",
+    "meaning": "赠礼已发生后的接受者反应关注",
+    "clause": "递出礼物后，只留意对方拆开时的表情",
+    "emotions": [
+      "hope",
+      "nervousness"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "gift_given",
+      "target_opening_gift_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.prize_other",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "status_gaze",
+    "meaning": "明确结果后从奖物转向获奖人",
+    "clause": "自己的目光离开奖品，落到获奖者身上",
+    "emotions": [
+      "jealousy",
+      "admiration"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "prize_and_winner_visible"
+    ]
+  },
+  {
+    "id": "gaze.failure_audience",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "status_gaze",
+    "meaning": "明确本人失误后搜索他人评价",
+    "clause": "失手之后，先看了一圈周围人的脸",
+    "emotions": [
+      "embarrassment",
+      "shame"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "own_failure_just_occurred",
+      "audience_visible"
+    ]
+  },
+  {
+    "id": "gaze.other_failure_glance",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "status_gaze",
+    "meaning": "明确他人错误引发延长注意，不保证幸灾乐祸",
+    "clause": "对方出错时，目光在那处失误上多停了一拍",
+    "emotions": [
+      "schadenfreude",
+      "disapproval"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "target_error_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.reward_disbelief",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "response_seeking",
+    "meaning": "明确获赠结果之后核验物与给予者",
+    "clause": "把赏给自己的东西又看了一遍，才看向送来的人",
+    "emotions": [
+      "surprise",
+      "gratitude"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "reward_received",
+      "giver_visible"
+    ]
+  },
+  {
+    "id": "gaze.insult_witness",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "status_gaze",
+    "meaning": "明确辱骂事件后寻找社会见证",
+    "clause": "听见辱骂后，目光掠过在场的人，找谁也听见了",
+    "emotions": [
+      "humiliation",
+      "anger"
+    ],
+    "axis": "tension",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "insult_heard",
+      "witnesses_visible"
+    ]
+  },
+  {
+    "id": "gaze.praise_floor_pattern",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "gaze_accommodation",
+    "meaning": "明确受赞和地面纹路供害羞转移注意",
+    "clause": "被夸后不看说话的人，反倒研究起脚边的纹路",
+    "emotions": [
+      "embarrassment",
+      "joy"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "praise_received",
+      "floor_pattern_visible",
+      "speaker_visible"
+    ]
+  },
+  {
+    "id": "gaze.promise_mutual",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "affiliative_gaze",
+    "meaning": "明确承诺发言与回应视线的双向接触",
+    "clause": "说出承诺时，让目光与对方的视线稳稳相接",
+    "emotions": [
+      "trust",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "making_promise",
+      "target_meets_gaze"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.accusation_detail",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "evidence_gaze",
+    "meaning": "指责后对已知证据细节优先核查",
+    "clause": "没有急着看指责自己的人，转而核对那处细节",
+    "emotions": [
+      "guilt",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "accusation_heard",
+      "evidence_detail_visible"
+    ]
+  },
+  {
+    "id": "gaze.reunion_recognize",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "memory_gaze",
+    "meaning": "已认出重逢对象仍复核变化",
+    "clause": "认出那张脸后，仍从眉眼细看到鬓边",
+    "emotions": [
+      "joy",
+      "longing"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "reunion",
+      "target_face_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.two_choices",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "decision_gaze",
+    "meaning": "明确二选一对象的未决注视",
+    "clause": "在摆出的两个选择之间来回看，始终没有定住",
+    "emotions": [
+      "ambivalence",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "two_options_visible"
+    ]
+  },
+  {
+    "id": "gaze.choice_settle",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "decision_gaze",
+    "meaning": "明确选择完成后的注意收束",
+    "clause": "目光终于从其余几样移开，只留在选中的那件上",
+    "emotions": [
+      "determination",
+      "satisfaction"
+    ],
+    "axis": "initiative",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "options_visible",
+      "choice_made"
+    ]
+  },
+  {
+    "id": "gaze.task_detail_focus",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "planning_gaze",
+    "meaning": "明确精细操作任务的局部集中",
+    "clause": "把视线收在手头最细小的接合处",
+    "emotions": [
+      "interest",
+      "determination"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "fine_joint_work_visible"
+    ]
+  },
+  {
+    "id": "gaze.task_result_inspect",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "planning_gaze",
+    "meaning": "明确作品已完成后的验收顺序",
+    "clause": "从头到尾看过刚完成的活计，最后停在收尾处",
+    "emotions": [
+      "satisfaction",
+      "pride"
+    ],
+    "axis": "self_control",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "own_finished_work_visible"
+    ]
+  },
+  {
+    "id": "gaze.scene_horizon",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "sensory_gaze",
+    "meaning": "明确开阔天际下由聚焦到宽松观看",
+    "clause": "望着远处天际，让目光渐渐放开",
+    "emotions": [
+      "serenity",
+      "optimism"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "open_horizon_visible"
+    ]
+  },
+  {
+    "id": "gaze.light_on_leaves",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "sensory_gaze",
+    "meaning": "已知叶间移动光斑的无任务观赏",
+    "clause": "看着叶间的光斑挪动，许久没有去数它们",
+    "emotions": [
+      "contentment",
+      "serenity"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "moving_leaf_light_visible"
+    ]
+  },
+  {
+    "id": "gaze.vast_height",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "scale_gaze",
+    "meaning": "已知高大结构引发向上扫描",
+    "clause": "沿着高处一层层往上看，视线迟迟没有落回",
+    "emotions": [
+      "awe",
+      "reverence"
+    ],
+    "axis": "withdrawal",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "towering_structure_visible"
+    ]
+  },
+  {
+    "id": "gaze.tiny_survivor",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "care_gaze",
+    "meaning": "明确破损环境中的幸存细节注意",
+    "clause": "目光绕开狼藉，停在仍完好的那一点上",
+    "emotions": [
+      "hope",
+      "tenderness"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "damaged_scene_with_intact_detail_visible"
+    ]
+  },
+  {
+    "id": "gaze.companion_path",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "care_gaze",
+    "meaning": "关照明确同伴路径与其反应，不代替行走",
+    "clause": "先看同伴要走的路，再把目光送回同伴脸上",
+    "emotions": [
+      "caring",
+      "anxiety"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "companion_route_and_face_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "gaze.child_level",
+    "category": "gaze",
+    "channel": "gaze",
+    "parts": [
+      "eyes"
+    ],
+    "family": "gaze_accommodation",
+    "meaning": "已知儿童对象请求其主动视线回应",
+    "clause": "视线落到孩子脸上，等那双眼睛看过来",
+    "emotions": [
+      "tenderness",
+      "caring"
+    ],
+    "axis": "warmth",
+    "capabilities": [
+      "vision"
+    ],
+    "facts": [
+      "child_face_visible"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  }
+]

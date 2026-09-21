@@ -142,6 +142,11 @@
       },
       "title": "Source Refs",
       "type": "array"
+    },
+    "description_zh": {
+      "default": "",
+      "title": "Description Zh",
+      "type": "string"
     }
   },
   "required": [

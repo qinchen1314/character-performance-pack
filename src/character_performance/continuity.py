@@ -3,6 +3,10 @@ from character_performance.domain.models import PerformanceRequest, PerformanceU
 
 
 BODY_REGIONS = {
+    "left_arm": {"left_shoulder", "left_elbow", "left_hand"},
+    "right_arm": {"right_shoulder", "right_elbow", "right_hand"},
+    "left_leg": {"left_hip", "left_knee", "left_ankle", "left_foot"},
+    "right_leg": {"right_hip", "right_knee", "right_ankle", "right_foot"},
     "arms": {"left_shoulder", "right_shoulder", "left_arm", "right_arm", "left_hand", "right_hand"},
     "shoulders": {"left_shoulder", "right_shoulder"},
     "hands": {"left_hand", "right_hand", "left_shoulder", "right_shoulder"},
@@ -10,6 +14,26 @@ BODY_REGIONS = {
     "feet": {"left_foot", "right_foot", "left_leg", "right_leg", "left_knee", "right_knee", "left_ankle", "right_ankle"},
     "whole_body": {"left_leg", "right_leg", "left_foot", "right_foot", "left_knee", "right_knee", "left_ankle", "right_ankle", "torso"},
 }
+
+
+def context_errors(unit: PerformanceUnit, request: PerformanceRequest) -> list[str]:
+    requirements = unit.context_requirements
+    errors = []
+    if requirements.get("any") and request.context.activity not in requirements["any"]:
+        errors.append("context")
+    if requirements.get("private_only") and request.context.privacy != "private":
+        errors.append("privacy")
+    errors.extend(f"fact:{fact}" for fact in sorted(set(requirements.get("required_facts", ())) - request.context.facts))
+    for fact in requirements.get("required_facts", ()):
+        if fact.startswith("held."):
+            _, side, tag = fact.split(".", 2)
+            sides = ("left", "right") if side == "both" else (side,)
+            objects = [request.scene_state.held_objects.get(f"{hand}_hand") for hand in sides]
+            if any(obj is None or (tag not in request.scene_state.object_tags.get(obj, ()) and obj != "object." + tag) for obj in objects):
+                errors.append(f"held_fact:{fact}")
+            elif side == "both" and len(set(objects)) != 1:
+                errors.append(f"held_fact:{fact}")
+    return errors
 
 
 def precondition_errors(unit: PerformanceUnit, scene: SceneState, target: str | None) -> list[str]:

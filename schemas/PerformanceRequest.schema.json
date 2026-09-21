@@ -334,6 +334,17 @@
           "minimum": 0.0,
           "title": "Danger Level",
           "type": "number"
+        },
+        "facts": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Facts",
+          "type": "array",
+          "uniqueItems": true
         }
       },
       "title": "Context",
@@ -1052,6 +1063,24 @@
           "title": "Held Objects",
           "type": "object"
         },
+        "object_tags": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "items": {
+                "minLength": 1,
+                "pattern": "^[a-z][a-z0-9_.-]*$",
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Object Tags",
+          "type": "object"
+        },
         "distances": {
           "patternProperties": {
             "^[a-z][a-z0-9_.-]*$": {
@@ -1360,7 +1389,8 @@
         "audience_size": 0,
         "privacy": "private",
         "formality": 0.0,
-        "danger_level": 0.0
+        "danger_level": 0.0,
+        "facts": []
       }
     },
     "director": {

@@ -1,0 +1,908 @@
+{
+  "pack_hash": "8f608a6010e2a51f5c496137b1eff87fe90c8a516b6ae0d763f742cc5e2b2aaf",
+  "targets": {
+    "emotions": 50,
+    "micro_expression": 100,
+    "facial_gaze": 150,
+    "body": 300,
+    "spatial": 100,
+    "physiology": 100,
+    "speech": 100,
+    "personality_modifiers": 30,
+    "relationship_modifiers": 15,
+    "world_specific": 100
+  },
+  "actual": {
+    "body": 315,
+    "facial": 76,
+    "gaze": 85,
+    "micro_expression": 103,
+    "physiology": 105,
+    "spatial": 115,
+    "speech": 111,
+    "world_specific": 110,
+    "emotions": 66,
+    "facial_gaze": 161,
+    "personality_modifiers": 33,
+    "relationship_modifiers": 19
+  },
+  "quantity_gates": {
+    "emotions": true,
+    "micro_expression": true,
+    "facial_gaze": true,
+    "body": true,
+    "spatial": true,
+    "physiology": true,
+    "speech": true,
+    "personality_modifiers": true,
+    "relationship_modifiers": true,
+    "world_specific": true
+  },
+  "exact_duplicate_pairs": [],
+  "near_duplicate_pairs": [],
+  "near_duplicate_unit_fraction": 0.0,
+  "semantic_family_count": 393,
+  "largest_families": [
+    [
+      "object_appraisal",
+      22
+    ],
+    [
+      "discourse_structure",
+      10
+    ],
+    [
+      "repair_structure",
+      10
+    ],
+    [
+      "turn_timing",
+      10
+    ],
+    [
+      "voice_quality",
+      10
+    ],
+    [
+      "hurt_face",
+      9
+    ],
+    [
+      "object_restraint",
+      8
+    ],
+    [
+      "self_care",
+      8
+    ],
+    [
+      "self_soothing",
+      8
+    ],
+    [
+      "guarded_face",
+      8
+    ],
+    [
+      "safety_gaze",
+      8
+    ],
+    [
+      "respiratory_disruption",
+      8
+    ],
+    [
+      "object_grip",
+      7
+    ],
+    [
+      "surface_appraisal",
+      7
+    ],
+    [
+      "question_face",
+      7
+    ]
+  ],
+  "emotion_coverage": {
+    "admiration": {
+      "candidates": 5,
+      "channels": [
+        "gaze",
+        "hands",
+        "speech"
+      ]
+    },
+    "ambivalence": {
+      "candidates": 40,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "amusement": {
+      "candidates": 39,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "anger": {
+      "candidates": 56,
+      "channels": [
+        "arms",
+        "facial",
+        "fingers",
+        "gaze",
+        "hands",
+        "head",
+        "legs",
+        "neck",
+        "physiology",
+        "spatial",
+        "speech",
+        "torso",
+        "world"
+      ]
+    },
+    "annoyance": {
+      "candidates": 39,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech"
+      ]
+    },
+    "anticipation": {
+      "candidates": 31,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "anxiety": {
+      "candidates": 99,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "approval": {
+      "candidates": 17,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech"
+      ]
+    },
+    "awe": {
+      "candidates": 9,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "world"
+      ]
+    },
+    "boredom": {
+      "candidates": 19,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "hands",
+        "physiology",
+        "speech"
+      ]
+    },
+    "caring": {
+      "candidates": 64,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "compassion": {
+      "candidates": 18,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "confidence": {
+      "candidates": 28,
+      "channels": [
+        "body",
+        "hands",
+        "head",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "confusion": {
+      "candidates": 55,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "contempt": {
+      "candidates": 6,
+      "channels": [
+        "facial",
+        "hands",
+        "speech"
+      ]
+    },
+    "contentment": {
+      "candidates": 14,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech"
+      ]
+    },
+    "curiosity": {
+      "candidates": 65,
+      "channels": [
+        "body",
+        "facial",
+        "feet",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech",
+        "torso",
+        "world"
+      ]
+    },
+    "defiance": {
+      "candidates": 20,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "desire": {
+      "candidates": 7,
+      "channels": [
+        "facial",
+        "physiology",
+        "speech"
+      ]
+    },
+    "despair": {
+      "candidates": 3,
+      "channels": [
+        "facial",
+        "hands"
+      ]
+    },
+    "determination": {
+      "candidates": 70,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "disappointment": {
+      "candidates": 20,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech"
+      ]
+    },
+    "disapproval": {
+      "candidates": 22,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech"
+      ]
+    },
+    "disgust": {
+      "candidates": 33,
+      "channels": [
+        "arms",
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech",
+        "torso"
+      ]
+    },
+    "dread": {
+      "candidates": 24,
+      "channels": [
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology"
+      ]
+    },
+    "embarrassment": {
+      "candidates": 72,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "fingers",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "shoulders",
+        "spatial",
+        "speech",
+        "throat",
+        "world"
+      ]
+    },
+    "excitement": {
+      "candidates": 16,
+      "channels": [
+        "body",
+        "breath",
+        "gaze",
+        "hands",
+        "physiology",
+        "speech"
+      ]
+    },
+    "fear": {
+      "candidates": 87,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "feet",
+        "fingers",
+        "gaze",
+        "hands",
+        "head",
+        "legs",
+        "neck",
+        "physiology",
+        "shoulders",
+        "spatial",
+        "speech",
+        "throat",
+        "torso",
+        "world"
+      ]
+    },
+    "frustration": {
+      "candidates": 33,
+      "channels": [
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "speech",
+        "world"
+      ]
+    },
+    "gratitude": {
+      "candidates": 21,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "speech",
+        "throat"
+      ]
+    },
+    "grief": {
+      "candidates": 39,
+      "channels": [
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "throat"
+      ]
+    },
+    "guilt": {
+      "candidates": 3,
+      "channels": [
+        "gaze",
+        "hands"
+      ]
+    },
+    "helplessness": {
+      "candidates": 19,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "speech"
+      ]
+    },
+    "homesickness": {
+      "candidates": 4,
+      "channels": [
+        "gaze",
+        "hands",
+        "physiology"
+      ]
+    },
+    "hope": {
+      "candidates": 33,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "spatial",
+        "torso",
+        "world"
+      ]
+    },
+    "humiliation": {
+      "candidates": 3,
+      "channels": [
+        "facial",
+        "gaze"
+      ]
+    },
+    "hurt": {
+      "candidates": 30,
+      "channels": [
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech"
+      ]
+    },
+    "impatience": {
+      "candidates": 24,
+      "channels": [
+        "body",
+        "facial",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech"
+      ]
+    },
+    "interest": {
+      "candidates": 60,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "jealousy": {
+      "candidates": 4,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "physiology"
+      ]
+    },
+    "joy": {
+      "candidates": 20,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "speech",
+        "world"
+      ]
+    },
+    "loneliness": {
+      "candidates": 6,
+      "channels": [
+        "gaze",
+        "hands",
+        "physiology"
+      ]
+    },
+    "longing": {
+      "candidates": 22,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "love": {
+      "candidates": 15,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "nervousness": {
+      "candidates": 54,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech",
+        "throat"
+      ]
+    },
+    "nostalgia": {
+      "candidates": 15,
+      "channels": [
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "optimism": {
+      "candidates": 3,
+      "channels": [
+        "facial",
+        "gaze"
+      ]
+    },
+    "pride": {
+      "candidates": 6,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "head",
+        "speech",
+        "world"
+      ]
+    },
+    "realization": {
+      "candidates": 23,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "speech",
+        "world"
+      ]
+    },
+    "relief": {
+      "candidates": 69,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "shoulders",
+        "spatial",
+        "speech",
+        "throat",
+        "world"
+      ]
+    },
+    "remorse": {
+      "candidates": 5,
+      "channels": [
+        "facial",
+        "gaze",
+        "speech",
+        "world"
+      ]
+    },
+    "resentment": {
+      "candidates": 16,
+      "channels": [
+        "arms",
+        "facial",
+        "gaze",
+        "physiology",
+        "spatial",
+        "speech"
+      ]
+    },
+    "resignation": {
+      "candidates": 30,
+      "channels": [
+        "breath",
+        "facial",
+        "hands",
+        "head",
+        "physiology",
+        "speech",
+        "throat",
+        "world"
+      ]
+    },
+    "resolve": {
+      "candidates": 76,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "reverence": {
+      "candidates": 18,
+      "channels": [
+        "body",
+        "breath",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "sadness": {
+      "candidates": 14,
+      "channels": [
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "satisfaction": {
+      "candidates": 8,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "spatial",
+        "world"
+      ]
+    },
+    "schadenfreude": {
+      "candidates": 3,
+      "channels": [
+        "gaze",
+        "physiology",
+        "speech"
+      ]
+    },
+    "serenity": {
+      "candidates": 19,
+      "channels": [
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "speech",
+        "world"
+      ]
+    },
+    "shame": {
+      "candidates": 28,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech",
+        "throat"
+      ]
+    },
+    "surprise": {
+      "candidates": 51,
+      "channels": [
+        "body",
+        "breath",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "torso",
+        "world"
+      ]
+    },
+    "suspicion": {
+      "candidates": 95,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "tenderness": {
+      "candidates": 28,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "trust": {
+      "candidates": 53,
+      "channels": [
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "unease": {
+      "candidates": 83,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "head",
+        "physiology",
+        "spatial",
+        "speech",
+        "world"
+      ]
+    },
+    "vulnerability": {
+      "candidates": 21,
+      "channels": [
+        "body",
+        "facial",
+        "gaze",
+        "hands",
+        "spatial",
+        "speech"
+      ]
+    }
+  },
+  "method": "Exact normalized clauses and Chinese bigram Dice >= .82; semantic families reviewed separately. This is not a claim of human literary blind review."
+}

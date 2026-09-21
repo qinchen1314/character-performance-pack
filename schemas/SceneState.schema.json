@@ -325,6 +325,24 @@
       "title": "Held Objects",
       "type": "object"
     },
+    "object_tags": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Object Tags",
+      "type": "object"
+    },
     "distances": {
       "patternProperties": {
         "^[a-z][a-z0-9_.-]*$": {

@@ -14,6 +14,7 @@ PATHS = {
     "personality.openness", "personality.conscientiousness", "personality.extraversion",
     "personality.agreeableness", "personality.neuroticism",
     "relationship.dominance", "relationship.intimacy", "relationship.hostility", "relationship.trust",
+    "relationship.affinity", "relationship.familiarity", "relationship.dependence", "relationship.tension",
     "context.formality", "context.danger_level", "physical.fatigue", "physical.pain",
     "director.beat_importance", "world.control",
 }
@@ -47,6 +48,7 @@ class Modifier(DomainModel):
     priority: int = 50
     stacking: Literal["additive_clamped"] = "additive_clamped"
     source_refs: tuple[NonEmptyId, ...] = ("src.original.performance.v1",)
+    description_zh: str = ""
 
     @model_validator(mode="after")
     def validate_language(self):

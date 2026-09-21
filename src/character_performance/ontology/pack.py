@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 from hashlib import sha256
 from pathlib import Path
 from typing import Any
@@ -38,7 +39,7 @@ EFFECTS = {"pose", "orientation", "distance_delta", "transfer", "clear_support"}
 
 
 class PerformancePack:
-    version = "0.3.0"
+    version = "0.4.0"
     schema_version = "1.0.0"
 
     def __init__(self, ontology: EmotionOntology, units: tuple[PerformanceUnit, ...], source_ids: tuple[str, ...], modifiers: tuple[Modifier, ...] = ()):
@@ -72,6 +73,7 @@ class PerformancePack:
 
     def _lint(self) -> None:
         fingerprints: dict[str, str] = {}
+        phrases: dict[str, str] = {}
         selectors = {f"channel.{u.channel}" for u in self.all()} | {f"category.{u.category}" for u in self.all()} | {f"semantic.{s}" for u in self.all() for s in u.semantics}
         for modifier in self.modifiers:
             if set(modifier.effects.score_add) - selectors:
@@ -148,7 +150,7 @@ class PerformancePack:
                 raise ValueError(f"invalid rule values for {unit.id}: {error}") from error
             if set(unit.physical_requirements) - {"capabilities", "min_mobility", "min_breath", "forbidden_injuries"}:
                 raise ValueError(f"unsupported physical requirement: {unit.id}")
-            if set(unit.context_requirements) - {"any", "private_only"}:
+            if set(unit.context_requirements) - {"any", "private_only", "required_facts"}:
                 raise ValueError(f"unsupported context requirement: {unit.id}")
             if unit.category == "world_specific" and not unit.world_requirements:
                 raise ValueError(f"world unit missing rules: {unit.id}")
@@ -158,9 +160,14 @@ class PerformancePack:
                 raise ValueError(f"missing rendering grammar: {unit.id}")
             if any(token in str(value) for value in unit.render_hints.values() for token in ("{", "}")):
                 raise ValueError(f"render hints cannot interpolate facts: {unit.id}")
+            phrase = re.sub(r"[\s，。！？、；：‘’“”\"'（）]", "", "".join(unit.render_hints.get(key, "") for key in ("subject", "verb", "complement")))
+            if phrase in phrases:
+                raise ValueError(f"duplicate realization: {unit.id}, {phrases[phrase]}")
+            phrases[phrase] = unit.id
             fingerprint = digest({"category": unit.category, "channel": unit.channel,
                 "groups": unit.semantic_groups, "parts": unit.body_parts,
-                "preconditions": unit.preconditions, "effects": unit.effects})
+                "preconditions": unit.preconditions, "effects": unit.effects,
+                "action": unit.atomic_action})
             if fingerprint in fingerprints:
                 raise ValueError(f"semantic duplicate: {unit.id}, {fingerprints[fingerprint]}")
             fingerprints[fingerprint] = unit.id
@@ -170,12 +177,12 @@ class PerformancePack:
         policy = policy or BuildPolicy(commercial=False, redistribution=False)
         registry = SourceRegistry.from_yaml(root / "data/sources/registry.yaml")
         ontology = EmotionOntology.from_yaml(root / "data/ontology/emotion/emotions.yaml")
-        raw = yaml.safe_load((root / "data/ontology/units.yaml").read_text(encoding="utf-8"))
+        raw = yaml.load((root / "data/ontology/units.yaml").read_text(encoding="utf-8"), Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader))
         if raw["schema_version"] != "1.0.0":
             raise ValueError("unsupported pack schema")
         units = tuple(PerformanceUnit.model_validate(item) for item in raw["units"])
         sources = {ref for e in ontology.all() for ref in e.source_refs}
-        modifier_doc = yaml.safe_load((root / "data/modifiers/rules.yaml").read_text(encoding="utf-8"))
+        modifier_doc = yaml.load((root / "data/modifiers/rules.yaml").read_text(encoding="utf-8"), Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader))
         if modifier_doc["schema_version"] != "1.0.0":
             raise ValueError("unsupported modifier schema")
         modifiers = tuple(Modifier.model_validate(m) for m in modifier_doc["modifiers"])

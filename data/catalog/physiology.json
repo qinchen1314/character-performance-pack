@@ -1,0 +1,1988 @@
+[
+  {
+    "id": "physiology.inhale_catch",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_disruption",
+    "meaning": "吸气中段被截断，不等同于完整屏息",
+    "clause": "吸气吸到一半，胸口忽然一顿",
+    "emotions": [
+      "surprise",
+      "fear"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.inhale_double",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_disruption",
+    "meaning": "单次吸气分成两段，区别于整体呼吸加速",
+    "clause": "接连吸了两小口气，才接上下一次呼吸",
+    "emotions": [
+      "grief",
+      "nervousness"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.inhale_whistle",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "throat"
+    ],
+    "family": "respiratory_disruption",
+    "meaning": "齿间气流可闻，不声称气道疾病",
+    "clause": "吸进的气擦过齿间，发出细细的声响",
+    "emotions": [
+      "fear",
+      "disgust"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.exhale_tremor",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_disruption",
+    "meaning": "呼气相出现不稳定，不是言语颤声",
+    "clause": "呼出的气断断续续，尾端还在发颤",
+    "emotions": [
+      "fear",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.breath_shallow",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_depth",
+    "meaning": "换气深度减小，不以速度替代深度",
+    "clause": "胸口只剩浅浅的起伏",
+    "emotions": [
+      "fear",
+      "anxiety"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.breath_deepen",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_depth",
+    "meaning": "换气深度增加，区别于叹气的呼气延长",
+    "clause": "一口气直吸到胸廓撑开",
+    "emotions": [
+      "determination",
+      "relief"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.breath_count",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_regulation",
+    "meaning": "以计数调节呼吸，需内视叙述许可",
+    "clause": "默数着每次吸气和呼气，把它们接成固定的节拍",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.exhale_pursed",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs",
+      "lips"
+    ],
+    "family": "respiratory_regulation",
+    "meaning": "缩小唇口调节呼气，不是抿唇表情",
+    "clause": "拢住唇口，让气息沿着窄缝吐出去",
+    "emotions": [
+      "fear",
+      "frustration"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.breath_nasal_switch",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs",
+      "nose"
+    ],
+    "family": "respiratory_regulation",
+    "meaning": "改变换气通道，不描写医疗效果",
+    "clause": "合上嘴，改用鼻子换气",
+    "emotions": [
+      "annoyance",
+      "nervousness"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.mouth_breathing"
+    ]
+  },
+  {
+    "id": "physiology.breath_mouth_switch",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs",
+      "mouth"
+    ],
+    "family": "respiratory_regulation",
+    "meaning": "由鼻呼吸转为口呼吸，需要明确前态",
+    "clause": "嘴唇分开，下一口气改从口中吸入",
+    "emotions": [
+      "surprise",
+      "excitement"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.nasal_breathing"
+    ]
+  },
+  {
+    "id": "physiology.breath_ribs",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "ribs"
+    ],
+    "family": "respiratory_depth",
+    "meaning": "侧胸扩张的可见呼吸方式，不等同肩部动作",
+    "clause": "肋间随着吸气一寸寸撑开，又缓缓回落",
+    "emotions": [
+      "relief",
+      "serenity"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.breath_abdominal",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "abdomen"
+    ],
+    "family": "respiratory_depth",
+    "meaning": "腹部参与呼吸，区别于浅胸式呼吸",
+    "clause": "腹部随呼吸有规律地起伏起来",
+    "emotions": [
+      "serenity",
+      "determination"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.breath_hold_after_inhale",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_regulation",
+    "meaning": "吸气末的短暂控制，与突发吸气中断不同",
+    "clause": "吸足气后短暂含住，胸口没有立刻落下",
+    "emotions": [
+      "anticipation",
+      "dread"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.breath_release_hold",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_regulation",
+    "meaning": "只解除已存在的屏息，不凭空制造前态",
+    "clause": "终于把含在胸口的那口气放了出来",
+    "emotions": [
+      "relief",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.breath_held"
+    ]
+  },
+  {
+    "id": "physiology.breath_speech_recovery",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_disruption",
+    "meaning": "连续说话后的换气补偿，不生造台词",
+    "clause": "一停下说话，便补吸了一口气",
+    "emotions": [
+      "excitement",
+      "frustration"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "event.self_finished_long_utterance"
+    ]
+  },
+  {
+    "id": "physiology.breath_laugh_recovery",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_disruption",
+    "meaning": "笑后的恢复相，与正在发笑区别",
+    "clause": "笑声停住后，呼吸还一抽一抽地往回接",
+    "emotions": [
+      "amusement",
+      "joy"
+    ],
+    "axis": "warmth",
+    "visibility": "subtle",
+    "facts": [
+      "state.laughing_just_stopped"
+    ]
+  },
+  {
+    "id": "physiology.breath_sob_inhale",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "lungs"
+    ],
+    "family": "cry_response",
+    "meaning": "哭泣中的吸气分段，依赖哭泣前态",
+    "clause": "抽噎之间，吸气被分成了几个短促的拍子",
+    "emotions": [
+      "grief",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.crying"
+    ]
+  },
+  {
+    "id": "physiology.breath_sob_settle",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "lungs"
+    ],
+    "family": "cry_response",
+    "meaning": "哭泣节律转为完整呼吸，不直接宣布停止悲伤",
+    "clause": "抽噎慢慢接成完整的一次换气",
+    "emotions": [
+      "relief",
+      "tenderness"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.sobbing"
+    ]
+  },
+  {
+    "id": "physiology.breath_startle_puff",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "lungs"
+    ],
+    "family": "respiratory_disruption",
+    "meaning": "突发呼气反射，与主动叹气不同",
+    "clause": "胸口猛地一缩，挤出一声短促的气音",
+    "emotions": [
+      "surprise",
+      "fear"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.breath_nose_flutter",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "nose"
+    ],
+    "family": "respiratory_disruption",
+    "meaning": "鼻气流的节律不齐，不增加情绪读心推断",
+    "clause": "鼻息在连续几次换气间忽轻忽重",
+    "emotions": [
+      "nervousness",
+      "anticipation"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.heartbeat_awareness",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "chest"
+    ],
+    "family": "cardiac_sensation",
+    "meaning": "内感受变得显著，不等同客观心率加快",
+    "clause": "忽然觉出胸腔里的心跳，一下一下撞得分明",
+    "emotions": [
+      "fear",
+      "desire"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.heartbeat_accelerate",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "chest"
+    ],
+    "family": "cardiac_sensation",
+    "meaning": "主观心跳加速体验，不给出医学测量",
+    "clause": "觉出心跳接连赶在了呼吸前头",
+    "emotions": [
+      "excitement",
+      "fear"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.heartbeat_settle",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "chest"
+    ],
+    "family": "cardiac_sensation",
+    "meaning": "已存在的急促搏动回落，不宣称治疗",
+    "clause": "胸腔里急促的搏动渐渐拉开了间隔",
+    "emotions": [
+      "relief",
+      "trust"
+    ],
+    "axis": "self_control",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.heartbeat_fast"
+    ]
+  },
+  {
+    "id": "physiology.pulse_throat",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "throat"
+    ],
+    "family": "cardiac_sensation",
+    "meaning": "脉搏感定位于喉底，区别于吞咽和哽咽",
+    "clause": "觉得喉底有搏动顶上来，咽不下也压不住",
+    "emotions": [
+      "dread",
+      "nervousness"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.pulse_ears",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "ears"
+    ],
+    "family": "cardiac_sensation",
+    "meaning": "内听觉中的脉搏显著，非环境声音",
+    "clause": "耳中只听见自己的脉搏一阵阵敲过",
+    "emotions": [
+      "fear",
+      "anticipation"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.pulse_fingertips",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "fingertips"
+    ],
+    "family": "cardiac_sensation",
+    "meaning": "指端脉动感，区别于手部自主颤抖",
+    "clause": "指腹里传来一下一下的胀跳感",
+    "emotions": [
+      "anxiety",
+      "excitement"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.heartbeat_after_startle",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "chest"
+    ],
+    "family": "cardiac_sensation",
+    "meaning": "惊吓后的残余心跳，需明确事件前态",
+    "clause": "那阵惊跳过去了，胸口还在接连怦动",
+    "emotions": [
+      "surprise",
+      "unease"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "event.startled"
+    ]
+  },
+  {
+    "id": "physiology.chest_pressure",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "chest"
+    ],
+    "family": "visceral_tension",
+    "meaning": "主观压迫感，避免把它诊断为疾病",
+    "clause": "胸口像被闷住，吸进的气也没能把那股紧意顶开",
+    "emotions": [
+      "grief",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.palms_moisten",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "palms"
+    ],
+    "family": "sweat_response",
+    "meaning": "手掌新发汗的触觉表现，不预设大量出汗",
+    "clause": "掌心渐渐沁出一层潮意",
+    "emotions": [
+      "anxiety",
+      "anticipation"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.sweat_brow_bead",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "forehead"
+    ],
+    "family": "sweat_response",
+    "meaning": "额汗凝结成珠，区别于泛红和脸部表情",
+    "clause": "额上冒出细小汗珠，停在眉毛上缘",
+    "emotions": [
+      "fear",
+      "embarrassment"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.sweat_back_cling",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "back"
+    ],
+    "family": "sweat_response",
+    "meaning": "汗液与已知衣料接触，不无中生有衣物",
+    "clause": "背上渗出的汗把贴身衣料黏住了",
+    "emotions": [
+      "nervousness",
+      "dread"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "prop.worn_inner_garment"
+    ]
+  },
+  {
+    "id": "physiology.sweat_trickle",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "temple"
+    ],
+    "family": "sweat_response",
+    "meaning": "已有汗液的移动，区别于出汗起始",
+    "clause": "鬓边积着的汗沿脸侧滑了下来",
+    "emotions": [
+      "anxiety",
+      "shame"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.sweating"
+    ]
+  },
+  {
+    "id": "physiology.sweat_chill",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "skin"
+    ],
+    "family": "thermal_sensation",
+    "meaning": "已存在汗液带来冷感，不宣称环境温度变化",
+    "clause": "汗意一凉，皮肤便细细地缩紧",
+    "emotions": [
+      "fear",
+      "relief"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.sweating"
+    ]
+  },
+  {
+    "id": "physiology.face_heat",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "face"
+    ],
+    "family": "vascular_response",
+    "meaning": "面部主观热感，不预设可见红色",
+    "clause": "脸上骤然腾起一股热意",
+    "emotions": [
+      "embarrassment",
+      "anger"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.neck_flush",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "neck"
+    ],
+    "family": "vascular_response",
+    "meaning": "可见潮红扩散，有衣领事实，不等于侧别变体",
+    "clause": "颈侧的红意一路漫到衣领上缘",
+    "emotions": [
+      "shame",
+      "desire"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "prop.collar"
+    ]
+  },
+  {
+    "id": "physiology.skin_pallor",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "face"
+    ],
+    "family": "vascular_response",
+    "meaning": "可见失色，不能用于确诊恐惧或疾病",
+    "clause": "脸上的血色一下褪得很淡",
+    "emotions": [
+      "fear",
+      "surprise"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.ears_heat",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "ears"
+    ],
+    "family": "thermal_sensation",
+    "meaning": "耳部内感受与环境冷热对比，需已有凉意",
+    "clause": "耳根热得发胀，连周围的凉意都显得格外清楚",
+    "emotions": [
+      "embarrassment",
+      "love"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "environment.cool_air"
+    ]
+  },
+  {
+    "id": "physiology.hands_cold",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "hands"
+    ],
+    "family": "thermal_sensation",
+    "meaning": "末端凉感与局部张力并存，不是双手动作",
+    "clause": "手指渐渐发凉，掌心却还绷着",
+    "emotions": [
+      "fear",
+      "dread"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.warmth_return",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "hands"
+    ],
+    "family": "thermal_sensation",
+    "meaning": "解除已有冷手前态，不当作治疗能力",
+    "clause": "先前冰凉的指尖重新有了些暖意",
+    "emotions": [
+      "relief",
+      "trust"
+    ],
+    "axis": "warmth",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.hands_cold"
+    ]
+  },
+  {
+    "id": "physiology.gooseflesh",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "skin"
+    ],
+    "family": "pilomotor_response",
+    "meaning": "立毛反应，与发冷主观感受区分",
+    "clause": "皮肤上浮起一层细密的小疙瘩",
+    "emotions": [
+      "awe",
+      "fear"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.scalp_prickle",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "scalp"
+    ],
+    "family": "sensory_response",
+    "meaning": "局部刺麻感，不当作神识或视觉",
+    "clause": "头皮忽然发紧，细碎的麻意向发际散开",
+    "emotions": [
+      "dread",
+      "surprise"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.shiver_wave",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "torso"
+    ],
+    "family": "muscle_tremor",
+    "meaning": "全身短促颤栗，不同于持续手抖",
+    "clause": "一阵细颤从背脊窜过，胸腹跟着缩了缩",
+    "emotions": [
+      "fear",
+      "disgust"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.tears_well",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyes"
+    ],
+    "family": "tear_response",
+    "meaning": "泪液积聚起始，不等同流泪",
+    "clause": "眼里慢慢蓄起水光，尚未越过眼睑",
+    "emotions": [
+      "grief",
+      "gratitude"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.tear_spill",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyes"
+    ],
+    "family": "tear_response",
+    "meaning": "已积聚泪液的溢出，前态受约束",
+    "clause": "眼眶里的泪水终于越过睑缘，沿面颊落下",
+    "emotions": [
+      "sadness",
+      "tenderness"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.tears_welled"
+    ]
+  },
+  {
+    "id": "physiology.tear_blink_scatter",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyes"
+    ],
+    "family": "tear_response",
+    "meaning": "睫毛泪滴随眨眼散开，区别于新流泪",
+    "clause": "一眨眼，挂在睫毛上的泪珠便碎开了",
+    "emotions": [
+      "hurt",
+      "relief"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.wet_lashes"
+    ]
+  },
+  {
+    "id": "physiology.tear_blur",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyes"
+    ],
+    "family": "tear_response",
+    "meaning": "流泪造成主观视野模糊，非对象变形",
+    "clause": "眼前的轮廓被泪水晕成了模糊的一片",
+    "emotions": [
+      "grief",
+      "homesickness"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.teary_eyes"
+    ]
+  },
+  {
+    "id": "physiology.tear_dry_tightness",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "cheeks"
+    ],
+    "family": "tear_response",
+    "meaning": "泪痕干燥后的触觉，区别于正在哭",
+    "clause": "脸上干下来的泪痕绷得皮肤发紧",
+    "emotions": [
+      "resignation",
+      "loneliness"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.drying_tear_tracks"
+    ]
+  },
+  {
+    "id": "physiology.eyes_sting",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyes"
+    ],
+    "family": "ocular_sensation",
+    "meaning": "眼部酸涩内感受，不自动流泪",
+    "clause": "眼底泛起酸涩，眨眼也没能立刻压下去",
+    "emotions": [
+      "hurt",
+      "nostalgia"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.eyes_dry_blink",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyes"
+    ],
+    "family": "ocular_sensation",
+    "meaning": "干涩诱发眨眼，有明确干涩前態",
+    "clause": "眼睛干涩得发紧，只好接连眨了几下",
+    "emotions": [
+      "boredom",
+      "frustration"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.eyes_dry"
+    ]
+  },
+  {
+    "id": "physiology.eyelid_twitch",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyelid"
+    ],
+    "family": "muscle_tremor",
+    "meaning": "局部非自主肌跳，区别于有意眨眼",
+    "clause": "眼皮不由自主地跳了两下",
+    "emotions": [
+      "anxiety",
+      "unease"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.vision_refocus",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyes"
+    ],
+    "family": "sensory_response",
+    "meaning": "短暂对焦困难需既有视觉扰动，避免任意制造症状",
+    "clause": "眼前的影子重叠了一瞬，才重新对到一处",
+    "emotions": [
+      "fear",
+      "helplessness"
+    ],
+    "axis": "self_control",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.focus_unsteady"
+    ]
+  },
+  {
+    "id": "physiology.light_sensitivity",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "eyes"
+    ],
+    "family": "sensory_response",
+    "meaning": "光刺激诱发泪意，非直接情绪推断",
+    "clause": "眼睛被突来的亮光刺得发酸，泪意随之涌起",
+    "emotions": [
+      "surprise",
+      "annoyance"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "event.bright_light"
+    ]
+  },
+  {
+    "id": "physiology.mouth_dry",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "mouth"
+    ],
+    "family": "oral_sensation",
+    "meaning": "口腔干燥内感受，不重复吞咽行为",
+    "clause": "口中干得发涩，舌头贴上腭时有些滞",
+    "emotions": [
+      "anxiety",
+      "fear"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.saliva_gather",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "mouth"
+    ],
+    "family": "oral_sensation",
+    "meaning": "唾液聚集而非吞咽结果，避免危险病理描述",
+    "clause": "舌根忽然泛起唾液，逼得嘴唇合紧",
+    "emotions": [
+      "disgust",
+      "nervousness"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.swallow_hard",
+    "category": "physiology",
+    "channel": "throat",
+    "parts": [
+      "throat"
+    ],
+    "family": "swallow_response",
+    "meaning": "不顺畅吞咽，依赖喉咙干涩",
+    "clause": "试着咽了咽，干涩的喉间却只动到一半",
+    "emotions": [
+      "fear",
+      "shame"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.throat_dry"
+    ]
+  },
+  {
+    "id": "physiology.swallow_release",
+    "category": "physiology",
+    "channel": "throat",
+    "parts": [
+      "throat"
+    ],
+    "family": "swallow_response",
+    "meaning": "解除既有吞咽受阻，与普通吞咽不同",
+    "clause": "喉头终于滑过一次完整的吞咽",
+    "emotions": [
+      "relief",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.swallow_caught"
+    ]
+  },
+  {
+    "id": "physiology.throat_lump",
+    "category": "physiology",
+    "channel": "throat",
+    "parts": [
+      "throat"
+    ],
+    "family": "throat_response",
+    "meaning": "哽咽的内感受，不预设说话或泪水",
+    "clause": "喉底梗起一团酸意，连呼出的气都带着涩",
+    "emotions": [
+      "grief",
+      "gratitude"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.throat_constrict",
+    "category": "physiology",
+    "channel": "throat",
+    "parts": [
+      "throat"
+    ],
+    "family": "throat_response",
+    "meaning": "发音意图遭喉部紧张阻滞，需开口意图",
+    "clause": "喉咙忽然收紧，原本要发的音滞在里面",
+    "emotions": [
+      "fear",
+      "shame"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "event.self_about_to_speak"
+    ]
+  },
+  {
+    "id": "physiology.throat_clear",
+    "category": "physiology",
+    "channel": "throat",
+    "parts": [
+      "throat"
+    ],
+    "family": "throat_response",
+    "meaning": "清嗓解除已知声门不适，不生成台词",
+    "clause": "清了清嗓子，让黏在喉间的气音散开",
+    "emotions": [
+      "nervousness",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.throat_clogged"
+    ]
+  },
+  {
+    "id": "physiology.hiccup_single",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "diaphragm"
+    ],
+    "family": "respiratory_reflex",
+    "meaning": "膈肌短促反射，依赖已知打嗝状态避免随机症状",
+    "clause": "胸腹突然一缩，打出一个止不住的小嗝",
+    "emotions": [
+      "embarrassment",
+      "annoyance"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.hiccups"
+    ]
+  },
+  {
+    "id": "physiology.cough_suppress",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "throat"
+    ],
+    "family": "respiratory_reflex",
+    "meaning": "压制既有咳意，不凭情绪制造疾病",
+    "clause": "把涌到喉头的咳意生生含住，只漏出一声闷响",
+    "emotions": [
+      "embarrassment",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.cough_urge"
+    ]
+  },
+  {
+    "id": "physiology.cough_escape",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "throat"
+    ],
+    "family": "respiratory_reflex",
+    "meaning": "既有咳意外显，与咳嗽压制相对",
+    "clause": "没能压住那阵咳意，喉间断续咳了几声",
+    "emotions": [
+      "frustration",
+      "helplessness"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.cough_urge"
+    ]
+  },
+  {
+    "id": "physiology.sneeze_check",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "nose"
+    ],
+    "family": "respiratory_reflex",
+    "meaning": "既有喷嚏反射中止，不是皱鼻厌恶",
+    "clause": "鼻翼一动，临到出口的喷嚏又停在半途",
+    "emotions": [
+      "surprise",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.sneeze_urge"
+    ]
+  },
+  {
+    "id": "physiology.nose_run",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "nose"
+    ],
+    "family": "nasal_response",
+    "meaning": "哭泣或刺激后的鼻液反应，必须已有鼻液",
+    "clause": "鼻端渐渐发湿，吸气时带出细小的水声",
+    "emotions": [
+      "grief",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.runny_nose"
+    ]
+  },
+  {
+    "id": "physiology.stomach_sink",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "abdomen"
+    ],
+    "family": "visceral_sensation",
+    "meaning": "内脏下沉体验，不改变物理位置",
+    "clause": "胃里像忽然空出一块，整个人有了下坠般的感觉",
+    "emotions": [
+      "dread",
+      "disappointment"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.stomach_knot",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "abdomen"
+    ],
+    "family": "visceral_tension",
+    "meaning": "持续内脏紧张，不推断损伤",
+    "clause": "腹内一点点绞紧，像收住了一根无形的绳",
+    "emotions": [
+      "anxiety",
+      "jealousy"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.stomach_flutter",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "abdomen"
+    ],
+    "family": "visceral_sensation",
+    "meaning": "轻微内脏扑动，与绞紧和恶心区别",
+    "clause": "腹中泛起细碎的翻动，叫人坐也不踏实",
+    "emotions": [
+      "anticipation",
+      "desire"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.nausea_wave",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "stomach"
+    ],
+    "family": "visceral_sensation",
+    "meaning": "既有恶心感波动，避免无前提症状",
+    "clause": "胃里翻上一阵恶心，唇齿间也跟着发酸",
+    "emotions": [
+      "disgust",
+      "fear"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.nauseated"
+    ]
+  },
+  {
+    "id": "physiology.retch_dry",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "abdomen",
+      "throat"
+    ],
+    "family": "visceral_reflex",
+    "meaning": "已明确反胃的干呕，不产生呕吐物",
+    "clause": "胸腹反射似的一收，喉里滚过一声干呕",
+    "emotions": [
+      "disgust",
+      "dread"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.retching_urge"
+    ]
+  },
+  {
+    "id": "physiology.stomach_growl",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "abdomen"
+    ],
+    "family": "visceral_response",
+    "meaning": "饥饿背景下的肠鸣，不由情绪直接制造",
+    "clause": "腹中忽然响了一声，安静里格外清楚",
+    "emotions": [
+      "embarrassment",
+      "impatience"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.hungry",
+      "environment.quiet"
+    ]
+  },
+  {
+    "id": "physiology.hunger_fades",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "stomach"
+    ],
+    "family": "visceral_sensation",
+    "meaning": "已有饥饿的主观注意下降，不恢复体力",
+    "clause": "方才还清楚的饥饿感忽然退到了很远的地方",
+    "emotions": [
+      "fear",
+      "grief"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.hungry"
+    ]
+  },
+  {
+    "id": "physiology.abdomen_unclench",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "abdomen"
+    ],
+    "family": "visceral_tension",
+    "meaning": "解除已知腹部紧绷，不和普通呼气重复",
+    "clause": "一直揪着的腹部终于松出一点余地",
+    "emotions": [
+      "relief",
+      "trust"
+    ],
+    "axis": "self_control",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.abdomen_tense"
+    ]
+  },
+  {
+    "id": "physiology.fingertip_tremor",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "fingertips"
+    ],
+    "family": "muscle_tremor",
+    "meaning": "远端细震而非主动手势",
+    "clause": "指尖不听使唤地轻轻发颤",
+    "emotions": [
+      "fear",
+      "excitement"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.knee_quiver",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "knees"
+    ],
+    "family": "muscle_tremor",
+    "meaning": "承重关节瞬时震颤，不改变站姿或移动",
+    "clause": "膝头自己颤了一下，重心随之晃了晃",
+    "emotions": [
+      "fear",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "physiology.jaw_chatter",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "jaw"
+    ],
+    "family": "muscle_tremor",
+    "meaning": "下颌节律抖动，区别于咬紧牙关",
+    "clause": "牙关不受控制地碰出细小的响声",
+    "emotions": [
+      "fear",
+      "dread"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.lip_tremor",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "lips"
+    ],
+    "family": "muscle_tremor",
+    "meaning": "唇部非自主震颤，不是表情意图",
+    "clause": "唇缘细细地发抖，怎么也抿不平",
+    "emotions": [
+      "grief",
+      "hurt"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.shoulder_jerk",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "shoulders"
+    ],
+    "family": "startle_reflex",
+    "meaning": "惊跳反射，需突发刺激事件",
+    "clause": "肩背骤然弹了一下，旋即僵住",
+    "emotions": [
+      "surprise",
+      "fear"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "event.startled"
+    ]
+  },
+  {
+    "id": "physiology.leg_strength_drain",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "legs"
+    ],
+    "family": "muscle_tone",
+    "meaning": "主观脱力但保持站立，不自动跌倒",
+    "clause": "双腿忽然发软，只能把膝盖撑直些",
+    "emotions": [
+      "relief",
+      "fear"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "physiology.hand_cramp_release",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "hands"
+    ],
+    "family": "muscle_tone",
+    "meaning": "长时间紧握后的卸力，需既有紧握",
+    "clause": "一直绷着的手掌忽然松下来，指节还留着酸意",
+    "emotions": [
+      "relief",
+      "resignation"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.hand_clenched"
+    ]
+  },
+  {
+    "id": "physiology.neck_fatigue",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "neck"
+    ],
+    "family": "muscle_sensation",
+    "meaning": "已有疲劳的颈部酸沉，不是主动低头",
+    "clause": "后颈泛起一阵酸沉，头也跟着觉得重了",
+    "emotions": [
+      "boredom",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.fatigued"
+    ]
+  },
+  {
+    "id": "physiology.back_tension",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "back"
+    ],
+    "family": "muscle_tone",
+    "meaning": "背部持续张力，不等同支撑物依靠",
+    "clause": "脊背两侧的肌肉一线线绷住",
+    "emotions": [
+      "fear",
+      "defiance"
+    ],
+    "axis": "tension",
+    "visibility": "subtle"
+  },
+  {
+    "id": "physiology.chest_sob_spasm",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "chest"
+    ],
+    "family": "cry_response",
+    "meaning": "哭泣中的胸肌抽动，不同吸气分段",
+    "clause": "胸腔里抽动了一下，把残余的哭声顶了出来",
+    "emotions": [
+      "grief",
+      "helplessness"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.crying"
+    ]
+  },
+  {
+    "id": "physiology.laughter_abdominal",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "abdomen"
+    ],
+    "family": "laughter_response",
+    "meaning": "腹部笑反应，需要已有发笑前态",
+    "clause": "腹肌随着笑意一阵阵收紧，气息也跟着往外挤",
+    "emotions": [
+      "amusement",
+      "joy"
+    ],
+    "axis": "warmth",
+    "visibility": "subtle",
+    "facts": [
+      "state.laughing"
+    ]
+  },
+  {
+    "id": "physiology.laughter_silent_shake",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "chest",
+      "shoulders"
+    ],
+    "family": "laughter_response",
+    "meaning": "无声笑的肌肉表现，不等同压住嘴角",
+    "clause": "笑得没有发出声，肩胸却一下一下地震动",
+    "emotions": [
+      "amusement",
+      "schadenfreude"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.laughing"
+    ]
+  },
+  {
+    "id": "physiology.laughter_wheeze",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "lungs"
+    ],
+    "family": "laughter_response",
+    "meaning": "笑后的吸气音，不作病理喘鸣判断",
+    "clause": "笑到换气时漏出一声细哑的吸气",
+    "emotions": [
+      "amusement",
+      "joy"
+    ],
+    "axis": "warmth",
+    "visibility": "subtle",
+    "facts": [
+      "state.laughing"
+    ]
+  },
+  {
+    "id": "physiology.relax_heaviness",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "muscle_tone",
+    "meaning": "紧张解除后的疲劳察觉，有既存紧绷前态",
+    "clause": "绷劲一退，四肢才显出沉甸甸的倦意",
+    "emotions": [
+      "relief",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.body_tense"
+    ]
+  },
+  {
+    "id": "physiology.startle_freeze",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "startle_reflex",
+    "meaning": "刺激后的全身反射，需明确惊跳事件",
+    "clause": "被那一下惊得全身短暂僵直",
+    "emotions": [
+      "surprise",
+      "dread"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "event.startled"
+    ]
+  },
+  {
+    "id": "physiology.ear_ring",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "ears"
+    ],
+    "family": "sensory_response",
+    "meaning": "既有耳鸣对听觉的影响，不凭空损伤",
+    "clause": "耳边那阵尖细的嗡声把近处的声音隔得模糊",
+    "emotions": [
+      "fear",
+      "confusion"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.ears_ringing"
+    ]
+  },
+  {
+    "id": "physiology.audio_return",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "ears"
+    ],
+    "family": "sensory_response",
+    "meaning": "已知听觉发闷的解除，不治疗疾病",
+    "clause": "耳中的闷响退下去，周遭声响重新清楚起来",
+    "emotions": [
+      "relief",
+      "realization"
+    ],
+    "axis": "self_control",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.hearing_muffled"
+    ]
+  },
+  {
+    "id": "physiology.mouth_bitter",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "tongue"
+    ],
+    "family": "oral_sensation",
+    "meaning": "主观口腔味觉变化，需要既有苦味感",
+    "clause": "舌根泛起苦味，连嘴里残留的滋味都淡了",
+    "emotions": [
+      "disappointment",
+      "resentment"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.bitter_taste"
+    ]
+  },
+  {
+    "id": "physiology.mouth_sour",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "tongue"
+    ],
+    "family": "oral_sensation",
+    "meaning": "既有酸味的口腔反应，不推断胃病",
+    "clause": "酸意从舌根往前漫，唾液也跟着多了起来",
+    "emotions": [
+      "disgust",
+      "unease"
+    ],
+    "axis": "tension",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.sour_taste"
+    ]
+  },
+  {
+    "id": "physiology.skin_contact_startle",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "skin"
+    ],
+    "family": "sensory_reflex",
+    "meaning": "突然接触引出的局部反射，接触由事实授权",
+    "clause": "被碰到的那片皮肤猛地一紧，细颤随即散开",
+    "emotions": [
+      "surprise",
+      "desire"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "event.unexpected_touch"
+    ]
+  },
+  {
+    "id": "physiology.skin_crawl",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "skin"
+    ],
+    "family": "sensory_sensation",
+    "meaning": "主观爬行感而非真的虫体，不指向病因",
+    "clause": "身上泛起一阵细碎的爬行感，怎么也忽略不掉",
+    "emotions": [
+      "disgust",
+      "dread"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal"
+    ]
+  },
+  {
+    "id": "physiology.fatigue_yawn",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "jaw",
+      "lungs"
+    ],
+    "family": "respiratory_reflex",
+    "meaning": "疲劳背景的哈欠连带泪意，不等同主动张嘴",
+    "clause": "一个哈欠自己涌上来，把眼角也牵出了水意",
+    "emotions": [
+      "boredom",
+      "serenity"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.fatigued"
+    ]
+  },
+  {
+    "id": "physiology.yawn_suppress",
+    "category": "physiology",
+    "channel": "breath",
+    "parts": [
+      "jaw",
+      "lungs"
+    ],
+    "family": "respiratory_reflex",
+    "meaning": "已有哈欠冲动的控制行为",
+    "clause": "把涌上的哈欠压住，鼻间却漏出一口长气",
+    "emotions": [
+      "embarrassment",
+      "reverence"
+    ],
+    "axis": "self_control",
+    "visibility": "subtle",
+    "facts": [
+      "state.yawn_urge"
+    ]
+  },
+  {
+    "id": "physiology.sleep_start",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "startle_reflex",
+    "meaning": "入睡边缘的惊动需困倦事实，非惊吓换词",
+    "clause": "将睡未睡间忽然一震，呼吸也随之一乱",
+    "emotions": [
+      "surprise",
+      "unease"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.drowsy"
+    ]
+  },
+  {
+    "id": "physiology.saliva_string",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "lips"
+    ],
+    "family": "oral_response",
+    "meaning": "口干时分唇产生黏连，区别于纯口渴",
+    "clause": "开口时干黏的唇内牵出一道细丝，又迅速断开",
+    "emotions": [
+      "nervousness",
+      "shame"
+    ],
+    "axis": "tension",
+    "visibility": "subtle",
+    "facts": [
+      "state.mouth_dry",
+      "event.self_about_to_speak"
+    ]
+  },
+  {
+    "id": "physiology.cry_hiccup",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "diaphragm"
+    ],
+    "family": "cry_response",
+    "meaning": "哭泣伴打嗝的节律干扰，双前态限定",
+    "clause": "哭声间突然打了个嗝，下一口气便接乱了",
+    "emotions": [
+      "grief",
+      "embarrassment"
+    ],
+    "axis": "withdrawal",
+    "visibility": "subtle",
+    "facts": [
+      "state.crying",
+      "state.hiccups"
+    ]
+  },
+  {
+    "id": "physiology.sweat_evaporate",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "skin"
+    ],
+    "family": "thermal_sensation",
+    "meaning": "已有汗液与已知风接触的凉感，不产生天气",
+    "clause": "湿着的皮肤被风一带，凉意便贴了上来",
+    "emotions": [
+      "relief",
+      "unease"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "state.sweating",
+      "environment.breeze"
+    ]
+  },
+  {
+    "id": "physiology.throat_after_cry",
+    "category": "physiology",
+    "channel": "throat",
+    "parts": [
+      "throat"
+    ],
+    "family": "throat_response",
+    "meaning": "哭后咽喉残余触觉，不虚构出血损伤",
+    "clause": "哭过的嗓子发涩，连吞咽也带着一点磨感",
+    "emotions": [
+      "grief",
+      "resignation"
+    ],
+    "axis": "withdrawal",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "event.self_finished_crying"
+    ]
+  },
+  {
+    "id": "physiology.chest_laugh_ache",
+    "category": "physiology",
+    "channel": "physiology",
+    "parts": [
+      "ribs"
+    ],
+    "family": "muscle_sensation",
+    "meaning": "大笑后的肌肉疲劳，与正在笑区别",
+    "clause": "笑过之后，肋间仍一阵阵发酸",
+    "emotions": [
+      "amusement",
+      "contentment"
+    ],
+    "axis": "warmth",
+    "visibility": "very_subtle",
+    "facts": [
+      "pov.internal",
+      "event.self_finished_laughing"
+    ]
+  }
+]

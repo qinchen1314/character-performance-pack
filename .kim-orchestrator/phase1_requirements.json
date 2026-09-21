@@ -1,0 +1,9 @@
+{
+  "task_description": "原创扩充小说角色情绪动作内容库并完成运行时质量门禁",
+  "features": ["50 emotions", "100 micro", "150 facial/gaze", "300 body", "100 spatial", "100 physiology", "100 speech", "30 personality modifiers", "15 relationship modifiers", "100 xianxia"],
+  "tech_stack": {"language": "Python", "framework": "Pydantic", "libraries": ["PyYAML", "pytest", "SQLite"]},
+  "file_structure": {"files": [{"path": "data/catalog/*.json", "purpose": "逐条原创的可审查编写记录"}, {"path": "tools/compile_catalog.py", "purpose": "确定性编译到生产数据"}, {"path": "docs/evaluation/catalog-quality.json", "purpose": "数量、重复度、可达性与测试报告"}]},
+  "key_points": ["外部项目只参考分类与方法，不复制语料", "不以左右/强弱/同义词笛卡尔积充数", "事实前提与物理世界约束", "跨类别近重复与多回合回归"],
+  "risks": ["数据扩展可能稀释角色差异", "新增事实需求必须由引擎强制执行", "结构测试不能替代独立人类文学盲评"],
+  "execution": "使用当前任务协作代理编写和审查；外部 Codex/Gemini MCP 未提供，不伪称使用。"
+}

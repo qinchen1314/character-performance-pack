@@ -521,6 +521,24 @@
           "title": "Held Objects",
           "type": "object"
         },
+        "object_tags": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "items": {
+                "minLength": 1,
+                "pattern": "^[a-z][a-z0-9_.-]*$",
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Object Tags",
+          "type": "object"
+        },
         "distances": {
           "patternProperties": {
             "^[a-z][a-z0-9_.-]*$": {
@@ -862,7 +880,7 @@
       "type": "object"
     },
     "pack_version": {
-      "default": "0.3.0",
+      "default": "0.4.0",
       "title": "Pack Version",
       "type": "string"
     },
@@ -872,7 +890,7 @@
       "type": "string"
     },
     "rule_version": {
-      "default": "1.1.0",
+      "default": "1.2.0",
       "title": "Rule Version",
       "type": "string"
     },

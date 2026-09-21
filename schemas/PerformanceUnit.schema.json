@@ -28,6 +28,9 @@
             "jaw",
             "mouth",
             "eyelids",
+            "nose",
+            "cheeks",
+            "chin",
             "unknown"
           ],
           "title": "Region",
@@ -469,6 +472,11 @@
         "blocking"
       ],
       "title": "Invocation",
+      "type": "string"
+    },
+    "description_zh": {
+      "default": "",
+      "title": "Description Zh",
       "type": "string"
     }
   },

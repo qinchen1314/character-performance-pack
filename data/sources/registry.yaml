@@ -1,5 +1,23 @@
 schema_version: 1.0.0
 sources:
+  - id: src.original.catalog.v1
+    name: Original expanded Chinese narrative behaviour catalog
+    source_type: original
+    official_url: project://character-performance-pack/data/catalog/FORMAT.md
+    version: 0.4.0
+    retrieved_at: 2026-09-21
+    usage_mode: original
+    review_status: approved
+    reviewer: project-authoring-process
+    reviewed_at: 2026-09-21
+    concepts_used: [narrative-distinction, contextual-facts, shared-semantic-families, fictional-world-rules]
+    license:
+      identifier: project-license
+      commercial_use: true
+      redistribution: true
+      attribution_required: false
+      share_alike: false
+      evidence_urls: []
   - id: src.original.navigation.v1
     name: Original navigation and resumable blocking rules
     source_type: original

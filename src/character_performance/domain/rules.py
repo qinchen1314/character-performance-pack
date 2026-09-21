@@ -1,7 +1,7 @@
 """Typed rule vocabulary. Serialized dictionaries remain compatible with Pack v1."""
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, model_validator
 
 Number = Annotated[float, Field(strict=True, ge=0, le=1, allow_inf_nan=False)]
 
@@ -20,6 +20,16 @@ class PhysicalRequirements(RuleModel):
 class ContextRequirements(RuleModel):
     any: list[Literal["conversation", "confrontation", "waiting"]] = []
     private_only: StrictBool = False
+    required_facts: list[Annotated[str, Field(strict=True, pattern=r"^[a-z][a-z0-9_.-]*$")]] = []
+
+    @model_validator(mode="after")
+    def reserved_held_facts(self):
+        for fact in self.required_facts:
+            if fact.startswith("held."):
+                pieces = fact.split(".", 2)
+                if len(pieces) != 3 or pieces[1] not in {"left", "right", "both"}:
+                    raise ValueError("held facts require left/right/both and an object tag")
+        return self
 
 
 class StateEffects(RuleModel):

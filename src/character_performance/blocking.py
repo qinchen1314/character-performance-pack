@@ -5,7 +5,7 @@ traverses at most one edge, and every visible bridge consumes one signal slot.
 """
 from heapq import heappop, heappush
 
-from character_performance.continuity import apply_effects, physical_errors, precondition_errors
+from character_performance.continuity import apply_effects, context_errors, physical_errors, precondition_errors
 from character_performance.domain.models import ActiveAction, BlockingStep, PerformanceRequest, SceneLayout, SceneState
 from character_performance.ontology.pack import PerformancePack, digest
 
@@ -41,10 +41,7 @@ def _allowed(pack: PerformancePack, request: PerformanceRequest, unit_id: str) -
         errors.append("disabled")
     if VISIBILITY[unit.visibility] > VISIBILITY[request.director.desired_visibility]:
         errors.append("visibility_budget")
-    if unit.context_requirements.get("any") and request.context.activity not in unit.context_requirements["any"]:
-        errors.append("context")
-    if unit.context_requirements.get("private_only") and request.context.privacy != "private":
-        errors.append("privacy")
+    errors.extend(context_errors(unit, request))
     return [f"{unit_id}:{reason}" for reason in errors]
 
 

@@ -1,110 +1,862 @@
 schema_version: 1.0.0
 emotions:
-  - id: anger
-    label_zh: 愤怒
-    families: [basic, conflict]
-    aliases: [恼怒, angry]
-    prototype_vad: {valence: -0.65, arousal: 0.70, dominance: 0.55}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: fear
-    label_zh: 恐惧
-    families: [basic, defensive]
-    aliases: [害怕, afraid]
-    prototype_vad: {valence: -0.72, arousal: 0.70, dominance: -0.65}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: joy
-    label_zh: 喜悦
-    families: [basic]
-    aliases: [高兴, joyful]
-    prototype_vad: {valence: 0.76, arousal: 0.55, dominance: 0.40}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: sadness
-    label_zh: 悲伤
-    families: [basic, attachment]
-    aliases: [难过, sad]
-    prototype_vad: {valence: -0.70, arousal: -0.25, dominance: -0.52}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: disgust
-    label_zh: 厌恶
-    families: [basic, defensive]
-    aliases: [嫌恶, disgusted]
-    prototype_vad: {valence: -0.70, arousal: 0.35, dominance: 0.20}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: surprise
-    label_zh: 惊讶
-    families: [basic, cognitive]
-    aliases: [吃惊, surprised]
-    prototype_vad: {valence: 0.05, arousal: 0.72, dominance: -0.12}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: admiration
-    label_zh: 钦佩
-    families: [social, relational]
-    aliases: [敬佩, admiring]
-    prototype_vad: {valence: 0.68, arousal: 0.38, dominance: -0.08}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: embarrassment
-    label_zh: 尴尬
-    families: [social, defensive]
-    aliases: [窘迫, embarrassed]
-    prototype_vad: {valence: -0.46, arousal: 0.52, dominance: -0.58}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: gratitude
-    label_zh: 感激
-    families: [social, relational]
-    aliases: [感谢, grateful]
-    prototype_vad: {valence: 0.72, arousal: 0.32, dominance: -0.05}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: disappointment
-    label_zh: 失望
-    families: [cognitive, relational]
-    aliases: [失落, disappointed]
-    prototype_vad: {valence: -0.55, arousal: -0.15, dominance: -0.25}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: curiosity
-    label_zh: 好奇
-    families: [cognitive]
-    aliases: [探究, curious]
-    prototype_vad: {valence: 0.28, arousal: 0.42, dominance: 0.10}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: remorse
-    label_zh: 悔恨
-    families: [moral, social]
-    aliases: [懊悔, remorseful]
-    prototype_vad: {valence: -0.66, arousal: 0.18, dominance: -0.55}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: pride
-    label_zh: 自豪
-    families: [social, moral]
-    aliases: [骄傲, proud]
-    prototype_vad: {valence: 0.62, arousal: 0.42, dominance: 0.67}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: love
-    label_zh: 爱恋
-    families: [attachment, relational]
-    aliases: [爱意, loving]
-    prototype_vad: {valence: 0.78, arousal: 0.38, dominance: 0.12}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: jealousy
-    label_zh: 嫉妒
-    families: [relational, conflict, complex]
-    aliases: [妒忌, jealous]
-    prototype_vad: {valence: -0.58, arousal: 0.55, dominance: -0.10}
-    source_refs: [src.original.core.v1]
-  - id: relief
-    label_zh: 如释重负
-    families: [defensive, complex]
-    aliases: [宽慰, relieved]
-    prototype_vad: {valence: 0.55, arousal: -0.35, dominance: 0.25}
-    source_refs: [src.goemotions.taxonomy.v1]
-  - id: resentment
-    label_zh: 怨恨
-    families: [conflict, relational, complex]
-    aliases: [怨愤, resentful]
-    prototype_vad: {valence: -0.72, arousal: 0.38, dominance: 0.18}
-    source_refs: [src.original.core.v1]
-  - id: hope
-    label_zh: 希望
-    families: [cognitive, attachment, complex]
-    aliases: [期望, hopeful]
-    prototype_vad: {valence: 0.58, arousal: 0.34, dominance: 0.22}
-    source_refs: [src.original.core.v1]
+- id: anger
+  label_zh: 愤怒
+  families:
+  - basic
+  - conflict
+  aliases:
+  - 恼怒
+  - angry
+  prototype_vad:
+    valence: -0.65
+    arousal: 0.7
+    dominance: 0.55
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: fear
+  label_zh: 恐惧
+  families:
+  - basic
+  - defensive
+  aliases:
+  - 害怕
+  - afraid
+  prototype_vad:
+    valence: -0.72
+    arousal: 0.7
+    dominance: -0.65
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: joy
+  label_zh: 喜悦
+  families:
+  - basic
+  aliases:
+  - 高兴
+  - joyful
+  prototype_vad:
+    valence: 0.76
+    arousal: 0.55
+    dominance: 0.4
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: sadness
+  label_zh: 悲伤
+  families:
+  - basic
+  - attachment
+  aliases:
+  - 难过
+  - sad
+  prototype_vad:
+    valence: -0.7
+    arousal: -0.25
+    dominance: -0.52
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: disgust
+  label_zh: 厌恶
+  families:
+  - basic
+  - defensive
+  aliases:
+  - 嫌恶
+  - disgusted
+  prototype_vad:
+    valence: -0.7
+    arousal: 0.35
+    dominance: 0.2
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: surprise
+  label_zh: 惊讶
+  families:
+  - basic
+  - cognitive
+  aliases:
+  - 吃惊
+  - surprised
+  prototype_vad:
+    valence: 0.05
+    arousal: 0.72
+    dominance: -0.12
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: admiration
+  label_zh: 钦佩
+  families:
+  - social
+  - relational
+  aliases:
+  - 敬佩
+  - admiring
+  prototype_vad:
+    valence: 0.68
+    arousal: 0.38
+    dominance: -0.08
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: embarrassment
+  label_zh: 尴尬
+  families:
+  - social
+  - defensive
+  aliases:
+  - 窘迫
+  - embarrassed
+  prototype_vad:
+    valence: -0.46
+    arousal: 0.52
+    dominance: -0.58
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: gratitude
+  label_zh: 感激
+  families:
+  - social
+  - relational
+  aliases:
+  - 感谢
+  - grateful
+  prototype_vad:
+    valence: 0.72
+    arousal: 0.32
+    dominance: -0.05
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: disappointment
+  label_zh: 失望
+  families:
+  - cognitive
+  - relational
+  aliases:
+  - 失落
+  - disappointed
+  prototype_vad:
+    valence: -0.55
+    arousal: -0.15
+    dominance: -0.25
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: curiosity
+  label_zh: 好奇
+  families:
+  - cognitive
+  aliases:
+  - 探究
+  - curious
+  prototype_vad:
+    valence: 0.28
+    arousal: 0.42
+    dominance: 0.1
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: remorse
+  label_zh: 悔恨
+  families:
+  - moral
+  - social
+  aliases:
+  - 懊悔
+  - remorseful
+  prototype_vad:
+    valence: -0.66
+    arousal: 0.18
+    dominance: -0.55
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: pride
+  label_zh: 自豪
+  families:
+  - social
+  - moral
+  aliases:
+  - 骄傲
+  - proud
+  prototype_vad:
+    valence: 0.62
+    arousal: 0.42
+    dominance: 0.67
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: love
+  label_zh: 爱恋
+  families:
+  - attachment
+  - relational
+  aliases:
+  - 爱意
+  - loving
+  prototype_vad:
+    valence: 0.78
+    arousal: 0.38
+    dominance: 0.12
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: jealousy
+  label_zh: 嫉妒
+  families:
+  - relational
+  - conflict
+  - complex
+  aliases:
+  - 妒忌
+  - jealous
+  prototype_vad:
+    valence: -0.58
+    arousal: 0.55
+    dominance: -0.1
+  source_refs:
+  - src.original.core.v1
+- id: relief
+  label_zh: 如释重负
+  families:
+  - defensive
+  - complex
+  aliases:
+  - 宽慰
+  - relieved
+  prototype_vad:
+    valence: 0.55
+    arousal: -0.35
+    dominance: 0.25
+  source_refs:
+  - src.goemotions.taxonomy.v1
+- id: resentment
+  label_zh: 怨恨
+  families:
+  - conflict
+  - relational
+  - complex
+  aliases:
+  - 怨愤
+  - resentful
+  prototype_vad:
+    valence: -0.72
+    arousal: 0.38
+    dominance: 0.18
+  source_refs:
+  - src.original.core.v1
+- id: hope
+  label_zh: 希望
+  families:
+  - cognitive
+  - attachment
+  - complex
+  aliases:
+  - 期望
+  - hopeful
+  prototype_vad:
+    valence: 0.58
+    arousal: 0.34
+    dominance: 0.22
+  source_refs:
+  - src.original.core.v1
+- id: amusement
+  label_zh: 觉得好笑
+  families:
+  - positive
+  - social
+  aliases: []
+  prototype_vad:
+    valence: 0.65
+    arousal: 0.35
+    dominance: 0.2
+  description_zh: 被具体趣事逗乐，区别于不依赖笑料的喜悦
+  source_refs:
+  - src.original.catalog.v1
+- id: annoyance
+  label_zh: 烦扰
+  families:
+  - conflict
+  aliases: []
+  prototype_vad:
+    valence: -0.35
+    arousal: 0.35
+    dominance: 0.3
+  description_zh: 小阻碍持续打断当前任务，区别于强烈追责的愤怒
+  source_refs:
+  - src.original.catalog.v1
+- id: approval
+  label_zh: 赞许
+  families:
+  - social
+  - moral
+  aliases: []
+  prototype_vad:
+    valence: 0.55
+    arousal: 0.1
+    dominance: 0.35
+  description_zh: 认可具体选择或表现，区别于仰视整个人的钦佩
+  source_refs:
+  - src.original.catalog.v1
+- id: caring
+  label_zh: 关切
+  families:
+  - attachment
+  - relational
+  aliases: []
+  prototype_vad:
+    valence: 0.35
+    arousal: 0.2
+    dominance: 0.15
+  description_zh: 关注他人的需要并准备照顾，区别于欣赏或占有
+  source_refs:
+  - src.original.catalog.v1
+- id: confusion
+  label_zh: 困惑
+  families:
+  - cognitive
+  aliases: []
+  prototype_vad:
+    valence: -0.15
+    arousal: 0.25
+    dominance: -0.25
+  description_zh: 线索互相冲突尚不能理解，区别于主动寻求新知的好奇
+  source_refs:
+  - src.original.catalog.v1
+- id: desire
+  label_zh: 渴求
+  families:
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: 0.35
+    arousal: 0.55
+    dominance: 0.1
+  description_zh: 想获得尚未拥有的对象，区别于已有事物带来的满足
+  source_refs:
+  - src.original.catalog.v1
+- id: disapproval
+  label_zh: 不赞同
+  families:
+  - social
+  - moral
+  aliases: []
+  prototype_vad:
+    valence: -0.3
+    arousal: 0.15
+    dominance: 0.35
+  description_zh: 否定具体行为或判断，区别于对整个人的轻蔑
+  source_refs:
+  - src.original.catalog.v1
+- id: excitement
+  label_zh: 兴奋
+  families:
+  - positive
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: 0.7
+    arousal: 0.85
+    dominance: 0.4
+  description_zh: 积极事件引起明显动员，区别于安定满足
+  source_refs:
+  - src.original.catalog.v1
+- id: grief
+  label_zh: 哀恸
+  families:
+  - loss
+  - attachment
+  aliases: []
+  prototype_vad:
+    valence: -0.9
+    arousal: 0.2
+    dominance: -0.7
+  description_zh: 重大且不可逆丧失引发的悲痛，区别于暂时挫折
+  source_refs:
+  - src.original.catalog.v1
+- id: nervousness
+  label_zh: 紧张
+  families:
+  - defensive
+  - social
+  aliases: []
+  prototype_vad:
+    valence: -0.35
+    arousal: 0.55
+    dominance: -0.3
+  description_zh: 临近具体表现任务时的不稳，区别于无明确期限的焦虑
+  source_refs:
+  - src.original.catalog.v1
+- id: optimism
+  label_zh: 乐观
+  families:
+  - cognitive
+  - positive
+  aliases: []
+  prototype_vad:
+    valence: 0.65
+    arousal: 0.15
+    dominance: 0.4
+  description_zh: 倾向预期有利结果，区别于针对一个愿望的希望
+  source_refs:
+  - src.original.catalog.v1
+- id: realization
+  label_zh: 恍然
+  families:
+  - cognitive
+  aliases: []
+  prototype_vad:
+    valence: 0.2
+    arousal: 0.45
+    dominance: 0.35
+  description_zh: 信息刚刚接通形成理解，区别于持续探究
+  source_refs:
+  - src.original.catalog.v1
+- id: shame
+  label_zh: 羞耻
+  families:
+  - moral
+  - social
+  aliases: []
+  prototype_vad:
+    valence: -0.65
+    arousal: 0.35
+    dominance: -0.65
+  description_zh: 觉得自身形象或价值暴露缺陷，区别于仅对行为负责的内疚
+  source_refs:
+  - src.original.catalog.v1
+- id: guilt
+  label_zh: 内疚
+  families:
+  - moral
+  - relational
+  aliases: []
+  prototype_vad:
+    valence: -0.6
+    arousal: 0.2
+    dominance: -0.3
+  description_zh: 意识到自己使他人受损并承担责任，区别于社交失态
+  source_refs:
+  - src.original.catalog.v1
+- id: loneliness
+  label_zh: 孤独
+  families:
+  - attachment
+  - loss
+  aliases: []
+  prototype_vad:
+    valence: -0.55
+    arousal: -0.3
+    dominance: -0.35
+  description_zh: 缺乏所需连接而感到隔绝，区别于主动独处
+  source_refs:
+  - src.original.catalog.v1
+- id: longing
+  label_zh: 思念
+  families:
+  - attachment
+  aliases: []
+  prototype_vad:
+    valence: -0.15
+    arousal: 0.2
+    dominance: -0.2
+  description_zh: 渴望与特定离开者重逢，区别于泛泛缺少陪伴
+  source_refs:
+  - src.original.catalog.v1
+- id: nostalgia
+  label_zh: 怀旧
+  families:
+  - memory
+  - complex
+  aliases: []
+  prototype_vad:
+    valence: 0.2
+    arousal: -0.1
+    dominance: 0.05
+  description_zh: 过去片段带来温暖和失落并存，区别于当下目标受阻
+  source_refs:
+  - src.original.catalog.v1
+- id: homesickness
+  label_zh: 思乡
+  families:
+  - attachment
+  - memory
+  aliases: []
+  prototype_vad:
+    valence: -0.3
+    arousal: 0.05
+    dominance: -0.25
+  description_zh: 思念熟悉的归属环境，区别于仅思念某个人
+  source_refs:
+  - src.original.catalog.v1
+- id: awe
+  label_zh: 震撼
+  families:
+  - cognitive
+  - complex
+  aliases: []
+  prototype_vad:
+    valence: 0.3
+    arousal: 0.6
+    dominance: -0.55
+  description_zh: 面对超出原有理解的宏大事物，区别于一次突发惊讶
+  source_refs:
+  - src.original.catalog.v1
+- id: reverence
+  label_zh: 敬畏
+  families:
+  - social
+  - moral
+  aliases: []
+  prototype_vad:
+    valence: 0.35
+    arousal: 0.05
+    dominance: -0.4
+  description_zh: 面对承认其权威或价值的对象主动收敛，区别于危险恐惧
+  source_refs:
+  - src.original.catalog.v1
+- id: compassion
+  label_zh: 悲悯
+  families:
+  - relational
+  - moral
+  aliases: []
+  prototype_vad:
+    valence: -0.05
+    arousal: 0.2
+    dominance: 0.2
+  description_zh: 被他人困境触动并愿意减轻痛苦，区别于自身悲伤
+  source_refs:
+  - src.original.catalog.v1
+- id: tenderness
+  label_zh: 怜爱
+  families:
+  - attachment
+  aliases: []
+  prototype_vad:
+    valence: 0.65
+    arousal: -0.2
+    dominance: 0.05
+  description_zh: 对脆弱或珍视对象温柔保护，区别于热烈占有
+  source_refs:
+  - src.original.catalog.v1
+- id: trust
+  label_zh: 信任
+  families:
+  - relational
+  aliases: []
+  prototype_vad:
+    valence: 0.55
+    arousal: -0.3
+    dominance: 0.2
+  description_zh: 愿意把一部分不确定性交给对方，区别于熟悉或盲从
+  source_refs:
+  - src.original.catalog.v1
+- id: suspicion
+  label_zh: 猜疑
+  families:
+  - relational
+  - cognitive
+  aliases: []
+  prototype_vad:
+    valence: -0.35
+    arousal: 0.35
+    dominance: 0.05
+  description_zh: 怀疑表面信息隐含不利动机，区别于尚未理解
+  source_refs:
+  - src.original.catalog.v1
+- id: contempt
+  label_zh: 轻蔑
+  families:
+  - relational
+  - conflict
+  aliases: []
+  prototype_vad:
+    valence: -0.45
+    arousal: 0.05
+    dominance: 0.7
+  description_zh: 贬低对象的价值或资格，区别于只反对一次行为
+  source_refs:
+  - src.original.catalog.v1
+- id: frustration
+  label_zh: 挫败
+  families:
+  - motivational
+  - conflict
+  aliases: []
+  prototype_vad:
+    valence: -0.55
+    arousal: 0.55
+    dominance: 0.05
+  description_zh: 努力反复被阻断但仍想达成目标，区别于放弃后的绝望
+  source_refs:
+  - src.original.catalog.v1
+- id: impatience
+  label_zh: 不耐烦
+  families:
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: -0.3
+    arousal: 0.45
+    dominance: 0.4
+  description_zh: 等待成本高于容忍而催促推进，区别于对动机的怨恨
+  source_refs:
+  - src.original.catalog.v1
+- id: helplessness
+  label_zh: 无助
+  families:
+  - defensive
+  aliases: []
+  prototype_vad:
+    valence: -0.7
+    arousal: -0.15
+    dominance: -0.85
+  description_zh: 觉得缺乏改变局面的手段，区别于尚能行动的害怕
+  source_refs:
+  - src.original.catalog.v1
+- id: despair
+  label_zh: 绝望
+  families:
+  - loss
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: -0.9
+    arousal: -0.45
+    dominance: -0.8
+  description_zh: 认为重要目标已无实现可能，区别于仍保留办法的失望
+  source_refs:
+  - src.original.catalog.v1
+- id: anxiety
+  label_zh: 焦虑
+  families:
+  - defensive
+  - cognitive
+  aliases: []
+  prototype_vad:
+    valence: -0.55
+    arousal: 0.65
+    dominance: -0.35
+  description_zh: 围绕多种未定风险持续担忧，区别于眼前明确威胁
+  source_refs:
+  - src.original.catalog.v1
+- id: dread
+  label_zh: 惶惧
+  families:
+  - defensive
+  - anticipation
+  aliases: []
+  prototype_vad:
+    valence: -0.8
+    arousal: 0.35
+    dominance: -0.6
+  description_zh: 确信不利事件正在逼近而不愿面对，区别于一般不确定
+  source_refs:
+  - src.original.catalog.v1
+- id: unease
+  label_zh: 不安
+  families:
+  - defensive
+  aliases: []
+  prototype_vad:
+    valence: -0.3
+    arousal: 0.2
+    dominance: -0.15
+  description_zh: 感觉有异样但尚无明确解释，区别于已锁定动机的猜疑
+  source_refs:
+  - src.original.catalog.v1
+- id: contentment
+  label_zh: 知足
+  families:
+  - positive
+  aliases: []
+  prototype_vad:
+    valence: 0.65
+    arousal: -0.45
+    dominance: 0.2
+  description_zh: 接受已有处境并无需更多，区别于刚完成任务的满足
+  source_refs:
+  - src.original.catalog.v1
+- id: serenity
+  label_zh: 安宁
+  families:
+  - positive
+  - regulated
+  aliases: []
+  prototype_vad:
+    valence: 0.5
+    arousal: -0.65
+    dominance: 0.3
+  description_zh: 威胁和内在冲突退去后的安稳，区别于对外掩饰的平静
+  source_refs:
+  - src.original.catalog.v1
+- id: satisfaction
+  label_zh: 满足
+  families:
+  - positive
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: 0.7
+    arousal: -0.1
+    dominance: 0.5
+  description_zh: 具体需要或任务已得到充分满足，区别于泛化乐观
+  source_refs:
+  - src.original.catalog.v1
+- id: confidence
+  label_zh: 自信
+  families:
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: 0.55
+    arousal: 0.2
+    dominance: 0.75
+  description_zh: 相信自己具备应对能力，区别于已经取得结果的自豪
+  source_refs:
+  - src.original.catalog.v1
+- id: determination
+  label_zh: 奋意
+  families:
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: 0.25
+    arousal: 0.65
+    dominance: 0.7
+  description_zh: 为了困难目标主动投入努力，区别于单次下定决定
+  source_refs:
+  - src.original.catalog.v1
+- id: resolve
+  label_zh: 决意
+  families:
+  - motivational
+  - regulated
+  aliases: []
+  prototype_vad:
+    valence: 0.1
+    arousal: 0.15
+    dominance: 0.8
+  description_zh: 在冲突选项间已完成取舍，区别于仍在审慎权衡
+  source_refs:
+  - src.original.catalog.v1
+- id: boredom
+  label_zh: 无聊
+  families:
+  - cognitive
+  aliases: []
+  prototype_vad:
+    valence: -0.2
+    arousal: -0.65
+    dominance: 0.05
+  description_zh: 缺少足够刺激而注意游离，区别于体力疲惫
+  source_refs:
+  - src.original.catalog.v1
+- id: interest
+  label_zh: 兴味
+  families:
+  - cognitive
+  aliases: []
+  prototype_vad:
+    valence: 0.4
+    arousal: 0.2
+    dominance: 0.2
+  description_zh: 愿意持续接触一个对象，区别于只想解开疑问
+  source_refs:
+  - src.original.catalog.v1
+- id: anticipation
+  label_zh: 期待
+  families:
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: 0.4
+    arousal: 0.45
+    dominance: 0.1
+  description_zh: 等待一件具体事件到来，区别于长期总体乐观
+  source_refs:
+  - src.original.catalog.v1
+- id: vulnerability
+  label_zh: 脆弱感
+  families:
+  - relational
+  - defensive
+  aliases: []
+  prototype_vad:
+    valence: -0.45
+    arousal: 0.15
+    dominance: -0.6
+  description_zh: 意识到自己可能被伤害却缺少保护，区别于已经被羞辱
+  source_refs:
+  - src.original.catalog.v1
+- id: hurt
+  label_zh: 受伤感
+  families:
+  - relational
+  aliases: []
+  prototype_vad:
+    valence: -0.65
+    arousal: 0.3
+    dominance: -0.35
+  description_zh: 重要关系中的言行刺痛自己，区别于身体伤势
+  source_refs:
+  - src.original.catalog.v1
+- id: humiliation
+  label_zh: 屈辱
+  families:
+  - social
+  - conflict
+  aliases: []
+  prototype_vad:
+    valence: -0.8
+    arousal: 0.5
+    dominance: -0.6
+  description_zh: 尊严遭到外部贬损且无法立即挽回，区别于自我羞耻
+  source_refs:
+  - src.original.catalog.v1
+- id: defiance
+  label_zh: 抗拒
+  families:
+  - conflict
+  - motivational
+  aliases: []
+  prototype_vad:
+    valence: -0.15
+    arousal: 0.65
+    dominance: 0.7
+  description_zh: 面对强加要求仍拒绝服从，区别于主动侵犯
+  source_refs:
+  - src.original.catalog.v1
+- id: resignation
+  label_zh: 认命
+  families:
+  - loss
+  - regulated
+  aliases: []
+  prototype_vad:
+    valence: -0.35
+    arousal: -0.5
+    dominance: -0.55
+  description_zh: 停止抵抗已接受不利结果，区别于仍在寻找援助的无助
+  source_refs:
+  - src.original.catalog.v1
+- id: schadenfreude
+  label_zh: 幸灾乐祸
+  families:
+  - social
+  - complex
+  aliases: []
+  prototype_vad:
+    valence: 0.45
+    arousal: 0.35
+    dominance: 0.4
+  description_zh: 他人受挫让自己产生快意，区别于普通幽默愉悦
+  source_refs:
+  - src.original.catalog.v1
+- id: ambivalence
+  label_zh: 矛盾
+  families:
+  - complex
+  - cognitive
+  aliases: []
+  prototype_vad:
+    valence: -0.05
+    arousal: 0.25
+    dominance: -0.2
+  description_zh: 同一对象同时激起接近和退避，区别于没有理解信息
+  source_refs:
+  - src.original.catalog.v1

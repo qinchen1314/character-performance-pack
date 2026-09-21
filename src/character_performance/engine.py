@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from math import exp, log
 
-from character_performance.continuity import apply_effects, physical_errors, precondition_errors
+from character_performance.continuity import apply_effects, context_errors, physical_errors, precondition_errors
 from character_performance.domain.models import (
     HistoryEntry, Masking, PerformancePlan, PerformanceRequest, RenderContext,
     RenderResult, StateTransition, ValidationReport,
@@ -21,6 +21,10 @@ VISIBILITY = {"hidden": 0, "very_subtle": 1, "subtle": 2, "noticeable": 3, "obvi
 class PerformanceEngine:
     def __init__(self, pack: PerformancePack, repository: SQLiteRepository | None = None, rules: ScoringRules | None = None):
         self.pack = pack
+        # Pack accessors deliberately detach mutable nested containers for
+        # callers. The engine owns one detached, read-only working snapshot so
+        # a large catalog is not copied again on every beat.
+        self._units = pack.all()
         self.repository = repository or SQLiteRepository()
         self.rules = rules or ScoringRules()
 
@@ -64,7 +68,7 @@ class PerformanceEngine:
             leak_probability = 1 / (1 + exp(-3 * (emotion.vad.arousal + emotion.intensity + mask.leak_pressure - effective - 1.2)))
             allow_leak = noise(request.seed, "mask.leak") < leak_probability
             candidates = []
-            for unit in self.pack.all():
+            for unit in self._units:
                 surface = masking and unit.emotion_affinity.get("calm", 0) > 0
                 affinity = max(unit.emotion_affinity.get(emotion.primary, 0), unit.emotion_affinity.get(emotion.secondary, 0) * .65)
                 reasons = []
@@ -84,11 +88,7 @@ class PerformanceEngine:
                     reasons.append("visibility_budget")
                 if masking and not surface and (VISIBILITY[unit.visibility] > 2 or not allow_leak):
                     reasons.append("mask_strength_high")
-                requirements = unit.context_requirements
-                if requirements.get("any") and request.context.activity not in requirements["any"]:
-                    reasons.append("context")
-                if requirements.get("private_only") and request.context.privacy != "private":
-                    reasons.append("privacy")
+                reasons.extend(context_errors(unit, request))
                 if request.relationship and request.relationship.public_role_constraints and request.context.privacy == "public" and request.relationship.dominance < 0 and unit.semantics.get("aggression", 0) > .5:
                     reasons.append("public_role_constraint")
                 reasons.extend(physical_errors(unit, request))

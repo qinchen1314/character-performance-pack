@@ -1,0 +1,2690 @@
+[
+  {
+    "id": "spatial.threshold_wait_permission",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "boundary_permission",
+    "meaning": "保持门内边界，等待进入下一空间的许可",
+    "clause": "停在门槛内侧，等招呼到了再动",
+    "emotions": [
+      "nervousness",
+      "reverence"
+    ],
+    "axis": "deference",
+    "facts": [
+      "position.threshold_inside",
+      "interaction.entry_permission_pending"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.outside_room_listen",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "boundary_privacy",
+    "meaning": "维护谈话私密边界，不越门进入",
+    "clause": "留在门外，让屋里的话隔着门传出来",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.outside_closed_room",
+      "sound.room_speech_audible"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.threshold_not_block",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "route_clearance",
+    "meaning": "既定门侧位置保障双向通行",
+    "clause": "守在门侧，把进出的通道留空",
+    "emotions": [
+      "caring",
+      "trust"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.beside_door",
+      "space.doorway_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.hold_queue_place",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "queue_fairness",
+    "meaning": "坚持排队次序而非抢占临时空间",
+    "clause": "守着队尾的位置，没有挤进前面的空隙",
+    "emotions": [
+      "resolve",
+      "impatience"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.queue_tail",
+      "space.queue_gap_ahead"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.front_queue_yield_signal",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "queue_fairness",
+    "meaning": "表达让先意愿但不自动改写双方位置",
+    "clause": "从队首向旁边的人做了个请先的手势，脚下未动",
+    "emotions": [
+      "caring",
+      "trust"
+    ],
+    "axis": "deference",
+    "facts": [
+      "position.queue_front",
+      "target.beside_queue"
+    ],
+    "preconditions": [
+      "standing",
+      "right_hand_free",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.seat_edge_ready",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "seat_commitment",
+    "meaning": "维持已在椅沿的低投入坐姿",
+    "clause": "坐在椅沿，给起身留着余地",
+    "emotions": [
+      "anxiety",
+      "anticipation"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "position.seat_front_edge"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "spatial.seat_center_settled",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "seat_commitment",
+    "meaning": "维持已知居中承重，表达愿意久谈",
+    "clause": "坐稳椅面中央，把谈话留给耐心",
+    "emotions": [
+      "trust",
+      "contentment"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.seat_center",
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "spatial.empty_seat_respect",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "seat_boundary",
+    "meaning": "尊重已存在的座位间隔及对方个人空间",
+    "clause": "留着两人之间的空座，没有伸手去占",
+    "emotions": [
+      "shame",
+      "trust"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.empty_seat_between",
+      "target.seated_nearby"
+    ],
+    "preconditions": [
+      "seated",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.bench_end_reserve",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "seat_boundary",
+    "meaning": "维持端部座位以保留他人落座空间",
+    "clause": "仍坐在长凳尽头，把内侧空处留给来人",
+    "emotions": [
+      "caring",
+      "hope"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.bench_end",
+      "space.inner_bench_empty"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "spatial.high_seat_deference",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "status_elevation",
+    "meaning": "利用明确高低差完成应答，不凭空改变座位",
+    "clause": "在低处仰首回应高座上的人，说完便摆正头",
+    "emotions": [
+      "reverence",
+      "unease"
+    ],
+    "axis": "deference",
+    "facts": [
+      "position.below_target",
+      "target.on_high_seat",
+      "interaction.response"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.raised_platform_hold",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "status_elevation",
+    "meaning": "主动维持高处安全边界",
+    "clause": "守在台沿以内，没有把身体探出高处",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.on_raised_platform",
+      "space.edge_nearby"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.shared_level_acknowledge",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "status_elevation",
+    "meaning": "在明确同高座位关系中平等致意",
+    "clause": "在齐平的座位上点头回应，礼数没有压到对方面前",
+    "emotions": [
+      "trust",
+      "approval"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.same_seat_height_as_target",
+      "interaction.greeting"
+    ],
+    "preconditions": [
+      "seated",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.table_barrier_keep",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "object_boundary",
+    "meaning": "利用既存家具边界维持谈话距离",
+    "clause": "隔着桌面听完，没有向对方那边探身",
+    "emotions": [
+      "suspicion",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "space.table_between",
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "target_known"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "spatial.counter_exchange_pause",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "object_boundary",
+    "meaning": "交易边界上的递交犹豫，不凭空交出东西",
+    "clause": "右手在柜台自己这一侧停了停，又收回身边",
+    "emotions": [
+      "suspicion",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "position.customer_side_counter",
+      "surface.counter_reachable"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "spatial.screen_privacy_hold",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "visual_privacy",
+    "meaning": "维持明确屏障后方的私密位置",
+    "clause": "留在屏风遮住的半边，让谈话不被厅中看见",
+    "emotions": [
+      "vulnerability",
+      "trust"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "position.behind_screen",
+      "space.screen_blocks_hall_view"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "vision",
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.window_exposure_restraint",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "visual_privacy",
+    "meaning": "利用既定阴影减少从外部被看见的面积",
+    "clause": "身体守在窗影里，没有探到亮处",
+    "emotions": [
+      "suspicion",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.window_shadow",
+      "space.bright_exposed_patch_adjacent"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "spatial.silhouette_keep_low",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "visual_exposure",
+    "meaning": "维持明确地形遮蔽避免形成轮廓",
+    "clause": "在坡脊下保持身形，不让肩头越过天光",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.below_ridge",
+      "space.ridge_masks_shoulders"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "spatial.lamp_pool_respect",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "lighting_boundary",
+    "meaning": "维持灯光共享边界以免遮光",
+    "clause": "停在灯光边缘，把亮处留给正在读字的人",
+    "emotions": [
+      "caring",
+      "approval"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.edge_of_lamplight",
+      "target.reading_in_light"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.shadow_not_cover_work",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "lighting_boundary",
+    "meaning": "保持不会遮蔽工作照明的既定站位",
+    "clause": "站在光线旁侧，让影子落不到案上的字",
+    "emotions": [
+      "caring",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.side_of_light",
+      "space.shadow_clear_of_text"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.backlit_distance_read",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "lighting_boundary",
+    "meaning": "在既有逆光条件下调整头部辨认姿势",
+    "clause": "迎着逆光偏头辨了片刻，随后摆正",
+    "emotions": [
+      "confusion",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.facing_backlight",
+      "target.backlit"
+    ],
+    "preconditions": [
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.exit_sightline_keep",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "exit_monitoring",
+    "meaning": "兼顾社交与撤离路线的既定观察位",
+    "clause": "留在能看清出口的位置，话到一半也没有换地方",
+    "emotions": [
+      "anxiety",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.exit_in_view",
+      "interaction.conversation"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "vision",
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.avoid_exit_back",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "exit_monitoring",
+    "meaning": "保留既知出口侧向关系避免封闭退路",
+    "clause": "维持侧对出口的站姿，背后仍留着转身余地",
+    "emotions": [
+      "unease",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "orientation.side_to_exit",
+      "space.turning_room"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "spatial.door_guard_station",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "access_guard",
+    "meaning": "履行已约定入口值守，不阻挡或移动来人",
+    "clause": "守在约定的门边，让每个来人先经过自己的视线",
+    "emotions": [
+      "determination",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.guard_post_at_door",
+      "task.guard_entry"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "vision",
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.private_radius_hold",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "personal_radius",
+    "meaning": "维持已有超出触及范围的非接触交谈区",
+    "clause": "留在伸手够不到对方的距离，耐心等着回答",
+    "emotions": [
+      "trust",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "distance.beyond_arm_reach",
+      "interaction.question_pending"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.intimate_radius_respect",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "personal_radius",
+    "meaning": "在明确近距离时停止进一步侵入",
+    "clause": "守着两人之间最后那点空隙，没有再往前压",
+    "emotions": [
+      "longing",
+      "vulnerability"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "distance.close_gap_remaining"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.shared_umbrella_half",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "shared_shelter",
+    "meaning": "同伞既定位置的空间克制",
+    "clause": "在伞下守住自己的半边，肩头没有再挤过去",
+    "emotions": [
+      "tenderness",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.under_shared_umbrella",
+      "space.own_half_under_umbrella"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.awning_dry_strip",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "shared_shelter",
+    "meaning": "利用明确雨水分布维持安全干燥位置",
+    "clause": "站稳檐下的干地，把流水冲着的边缘空出来",
+    "emotions": [
+      "unease",
+      "contentment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.dry_strip_under_awning",
+      "space.runoff_at_edge"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.fire_warmth_share",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "shared_heat",
+    "meaning": "维持公平的热源共享位置",
+    "clause": "留在火边外圈，没有挡住后面的人取暖",
+    "emotions": [
+      "caring",
+      "trust"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.outer_fire_circle",
+      "target.behind_seeking_heat"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.smoke_lane_avoid",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "airflow_boundary",
+    "meaning": "保持明确空气质量边界",
+    "clause": "守在烟流旁边的清气里，没有把头探进去",
+    "emotions": [
+      "disgust",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.outside_smoke_stream"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.wind_shelter_maintain",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "weather_shelter",
+    "meaning": "利用已到达的背风处等待",
+    "clause": "停在背风的一面，等风势缓下来",
+    "emotions": [
+      "unease",
+      "hope"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "position.leeward",
+      "environment.strong_wind"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.rain_drip_edge",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "weather_shelter",
+    "meaning": "在既定避雨处局部避开下落雨滴",
+    "clause": "在檐下略偏头避过一串滴水，随后回正",
+    "emotions": [
+      "annoyance",
+      "amusement"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.under_eaves",
+      "water.dripping_near_head"
+    ]
+  },
+  {
+    "id": "spatial.bridge_center_wait",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "route_balance",
+    "meaning": "维持已知狭窄通道中的静止等待",
+    "clause": "在桥心稳住脚下，等对面的通行信号",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.bridge_center",
+      "interaction.crossing_signal_pending"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.stairs_landing_pause",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "route_rest",
+    "meaning": "利用已达转台停留而不占阶梯",
+    "clause": "停在楼梯转台，让上下的人从身旁通过",
+    "emotions": [
+      "caring",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.stair_landing",
+      "space.stair_lane_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.landing_rail_distance",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "height_boundary",
+    "meaning": "维持高处安全余量并抵抗探身冲动",
+    "clause": "留着离栏杆一步的空处，没有靠向楼下的喧闹",
+    "emotions": [
+      "curiosity",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.one_step_from_balcony_rail",
+      "sound.below"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.cliff_mark_hold",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "height_boundary",
+    "meaning": "遵守明确高处警戒边界",
+    "clause": "把脚稳在警戒线后，任崖风擦过面前",
+    "emotions": [
+      "fear",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.behind_cliff_warning_line",
+      "environment.cliff_wind"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.floor_mark_discipline",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "marked_boundary",
+    "meaning": "遵守既定正式接见站位",
+    "clause": "守在地上的候见标记内，没越到前面去",
+    "emotions": [
+      "reverence",
+      "nervousness"
+    ],
+    "axis": "deference",
+    "facts": [
+      "position.inside_audience_mark"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.ritual_circle_limit",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "marked_boundary",
+    "meaning": "尊重明确仪式空间而不跨界",
+    "clause": "立在仪式圈外，给圈内的人留着完整的一周",
+    "emotions": [
+      "reverence",
+      "awe"
+    ],
+    "axis": "deference",
+    "facts": [
+      "position.outside_ritual_circle",
+      "task.ritual_active"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.wet_paint_clearance",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "material_boundary",
+    "meaning": "维持明确材料接触禁区",
+    "clause": "停在未干的漆面旁，衣袖始终没有擦上去",
+    "emotions": [
+      "unease",
+      "caring"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.next_to_wet_paint",
+      "space.sleeves_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.fragile_display_margin",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "material_boundary",
+    "meaning": "控制既定狭窄观赏区内的占幅",
+    "clause": "留在展架前的空隙里，双肘收住不碰陈设",
+    "emotions": [
+      "awe",
+      "caring"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.before_fragile_display",
+      "space.elbows_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.shared_desk_half",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "workspace_boundary",
+    "meaning": "维护明确共享工作面分区",
+    "clause": "坐守书案的一半，没有把手肘越到对方那边",
+    "emotions": [
+      "trust",
+      "annoyance"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.own_half_shared_desk"
+    ],
+    "preconditions": [
+      "seated",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.map_view_corridor",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "sightline_sharing",
+    "meaning": "维持集体观图中不遮挡的位置",
+    "clause": "在地图侧边停稳，把中央的视线让给众人",
+    "emotions": [
+      "interest",
+      "caring"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.beside_shared_map",
+      "space.group_view_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.conversation_triangle",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "group_geometry",
+    "meaning": "保持已建立的三角交流布局",
+    "clause": "留在三人谈话的一角，给另外两人都留着开口的方向",
+    "emotions": [
+      "trust",
+      "interest"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.conversation_triangle_vertex"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.circle_opening_reserve",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "group_geometry",
+    "meaning": "维持群体开放口而非封闭圈层",
+    "clause": "守着围坐中的缺口，让迟来的人仍有位置加入",
+    "emotions": [
+      "hope",
+      "caring"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.beside_group_circle_gap"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "spatial.paired_alignment_keep",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "group_geometry",
+    "meaning": "保持已知并肩关系和同等可见性",
+    "clause": "与同伴并排停着，谁也没有挡到谁身前",
+    "emotions": [
+      "trust",
+      "resolve"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.alongside_target",
+      "space.mutual_view_clear"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.behind_leader_offset",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "group_geometry",
+    "meaning": "维持随行中的已停侧后位置",
+    "clause": "留在领路者侧后方，把正前面的路让出来",
+    "emotions": [
+      "trust",
+      "unease"
+    ],
+    "axis": "deference",
+    "facts": [
+      "position.behind_side_of_guide",
+      "task.group_paused"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.opponent_neutral_line",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "negotiation_geometry",
+    "meaning": "维持谈判边界避免升级冲突",
+    "clause": "守在双方约定的中线自己这一边",
+    "emotions": [
+      "resolve",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.own_side_negotiation_line"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.third_party_buffer",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "conflict_buffer",
+    "meaning": "保持已有调停位置不自动分开双方",
+    "clause": "留在争执双方之间的空处，双脚没有再向谁逼近",
+    "emotions": [
+      "caring",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.between_disputants",
+      "space.no_contact"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.witness_side_station",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "conflict_buffer",
+    "meaning": "维持见证视点而不占据冲突中心",
+    "clause": "站在能看清双方手部的侧面，暂时没有插进去",
+    "emotions": [
+      "suspicion",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.side_view_of_disputants",
+      "space.hands_visible"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "vision",
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.companion_escape_lane",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "protective_spacing",
+    "meaning": "维护明确同伴撤离通道，不移动对方",
+    "clause": "守在同伴身侧，把通向门的空路留给对方",
+    "emotions": [
+      "caring",
+      "determination"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.side_of_companion",
+      "space.companion_exit_lane_clear"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.rear_watch_position",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "protective_spacing",
+    "meaning": "坚持已分配的后方观察岗位",
+    "clause": "留在队伍最后，替前面的人守着后方的空处",
+    "emotions": [
+      "determination",
+      "trust"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.group_rear",
+      "task.rear_watch"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.corner_two_walls",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "exposure_management",
+    "meaning": "利用已到达墙角降低后方暴露",
+    "clause": "停在两面墙夹出的角落，让背后的空处少一些",
+    "emotions": [
+      "fear",
+      "suspicion"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "position.room_corner"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.central_floor_exposure",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "exposure_management",
+    "meaning": "保持明确中心暴露位置表达坦然",
+    "clause": "留在厅中无遮挡的地方，把自己的动作摆在众人眼前",
+    "emotions": [
+      "confidence",
+      "defiance"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "position.open_hall_center",
+      "interaction.observed"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.pillar_cover_peek",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "cover_peeking",
+    "meaning": "头部临时越过已在身侧柱体的遮蔽边缘",
+    "clause": "从柱边探头看了一瞬，又收回遮挡里",
+    "emotions": [
+      "curiosity",
+      "suspicion"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "position.behind_pillar",
+      "space.head_peek_clear"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.screen_gap_listen",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "cover_listening",
+    "meaning": "利用既知屏障孔隙短时定向收声",
+    "clause": "把耳朵转向屏风的缝隙，听过便回正",
+    "emotions": [
+      "curiosity",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.beside_screen_gap",
+      "sound.beyond_screen"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "spatial.door_crack_peek",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "cover_peeking",
+    "meaning": "在门旁固定位置经已有缝隙观察",
+    "clause": "沿门缝看了片刻，随即把头摆回去",
+    "emotions": [
+      "suspicion",
+      "hope"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "position.beside_door_crack",
+      "space.crack_eye_level"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.low_beam_duck",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "overhead_clearance",
+    "meaning": "原地检查头顶净空不穿过横梁",
+    "clause": "在横梁下低了一下头，确认没碰着便回正",
+    "emotions": [
+      "unease",
+      "annoyance"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.under_low_beam",
+      "space.head_can_return_safely"
+    ]
+  },
+  {
+    "id": "spatial.branch_sweep_avoid",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "overhead_clearance",
+    "meaning": "只暂时减少与运动枝条相交的身体面积",
+    "clause": "在树枝扫来的时候侧了侧身，枝条过去便回正",
+    "emotions": [
+      "annoyance",
+      "surprise"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "position.by_swinging_branch",
+      "space.torso_lean_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "spatial.crowd_elbow_room",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "arms"
+    ],
+    "family": "crowd_clearance",
+    "meaning": "原地减少横向占幅避免碰撞",
+    "clause": "在人群留出的空隙里收住双肘，等挤动过去再松开",
+    "emotions": [
+      "anxiety",
+      "caring"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.crowd_gap",
+      "environment.crowd_shifting"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "spatial.passing_load_lean",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "route_clearance",
+    "meaning": "躯干短时让行而非未经导航侧步",
+    "clause": "对着擦身而过的担子让开上身，过去后便回正",
+    "emotions": [
+      "caring",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "object.load_passing_near_torso",
+      "space.torso_lean_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "spatial.sitting_passage_knees",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "legs"
+    ],
+    "family": "route_clearance",
+    "meaning": "坐姿减少占道体积而不改变座位",
+    "clause": "把膝头往座位里收了一瞬，等人经过又放回原处",
+    "emotions": [
+      "caring",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.seat_beside_narrow_aisle",
+      "target.passing_aisle"
+    ],
+    "preconditions": [
+      "seated",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.lean_around_listener",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso",
+      "head"
+    ],
+    "family": "sightline_repair",
+    "meaning": "在已被部分遮挡时借临时躯干偏移取景",
+    "clause": "从前面人的肩侧探看一眼，随即收回上身",
+    "emotions": [
+      "curiosity",
+      "impatience"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "position.behind_person",
+      "space.side_peek_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.head_between_posts",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "sightline_repair",
+    "meaning": "利用既定栏杆间隙观察不跨越栏杆",
+    "clause": "把视线从栏柱间的空隙送出去，看过便摆正头",
+    "emotions": [
+      "longing",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "position.behind_railing",
+      "space.eye_level_gap"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.voice_lean_gap",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso",
+      "head"
+    ],
+    "family": "acoustic_privacy",
+    "meaning": "躯干临时近声传话不改变脚下距离",
+    "clause": "在两人之间的空隙里低头说过一句，又直起身",
+    "emotions": [
+      "trust",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "distance.quiet_speech_possible",
+      "interaction.private_words"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "speech"
+    ]
+  },
+  {
+    "id": "spatial.head_turn_speaker",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "orientation_attention",
+    "meaning": "头部回应保持躯干朝向不变",
+    "clause": "只把头转向对方听了一阵，肩背仍朝着原处",
+    "emotions": [
+      "interest",
+      "ambivalence"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "orientation.torso_elsewhere",
+      "interaction.target_speaking"
+    ],
+    "preconditions": [
+      "target_known"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "spatial.align_body_reply",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "orientation_attention",
+    "meaning": "真实改变躯干朝向面对目标，位置保持不变",
+    "clause": "在原地把身体转向对方，正面接下话来",
+    "emotions": [
+      "resolve",
+      "trust"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "space.turning_room"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "effects": {
+      "orientation": "target"
+    },
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.turn_away_boundary",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "orientation_boundary",
+    "meaning": "真实解除对目标的正面朝向，不改变距离",
+    "clause": "在原地转开身体，把话题截在身后",
+    "emotions": [
+      "hurt",
+      "disapproval"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "orientation.facing_target",
+      "space.turning_room"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "effects": {
+      "orientation": "away"
+    },
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.shoulder_angle_partial",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "orientation_boundary",
+    "meaning": "临时降低正面接触强度后恢复",
+    "clause": "肩膀向旁边偏了一瞬，又回到原来的朝向",
+    "emotions": [
+      "shame",
+      "ambivalence"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "interaction.conversation"
+    ]
+  },
+  {
+    "id": "spatial.pivot_hear_return",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "orientation_appraisal",
+    "meaning": "完整检查后方再恢复朝向，不移动位置",
+    "clause": "原地转身辨了一下身后的响动，随后转回原向",
+    "emotions": [
+      "suspicion",
+      "surprise"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "sound.behind",
+      "space.turning_room"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.sun_angle_head_shadow",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "lighting_adaptation",
+    "meaning": "临时让眼部落入邻近阴影避光",
+    "clause": "借身旁檐角的影子低了低头，片刻后抬回",
+    "emotions": [
+      "annoyance",
+      "relief"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.eave_shadow_edge",
+      "environment.glare"
+    ]
+  },
+  {
+    "id": "spatial.smoke_head_side",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "airflow_adaptation",
+    "meaning": "头部短时避烟不改变人物位置",
+    "clause": "头避开飘到面前的烟丝，烟过后再摆正",
+    "emotions": [
+      "disgust",
+      "annoyance"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "smoke.crossing_face"
+    ]
+  },
+  {
+    "id": "spatial.wind_torso_brace",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso",
+      "legs"
+    ],
+    "family": "weather_adaptation",
+    "meaning": "在既定站位抵消阵风而不被吹移",
+    "clause": "迎着扑来的风稳住上身，风缓便恢复原姿",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "environment.gust",
+      "position.exposed_to_wind"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.floor_tilt_balance",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "legs",
+      "feet"
+    ],
+    "family": "terrain_balance",
+    "meaning": "用足底压力补偿明确坡面倾角",
+    "clause": "在倾斜的地面上重新分了分脚底的力，仍守住原位",
+    "emotions": [
+      "unease",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "ground.sloped"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.boat_roll_counter",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso",
+      "legs"
+    ],
+    "family": "platform_balance",
+    "meaning": "适应载体运动而不改变载体上的相对位置",
+    "clause": "随着船身的晃动调了调重心，双脚没有离开落点",
+    "emotions": [
+      "anxiety",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.on_rocking_boat",
+      "feet.planted"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.carriage_sway_sit",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "platform_balance",
+    "meaning": "坐姿吸收车辆振动保持座位",
+    "clause": "随车厢颠簸收住腰背，始终坐在原处",
+    "emotions": [
+      "unease",
+      "calm"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.in_moving_carriage",
+      "vehicle.bumping"
+    ],
+    "preconditions": [
+      "seated"
+    ]
+  },
+  {
+    "id": "spatial.platform_gap_test",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "feet"
+    ],
+    "family": "terrain_appraisal",
+    "meaning": "检查明确跨隙边缘而不越过缺口",
+    "clause": "脚尖在自己这一侧的边沿试了试，随即收回",
+    "emotions": [
+      "anxiety",
+      "curiosity"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.before_gap",
+      "ground.edge_stable"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.mud_margin_hold",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "terrain_boundary",
+    "meaning": "守住明确地表边界等待判断",
+    "clause": "停在泥泞与干地的交界这边，先把前方看清",
+    "emotions": [
+      "suspicion",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.dry_side_of_mud_boundary"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "vision",
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.ice_safe_patch",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "terrain_boundary",
+    "meaning": "维持已知防滑支点而非跨出一步",
+    "clause": "把重量留在脚下粗糙的落点，没有踩向旁边的冰",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.rough_patch_next_to_ice"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.waterline_distance",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "terrain_boundary",
+    "meaning": "保持已知岸边界不进入水体",
+    "clause": "守在水线外，任浪头退回去再作打算",
+    "emotions": [
+      "unease",
+      "anticipation"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.outside_waterline",
+      "water.receding_waves"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.hot_ground_edge",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "terrain_boundary",
+    "meaning": "尊重已知温度地带边界",
+    "clause": "站稳冷地这一侧，没有跨进冒热气的地面",
+    "emotions": [
+      "fear",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.cool_side_of_hot_ground"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.animal_reach_margin",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "hazard_spacing",
+    "meaning": "维持明确系留动物触及范围外的安全距离",
+    "clause": "停在拴绳够不到的地方，等那只兽先安静",
+    "emotions": [
+      "fear",
+      "unease"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.outside_tether_reach",
+      "animal.restless_tethered"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.weapon_reach_margin",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "hazard_spacing",
+    "meaning": "维持明确攻击触及区外位置不偷增距离",
+    "clause": "守在对方兵器伸不到的距离，没有再试探",
+    "emotions": [
+      "fear",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "distance.outside_weapon_reach",
+      "target.weapon_visible"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.falling_load_zone",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "hazard_spacing",
+    "meaning": "维持明确落物区域外站位",
+    "clause": "留在吊物投影之外，等上面的东西落稳",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.outside_suspended_load_zone",
+      "load.lowering"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.open_flame_margin",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "hazard_spacing",
+    "meaning": "同时维护人物与衣物的明火净距",
+    "clause": "停在火舌够不到的地方，衣角也留在外面",
+    "emotions": [
+      "fear",
+      "resolve"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.outside_flame_reach",
+      "clothing.hem_clear_of_flame"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.kneeling_target_eye_line",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso",
+      "head"
+    ],
+    "family": "height_accommodation",
+    "meaning": "短时缩小交流高差而不改变站立状态",
+    "clause": "向面前低处的人俯身听了一下，随后直起腰",
+    "emotions": [
+      "caring",
+      "compassion"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "target.lower_eye_level",
+      "space.bending_room"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "spatial.seated_target_no_loom",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "height_accommodation",
+    "meaning": "避免站姿在近旁形成头顶压迫",
+    "clause": "上身留在座位外侧，没有压到坐着的人头顶",
+    "emotions": [
+      "caring",
+      "trust"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.beside_seated_target",
+      "space.torso_outside_head_space"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.under_table_leg_boundary",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "legs"
+    ],
+    "family": "hidden_boundary",
+    "meaning": "维持不可见共享下肢空间的分区",
+    "clause": "双脚守在桌下自己的这一边，没有伸进对方的落脚处",
+    "emotions": [
+      "trust",
+      "embarrassment"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.own_leg_space_under_table"
+    ],
+    "preconditions": [
+      "seated",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.shared_bed_edge",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "resting_boundary",
+    "meaning": "尊重明确共用休息处的个人边界",
+    "clause": "坐在床沿留出的那一段，没有压上旁人的被褥",
+    "emotions": [
+      "caring",
+      "vulnerability"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.clear_bed_edge",
+      "target.bedding_beside"
+    ],
+    "preconditions": [
+      "seated",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.altar_sightline_lower",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "ritual_spacing",
+    "meaning": "维持明确祭祀界外位置的短时敬意",
+    "clause": "在供案外低首片刻，随后抬回目光",
+    "emotions": [
+      "reverence",
+      "grief"
+    ],
+    "axis": "deference",
+    "facts": [
+      "position.outside_altar_boundary",
+      "task.memorial"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.grave_margin_still",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "ritual_spacing",
+    "meaning": "维护明确纪念场所地表边界",
+    "clause": "留在墓沿外的空地，脚下没有惊动新土",
+    "emotions": [
+      "grief",
+      "nostalgia"
+    ],
+    "axis": "deference",
+    "facts": [
+      "position.outside_grave_edge",
+      "ground.fresh_soil_nearby"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.performance_wing_wait",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "stage_spacing",
+    "meaning": "保持已指定候场位置不提前上场",
+    "clause": "停在侧幕遮住的位置，等场上的信号",
+    "emotions": [
+      "nervousness",
+      "anticipation"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.stage_wing",
+      "task.awaiting_stage_cue"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.audience_aisle_still",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "stage_spacing",
+    "meaning": "维持观演座位及他人视线通道",
+    "clause": "坐在靠过道的位置，身子没有挡进台前的视线",
+    "emotions": [
+      "caring",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.aisle_seat",
+      "space.stage_view_clear"
+    ],
+    "preconditions": [
+      "seated"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.speaker_front_clear",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "public_attention",
+    "meaning": "维持已授予的发言位置和可见范围",
+    "clause": "留在发言区的边线内，让正面的空处只容下自己",
+    "emotions": [
+      "confidence",
+      "nervousness"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "position.inside_speaking_area",
+      "task.own_turn"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.onlooker_periphery",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "public_attention",
+    "meaning": "主动维持旁观角色的既定外围站位",
+    "clause": "停在人群边缘，给中心的争论留着距离",
+    "emotions": [
+      "suspicion",
+      "disapproval"
+    ],
+    "axis": "withdrawal",
+    "facts": [
+      "position.crowd_periphery",
+      "interaction.central_argument"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.private_corner_voice",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "acoustic_privacy",
+    "meaning": "利用明确低传播角落进行短时低头交谈",
+    "clause": "在避开回声的角落里垂首说了几句，随后抬头",
+    "emotions": [
+      "trust",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.acoustic_sheltered_corner",
+      "interaction.private_words"
+    ],
+    "preconditions": [
+      "target_known"
+    ],
+    "capabilities": [
+      "speech"
+    ]
+  },
+  {
+    "id": "spatial.wall_echo_listen",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "acoustic_appraisal",
+    "meaning": "借明确回声区辨别声音方向而不移动",
+    "clause": "朝墙面的回声偏耳辨了一下，又回到原向",
+    "emotions": [
+      "confusion",
+      "suspicion"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.echoing_wall_side",
+      "sound.echo_audible"
+    ],
+    "capabilities": [
+      "hearing"
+    ]
+  },
+  {
+    "id": "spatial.worktool_swing_arc",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "task_clearance",
+    "meaning": "维护已知工作工具扫掠区外观察位",
+    "clause": "守在工具挥动的弧线外，等动作停下",
+    "emotions": [
+      "anxiety",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.outside_tool_swing",
+      "task.tool_in_use"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.rope_tension_lane",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "task_clearance",
+    "meaning": "维持明确张紧绳线的侧向安全位置",
+    "clause": "留在绷绳旁的安全空处，没有跨到受力线上",
+    "emotions": [
+      "anxiety",
+      "determination"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.outside_taut_rope_line"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.drafting_arm_room",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "workspace_boundary",
+    "meaning": "维持明确书写者上肢所需的操作空间",
+    "clause": "在案边保住右臂回转的空处，没把身子挤过去",
+    "emotions": [
+      "caring",
+      "interest"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.beside_writer",
+      "space.writer_arm_clear"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.stretcher_side_lane",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "care_clearance",
+    "meaning": "维持明确照护搬运通路不添阻挡",
+    "clause": "留在担架侧边的空处，把抬行的方向敞开",
+    "emotions": [
+      "caring",
+      "anxiety"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.beside_stretcher",
+      "space.carrying_lane_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.sickbed_visiting_margin",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "care_clearance",
+    "meaning": "维持已安排探视座位与卧床者边界",
+    "clause": "坐在病榻旁留出的椅上，没有压进被褥间",
+    "emotions": [
+      "compassion",
+      "caring"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.visitor_chair_by_bed",
+      "target.resting_in_bed"
+    ],
+    "preconditions": [
+      "seated",
+      "target_known"
+    ]
+  },
+  {
+    "id": "spatial.child_open_route",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "protective_spacing",
+    "meaning": "已知陪护位置上避免以身体封住孩子前方",
+    "clause": "守在孩子侧后方，让孩子面前仍有一条空路",
+    "emotions": [
+      "caring",
+      "trust"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "position.behind_side_of_child",
+      "space.child_front_clear"
+    ],
+    "preconditions": [
+      "standing",
+      "target_known"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.pet_below_hand_hold",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "right_hand"
+    ],
+    "family": "height_accommodation",
+    "meaning": "在当前位置提供接近机会而不强制触碰动物",
+    "clause": "把右手停在身旁动物够得着的高度，片刻后收回",
+    "emotions": [
+      "tenderness",
+      "curiosity"
+    ],
+    "axis": "warmth",
+    "facts": [
+      "animal.near_hand_height",
+      "space.hand_reach_clear"
+    ],
+    "preconditions": [
+      "right_hand_free"
+    ]
+  },
+  {
+    "id": "spatial.portrait_alignment_check",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "viewing_geometry",
+    "meaning": "在明确正面观察位短时检查视觉倾斜",
+    "clause": "在画框正前方偏头看了一下，随即摆正",
+    "emotions": [
+      "interest",
+      "satisfaction"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.before_framed_picture"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.reflection_angle_peek",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "head",
+      "neck"
+    ],
+    "family": "viewing_geometry",
+    "meaning": "利用明确镜面反射查后方而不回身或移位",
+    "clause": "借侧面的镜光看了眼身后，随后把头摆正",
+    "emotions": [
+      "suspicion",
+      "curiosity"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.mirror_reflection_of_rear"
+    ],
+    "capabilities": [
+      "vision"
+    ]
+  },
+  {
+    "id": "spatial.window_sill_boundary",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "torso"
+    ],
+    "family": "viewing_geometry",
+    "meaning": "临时靠近明确窗内边界，始终不跨出",
+    "clause": "在窗内探了探上身，没越过窗台便收回来",
+    "emotions": [
+      "longing",
+      "curiosity"
+    ],
+    "axis": "initiative",
+    "facts": [
+      "position.inside_open_window",
+      "space.inner_lean_clear"
+    ],
+    "preconditions": [
+      "standing"
+    ]
+  },
+  {
+    "id": "spatial.path_junction_station",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "route_decision",
+    "meaning": "保持已到达决策点，尚未选择任何边",
+    "clause": "停在岔口的标记旁，让两条路都留在面前",
+    "emotions": [
+      "confusion",
+      "anticipation"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.at_path_junction_marker",
+      "space.both_routes_visible"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  },
+  {
+    "id": "spatial.meeting_mark_wait",
+    "category": "spatial",
+    "channel": "spatial",
+    "parts": [
+      "whole_body"
+    ],
+    "family": "route_rendezvous",
+    "meaning": "坚持明确会合点抵抗随流移动",
+    "clause": "守着约定会面的标记，没随路过的人流挪动",
+    "emotions": [
+      "hope",
+      "longing"
+    ],
+    "axis": "self_control",
+    "facts": [
+      "position.at_meeting_mark",
+      "environment.passersby"
+    ],
+    "preconditions": [
+      "standing"
+    ],
+    "capabilities": [
+      "walking"
+    ]
+  }
+]

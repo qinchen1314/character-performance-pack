@@ -82,7 +82,7 @@ WORLD_ROWS = [
 ]
 
 
-def main() -> None:
+def generate_units() -> list[dict]:
     units = []
     root = Path(__file__).resolve().parents[1]
     emotions_doc = yaml.safe_load((root / "data/ontology/emotion/emotions.yaml").read_text(encoding="utf-8"))
@@ -200,9 +200,14 @@ def main() -> None:
         alternate = {"保持": "维持", "垂": "低垂", "收拢": "聚拢"}.get(verb)
         if alternate:
             unit["render_hints"]["alternate_verb"] = alternate
-    path = root / "data/ontology/units.yaml"
-    path.write_text(yaml.safe_dump({"schema_version": "1.0.0", "units": units}, allow_unicode=True, sort_keys=False), encoding="utf-8")
-    print(f"{len(units)} original units -> {path}")
+    return units
+
+
+def main() -> None:
+    # One rebuild path includes the reviewed expansion; never erase it by
+    # rerunning the original seed command.
+    from compile_catalog import main as compile_main
+    compile_main()
 
 
 if __name__ == "__main__":

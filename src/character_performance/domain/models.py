@@ -73,6 +73,7 @@ class OntologyEmotion(DomainModel):
     aliases: frozenset[str] = frozenset()
     prototype_vad: VAD
     source_refs: tuple[NonEmptyId, ...]
+    description_zh: str = ""
 
     @model_validator(mode="after")
     def require_taxonomy_and_source(self) -> "OntologyEmotion":
@@ -89,7 +90,7 @@ class Cooldown(DomainModel):
 
 
 class FacialAction(DomainModel):
-    region: Literal["brow", "lips", "jaw", "mouth", "eyelids", "unknown"]
+    region: Literal["brow", "lips", "jaw", "mouth", "eyelids", "nose", "cheeks", "chin", "unknown"]
     action: NonEmptyId
     intensity: UnitFloat
     au_ref: str | None = None
@@ -159,6 +160,7 @@ class PerformanceUnit(DomainModel):
     timing: MicroTiming | None = None
     world_requirements: dict[str, Any] = Field(default_factory=dict)
     invocation: Literal["automatic", "blocking"] = "automatic"
+    description_zh: str = ""
 
     @model_validator(mode="after")
     def require_semantics_and_provenance(self) -> "PerformanceUnit":
@@ -323,6 +325,7 @@ class SceneState(DomainModel):
     position: NonEmptyId | None = None
     orientation_target: NonEmptyId | None = None
     held_objects: dict[Literal["right_hand", "left_hand"], NonEmptyId] = Field(default_factory=dict)
+    object_tags: dict[NonEmptyId, frozenset[NonEmptyId]] = Field(default_factory=dict)
     distances: dict[NonEmptyId, Annotated[float, Field(ge=0)]] = Field(default_factory=dict)
     support_contact: NonEmptyId | None = None
     unfinished_actions: tuple[NonEmptyId, ...] = ()
@@ -384,6 +387,7 @@ class Context(DomainModel):
     privacy: Literal["private", "public", "unknown"] = "private"
     formality: UnitFloat = 0
     danger_level: UnitFloat = 0
+    facts: frozenset[NonEmptyId] = frozenset()
 
 
 class Director(DomainModel):
@@ -474,9 +478,9 @@ class PerformancePlan(DomainModel):
     leak_signals: tuple[NonEmptyId, ...] = ()
     selected: dict[str, tuple[NonEmptyId, ...]] = Field(default_factory=dict)
     parameters: dict[NonEmptyId, dict[str, Any]] = Field(default_factory=dict)
-    pack_version: str = "0.3.0"
+    pack_version: str = "0.4.0"
     pack_hash: str = ""
-    rule_version: str = "1.1.0"
+    rule_version: str = "1.2.0"
     input_hash: str = ""
     emotion_state: EmotionState | None = None
     state_transition: StateTransition | None = None

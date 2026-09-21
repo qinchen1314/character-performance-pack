@@ -1,0 +1,58 @@
+schema_version: 1.0.0
+sources:
+  - id: src.personachat.v1
+    name: PersonaChat
+    source_type: academic_dataset
+    version: parlai-personachat-2026-09-snapshot
+    usage_mode: transform_allowed
+    review_status: approved
+    license:
+      identifier: CC-BY-4.0
+      commercial_use: true
+      redistribution: true
+      attribution_required: true
+      share_alike: false
+      evidence_urls:
+        - https://github.com/facebookresearch/ParlAI/tree/main/parlai/tasks/personachat
+  - id: src.original.core.v1
+    name: Character Performance Pack original concepts
+    source_type: original
+    version: 0.1.0
+    usage_mode: original
+    review_status: approved
+    license:
+      identifier: project-license
+      commercial_use: true
+      redistribution: true
+      attribution_required: false
+      share_alike: false
+      evidence_urls: []
+  - id: src.emobank.v1
+    name: EmoBank
+    source_type: academic_dataset
+    version: "1.0"
+    usage_mode: transform_allowed
+    review_status: approved
+    isolation: share_alike
+    license:
+      identifier: CC-BY-SA-4.0
+      commercial_use: true
+      redistribution: true
+      attribution_required: true
+      share_alike: true
+      evidence_urls:
+        - https://github.com/JULIELab/EmoBank
+  - id: src.samm.v1
+    name: SAMM
+    source_type: academic_dataset
+    version: access-agreement
+    usage_mode: reference_only
+    review_status: pending
+    license:
+      identifier: custom-research-agreement
+      commercial_use: false
+      redistribution: false
+      attribution_required: true
+      share_alike: false
+      evidence_urls:
+        - https://personalpages.manchester.ac.uk/staff/adrian.davison/SAMM.html

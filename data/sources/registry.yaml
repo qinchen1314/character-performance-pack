@@ -1,0 +1,92 @@
+schema_version: 1.0.0
+sources:
+  - id: src.original.core.v1
+    name: Character Performance Pack original concepts
+    source_type: original
+    version: 0.1.0
+    usage_mode: original
+    review_status: approved
+    license:
+      identifier: project-license
+      commercial_use: true
+      redistribution: true
+      attribution_required: false
+      share_alike: false
+      evidence_urls: []
+
+  - id: src.goemotions.taxonomy.v1
+    name: GoEmotions
+    source_type: academic_dataset
+    version: google-research snapshot 2026-09-21
+    usage_mode: derived_metadata
+    review_status: approved
+    license:
+      identifier: repository-Apache-2.0-data-rights-unresolved
+      commercial_use: false
+      redistribution: false
+      attribution_required: true
+      share_alike: false
+      evidence_urls:
+        - https://github.com/google-research/google-research/tree/master/goemotions
+
+  - id: src.emobank.v1
+    name: EmoBank
+    source_type: academic_dataset
+    version: "1.0"
+    usage_mode: transform_allowed
+    review_status: approved
+    isolation: share_alike
+    license:
+      identifier: CC-BY-SA-4.0
+      commercial_use: true
+      redistribution: true
+      attribution_required: true
+      share_alike: true
+      evidence_urls:
+        - https://github.com/JULIELab/EmoBank
+
+  - id: src.facs.concepts.v1
+    name: Facial Action Coding System
+    source_type: behavioral_model
+    version: concept-reference
+    usage_mode: reference_only
+    review_status: approved
+    license:
+      identifier: proprietary-reference-only
+      commercial_use: false
+      redistribution: false
+      attribution_required: true
+      share_alike: false
+      evidence_urls:
+        - https://www.paulekman.com/facial-action-coding-system/
+
+  - id: src.samm.v1
+    name: SAMM
+    source_type: academic_dataset
+    version: access-agreement
+    usage_mode: reference_only
+    review_status: pending
+    license:
+      identifier: custom-research-agreement
+      commercial_use: false
+      redistribution: false
+      attribution_required: true
+      share_alike: false
+      evidence_urls:
+        - https://personalpages.manchester.ac.uk/staff/adrian.davison/SAMM.html
+
+  - id: src.empathetic_dialogues.v1
+    name: EmpatheticDialogues
+    source_type: academic_dataset
+    version: unresolved-artifact
+    usage_mode: blocked
+    review_status: pending
+    license:
+      identifier: conflicting-CC-BY-NC-4.0-vs-CC-BY-4.0
+      commercial_use: null
+      redistribution: null
+      attribution_required: true
+      share_alike: false
+      evidence_urls:
+        - https://github.com/facebookresearch/EmpatheticDialogues
+        - https://github.com/facebookresearch/ParlAI/tree/main/parlai/tasks/empathetic_dialogues

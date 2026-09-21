@@ -1,0 +1,110 @@
+schema_version: 1.0.0
+emotions:
+  - id: anger
+    label_zh: 愤怒
+    families: [basic, conflict]
+    aliases: [恼怒, angry]
+    prototype_vad: {valence: -0.65, arousal: 0.70, dominance: 0.55}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: fear
+    label_zh: 恐惧
+    families: [basic, defensive]
+    aliases: [害怕, afraid]
+    prototype_vad: {valence: -0.72, arousal: 0.70, dominance: -0.65}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: joy
+    label_zh: 喜悦
+    families: [basic]
+    aliases: [高兴, joyful]
+    prototype_vad: {valence: 0.76, arousal: 0.55, dominance: 0.40}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: sadness
+    label_zh: 悲伤
+    families: [basic, attachment]
+    aliases: [难过, sad]
+    prototype_vad: {valence: -0.70, arousal: -0.25, dominance: -0.52}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: disgust
+    label_zh: 厌恶
+    families: [basic, defensive]
+    aliases: [嫌恶, disgusted]
+    prototype_vad: {valence: -0.70, arousal: 0.35, dominance: 0.20}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: surprise
+    label_zh: 惊讶
+    families: [basic, cognitive]
+    aliases: [吃惊, surprised]
+    prototype_vad: {valence: 0.05, arousal: 0.72, dominance: -0.12}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: admiration
+    label_zh: 钦佩
+    families: [social, relational]
+    aliases: [敬佩, admiring]
+    prototype_vad: {valence: 0.68, arousal: 0.38, dominance: -0.08}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: embarrassment
+    label_zh: 尴尬
+    families: [social, defensive]
+    aliases: [窘迫, embarrassed]
+    prototype_vad: {valence: -0.46, arousal: 0.52, dominance: -0.58}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: gratitude
+    label_zh: 感激
+    families: [social, relational]
+    aliases: [感谢, grateful]
+    prototype_vad: {valence: 0.72, arousal: 0.32, dominance: -0.05}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: disappointment
+    label_zh: 失望
+    families: [cognitive, relational]
+    aliases: [失落, disappointed]
+    prototype_vad: {valence: -0.55, arousal: -0.15, dominance: -0.25}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: curiosity
+    label_zh: 好奇
+    families: [cognitive]
+    aliases: [探究, curious]
+    prototype_vad: {valence: 0.28, arousal: 0.42, dominance: 0.10}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: remorse
+    label_zh: 悔恨
+    families: [moral, social]
+    aliases: [懊悔, remorseful]
+    prototype_vad: {valence: -0.66, arousal: 0.18, dominance: -0.55}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: pride
+    label_zh: 自豪
+    families: [social, moral]
+    aliases: [骄傲, proud]
+    prototype_vad: {valence: 0.62, arousal: 0.42, dominance: 0.67}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: love
+    label_zh: 爱恋
+    families: [attachment, relational]
+    aliases: [爱意, loving]
+    prototype_vad: {valence: 0.78, arousal: 0.38, dominance: 0.12}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: jealousy
+    label_zh: 嫉妒
+    families: [relational, conflict, complex]
+    aliases: [妒忌, jealous]
+    prototype_vad: {valence: -0.58, arousal: 0.55, dominance: -0.10}
+    source_refs: [src.original.core.v1]
+  - id: relief
+    label_zh: 如释重负
+    families: [defensive, complex]
+    aliases: [宽慰, relieved]
+    prototype_vad: {valence: 0.55, arousal: -0.35, dominance: 0.25}
+    source_refs: [src.goemotions.taxonomy.v1]
+  - id: resentment
+    label_zh: 怨恨
+    families: [conflict, relational, complex]
+    aliases: [怨愤, resentful]
+    prototype_vad: {valence: -0.72, arousal: 0.38, dominance: 0.18}
+    source_refs: [src.original.core.v1]
+  - id: hope
+    label_zh: 希望
+    families: [cognitive, attachment, complex]
+    aliases: [期望, hopeful]
+    prototype_vad: {valence: 0.58, arousal: 0.34, dominance: 0.22}
+    source_refs: [src.original.core.v1]

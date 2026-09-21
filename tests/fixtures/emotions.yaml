@@ -1,0 +1,20 @@
+schema_version: 1.0.0
+emotions:
+  - id: anger
+    label_zh: 愤怒
+    families: [basic, conflict]
+    aliases: [恼怒, angry]
+    prototype_vad: {valence: -0.65, arousal: 0.70, dominance: 0.55}
+    source_refs: [src.original.core.v1]
+  - id: disappointment
+    label_zh: 失望
+    families: [cognitive, relational]
+    aliases: [失落, disappointed]
+    prototype_vad: {valence: -0.55, arousal: -0.15, dominance: -0.25}
+    source_refs: [src.original.core.v1]
+  - id: fear
+    label_zh: 恐惧
+    families: [basic, defensive]
+    aliases: [害怕, afraid]
+    prototype_vad: {valence: -0.72, arousal: 0.70, dominance: -0.65}
+    source_refs: [src.original.core.v1]

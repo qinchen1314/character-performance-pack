@@ -1,0 +1,210 @@
+{
+  "pack_version": "0.3.0",
+  "pack_hash": "04ae99f8aa968c755732cfee0d3b35f9ecc45b3c246d6ada25b1effe13750785",
+  "turns": [
+    {
+      "turn": 1,
+      "control": "continue",
+      "text": "洛寒后背离开墙面，朝桌边走去，放匀呼吸。",
+      "sequence": [
+        {
+          "unit_id": "spatial.leave_wall",
+          "phase": "instant",
+          "destination": null,
+          "elapsed_ms": 0,
+          "duration_ms": 0,
+          "render": true
+        },
+        {
+          "unit_id": "navigation.move",
+          "phase": "start",
+          "destination": "pos.table",
+          "elapsed_ms": 700,
+          "duration_ms": 2000,
+          "render": true
+        }
+      ],
+      "position": null,
+      "pose": "standing",
+      "time_ms": 700,
+      "held_objects": {
+        "right_hand": "object.sword"
+      },
+      "active_action": {
+        "id": "action.f202446a4dd923a3a893bac9",
+        "kind": "navigation",
+        "status": "running",
+        "goal": {
+          "destination": "pos.table",
+          "pose": "seated",
+          "interruption_policy": "pause"
+        },
+        "route": [
+          "pos.wall",
+          "pos.table"
+        ],
+        "edge_index": 0,
+        "elapsed_ms": 700,
+        "pack_hash": "04ae99f8aa968c755732cfee0d3b35f9ecc45b3c246d6ada25b1effe13750785"
+      },
+      "warnings": []
+    },
+    {
+      "turn": 2,
+      "control": "pause",
+      "text": "洛寒停住脚步，眉间舒展开。",
+      "sequence": [
+        {
+          "unit_id": "navigation.pause",
+          "phase": "pause",
+          "destination": null,
+          "elapsed_ms": 0,
+          "duration_ms": 0,
+          "render": true
+        }
+      ],
+      "position": null,
+      "pose": "standing",
+      "time_ms": 700,
+      "held_objects": {
+        "right_hand": "object.sword"
+      },
+      "active_action": {
+        "id": "action.f202446a4dd923a3a893bac9",
+        "kind": "navigation",
+        "status": "paused",
+        "goal": {
+          "destination": "pos.table",
+          "pose": "seated",
+          "interruption_policy": "pause"
+        },
+        "route": [
+          "pos.wall",
+          "pos.table"
+        ],
+        "edge_index": 0,
+        "elapsed_ms": 700,
+        "pack_hash": "04ae99f8aa968c755732cfee0d3b35f9ecc45b3c246d6ada25b1effe13750785"
+      },
+      "warnings": []
+    },
+    {
+      "turn": 3,
+      "control": "continue",
+      "text": "洛寒语调保持平稳。",
+      "sequence": [],
+      "position": null,
+      "pose": "standing",
+      "time_ms": 700,
+      "held_objects": {
+        "right_hand": "object.sword"
+      },
+      "active_action": {
+        "id": "action.f202446a4dd923a3a893bac9",
+        "kind": "navigation",
+        "status": "paused",
+        "goal": {
+          "destination": "pos.table",
+          "pose": "seated",
+          "interruption_policy": "pause"
+        },
+        "route": [
+          "pos.wall",
+          "pos.table"
+        ],
+        "edge_index": 0,
+        "elapsed_ms": 700,
+        "pack_hash": "04ae99f8aa968c755732cfee0d3b35f9ecc45b3c246d6ada25b1effe13750785"
+      },
+      "warnings": [
+        "ACTION_PAUSED: explicit resume required"
+      ]
+    },
+    {
+      "turn": 4,
+      "control": "resume",
+      "text": "洛寒重新迈步，目光保持平稳。",
+      "sequence": [
+        {
+          "unit_id": "navigation.resume",
+          "phase": "resume",
+          "destination": null,
+          "elapsed_ms": 0,
+          "duration_ms": 0,
+          "render": true
+        },
+        {
+          "unit_id": "navigation.move",
+          "phase": "continue",
+          "destination": "pos.table",
+          "elapsed_ms": 1400,
+          "duration_ms": 2000,
+          "render": false
+        }
+      ],
+      "position": null,
+      "pose": "standing",
+      "time_ms": 1400,
+      "held_objects": {
+        "right_hand": "object.sword"
+      },
+      "active_action": {
+        "id": "action.f202446a4dd923a3a893bac9",
+        "kind": "navigation",
+        "status": "running",
+        "goal": {
+          "destination": "pos.table",
+          "pose": "seated",
+          "interruption_policy": "pause"
+        },
+        "route": [
+          "pos.wall",
+          "pos.table"
+        ],
+        "edge_index": 0,
+        "elapsed_ms": 1400,
+        "pack_hash": "04ae99f8aa968c755732cfee0d3b35f9ecc45b3c246d6ada25b1effe13750785"
+      },
+      "warnings": []
+    },
+    {
+      "turn": 5,
+      "control": "continue",
+      "text": "洛寒走到桌边，转向椅子，坐下，语速放慢。",
+      "sequence": [
+        {
+          "unit_id": "navigation.move",
+          "phase": "complete",
+          "destination": "pos.table",
+          "elapsed_ms": 2000,
+          "duration_ms": 2000,
+          "render": true
+        },
+        {
+          "unit_id": "navigation.orient",
+          "phase": "instant",
+          "destination": "pos.table",
+          "elapsed_ms": 0,
+          "duration_ms": 0,
+          "render": true
+        },
+        {
+          "unit_id": "spatial.sit_down",
+          "phase": "instant",
+          "destination": "pos.table",
+          "elapsed_ms": 0,
+          "duration_ms": 0,
+          "render": true
+        }
+      ],
+      "position": "pos.table",
+      "pose": "seated",
+      "time_ms": 2000,
+      "held_objects": {
+        "right_hand": "object.sword"
+      },
+      "active_action": null,
+      "warnings": []
+    }
+  ]
+}

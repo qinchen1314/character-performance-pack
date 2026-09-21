@@ -1,0 +1,98 @@
+{
+  "$defs": {
+    "BlockingGoal": {
+      "additionalProperties": false,
+      "properties": {
+        "destination": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Destination",
+          "type": "string"
+        },
+        "pose": {
+          "default": "standing",
+          "enum": [
+            "standing",
+            "seated"
+          ],
+          "title": "Pose",
+          "type": "string"
+        },
+        "interruption_policy": {
+          "default": "pause",
+          "enum": [
+            "pause",
+            "forbid"
+          ],
+          "title": "Interruption Policy",
+          "type": "string"
+        }
+      },
+      "required": [
+        "destination"
+      ],
+      "title": "BlockingGoal",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "kind": {
+      "const": "navigation",
+      "default": "navigation",
+      "title": "Kind",
+      "type": "string"
+    },
+    "status": {
+      "default": "running",
+      "enum": [
+        "running",
+        "paused"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "goal": {
+      "$ref": "#/$defs/BlockingGoal"
+    },
+    "route": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Route",
+      "type": "array"
+    },
+    "edge_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Edge Index",
+      "type": "integer"
+    },
+    "elapsed_ms": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Elapsed Ms",
+      "type": "integer"
+    },
+    "pack_hash": {
+      "title": "Pack Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "goal",
+    "route",
+    "pack_hash"
+  ],
+  "title": "ActiveAction",
+  "type": "object"
+}

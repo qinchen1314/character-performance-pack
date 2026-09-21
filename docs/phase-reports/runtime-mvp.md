@@ -1,5 +1,7 @@
 # 0.2.0 — 小说角色情绪与动作运行链
 
+> 本页保留 0.2.0 的历史验收记录；0.3.0 已补齐一部分导航与持续动作缺口，见 [continuity-0.3.md](continuity-0.3.md)。
+
 ## 1. 架构与变更
 
 原有来源注册表、情绪本体和 Pydantic 模型之上，补齐 `PerformanceRequest → Emotion Builder → 硬约束 → Modifier/评分 → 掩饰与预算组合 → 中文 Renderer → SQLite Commit`。模块独立于 Web、LLM SDK 和外部服务。

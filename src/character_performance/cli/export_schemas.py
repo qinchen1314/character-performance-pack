@@ -7,12 +7,14 @@ from pathlib import Path
 from character_performance.domain.models import (
     CharacterProfile, EmotionState, PerformancePlan, PerformanceRequest,
     PerformanceUnit, RenderContext, RenderResult, SceneState, WorldState,
+    ActiveAction, BlockingGoal, SceneLayout,
 )
 from character_performance.modifiers import Modifier
 
 SCHEMA_MODELS = (
     EmotionState, PerformanceUnit, PerformanceRequest, PerformancePlan,
     CharacterProfile, SceneState, WorldState, RenderContext, RenderResult, Modifier,
+    ActiveAction, BlockingGoal, SceneLayout,
 )
 
 

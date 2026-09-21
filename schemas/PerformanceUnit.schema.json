@@ -461,6 +461,15 @@
       "additionalProperties": true,
       "title": "World Requirements",
       "type": "object"
+    },
+    "invocation": {
+      "default": "automatic",
+      "enum": [
+        "automatic",
+        "blocking"
+      ],
+      "title": "Invocation",
+      "type": "string"
     }
   },
   "required": [

@@ -1,5 +1,67 @@
 {
   "$defs": {
+    "ActiveAction": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "navigation",
+          "default": "navigation",
+          "title": "Kind",
+          "type": "string"
+        },
+        "status": {
+          "default": "running",
+          "enum": [
+            "running",
+            "paused"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "goal": {
+          "$ref": "#/$defs/BlockingGoal"
+        },
+        "route": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Route",
+          "type": "array"
+        },
+        "edge_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Edge Index",
+          "type": "integer"
+        },
+        "elapsed_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Elapsed Ms",
+          "type": "integer"
+        },
+        "pack_hash": {
+          "title": "Pack Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "goal",
+        "route",
+        "pack_hash"
+      ],
+      "title": "ActiveAction",
+      "type": "object"
+    },
     "Appraisal": {
       "additionalProperties": false,
       "properties": {
@@ -37,6 +99,100 @@
         }
       },
       "title": "Appraisal",
+      "type": "object"
+    },
+    "BlockingGoal": {
+      "additionalProperties": false,
+      "properties": {
+        "destination": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Destination",
+          "type": "string"
+        },
+        "pose": {
+          "default": "standing",
+          "enum": [
+            "standing",
+            "seated"
+          ],
+          "title": "Pose",
+          "type": "string"
+        },
+        "interruption_policy": {
+          "default": "pause",
+          "enum": [
+            "pause",
+            "forbid"
+          ],
+          "title": "Interruption Policy",
+          "type": "string"
+        }
+      },
+      "required": [
+        "destination"
+      ],
+      "title": "BlockingGoal",
+      "type": "object"
+    },
+    "BlockingStep": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "instant",
+            "start",
+            "continue",
+            "complete",
+            "pause",
+            "resume"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "destination": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination"
+        },
+        "elapsed_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Elapsed Ms",
+          "type": "integer"
+        },
+        "duration_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "render": {
+          "default": true,
+          "title": "Render",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "unit_id",
+        "phase"
+      ],
+      "title": "BlockingStep",
       "type": "object"
     },
     "EmotionState": {
@@ -165,6 +321,130 @@
       "title": "EmotionalResidue",
       "type": "object"
     },
+    "Landmark": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label_zh": {
+          "maxLength": 60,
+          "minLength": 1,
+          "title": "Label Zh",
+          "type": "string"
+        },
+        "seat_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Id"
+        },
+        "seat_label": {
+          "anyOf": [
+            {
+              "maxLength": 60,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Label"
+        },
+        "distances": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Distances",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "label_zh"
+      ],
+      "title": "Landmark",
+      "type": "object"
+    },
+    "PathEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Origin",
+          "type": "string"
+        },
+        "destination": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Destination",
+          "type": "string"
+        },
+        "duration_ms": {
+          "exclusiveMinimum": 0,
+          "maximum": 3600000,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "blocked": {
+          "default": false,
+          "title": "Blocked",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origin",
+        "destination",
+        "duration_ms"
+      ],
+      "title": "PathEdge",
+      "type": "object"
+    },
+    "SceneLayout": {
+      "additionalProperties": false,
+      "properties": {
+        "landmarks": {
+          "items": {
+            "$ref": "#/$defs/Landmark"
+          },
+          "title": "Landmarks",
+          "type": "array"
+        },
+        "edges": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PathEdge"
+          },
+          "title": "Edges",
+          "type": "array"
+        }
+      },
+      "required": [
+        "landmarks"
+      ],
+      "title": "SceneLayout",
+      "type": "object"
+    },
     "SceneState": {
       "additionalProperties": false,
       "properties": {
@@ -285,6 +565,34 @@
           },
           "title": "Emotional Residue",
           "type": "array"
+        },
+        "layout": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SceneLayout"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "active_action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ActiveAction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "time_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Time Ms",
+          "type": "integer"
         }
       },
       "required": [
@@ -554,7 +862,7 @@
       "type": "object"
     },
     "pack_version": {
-      "default": "0.2.0",
+      "default": "0.3.0",
       "title": "Pack Version",
       "type": "string"
     },
@@ -564,7 +872,7 @@
       "type": "string"
     },
     "rule_version": {
-      "default": "1.0.0",
+      "default": "1.1.0",
       "title": "Rule Version",
       "type": "string"
     },
@@ -629,6 +937,24 @@
         "type": "string"
       },
       "title": "Warnings",
+      "type": "array"
+    },
+    "sequence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/BlockingStep"
+      },
+      "title": "Sequence",
+      "type": "array"
+    },
+    "continuation_signals": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Continuation Signals",
       "type": "array"
     }
   },

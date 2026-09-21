@@ -136,12 +136,32 @@ def main() -> None:
                 "target_dominance": action == "pressure_release"},
             render_hints={"subject": subject, "verb": verb, "complement": complement},
             source_refs=["src.original.performance.v1"], license_class="original", status="active"))
+    for action, verb, complement in [("move", "走", "向已知位置"), ("orient", "转", "向座椅"), ("pause", "停", "住脚步"), ("resume", "重新", "迈步")]:
+        units.append(dict(id=f"navigation.{action}", category="spatial", channel="spatial",
+            atomic_action=f"navigation_{action}", invocation="blocking", body_parts=[] if action in {"pause", "resume"} else ["whole_body"],
+            semantic_groups=[f"navigation_{action}"], semantics={"initiative": .5},
+            emotion_affinity={}, intensity_range={"min": 0, "max": 1}, conflicts=[],
+            visibility="noticeable" if action == "move" else "subtle", narrative_weight=.6,
+            cooldown={"turns": 0}, repeat_group=f"navigation_{action}",
+            physical_requirements={"capabilities": ["walking"], "min_mobility": .5} if action in {"move", "orient"} else {},
+            render_hints={"subject": "", "verb": verb, "complement": complement},
+            source_refs=["src.original.navigation.v1"], license_class="original", status="active"))
     by_action = {u["atomic_action"]: u for u in units}
     for first, second in [("hand_clench", "finger_still"), ("arms_fold", "palm_open"),
                           ("torso_forward", "torso_recoil"), ("transfer_left", "hand_clench")]:
         by_action[first]["conflicts"].append(by_action[second]["id"])
         by_action[second]["conflicts"].append(by_action[first]["id"])
     for unit in units:
+        # Positive affect can be expansive, receptive or restrained; warmth alone
+        # cannot distinguish persona choices across channels.
+        if unit["atomic_action"] in {"palm_open", "smile_open"}:
+            unit["semantics"]["initiative"] = .7
+        if unit["atomic_action"] == "gaze_return":
+            unit["semantics"]["self_control"] = .65
+        if unit["atomic_action"] == "voice_soft":
+            unit["semantics"]["self_control"] = .35
+        if unit["atomic_action"] == "brow_release":
+            unit["emotion_affinity"]["joy"] = .7
         grammar = {
             "stand_up": ("", "站", "起身来"),
             "sit_down": ("", "坐", "下"),
@@ -169,11 +189,12 @@ def main() -> None:
             elif unit["atomic_action"] in {"aura_soften", "sense_focus", "intent_gather", "pressure_release"}:
                 rules["activate"] = [capability]
         affinity = unit["emotion_affinity"]
-        unit["vad_affinity"] = {axis: round(sum(prototypes[label][axis] * weight for label, weight in affinity.items()) / sum(affinity.values()), 4) for axis in ("valence", "arousal", "dominance")}
+        if affinity:
+            unit["vad_affinity"] = {axis: round(sum(prototypes[label][axis] * weight for label, weight in affinity.items()) / sum(affinity.values()), 4) for axis in ("valence", "arousal", "dominance")}
         # Original engineering priors distinguish regulated from activating responses.
         if "self_control" in unit["semantics"]:
             unit["vad_affinity"]["arousal"] = -.25
-        elif "aggression" in unit["semantics"] or "initiative" in unit["semantics"]:
+        elif affinity and ("aggression" in unit["semantics"] or "initiative" in unit["semantics"]):
             unit["vad_affinity"]["arousal"] = .8
         verb = unit["render_hints"]["verb"]
         alternate = {"保持": "维持", "垂": "低垂", "收拢": "聚拢"}.get(verb)

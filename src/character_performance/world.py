@@ -31,6 +31,8 @@ def validate_world(unit: PerformanceUnit, request: PerformanceRequest, emotion: 
 
 
 def apply_world(unit: PerformanceUnit, world: WorldState) -> WorldState:
+    if not unit.world_requirements:
+        return world
     values = world.model_dump(mode="python")
     values["qi"] = max(0, round(world.qi - unit.world_requirements.get("cost", 0), 8))
     values["active_capabilities"] = (world.active_capabilities | set(unit.world_requirements.get("activate", []))) - set(unit.world_requirements.get("deactivate", []))

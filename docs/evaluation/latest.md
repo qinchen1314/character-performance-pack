@@ -1,6 +1,6 @@
 # 离线评估报告
 
-Pack 0.2.0 / SHA-256 `0f26409787c41f5c593282751018d63a771924c212de5c251bf172008b2e30f6`
+Pack 0.3.0 / SHA-256 `04ae99f8aa968c755732cfee0d3b35f9ecc45b3c246d6ada25b1effe13750785`
 
 ## 指标
 
@@ -12,8 +12,8 @@ Pack 0.2.0 / SHA-256 `0f26409787c41f5c593282751018d63a771924c212de5c251bf172008b
 | trope_fraction | 0.1379 |
 | adjacent_3_repeat | False |
 | no_valid_candidate_rate | 0.25 |
-| planner_p50_ms | 4.181 |
-| planner_p95_ms | 4.975 |
+| planner_p50_ms | 4.484 |
+| planner_p95_ms | 6.147 |
 
 ## 20 回合描写样本
 
@@ -40,6 +40,6 @@ Pack 0.2.0 / SHA-256 `0f26409787c41f5c593282751018d63a771924c212de5c251bf172008b
 | 19 | 他嘴唇动了一下，又停住，下巴抬起。 |
 | 20 | 他右手握紧，转向对方。 |
 
-测试结果：`{"tests": 89, "failures": 0, "errors": 0, "skipped": 0}`。
+测试结果：`{"tests": 124, "failures": 0, "errors": 0, "skipped": 0}`。
 
 固定基准用于工程回归，不代表盲评、开放题材覆盖或正式生产 SLO。

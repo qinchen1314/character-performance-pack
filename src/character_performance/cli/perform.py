@@ -23,12 +23,19 @@ def main() -> None:
     parser.add_argument("--output", type=Path, help="保存正文、计划及下一回合请求")
     parser.add_argument("--db", type=Path, help="SQLite 连续性历史库")
     parser.add_argument("--commit", action="store_true", help="渲染成功后提交本回合状态")
+    parser.add_argument("--elapsed-ms", type=int, help="本回合允许推进动作的毫秒数")
+    parser.add_argument("--action-control", choices=("continue", "pause", "resume"), help="持续动作控制")
     args = parser.parse_args()
     if args.commit and not args.db:
         parser.error("--commit requires --db for persistent history")
     repository = None
     try:
-        request = PerformanceRequest.model_validate(yaml.safe_load(args.request.read_text(encoding="utf-8")))
+        raw_request = yaml.safe_load(args.request.read_text(encoding="utf-8"))
+        if args.elapsed_ms is not None:
+            raw_request["elapsed_ms"] = args.elapsed_ms
+        if args.action_control is not None:
+            raw_request["action_control"] = args.action_control
+        request = PerformanceRequest.model_validate(raw_request)
         pack = PerformancePack.from_compiled(args.pack) if args.pack else PerformancePack.from_project(args.project_root)
         repository = SQLiteRepository(args.db or ":memory:")
         engine = PerformanceEngine(pack, repository)
@@ -36,6 +43,11 @@ def main() -> None:
         result = engine.render(plan, RenderContext(subject_name=args.name, target_name=args.target_name, dialogue=args.dialogue))
         next_values = request.model_dump(mode="json")
         next_values.update(request_id=request.request_id + ".next", scene_state=plan.state_transition.after.model_dump(mode="json"), world_state=plan.state_transition.world_after.model_dump(mode="json"))
+        next_values["action_control"] = "continue"
+        goal = request.blocking_goal
+        after = plan.state_transition.after
+        if goal and after.active_action is None and after.position == goal.destination and after.pose == goal.pose:
+            next_values["blocking_goal"] = None
         if args.output:
             args.output.mkdir(parents=True, exist_ok=True)
             (args.output / "plan.json").write_text(plan.model_dump_json(indent=2), encoding="utf-8")

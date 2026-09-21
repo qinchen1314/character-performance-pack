@@ -21,8 +21,29 @@ class ChineseNovelRenderer:
         if plan.pack_hash != self.pack.content_hash or plan.pack_version != self.pack.version:
             raise ValueError("RENDER_PACK_MISMATCH")
         result = {}
+        sequence = {step.unit_id: step for step in plan.sequence}
         for unit_id in plan.unit_ids:
+            if unit_id in plan.continuation_signals:
+                continue
             unit = self.pack.get(unit_id)
+            step = sequence.get(unit_id)
+            if step and unit.invocation == "blocking":
+                layout = plan.state_transition.before.layout
+                nodes = {node.id: node for node in layout.landmarks}
+                if unit_id == "navigation.move":
+                    destination = nodes[step.destination].label_zh
+                    clause = ("走到" if step.phase == "complete" else "朝") + destination + ("" if step.phase == "complete" else "走去")
+                elif unit_id == "navigation.orient":
+                    clause = "转向" + nodes[step.destination].seat_label
+                else:
+                    action = plan.state_transition.before.active_action
+                    arrived = action is not None and action.edge_index == len(action.route) - 1
+                    if arrived:
+                        clause = "暂缓落座" if unit_id == "navigation.pause" else "准备落座"
+                    else:
+                        clause = "停住脚步" if unit_id == "navigation.pause" else "重新迈步"
+                result[unit_id] = (clause,)
+                continue
             hints = unit.render_hints
             subject, verb, complement = hints["subject"], hints["verb"], hints.get("complement", "")
             subject, verb, complement = (fragment.replace("对方", context.target_name) for fragment in (subject, verb, complement))
@@ -38,11 +59,11 @@ class ChineseNovelRenderer:
         text = context.subject_name + "，".join(clauses) + "。" if clauses else ""
         if context.dialogue is not None:
             text += f"{context.subject_name}说：“{context.dialogue}”"
-        return RenderResult(text=text, realized_units=choices, warnings=warnings)
+        return RenderResult(text=text, realized_units=choices, omitted_units=plan.continuation_signals, warnings=warnings)
 
     def validate_result(self, plan: PerformancePlan, context: RenderContext, result: RenderResult) -> bool:
         options = self.options(plan, context)
-        if result.introduced_facts or result.omitted_units or set(result.realized_units) != set(options):
+        if result.introduced_facts or result.omitted_units != plan.continuation_signals or set(result.realized_units) != set(options):
             return False
         if any(value not in options[key] for key, value in result.realized_units.items()):
             return False

@@ -15,7 +15,7 @@ def noise(seed: int, unit_id: str) -> float:
 
 @dataclass(frozen=True)
 class ScoringRules:
-    version: str = "1.0.0"
+    version: str = "1.1.0"
     emotion: float = 1.2
     vad: float = .8
     narrative: float = .55
@@ -91,3 +91,18 @@ def parameters(request: PerformanceRequest, emotion: EmotionState, unit: Perform
         result.update(volume=round(clamp(request.character.expression_baseline.speech_volume + .15 * dominance - .2 * request.context.formality), 4),
             pace=.35 if unit.atomic_action == "pace_slow" else .8 if unit.atomic_action == "pace_quick" else .5)
     return result
+
+
+def scene_repetition_penalty(unit: PerformanceUnit, history: tuple[HistoryEntry, ...]) -> float:
+    """A bounded preference against an ensemble repeating the same gesture.
+
+    It never replaces actor-specific cooldowns, nor overrides explicit blocking.
+    """
+    penalty = 0.
+    for age, entry in enumerate(reversed(history)):
+        recency = (12 - age) / 12
+        if entry.unit_id == unit.id:
+            penalty += .65 * recency
+        if entry.semantic_groups & unit.semantic_groups:
+            penalty += .35 * recency
+    return min(1.2, penalty)

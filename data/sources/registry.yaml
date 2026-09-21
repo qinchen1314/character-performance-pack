@@ -1,5 +1,20 @@
 schema_version: 1.0.0
 sources:
+  - id: src.original.navigation.v1
+    name: Original navigation and resumable blocking rules
+    source_type: original
+    version: 0.3.0
+    usage_mode: original
+    review_status: approved
+    reviewer: project-authoring-process
+    concepts_used: [blocking-sequence, action-lifecycle, known-paths]
+    license:
+      identifier: project-license
+      commercial_use: true
+      redistribution: true
+      attribution_required: false
+      share_alike: false
+      evidence_urls: []
   - id: src.original.performance.v1
     name: Original Chinese novel atomic behaviours
     source_type: original

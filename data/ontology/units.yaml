@@ -140,6 +140,7 @@ units:
   - mouth_change
   semantics:
     warmth: 0.9
+    initiative: 0.7
   emotion_affinity:
     joy: 0.85
     love: 0.65
@@ -172,7 +173,7 @@ units:
     intensity: 0.5
   vad_affinity:
     valence: 0.754
-    arousal: 0.4291
+    arousal: 0.8
     dominance: 0.1793
 - id: facial.eyelid_lower
   category: facial
@@ -233,6 +234,7 @@ units:
     relief: 0.85
     love: 0.65
     calm: 0.65
+    joy: 0.7
   intensity_range:
     min: 0.05
     max: 1
@@ -260,9 +262,9 @@ units:
     action: brow_release
     intensity: 0.5
   vad_affinity:
-    valence: 0.5137
+    valence: 0.5742
     arousal: -0.25
-    dominance: 0.2258
+    dominance: 0.2686
 - id: micro_expression.lip_pause
   category: micro_expression
   channel: facial
@@ -519,6 +521,7 @@ units:
   - attention_return
   semantics:
     warmth: 0.9
+    self_control: 0.65
   emotion_affinity:
     love: 0.85
     hope: 0.65
@@ -549,7 +552,7 @@ units:
   status: active
   vad_affinity:
     valence: 0.7014
-    arousal: 0.3498
+    arousal: -0.25
     dominance: 0.0988
 - id: gaze.gaze_steady
   category: gaze
@@ -885,6 +888,7 @@ units:
   - palm_openness
   semantics:
     warmth: 0.9
+    initiative: 0.7
   emotion_affinity:
     gratitude: 0.85
     love: 0.65
@@ -916,7 +920,7 @@ units:
   status: active
   vad_affinity:
     valence: 0.6958
-    arousal: 0.3442
+    arousal: 0.8
     dominance: 0.083
 - id: body.finger_still
   category: body
@@ -1942,6 +1946,7 @@ units:
   - vocal_warmth
   semantics:
     warmth: 0.9
+    self_control: 0.35
   emotion_affinity:
     love: 0.85
     gratitude: 0.65
@@ -1971,7 +1976,7 @@ units:
   status: active
   vad_affinity:
     valence: 0.7316
-    arousal: 0.3619
+    arousal: -0.25
     dominance: 0.0081
 - id: speech.phrase_short
   category: speech
@@ -2495,3 +2500,127 @@ units:
     valence: 0.2
     arousal: -0.25
     dominance: 0.3
+- id: navigation.move
+  category: spatial
+  channel: spatial
+  atomic_action: navigation_move
+  invocation: blocking
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - navigation_move
+  semantics:
+    initiative: 0.5
+  emotion_affinity: {}
+  intensity_range:
+    min: 0
+    max: 1
+  conflicts: []
+  visibility: noticeable
+  narrative_weight: 0.6
+  cooldown:
+    turns: 0
+  repeat_group: navigation_move
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  render_hints:
+    subject: ''
+    verb: 走
+    complement: 向已知位置
+  source_refs:
+  - src.original.navigation.v1
+  license_class: original
+  status: active
+- id: navigation.orient
+  category: spatial
+  channel: spatial
+  atomic_action: navigation_orient
+  invocation: blocking
+  body_parts:
+  - whole_body
+  semantic_groups:
+  - navigation_orient
+  semantics:
+    initiative: 0.5
+  emotion_affinity: {}
+  intensity_range:
+    min: 0
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 0
+  repeat_group: navigation_orient
+  physical_requirements:
+    capabilities:
+    - walking
+    min_mobility: 0.5
+  render_hints:
+    subject: ''
+    verb: 转
+    complement: 向座椅
+  source_refs:
+  - src.original.navigation.v1
+  license_class: original
+  status: active
+- id: navigation.pause
+  category: spatial
+  channel: spatial
+  atomic_action: navigation_pause
+  invocation: blocking
+  body_parts: []
+  semantic_groups:
+  - navigation_pause
+  semantics:
+    initiative: 0.5
+  emotion_affinity: {}
+  intensity_range:
+    min: 0
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 0
+  repeat_group: navigation_pause
+  physical_requirements: {}
+  render_hints:
+    subject: ''
+    verb: 停
+    complement: 住脚步
+  source_refs:
+  - src.original.navigation.v1
+  license_class: original
+  status: active
+- id: navigation.resume
+  category: spatial
+  channel: spatial
+  atomic_action: navigation_resume
+  invocation: blocking
+  body_parts: []
+  semantic_groups:
+  - navigation_resume
+  semantics:
+    initiative: 0.5
+  emotion_affinity: {}
+  intensity_range:
+    min: 0
+    max: 1
+  conflicts: []
+  visibility: subtle
+  narrative_weight: 0.6
+  cooldown:
+    turns: 0
+  repeat_group: navigation_resume
+  physical_requirements: {}
+  render_hints:
+    subject: ''
+    verb: 重新
+    complement: 迈步
+  source_refs:
+  - src.original.navigation.v1
+  license_class: original
+  status: active

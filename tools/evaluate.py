@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from character_performance.domain.models import CharacterProfile, EmotionState, PerformanceRequest, Personality, RelationshipState, SceneState, VAD
 from character_performance.engine import PerformanceEngine
 from character_performance.ontology.pack import PerformancePack
+from character_performance.scoring import ScoringRules
 
 
 def evaluate() -> dict:
@@ -53,12 +54,13 @@ def evaluate() -> dict:
     recent_repeat = any(set(row["units"]) & {key for previous in rounds[max(0, i-3):i] for key in previous["units"]} for i, row in enumerate(rounds))
     units = pack.all()
     return {
-        "pack_version": pack.version, "pack_hash": pack.content_hash, "rule_version": "1.0.0",
+        "pack_version": pack.version, "pack_hash": pack.content_hash, "rule_version": ScoringRules().version,
         "coverage": {"emotions": len(pack.ontology), "units": len(units),
             "categories": dict(sorted(Counter(u.category for u in units).items())),
             "body_parts": sorted({part for u in units for part in u.body_parts}),
             "emotion_candidates": {e.id: sum(e.id in u.emotion_affinity for u in units) for e in pack.ontology.all()},
-            "stateful_units": sum(bool(u.effects) for u in units), "modifiers": len(pack.modifiers)},
+            "stateful_units": sum(bool(u.effects) for u in units),
+            "blocking_units": sum(u.invocation == "blocking" for u in units), "modifiers": len(pack.modifiers)},
         "metrics": {"persona_mean_jaccard": round(jaccard, 4), "signals_20_turns": total,
             "max_semantic_group_count": max(groups.values(), default=0), "trope_fraction": round(trope / total, 4) if total else 0,
             "adjacent_3_repeat": recent_repeat, "no_valid_candidate_rate": sum(not row["units"] for row in rounds) / 20,

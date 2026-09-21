@@ -38,7 +38,7 @@ EFFECTS = {"pose", "orientation", "distance_delta", "transfer", "clear_support"}
 
 
 class PerformancePack:
-    version = "0.2.0"
+    version = "0.3.0"
     schema_version = "1.0.0"
 
     def __init__(self, ontology: EmotionOntology, units: tuple[PerformanceUnit, ...], source_ids: tuple[str, ...], modifiers: tuple[Modifier, ...] = ()):
@@ -77,6 +77,13 @@ class PerformancePack:
             if set(modifier.effects.score_add) - selectors:
                 raise ValueError(f"unreachable modifier selector: {modifier.id}")
         for unit in self.all():
+            if unit.invocation == "blocking" and unit.id not in {"navigation.move", "navigation.orient", "navigation.pause", "navigation.resume"}:
+                raise ValueError(f"unsupported blocking unit: {unit.id}")
+            if unit.id.startswith("navigation."):
+                if unit.invocation != "blocking" or unit.category != "spatial" or unit.channel != "spatial" or unit.atomic_action != "navigation_" + unit.id.split(".", 1)[1]:
+                    raise ValueError(f"invalid navigation unit contract: {unit.id}")
+                if unit.effects or unit.preconditions or unit.world_requirements:
+                    raise ValueError(f"navigation state effects are controlled by the route lifecycle: {unit.id}")
             if unit.schema_version != self.schema_version:
                 raise ValueError(f"unsupported unit schema: {unit.id}")
             if unit.category == "unknown" or unit.visibility == "unknown" or unit.status == "unknown":

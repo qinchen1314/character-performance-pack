@@ -1,17 +1,17 @@
 {
-  "pack_version": "0.2.0",
-  "pack_hash": "0f26409787c41f5c593282751018d63a771924c212de5c251bf172008b2e30f6",
-  "rule_version": "1.0.0",
+  "pack_version": "0.3.0",
+  "pack_hash": "04ae99f8aa968c755732cfee0d3b35f9ecc45b3c246d6ada25b1effe13750785",
+  "rule_version": "1.1.0",
   "coverage": {
     "emotions": 18,
-    "units": 58,
+    "units": 62,
     "categories": {
       "body": 15,
       "facial": 6,
       "gaze": 5,
       "micro_expression": 2,
       "physiology": 4,
-      "spatial": 8,
+      "spatial": 12,
       "speech": 8,
       "world_specific": 10
     },
@@ -48,7 +48,7 @@
       "gratitude": 4,
       "hope": 5,
       "jealousy": 2,
-      "joy": 2,
+      "joy": 3,
       "love": 9,
       "pride": 2,
       "relief": 5,
@@ -58,6 +58,7 @@
       "surprise": 6
     },
     "stateful_units": 10,
+    "blocking_units": 4,
     "modifiers": 6
   },
   "metrics": {
@@ -67,8 +68,8 @@
     "trope_fraction": 0.1379,
     "adjacent_3_repeat": false,
     "no_valid_candidate_rate": 0.25,
-    "planner_p50_ms": 4.181,
-    "planner_p95_ms": 4.975
+    "planner_p50_ms": 4.484,
+    "planner_p95_ms": 6.147
   },
   "gates": {
     "T1": true,
@@ -262,7 +263,7 @@
     }
   ],
   "tests": {
-    "tests": 89,
+    "tests": 124,
     "failures": 0,
     "errors": 0,
     "skipped": 0

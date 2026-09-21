@@ -9,10 +9,11 @@ from character_performance.domain.models import (
 )
 from character_performance.emotion import build_emotion
 from character_performance.ontology.pack import PerformancePack, digest
-from character_performance.scoring import ScoringRules, noise, parameters, score_unit
+from character_performance.scoring import ScoringRules, noise, parameters, score_unit, scene_repetition_penalty
 from character_performance.modifiers import active_modifiers, parameter_modifiers, score_modifiers
 from character_performance.storage import SQLiteRepository
 from character_performance.world import apply_world, validate_world
+from character_performance.blocking import advance_blocking
 
 VISIBILITY = {"hidden": 0, "very_subtle": 1, "subtle": 2, "noticeable": 3, "obvious": 4, "unknown": -1}
 
@@ -28,20 +29,31 @@ class PerformanceEngine:
         request = PerformanceRequest.model_validate_json(request.model_dump_json())
         self.repository.check_snapshot(request)
         history = self.repository.history(request.scene_state.scene_id, request.character.id)
-        plan = self._compose(request, history)
-        self.repository.save_plan(request, plan, history)
+        scene_history = self.repository.scene_history(request.scene_state.scene_id, request.character.id)
+        plan = self._compose(request, history, scene_history)
+        self.repository.save_plan(request, plan, history, scene_history)
         return plan
 
-    def _compose(self, request: PerformanceRequest, history: tuple[HistoryEntry, ...]) -> PerformancePlan:
+    def _compose(self, request: PerformanceRequest, history: tuple[HistoryEntry, ...], scene_history: tuple[HistoryEntry, ...] = ()) -> PerformancePlan:
         emotion, warnings = build_emotion(request, self.pack.ontology)
         input_hash = digest(request.model_dump(mode="python"))
-        plan_id = "plan." + digest({"input": input_hash, "history": [h.model_dump(mode="python") for h in history], "pack": self.pack.content_hash, "rules": vars(self.rules)})[:32]
+        plan_id = "plan." + digest({"input": input_hash, "history": [h.model_dump(mode="python") for h in history], "scene_history": [h.model_dump(mode="python") for h in scene_history], "pack": self.pack.content_hash, "rules": vars(self.rules)})[:32]
         scene, world = request.scene_state, request.world_state
         target = request.relationship.target_id if request.relationship else None
         selected: dict[str, list[str]] = {}
         values, scores, suppressed, decisions = {}, {}, {}, {}
         chosen, surfaces, leaks = [], [], []
         modifiers = active_modifiers(self.pack.modifiers, request)
+        budget = min(request.director.max_signals, 1 if request.director.beat_importance < .25 else 2 if request.director.beat_importance < .65 else 4 if request.director.beat_importance < .9 else 6)
+        budget = max(0, min(request.director.max_signals, budget + sum(m.effects.budget_add.get("total", 0) for m in modifiers)))
+        scene, sequence, blocking_warnings = advance_blocking(self.pack, request, budget)
+        warnings += blocking_warnings
+        for step in sequence:
+            unit = self.pack.get(step.unit_id)
+            chosen.append(unit)
+            selected.setdefault(unit.category, []).append(unit.id)
+            values[unit.id] = {"amplitude": .3}
+            scores[unit.id] = {"requested_blocking": 1.0}
         if emotion is not None:
             mask = request.masking or Masking(mask_strength=emotion.restraint,
                 control_capacity=request.physical_state.motor_control)
@@ -56,6 +68,12 @@ class PerformanceEngine:
                 surface = masking and unit.emotion_affinity.get("calm", 0) > 0
                 affinity = max(unit.emotion_affinity.get(emotion.primary, 0), unit.emotion_affinity.get(emotion.secondary, 0) * .65)
                 reasons = []
+                if unit.invocation == "blocking":
+                    reasons.append("explicit_blocking_only")
+                if unit.id in values:
+                    continue
+                if (request.blocking_goal or request.scene_state.active_action) and (unit.effects or unit.category in {"body", "spatial"}):
+                    reasons.append("blocking_owns_physical_state")
                 if unit.status != "active" or unit.id in request.director.disabled_units:
                     reasons.append("disabled")
                 if not surface and affinity <= 0:
@@ -83,6 +101,7 @@ class PerformanceEngine:
                     suppressed[unit.id] = tuple(reasons)
                     continue
                 breakdown = score_unit(unit, request, emotion, history, self.rules, surface)
+                breakdown["scene_repetition"] = -scene_repetition_penalty(unit, scene_history)
                 breakdown.update(score_modifiers(modifiers, unit))
                 scores[unit.id] = breakdown
                 total = sum(breakdown.values())
@@ -94,9 +113,8 @@ class PerformanceEngine:
                 candidates.append((total + self.rules.temperature * gumbel, unit, surface))
             # A surface signal precedes leaks; shortlist one best candidate per channel.
             candidates.sort(key=lambda item: (-int(item[2]), -item[0], item[1].id))
-            budget = min(request.director.max_signals, 1 if request.director.beat_importance < .25 else 2 if request.director.beat_importance < .65 else 4 if request.director.beat_importance < .9 else 6)
-            budget = max(0, min(request.director.max_signals, budget + sum(m.effects.budget_add.get("total", 0) for m in modifiers)))
-            used_channels, used_groups = set(), set()
+            used_channels = {unit.channel for unit in chosen}
+            used_groups = {group for unit in chosen for group in unit.semantic_groups}
             for _, unit, surface in candidates:
                 reasons = []
                 if len(chosen) >= budget:
@@ -152,12 +170,13 @@ class PerformanceEngine:
             selected={k: tuple(v) for k, v in selected.items()}, parameters=values,
             state_transition=StateTransition(before=request.scene_state, after=scene,
                 world_before=request.world_state, world_after=world),
-            suppressed_candidates=suppressed, scores=scores, world_decisions=decisions, warnings=warnings)
+            suppressed_candidates=suppressed, scores=scores, world_decisions=decisions, warnings=warnings,
+            sequence=sequence, continuation_signals=tuple(step.unit_id for step in sequence if not step.render))
 
     def validate(self, plan: PerformancePlan) -> ValidationReport:
         try:
             request, saved, history = self.repository.load_plan(plan.plan_id)
-            recomposed = self._compose(request, history)
+            recomposed = self._compose(request, history, self.repository.saved_scene_history(plan.plan_id))
             if plan != saved or plan != recomposed:
                 return ValidationReport(valid=False, errors=("PLAN_INTEGRITY_OR_VERSION_MISMATCH",))
         except (KeyError, ValueError) as error:
@@ -187,6 +206,6 @@ class PerformanceEngine:
             semantic_groups=self.pack.get(u).semantic_groups, channel=self.pack.get(u).channel,
             intensity=plan.parameters[u]["amplitude"], render_features={
                 "grammar": (self.pack.get(u).render_hints["verb"] + self.pack.get(u).render_hints.get("complement", ""),),
-                "realized": (rendered.realized_units[u],) if rendered else (),
-            }) for u in plan.unit_ids)
+                "realized": (rendered.realized_units[u],) if rendered and u in rendered.realized_units else (),
+            }) for u in plan.unit_ids if u not in plan.continuation_signals)
         return self.repository.commit(plan, expected_scene_revision, entries)

@@ -26,7 +26,7 @@ def precondition_errors(unit: PerformanceUnit, scene: SceneState, target: str | 
         "wall_contact": bool(scene.support_contact and scene.support_contact.startswith("wall.")),
     }
     errors = [f"precondition:{key}" for key in unit.preconditions if not predicates.get(key, False)]
-    if scene.unfinished_actions and (unit.effects or unit.category in {"body", "spatial"}):
+    if (scene.unfinished_actions or scene.active_action) and (unit.effects or unit.category in {"body", "spatial"}):
         errors.append("unfinished_action")
     return errors
 

@@ -158,6 +158,7 @@ class PerformanceUnit(DomainModel):
     facial_units: tuple[FacialAction, ...] = ()
     timing: MicroTiming | None = None
     world_requirements: dict[str, Any] = Field(default_factory=dict)
+    invocation: Literal["automatic", "blocking"] = "automatic"
 
     @model_validator(mode="after")
     def require_semantics_and_provenance(self) -> "PerformanceUnit":
@@ -244,6 +245,76 @@ class EmotionalResidue(DomainModel):
     expires_after_turn: NonNegativeInt
 
 
+class Landmark(DomainModel):
+    id: NonEmptyId
+    label_zh: Annotated[str, Field(min_length=1, max_length=60)]
+    seat_id: NonEmptyId | None = None
+    seat_label: Annotated[str, Field(min_length=1, max_length=60)] | None = None
+    distances: dict[NonEmptyId, Annotated[float, Field(ge=0)]] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def seat_is_explicit(self):
+        if (self.seat_id is None) != (self.seat_label is None):
+            raise ValueError("seat_id and seat_label must be supplied together")
+        if self.seat_id and not self.seat_id.startswith("seat."):
+            raise ValueError("seat_id must use seat. namespace")
+        return self
+
+
+class PathEdge(DomainModel):
+    origin: NonEmptyId
+    destination: NonEmptyId
+    duration_ms: Annotated[int, Field(gt=0, le=3600000)]
+    blocked: bool = False
+
+
+class SceneLayout(DomainModel):
+    landmarks: tuple[Landmark, ...]
+    edges: tuple[PathEdge, ...] = ()
+
+    @model_validator(mode="after")
+    def valid_graph(self):
+        ids = {node.id for node in self.landmarks}
+        if len(ids) != len(self.landmarks):
+            raise ValueError("duplicate landmark id")
+        edges = set()
+        seats = [node.seat_id for node in self.landmarks if node.seat_id]
+        if len(seats) != len(set(seats)):
+            raise ValueError("a seat cannot belong to multiple landmarks")
+        for edge in self.edges:
+            key = (edge.origin, edge.destination)
+            if key in edges or edge.origin == edge.destination or not set(key) <= ids:
+                raise ValueError("duplicate, self-referencing or dangling path edge")
+            edges.add(key)
+        return self
+
+
+class BlockingGoal(DomainModel):
+    destination: NonEmptyId
+    pose: Literal["standing", "seated"] = "standing"
+    interruption_policy: Literal["pause", "forbid"] = "pause"
+
+
+class ActiveAction(DomainModel):
+    id: NonEmptyId
+    kind: Literal["navigation"] = "navigation"
+    status: Literal["running", "paused"] = "running"
+    goal: BlockingGoal
+    route: tuple[NonEmptyId, ...]
+    edge_index: NonNegativeInt = 0
+    elapsed_ms: NonNegativeInt = 0
+    pack_hash: str
+
+
+class BlockingStep(DomainModel):
+    unit_id: NonEmptyId
+    phase: Literal["instant", "start", "continue", "complete", "pause", "resume"]
+    destination: NonEmptyId | None = None
+    elapsed_ms: NonNegativeInt = 0
+    duration_ms: NonNegativeInt = 0
+    render: bool = True
+
+
 class SceneState(DomainModel):
     scene_id: NonEmptyId
     turn_index: NonNegativeInt = 0
@@ -256,6 +327,38 @@ class SceneState(DomainModel):
     support_contact: NonEmptyId | None = None
     unfinished_actions: tuple[NonEmptyId, ...] = ()
     emotional_residue: tuple[EmotionalResidue, ...] = ()
+    layout: SceneLayout | None = None
+    active_action: ActiveAction | None = None
+    time_ms: NonNegativeInt = 0
+
+    @model_validator(mode="after")
+    def validate_navigation_state(self):
+        action = self.active_action
+        if action is None:
+            return self
+        if self.layout is None or not action.route or action.edge_index >= len(action.route):
+            raise ValueError("active navigation requires a valid layout and route index")
+        nodes = {node.id: node for node in self.layout.landmarks}
+        edges = {(edge.origin, edge.destination): edge for edge in self.layout.edges}
+        if not set(action.route) <= nodes.keys() or len(set(action.route)) != len(action.route) or action.goal.destination != action.route[-1]:
+            raise ValueError("active navigation route is invalid")
+        if any(pair not in edges for pair in zip(action.route, action.route[1:])):
+            raise ValueError("active navigation references an unknown edge")
+        if action.edge_index == len(action.route) - 1:
+            if action.elapsed_ms != 0:
+                raise ValueError("completed route cannot have partial edge progress")
+        else:
+            edge = edges[(action.route[action.edge_index], action.route[action.edge_index + 1])]
+            if action.elapsed_ms >= edge.duration_ms:
+                raise ValueError("partial edge progress must be below duration")
+        expected_position = None if action.elapsed_ms else action.route[action.edge_index]
+        permitted_contact = (
+            action.edge_index == len(action.route) - 1 and action.goal.pose == "seated"
+            and self.support_contact == nodes[action.goal.destination].seat_id
+        )
+        if self.position != expected_position or self.pose != "standing" or (self.support_contact is not None and not permitted_contact):
+            raise ValueError("active navigation pose, support or position is inconsistent")
+        return self
 
 
 class Event(DomainModel):
@@ -324,6 +427,9 @@ class PerformanceRequest(DomainModel):
     masking: Masking | None = None
     world_state: WorldState = WorldState()
     seed: int = 0
+    blocking_goal: BlockingGoal | None = None
+    elapsed_ms: Annotated[int, Field(ge=0, le=60000)] = 0
+    action_control: Literal["continue", "pause", "resume"] = "continue"
 
     @model_validator(mode="after")
     def subject_matches(self) -> "PerformanceRequest":
@@ -368,9 +474,9 @@ class PerformancePlan(DomainModel):
     leak_signals: tuple[NonEmptyId, ...] = ()
     selected: dict[str, tuple[NonEmptyId, ...]] = Field(default_factory=dict)
     parameters: dict[NonEmptyId, dict[str, Any]] = Field(default_factory=dict)
-    pack_version: str = "0.2.0"
+    pack_version: str = "0.3.0"
     pack_hash: str = ""
-    rule_version: str = "1.0.0"
+    rule_version: str = "1.1.0"
     input_hash: str = ""
     emotion_state: EmotionState | None = None
     state_transition: StateTransition | None = None
@@ -378,6 +484,8 @@ class PerformancePlan(DomainModel):
     scores: dict[str, dict[str, float]] = Field(default_factory=dict)
     world_decisions: dict[str, dict[str, Any]] = Field(default_factory=dict)
     warnings: tuple[str, ...] = ()
+    sequence: tuple[BlockingStep, ...] = ()
+    continuation_signals: tuple[NonEmptyId, ...] = ()
 
     @property
     def unit_ids(self) -> tuple[str, ...]:

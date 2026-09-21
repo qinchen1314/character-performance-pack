@@ -31,6 +31,8 @@ class SQLiteRepository:
             columns = {row[1] for row in self._db.execute("PRAGMA table_info(plans)")}
             if "render_result" not in columns:
                 self._db.execute("ALTER TABLE plans ADD COLUMN render_result TEXT")
+            if "scene_history" not in columns:
+                self._db.execute("ALTER TABLE plans ADD COLUMN scene_history TEXT NOT NULL DEFAULT '[]'")
             self._db.commit()
         except Exception:
             self._db.rollback()
@@ -63,9 +65,25 @@ class SQLiteRepository:
             rows = self._db.execute("SELECT entry FROM history WHERE scene=? AND subject=? ORDER BY turn, rowid", (scene_id, subject_id)).fetchall()
         return tuple(HistoryEntry.model_validate_json(row[0]) for row in rows)
 
-    def save_plan(self, request: PerformanceRequest, plan: PerformancePlan, history: tuple[HistoryEntry, ...]) -> None:
+    def scene_history(self, scene_id: str, exclude_subject: str) -> tuple[HistoryEntry, ...]:
+        # Actor turn indices are local. Commit insertion order defines the shared
+        # recent-scene window, independent of each actor's turn counter.
+        with self._lock:
+            rows = self._db.execute("SELECT subject, entry FROM history WHERE scene=? ORDER BY rowid DESC LIMIT 12", (scene_id,)).fetchall()
+        # Apply the shared window before excluding this actor, so their later
+        # gestures can age other actors' old gestures out of the window.
+        return tuple(HistoryEntry.model_validate_json(entry) for subject, entry in reversed(rows) if subject != exclude_subject)
+
+    def saved_scene_history(self, plan_id: str) -> tuple[HistoryEntry, ...]:
+        with self._lock:
+            row = self._db.execute("SELECT scene_history FROM plans WHERE id=?", (plan_id,)).fetchone()
+        if row is None:
+            raise KeyError(f"unknown plan: {plan_id}")
+        return tuple(HistoryEntry.model_validate(item) for item in json.loads(row[0]))
+
+    def save_plan(self, request: PerformanceRequest, plan: PerformancePlan, history: tuple[HistoryEntry, ...], scene_history: tuple[HistoryEntry, ...] = ()) -> None:
         with self._lock, self._db:
-            self._db.execute("INSERT OR IGNORE INTO plans(id, request, plan, history) VALUES(?,?,?,?)", (plan.plan_id, request.model_dump_json(), plan.model_dump_json(), json.dumps([h.model_dump(mode="json") for h in history])))
+            self._db.execute("INSERT OR IGNORE INTO plans(id, request, plan, history, scene_history) VALUES(?,?,?,?,?)", (plan.plan_id, request.model_dump_json(), plan.model_dump_json(), json.dumps([h.model_dump(mode="json") for h in history]), json.dumps([h.model_dump(mode="json") for h in scene_history])))
 
     def load_plan(self, plan_id: str) -> tuple[PerformanceRequest, PerformancePlan, tuple[HistoryEntry, ...]]:
         with self._lock:

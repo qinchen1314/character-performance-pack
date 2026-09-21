@@ -12,6 +12,9 @@ from .models import (
     RenderContext,
     RenderResult,
     WorldState,
+    ActiveAction,
+    BlockingGoal,
+    SceneLayout,
 )
 
 __all__ = [
@@ -22,4 +25,5 @@ __all__ = [
     "VAD",
     "CharacterProfile", "PerformanceRequest", "SceneState", "RelationshipState",
     "PhysicalState", "RenderContext", "RenderResult", "WorldState",
+    "ActiveAction", "BlockingGoal", "SceneLayout",
 ]

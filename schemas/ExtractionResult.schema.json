@@ -1,0 +1,245 @@
+{
+  "$defs": {
+    "ExtractedBehavior": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "target_ids": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Target Ids",
+          "type": "array"
+        },
+        "text_span": {
+          "$ref": "#/$defs/TextSpan"
+        },
+        "canonical_action": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Canonical Action",
+          "type": "string"
+        },
+        "matched_unit_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Matched Unit Id"
+        },
+        "semantic_groups": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Semantic Groups",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "channel": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Channel",
+          "type": "string"
+        },
+        "narrative_functions": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Narrative Functions",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "strategy_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Id"
+        },
+        "syntax_features": {
+          "$ref": "#/$defs/SyntaxFeatures",
+          "default": {
+            "subject_opening": "unknown",
+            "temporal_shape": "unknown",
+            "reset_pattern": false,
+            "dialogue_position": "unknown"
+          }
+        },
+        "lexical_lemmas": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Lexical Lemmas",
+          "type": "array"
+        },
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "evidence_sources": {
+          "default": [],
+          "items": {
+            "enum": [
+              "rule",
+              "llm",
+              "human"
+            ],
+            "type": "string"
+          },
+          "title": "Evidence Sources",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "actor_id",
+        "text_span",
+        "canonical_action",
+        "semantic_groups",
+        "channel",
+        "narrative_functions",
+        "confidence"
+      ],
+      "title": "ExtractedBehavior",
+      "type": "object"
+    },
+    "SyntaxFeatures": {
+      "additionalProperties": false,
+      "properties": {
+        "subject_opening": {
+          "default": "unknown",
+          "enum": [
+            "actor",
+            "body_part",
+            "object",
+            "environment",
+            "dialogue",
+            "other",
+            "unknown"
+          ],
+          "title": "Subject Opening",
+          "type": "string"
+        },
+        "temporal_shape": {
+          "default": "unknown",
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Temporal Shape",
+          "type": "string"
+        },
+        "reset_pattern": {
+          "default": false,
+          "title": "Reset Pattern",
+          "type": "boolean"
+        },
+        "dialogue_position": {
+          "default": "unknown",
+          "enum": [
+            "before_dialogue",
+            "during_dialogue",
+            "after_dialogue",
+            "no_dialogue",
+            "unknown"
+          ],
+          "title": "Dialogue Position",
+          "type": "string"
+        }
+      },
+      "title": "SyntaxFeatures",
+      "type": "object"
+    },
+    "TextSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 1,
+          "title": "End",
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "text"
+      ],
+      "title": "TextSpan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "behaviors": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ExtractedBehavior"
+      },
+      "title": "Behaviors",
+      "type": "array"
+    },
+    "unresolved_spans": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TextSpan"
+      },
+      "title": "Unresolved Spans",
+      "type": "array"
+    }
+  },
+  "required": [
+    "run_id"
+  ],
+  "title": "ExtractionResult",
+  "type": "object"
+}

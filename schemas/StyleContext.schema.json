@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "pov": {
+      "enum": [
+        "first_person",
+        "third_limited",
+        "third_omniscient",
+        "second_person"
+      ],
+      "title": "Pov",
+      "type": "string"
+    },
+    "prose_style": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Prose Style",
+      "type": "string"
+    },
+    "paragraph_function": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Paragraph Function",
+      "type": "string"
+    }
+  },
+  "required": [
+    "pov",
+    "prose_style",
+    "paragraph_function"
+  ],
+  "title": "StyleContext",
+  "type": "object"
+}

@@ -1,0 +1,240 @@
+{
+  "$defs": {
+    "AuditIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "issue_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Issue Id",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "block",
+            "rewrite",
+            "warning"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "code": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Code",
+          "type": "string"
+        },
+        "spans": {
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          },
+          "title": "Spans",
+          "type": "array"
+        },
+        "actor_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Actor Id"
+        },
+        "evidence": {
+          "additionalProperties": true,
+          "title": "Evidence",
+          "type": "object"
+        },
+        "preserve": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Preserve",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "alternatives": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "required": [
+        "issue_id",
+        "severity",
+        "code",
+        "spans"
+      ],
+      "title": "AuditIssue",
+      "type": "object"
+    },
+    "AuditMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "exact_repeat_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Exact Repeat Count",
+          "type": "integer"
+        },
+        "semantic_repeat_score": {
+          "default": 0.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Semantic Repeat Score",
+          "type": "number"
+        },
+        "character_fit_score": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Character Fit Score",
+          "type": "number"
+        },
+        "syntax_pattern_score": {
+          "default": 0.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Syntax Pattern Score",
+          "type": "number"
+        }
+      },
+      "title": "AuditMetrics",
+      "type": "object"
+    },
+    "AuditResult": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "run_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "draft_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Draft Hash",
+          "type": "string"
+        },
+        "accepted": {
+          "title": "Accepted",
+          "type": "boolean"
+        },
+        "issues": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AuditIssue"
+          },
+          "title": "Issues",
+          "type": "array"
+        },
+        "metrics": {
+          "$ref": "#/$defs/AuditMetrics"
+        },
+        "memory_revision": {
+          "minimum": 0,
+          "title": "Memory Revision",
+          "type": "integer"
+        },
+        "auto_rewrite_allowed": {
+          "default": false,
+          "title": "Auto Rewrite Allowed",
+          "type": "boolean"
+        },
+        "rewrite_attempts": {
+          "default": 0,
+          "maximum": 2,
+          "minimum": 0,
+          "title": "Rewrite Attempts",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "run_id",
+        "draft_hash",
+        "accepted",
+        "metrics",
+        "memory_revision"
+      ],
+      "title": "AuditResult",
+      "type": "object"
+    },
+    "SourceSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 1,
+          "title": "End",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceSpan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "audit": {
+      "$ref": "#/$defs/AuditResult"
+    },
+    "attempt": {
+      "maximum": 2,
+      "minimum": 1,
+      "title": "Attempt",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "text",
+    "audit",
+    "attempt"
+  ],
+  "title": "RewriteRequest",
+  "type": "object"
+}

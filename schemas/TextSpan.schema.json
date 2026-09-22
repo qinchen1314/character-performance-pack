@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "start": {
+      "minimum": 0,
+      "title": "Start",
+      "type": "integer"
+    },
+    "end": {
+      "minimum": 1,
+      "title": "End",
+      "type": "integer"
+    },
+    "text": {
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "start",
+    "end",
+    "text"
+  ],
+  "title": "TextSpan",
+  "type": "object"
+}

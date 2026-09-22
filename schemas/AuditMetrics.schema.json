@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "exact_repeat_count": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Exact Repeat Count",
+      "type": "integer"
+    },
+    "semantic_repeat_score": {
+      "default": 0.0,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Semantic Repeat Score",
+      "type": "number"
+    },
+    "character_fit_score": {
+      "default": 1.0,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Character Fit Score",
+      "type": "number"
+    },
+    "syntax_pattern_score": {
+      "default": 0.0,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Syntax Pattern Score",
+      "type": "number"
+    }
+  },
+  "title": "AuditMetrics",
+  "type": "object"
+}

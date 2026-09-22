@@ -1,0 +1,60 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "preferred_strategies": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Preferred Strategies",
+      "type": "array"
+    },
+    "forbidden_strategies": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Forbidden Strategies",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "preferred_channels": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Preferred Channels",
+      "type": "array"
+    },
+    "avoided_channels": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Avoided Channels",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "allowed_exceptions": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Allowed Exceptions",
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "title": "RelationshipStrategyOverride",
+  "type": "object"
+}

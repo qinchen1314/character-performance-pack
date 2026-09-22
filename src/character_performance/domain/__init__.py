@@ -16,6 +16,27 @@ from .models import (
     BlockingGoal,
     SceneLayout,
 )
+from .behavior_models import (
+    AcceptedDraft,
+    AuditIssue,
+    AuditResult,
+    BehaviorFingerprint,
+    BehaviorIdentity,
+    BehaviorOccurrence,
+    CharacterBehaviorIdentity,
+    CommitRequest,
+    CommitResult,
+    ExtractionRequest,
+    ExtractionResult,
+    GeneratedDraft,
+    GenerationBrief,
+    GenerationRequest,
+    NarrativePosition,
+    ReactionStrategyPlan,
+    RewriteRequest,
+    RewriteResult,
+    SourceSpan,
+)
 
 __all__ = [
     "EmotionState",
@@ -26,4 +47,10 @@ __all__ = [
     "CharacterProfile", "PerformanceRequest", "SceneState", "RelationshipState",
     "PhysicalState", "RenderContext", "RenderResult", "WorldState",
     "ActiveAction", "BlockingGoal", "SceneLayout",
+    "AcceptedDraft", "AuditIssue", "AuditResult", "BehaviorFingerprint",
+    "BehaviorIdentity", "BehaviorOccurrence", "CharacterBehaviorIdentity",
+    "CommitRequest", "CommitResult", "ExtractionRequest", "ExtractionResult",
+    "GeneratedDraft", "GenerationBrief", "GenerationRequest",
+    "NarrativePosition", "ReactionStrategyPlan", "RewriteRequest",
+    "RewriteResult", "SourceSpan",
 ]

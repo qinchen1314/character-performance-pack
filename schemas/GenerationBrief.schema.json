@@ -1,0 +1,339 @@
+{
+  "$defs": {
+    "CandidateBehavior": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "purpose": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Purpose",
+          "type": "string"
+        },
+        "realization_guidance": {
+          "minLength": 1,
+          "title": "Realization Guidance",
+          "type": "string"
+        },
+        "channel": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Channel"
+        },
+        "semantic_groups": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Semantic Groups",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "unit_id",
+        "purpose",
+        "realization_guidance"
+      ],
+      "title": "CandidateBehavior",
+      "type": "object"
+    },
+    "OverusedBehavior": {
+      "additionalProperties": false,
+      "properties": {
+        "semantic_group": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Semantic Group",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "block",
+            "rewrite",
+            "warning"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "reason": {
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "semantic_group",
+        "severity",
+        "reason"
+      ],
+      "title": "OverusedBehavior",
+      "type": "object"
+    },
+    "ReactionStrategyPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "strategy_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Strategy Id",
+          "type": "string"
+        },
+        "intent": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Intent",
+          "type": "string"
+        },
+        "surface_goal": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Surface Goal",
+          "type": "string"
+        },
+        "private_goal": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Private Goal",
+          "type": "string"
+        },
+        "applicability_conditions": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Applicability Conditions",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "contraindications": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Contraindications",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "preferred_channels": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Preferred Channels",
+          "type": "array"
+        },
+        "suppressed_channels": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Suppressed Channels",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "allowed_visibility": {
+          "enum": [
+            "hidden",
+            "very_subtle",
+            "subtle",
+            "noticeable",
+            "obvious",
+            "unknown"
+          ],
+          "title": "Allowed Visibility",
+          "type": "string"
+        },
+        "action_budget": {
+          "maximum": 6,
+          "minimum": 0,
+          "title": "Action Budget",
+          "type": "integer"
+        },
+        "omit_action_allowed": {
+          "title": "Omit Action Allowed",
+          "type": "boolean"
+        },
+        "relationship_meaning": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Relationship Meaning",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "secondary_strategy_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Secondary Strategy Id"
+        }
+      },
+      "required": [
+        "strategy_id",
+        "intent",
+        "surface_goal",
+        "private_goal",
+        "applicability_conditions",
+        "contraindications",
+        "preferred_channels",
+        "allowed_visibility",
+        "action_budget",
+        "omit_action_allowed",
+        "relationship_meaning",
+        "reasons"
+      ],
+      "title": "ReactionStrategyPlan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "strategy": {
+      "$ref": "#/$defs/ReactionStrategyPlan"
+    },
+    "required_facts": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Required Facts",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "forbidden_facts": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Forbidden Facts",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "recently_overused": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/OverusedBehavior"
+      },
+      "title": "Recently Overused",
+      "type": "array"
+    },
+    "avoid_syntax": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Avoid Syntax",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "preferred_channels": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Preferred Channels",
+      "type": "array"
+    },
+    "candidate_behaviors": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/CandidateBehavior"
+      },
+      "title": "Candidate Behaviors",
+      "type": "array"
+    },
+    "omit_action_allowed": {
+      "title": "Omit Action Allowed",
+      "type": "boolean"
+    },
+    "maximum_visible_signals": {
+      "maximum": 6,
+      "minimum": 0,
+      "title": "Maximum Visible Signals",
+      "type": "integer"
+    },
+    "prompt_fragment": {
+      "minLength": 1,
+      "title": "Prompt Fragment",
+      "type": "string"
+    },
+    "memory_revision": {
+      "minimum": 0,
+      "title": "Memory Revision",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "strategy",
+    "preferred_channels",
+    "omit_action_allowed",
+    "maximum_visible_signals",
+    "prompt_fragment",
+    "memory_revision"
+  ],
+  "title": "GenerationBrief",
+  "type": "object"
+}

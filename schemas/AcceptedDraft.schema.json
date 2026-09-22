@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "draft_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Draft Hash",
+      "type": "string"
+    },
+    "memory_revision": {
+      "minimum": 0,
+      "title": "Memory Revision",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "text",
+    "draft_hash",
+    "memory_revision"
+  ],
+  "title": "AcceptedDraft",
+  "type": "object"
+}

@@ -1,0 +1,158 @@
+{
+  "$defs": {
+    "ChangedSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "original": {
+          "$ref": "#/$defs/TextSpan"
+        },
+        "replacement": {
+          "$ref": "#/$defs/TextReplacement"
+        },
+        "resolved_issue_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Resolved Issue Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "original",
+        "replacement",
+        "resolved_issue_ids"
+      ],
+      "title": "ChangedSpan",
+      "type": "object"
+    },
+    "PreservationChecks": {
+      "additionalProperties": false,
+      "properties": {
+        "dialogue_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Dialogue Hash",
+          "type": "string"
+        },
+        "required_facts": {
+          "title": "Required Facts",
+          "type": "boolean"
+        },
+        "scene_state": {
+          "title": "Scene State",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "dialogue_hash",
+        "required_facts",
+        "scene_state"
+      ],
+      "title": "PreservationChecks",
+      "type": "object"
+    },
+    "TextReplacement": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "TextReplacement",
+      "type": "object"
+    },
+    "TextSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 1,
+          "title": "End",
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "text"
+      ],
+      "title": "TextSpan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "original_text": {
+      "minLength": 1,
+      "title": "Original Text",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "changed_spans": {
+      "items": {
+        "$ref": "#/$defs/ChangedSpan"
+      },
+      "title": "Changed Spans",
+      "type": "array"
+    },
+    "requested_issue_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Requested Issue Ids",
+      "type": "array"
+    },
+    "preserved_checks": {
+      "$ref": "#/$defs/PreservationChecks"
+    },
+    "rewrite_attempt": {
+      "maximum": 2,
+      "minimum": 1,
+      "title": "Rewrite Attempt",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "original_text",
+    "text",
+    "changed_spans",
+    "requested_issue_ids",
+    "preserved_checks",
+    "rewrite_attempt"
+  ],
+  "title": "RewriteResult",
+  "type": "object"
+}

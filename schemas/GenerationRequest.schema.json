@@ -1,0 +1,1822 @@
+{
+  "$defs": {
+    "ActiveAction": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "navigation",
+          "default": "navigation",
+          "title": "Kind",
+          "type": "string"
+        },
+        "status": {
+          "default": "running",
+          "enum": [
+            "running",
+            "paused"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "goal": {
+          "$ref": "#/$defs/BlockingGoal"
+        },
+        "route": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Route",
+          "type": "array"
+        },
+        "edge_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Edge Index",
+          "type": "integer"
+        },
+        "elapsed_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Elapsed Ms",
+          "type": "integer"
+        },
+        "pack_hash": {
+          "title": "Pack Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "goal",
+        "route",
+        "pack_hash"
+      ],
+      "title": "ActiveAction",
+      "type": "object"
+    },
+    "Appraisal": {
+      "additionalProperties": false,
+      "properties": {
+        "goal_congruence": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Goal Congruence",
+          "type": "number"
+        },
+        "controllability": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Controllability",
+          "type": "number"
+        },
+        "responsibility": {
+          "default": "unknown",
+          "enum": [
+            "self",
+            "target",
+            "environment",
+            "unknown"
+          ],
+          "title": "Responsibility",
+          "type": "string"
+        },
+        "certainty": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Certainty",
+          "type": "number"
+        }
+      },
+      "title": "Appraisal",
+      "type": "object"
+    },
+    "ArcState": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "openness_delta": {
+          "default": 0.0,
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Openness Delta",
+          "type": "number"
+        },
+        "allowed_exceptions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Allowed Exceptions",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "ArcState",
+      "type": "object"
+    },
+    "BehaviorIdentity": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "character_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Character Id",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "default_strategies": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Default Strategies",
+          "type": "object"
+        },
+        "preferred_channels": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Preferred Channels",
+          "type": "object"
+        },
+        "avoided_channels": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Avoided Channels",
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Values",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "taboos": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Taboos",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "coping_strategies": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Coping Strategies",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "social_masks": {
+          "additionalProperties": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "propertyNames": {
+            "enum": [
+              "public",
+              "private",
+              "intimate"
+            ]
+          },
+          "title": "Social Masks",
+          "type": "object"
+        },
+        "signature_families": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SignatureFamily"
+          },
+          "title": "Signature Families",
+          "type": "array"
+        },
+        "relationship_overrides": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "$ref": "#/$defs/RelationshipStrategyOverride"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Relationship Overrides",
+          "type": "object"
+        },
+        "arc_state": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArcState"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "character_id",
+        "version",
+        "default_strategies",
+        "preferred_channels",
+        "values",
+        "taboos",
+        "coping_strategies",
+        "social_masks"
+      ],
+      "title": "BehaviorIdentity",
+      "type": "object"
+    },
+    "BigFive": {
+      "additionalProperties": false,
+      "properties": {
+        "openness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Openness",
+          "type": "number"
+        },
+        "conscientiousness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Conscientiousness",
+          "type": "number"
+        },
+        "extraversion": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Extraversion",
+          "type": "number"
+        },
+        "agreeableness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Agreeableness",
+          "type": "number"
+        },
+        "neuroticism": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Neuroticism",
+          "type": "number"
+        }
+      },
+      "title": "BigFive",
+      "type": "object"
+    },
+    "BlockingGoal": {
+      "additionalProperties": false,
+      "properties": {
+        "destination": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Destination",
+          "type": "string"
+        },
+        "pose": {
+          "default": "standing",
+          "enum": [
+            "standing",
+            "seated"
+          ],
+          "title": "Pose",
+          "type": "string"
+        },
+        "interruption_policy": {
+          "default": "pause",
+          "enum": [
+            "pause",
+            "forbid"
+          ],
+          "title": "Interruption Policy",
+          "type": "string"
+        }
+      },
+      "required": [
+        "destination"
+      ],
+      "title": "BlockingGoal",
+      "type": "object"
+    },
+    "CharacterProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "personality": {
+          "$ref": "#/$defs/Personality",
+          "default": {
+            "big_five": {
+              "agreeableness": 0.5,
+              "conscientiousness": 0.5,
+              "extraversion": 0.5,
+              "neuroticism": 0.5,
+              "openness": 0.5
+            }
+          }
+        },
+        "expression_baseline": {
+          "$ref": "#/$defs/ExpressionBaseline",
+          "default": {
+            "amplitude": 0.5,
+            "initiative": 0.5,
+            "speech_volume": 0.5,
+            "gaze_duration": 0.5
+          }
+        },
+        "capabilities": {
+          "default": [
+            "hearing",
+            "left_hand_use",
+            "right_hand_use",
+            "speech",
+            "vision",
+            "walking"
+          ],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Capabilities",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "signature_behaviours": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SignatureBehaviour"
+          },
+          "title": "Signature Behaviours",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "CharacterProfile",
+      "type": "object"
+    },
+    "Cognition": {
+      "additionalProperties": false,
+      "properties": {
+        "subject_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Subject Id",
+          "type": "string"
+        },
+        "interpretation": {
+          "default": "unknown",
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Interpretation",
+          "type": "string"
+        },
+        "goal_impact": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Goal Impact",
+          "type": "number"
+        },
+        "controllability": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Controllability",
+          "type": "number"
+        },
+        "certainty": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Certainty",
+          "type": "number"
+        },
+        "target_responsibility": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Target Responsibility",
+          "type": "number"
+        }
+      },
+      "required": [
+        "subject_id"
+      ],
+      "title": "Cognition",
+      "type": "object"
+    },
+    "Context": {
+      "additionalProperties": false,
+      "properties": {
+        "activity": {
+          "default": "conversation",
+          "enum": [
+            "conversation",
+            "confrontation",
+            "waiting",
+            "unknown"
+          ],
+          "title": "Activity",
+          "type": "string"
+        },
+        "audience_size": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Audience Size",
+          "type": "integer"
+        },
+        "privacy": {
+          "default": "private",
+          "enum": [
+            "private",
+            "public",
+            "unknown"
+          ],
+          "title": "Privacy",
+          "type": "string"
+        },
+        "formality": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Formality",
+          "type": "number"
+        },
+        "danger_level": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Danger Level",
+          "type": "number"
+        },
+        "facts": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Facts",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "title": "Context",
+      "type": "object"
+    },
+    "Director": {
+      "additionalProperties": false,
+      "properties": {
+        "beat_importance": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Beat Importance",
+          "type": "number"
+        },
+        "max_signals": {
+          "default": 2,
+          "maximum": 6,
+          "minimum": 0,
+          "title": "Max Signals",
+          "type": "integer"
+        },
+        "desired_visibility": {
+          "default": "noticeable",
+          "enum": [
+            "very_subtle",
+            "subtle",
+            "noticeable",
+            "obvious",
+            "unknown"
+          ],
+          "title": "Desired Visibility",
+          "type": "string"
+        },
+        "allow_world": {
+          "default": false,
+          "title": "Allow World",
+          "type": "boolean"
+        },
+        "disabled_units": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Disabled Units",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "title": "Director",
+      "type": "object"
+    },
+    "EmotionState": {
+      "additionalProperties": false,
+      "properties": {
+        "primary": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Primary",
+          "type": "string"
+        },
+        "secondary": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Secondary"
+        },
+        "families": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Families",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "intensity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Intensity",
+          "type": "number"
+        },
+        "vad": {
+          "$ref": "#/$defs/VAD"
+        },
+        "restraint": {
+          "default": 0.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Restraint",
+          "type": "number"
+        },
+        "awareness": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Awareness",
+          "type": "number"
+        },
+        "duration_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "decay_half_life_ms": {
+          "exclusiveMinimum": 0,
+          "title": "Decay Half Life Ms",
+          "type": "integer"
+        },
+        "trigger_refs": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Trigger Refs",
+          "type": "array"
+        },
+        "appraisal": {
+          "$ref": "#/$defs/Appraisal",
+          "default": {
+            "goal_congruence": 0.0,
+            "controllability": 0.5,
+            "responsibility": "unknown",
+            "certainty": 0.5
+          }
+        }
+      },
+      "required": [
+        "primary",
+        "intensity",
+        "vad",
+        "decay_half_life_ms"
+      ],
+      "title": "EmotionState",
+      "type": "object"
+    },
+    "EmotionalResidue": {
+      "additionalProperties": false,
+      "properties": {
+        "emotion": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Emotion",
+          "type": "string"
+        },
+        "intensity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Intensity",
+          "type": "number"
+        },
+        "expires_after_turn": {
+          "minimum": 0,
+          "title": "Expires After Turn",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "emotion",
+        "intensity",
+        "expires_after_turn"
+      ],
+      "title": "EmotionalResidue",
+      "type": "object"
+    },
+    "Event": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "participants": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Participants",
+          "type": "array"
+        },
+        "salience": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Salience",
+          "type": "number"
+        },
+        "publicness": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Publicness",
+          "type": "number"
+        },
+        "threat": {
+          "additionalProperties": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number"
+          },
+          "propertyNames": {
+            "enum": [
+              "physical",
+              "social"
+            ]
+          },
+          "title": "Threat",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Event",
+      "type": "object"
+    },
+    "ExpressionBaseline": {
+      "additionalProperties": false,
+      "properties": {
+        "amplitude": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Amplitude",
+          "type": "number"
+        },
+        "initiative": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Initiative",
+          "type": "number"
+        },
+        "speech_volume": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Speech Volume",
+          "type": "number"
+        },
+        "gaze_duration": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Gaze Duration",
+          "type": "number"
+        }
+      },
+      "title": "ExpressionBaseline",
+      "type": "object"
+    },
+    "Injury": {
+      "additionalProperties": false,
+      "properties": {
+        "body_part": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Body Part",
+          "type": "string"
+        },
+        "severity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Severity",
+          "type": "number"
+        },
+        "constraints": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Constraints",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "body_part",
+        "severity"
+      ],
+      "title": "Injury",
+      "type": "object"
+    },
+    "Landmark": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label_zh": {
+          "maxLength": 60,
+          "minLength": 1,
+          "title": "Label Zh",
+          "type": "string"
+        },
+        "seat_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Id"
+        },
+        "seat_label": {
+          "anyOf": [
+            {
+              "maxLength": 60,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Label"
+        },
+        "distances": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Distances",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "label_zh"
+      ],
+      "title": "Landmark",
+      "type": "object"
+    },
+    "NarrativePosition": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "book_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Book Id",
+          "type": "string"
+        },
+        "volume_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Volume Id"
+        },
+        "chapter_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Chapter Id",
+          "type": "string"
+        },
+        "scene_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "paragraph_index": {
+          "minimum": 0,
+          "title": "Paragraph Index",
+          "type": "integer"
+        },
+        "beat_index": {
+          "minimum": 0,
+          "title": "Beat Index",
+          "type": "integer"
+        },
+        "global_beat_index": {
+          "minimum": 0,
+          "title": "Global Beat Index",
+          "type": "integer"
+        },
+        "timeline_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timeline Ms"
+        }
+      },
+      "required": [
+        "book_id",
+        "chapter_id",
+        "scene_id",
+        "paragraph_index",
+        "beat_index",
+        "global_beat_index"
+      ],
+      "title": "NarrativePosition",
+      "type": "object"
+    },
+    "PathEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Origin",
+          "type": "string"
+        },
+        "destination": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Destination",
+          "type": "string"
+        },
+        "duration_ms": {
+          "exclusiveMinimum": 0,
+          "maximum": 3600000,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "blocked": {
+          "default": false,
+          "title": "Blocked",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origin",
+        "destination",
+        "duration_ms"
+      ],
+      "title": "PathEdge",
+      "type": "object"
+    },
+    "Personality": {
+      "additionalProperties": false,
+      "properties": {
+        "big_five": {
+          "$ref": "#/$defs/BigFive",
+          "default": {
+            "openness": 0.5,
+            "conscientiousness": 0.5,
+            "extraversion": 0.5,
+            "agreeableness": 0.5,
+            "neuroticism": 0.5
+          }
+        }
+      },
+      "title": "Personality",
+      "type": "object"
+    },
+    "PhysicalState": {
+      "additionalProperties": false,
+      "properties": {
+        "fatigue": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Fatigue",
+          "type": "number"
+        },
+        "pain": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Pain",
+          "type": "number"
+        },
+        "injuries": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Injury"
+          },
+          "title": "Injuries",
+          "type": "array"
+        },
+        "mobility": {
+          "default": 1,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Mobility",
+          "type": "number"
+        },
+        "breath_capacity": {
+          "default": 1,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Breath Capacity",
+          "type": "number"
+        },
+        "motor_control": {
+          "default": 1,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Motor Control",
+          "type": "number"
+        },
+        "sensory_constraints": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Sensory Constraints",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "title": "PhysicalState",
+      "type": "object"
+    },
+    "RelationshipState": {
+      "additionalProperties": false,
+      "properties": {
+        "subject_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Subject Id",
+          "type": "string"
+        },
+        "target_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Target Id",
+          "type": "string"
+        },
+        "type_tags": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Type Tags",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "affinity": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Affinity",
+          "type": "number"
+        },
+        "trust": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Trust",
+          "type": "number"
+        },
+        "familiarity": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Familiarity",
+          "type": "number"
+        },
+        "dominance": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Dominance",
+          "type": "number"
+        },
+        "dependence": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Dependence",
+          "type": "number"
+        },
+        "tension": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Tension",
+          "type": "number"
+        },
+        "hostility": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Hostility",
+          "type": "number"
+        },
+        "intimacy": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Intimacy",
+          "type": "number"
+        },
+        "public_role_constraints": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Public Role Constraints",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "subject_id",
+        "target_id"
+      ],
+      "title": "RelationshipState",
+      "type": "object"
+    },
+    "RelationshipStrategyOverride": {
+      "additionalProperties": false,
+      "properties": {
+        "preferred_strategies": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Preferred Strategies",
+          "type": "array"
+        },
+        "forbidden_strategies": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Forbidden Strategies",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "preferred_channels": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Preferred Channels",
+          "type": "array"
+        },
+        "avoided_channels": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Avoided Channels",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "allowed_exceptions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Allowed Exceptions",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "title": "RelationshipStrategyOverride",
+      "type": "object"
+    },
+    "SceneLayout": {
+      "additionalProperties": false,
+      "properties": {
+        "landmarks": {
+          "items": {
+            "$ref": "#/$defs/Landmark"
+          },
+          "title": "Landmarks",
+          "type": "array"
+        },
+        "edges": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/PathEdge"
+          },
+          "title": "Edges",
+          "type": "array"
+        }
+      },
+      "required": [
+        "landmarks"
+      ],
+      "title": "SceneLayout",
+      "type": "object"
+    },
+    "SceneState": {
+      "additionalProperties": false,
+      "properties": {
+        "scene_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "turn_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Turn Index",
+          "type": "integer"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "pose": {
+          "default": "unknown",
+          "enum": [
+            "standing",
+            "seated",
+            "leaning_wall",
+            "lying",
+            "unknown"
+          ],
+          "title": "Pose",
+          "type": "string"
+        },
+        "position": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Position"
+        },
+        "orientation_target": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Orientation Target"
+        },
+        "held_objects": {
+          "additionalProperties": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "propertyNames": {
+            "enum": [
+              "right_hand",
+              "left_hand"
+            ]
+          },
+          "title": "Held Objects",
+          "type": "object"
+        },
+        "object_tags": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "items": {
+                "minLength": 1,
+                "pattern": "^[a-z][a-z0-9_.-]*$",
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Object Tags",
+          "type": "object"
+        },
+        "distances": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_.-]*$": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Distances",
+          "type": "object"
+        },
+        "support_contact": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Support Contact"
+        },
+        "unfinished_actions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Unfinished Actions",
+          "type": "array"
+        },
+        "emotional_residue": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/EmotionalResidue"
+          },
+          "title": "Emotional Residue",
+          "type": "array"
+        },
+        "layout": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SceneLayout"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "active_action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ActiveAction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "time_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Time Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "scene_id"
+      ],
+      "title": "SceneState",
+      "type": "object"
+    },
+    "SignatureBehaviour": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "affinity": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Affinity",
+          "type": "number"
+        },
+        "cooldown_turns": {
+          "default": 9,
+          "minimum": 0,
+          "title": "Cooldown Turns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "unit_id"
+      ],
+      "title": "SignatureBehaviour",
+      "type": "object"
+    },
+    "SignatureFamily": {
+      "additionalProperties": false,
+      "properties": {
+        "semantic_group": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Semantic Group",
+          "type": "string"
+        },
+        "affinity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Affinity",
+          "type": "number"
+        },
+        "cooldown_chapters": {
+          "minimum": 0,
+          "title": "Cooldown Chapters",
+          "type": "integer"
+        },
+        "maximum_per_volume": {
+          "minimum": 1,
+          "title": "Maximum Per Volume",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "semantic_group",
+        "affinity",
+        "cooldown_chapters",
+        "maximum_per_volume"
+      ],
+      "title": "SignatureFamily",
+      "type": "object"
+    },
+    "StyleContext": {
+      "additionalProperties": false,
+      "properties": {
+        "pov": {
+          "enum": [
+            "first_person",
+            "third_limited",
+            "third_omniscient",
+            "second_person"
+          ],
+          "title": "Pov",
+          "type": "string"
+        },
+        "prose_style": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Prose Style",
+          "type": "string"
+        },
+        "paragraph_function": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Paragraph Function",
+          "type": "string"
+        }
+      },
+      "required": [
+        "pov",
+        "prose_style",
+        "paragraph_function"
+      ],
+      "title": "StyleContext",
+      "type": "object"
+    },
+    "VAD": {
+      "additionalProperties": false,
+      "properties": {
+        "valence": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Valence",
+          "type": "number"
+        },
+        "arousal": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Arousal",
+          "type": "number"
+        },
+        "dominance": {
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Dominance",
+          "type": "number"
+        }
+      },
+      "required": [
+        "valence",
+        "arousal",
+        "dominance"
+      ],
+      "title": "VAD",
+      "type": "object"
+    },
+    "WorldState": {
+      "additionalProperties": false,
+      "properties": {
+        "genre": {
+          "default": "general",
+          "enum": [
+            "general",
+            "xianxia",
+            "unknown"
+          ],
+          "title": "Genre",
+          "type": "string"
+        },
+        "realm": {
+          "default": "mortal",
+          "enum": [
+            "mortal",
+            "qi_refining",
+            "foundation",
+            "golden_core",
+            "unknown"
+          ],
+          "title": "Realm",
+          "type": "string"
+        },
+        "stage": {
+          "default": 1,
+          "maximum": 9,
+          "minimum": 1,
+          "title": "Stage",
+          "type": "integer"
+        },
+        "qi": {
+          "default": 1,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Qi",
+          "type": "number"
+        },
+        "control": {
+          "default": 1,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Control",
+          "type": "number"
+        },
+        "target_realm": {
+          "default": "unknown",
+          "enum": [
+            "mortal",
+            "qi_refining",
+            "foundation",
+            "golden_core",
+            "unknown"
+          ],
+          "title": "Target Realm",
+          "type": "string"
+        },
+        "suppressed_capabilities": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Suppressed Capabilities",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "active_capabilities": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Active Capabilities",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "destruction_limit": {
+          "default": 0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Destruction Limit",
+          "type": "number"
+        }
+      },
+      "title": "WorldState",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "position": {
+      "$ref": "#/$defs/NarrativePosition"
+    },
+    "character": {
+      "$ref": "#/$defs/CharacterProfile"
+    },
+    "behavior_identity": {
+      "$ref": "#/$defs/BehaviorIdentity"
+    },
+    "relationship": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RelationshipState"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "event": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Event"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "cognition": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Cognition"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "emotion_state": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EmotionState"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "physical_state": {
+      "$ref": "#/$defs/PhysicalState",
+      "default": {
+        "fatigue": 0.0,
+        "pain": 0.0,
+        "injuries": [],
+        "mobility": 1.0,
+        "breath_capacity": 1.0,
+        "motor_control": 1.0,
+        "sensory_constraints": []
+      }
+    },
+    "scene_state": {
+      "$ref": "#/$defs/SceneState"
+    },
+    "context": {
+      "$ref": "#/$defs/Context",
+      "default": {
+        "activity": "conversation",
+        "audience_size": 0,
+        "privacy": "private",
+        "formality": 0.0,
+        "danger_level": 0.0,
+        "facts": []
+      }
+    },
+    "director": {
+      "$ref": "#/$defs/Director",
+      "default": {
+        "beat_importance": 0.5,
+        "max_signals": 2,
+        "desired_visibility": "noticeable",
+        "allow_world": false,
+        "disabled_units": []
+      }
+    },
+    "world_state": {
+      "$ref": "#/$defs/WorldState",
+      "default": {
+        "genre": "general",
+        "realm": "mortal",
+        "stage": 1,
+        "qi": 1.0,
+        "control": 1.0,
+        "target_realm": "unknown",
+        "suppressed_capabilities": [],
+        "active_capabilities": [],
+        "destruction_limit": 0.0
+      }
+    },
+    "dialogue_or_plot_constraints": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Dialogue Or Plot Constraints",
+      "type": "array"
+    },
+    "style_context": {
+      "$ref": "#/$defs/StyleContext"
+    },
+    "seed": {
+      "default": 0,
+      "title": "Seed",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "position",
+    "character",
+    "behavior_identity",
+    "scene_state",
+    "style_context"
+  ],
+  "title": "GenerationRequest",
+  "type": "object"
+}

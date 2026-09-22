@@ -1,0 +1,284 @@
+{
+  "$defs": {
+    "ArcState": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "openness_delta": {
+          "default": 0.0,
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Openness Delta",
+          "type": "number"
+        },
+        "allowed_exceptions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Allowed Exceptions",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "ArcState",
+      "type": "object"
+    },
+    "RelationshipStrategyOverride": {
+      "additionalProperties": false,
+      "properties": {
+        "preferred_strategies": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Preferred Strategies",
+          "type": "array"
+        },
+        "forbidden_strategies": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Forbidden Strategies",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "preferred_channels": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Preferred Channels",
+          "type": "array"
+        },
+        "avoided_channels": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Avoided Channels",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "allowed_exceptions": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Allowed Exceptions",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "title": "RelationshipStrategyOverride",
+      "type": "object"
+    },
+    "SignatureFamily": {
+      "additionalProperties": false,
+      "properties": {
+        "semantic_group": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Semantic Group",
+          "type": "string"
+        },
+        "affinity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Affinity",
+          "type": "number"
+        },
+        "cooldown_chapters": {
+          "minimum": 0,
+          "title": "Cooldown Chapters",
+          "type": "integer"
+        },
+        "maximum_per_volume": {
+          "minimum": 1,
+          "title": "Maximum Per Volume",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "semantic_group",
+        "affinity",
+        "cooldown_chapters",
+        "maximum_per_volume"
+      ],
+      "title": "SignatureFamily",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "character_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Character Id",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "default_strategies": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Default Strategies",
+      "type": "object"
+    },
+    "preferred_channels": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Preferred Channels",
+      "type": "object"
+    },
+    "avoided_channels": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Avoided Channels",
+      "type": "object"
+    },
+    "values": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Values",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "taboos": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Taboos",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "coping_strategies": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Coping Strategies",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "social_masks": {
+      "additionalProperties": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "enum": [
+          "public",
+          "private",
+          "intimate"
+        ]
+      },
+      "title": "Social Masks",
+      "type": "object"
+    },
+    "signature_families": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/SignatureFamily"
+      },
+      "title": "Signature Families",
+      "type": "array"
+    },
+    "relationship_overrides": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_.-]*$": {
+          "$ref": "#/$defs/RelationshipStrategyOverride"
+        }
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Relationship Overrides",
+      "type": "object"
+    },
+    "arc_state": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArcState"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "character_id",
+    "version",
+    "default_strategies",
+    "preferred_channels",
+    "values",
+    "taboos",
+    "coping_strategies",
+    "social_masks"
+  ],
+  "title": "BehaviorIdentity",
+  "type": "object"
+}

@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "semantic_group": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Semantic Group",
+      "type": "string"
+    },
+    "affinity": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Affinity",
+      "type": "number"
+    },
+    "cooldown_chapters": {
+      "minimum": 0,
+      "title": "Cooldown Chapters",
+      "type": "integer"
+    },
+    "maximum_per_volume": {
+      "minimum": 1,
+      "title": "Maximum Per Volume",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "semantic_group",
+    "affinity",
+    "cooldown_chapters",
+    "maximum_per_volume"
+  ],
+  "title": "SignatureFamily",
+  "type": "object"
+}

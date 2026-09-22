@@ -344,6 +344,12 @@ class GenerationBrief(DomainModel):
     maximum_visible_signals: Annotated[int, Field(ge=0, le=6)]
     prompt_fragment: NonEmptyText
     memory_revision: NonNegativeInt
+    # The prompt is an adapter artefact, but keeping its budget and the
+    # compressed context beside the structured brief makes the hand-off
+    # reproducible for both Python callers and the CLI.  The full request and
+    # memory are deliberately not copied here.
+    token_budget: Annotated[int, Field(gt=0, le=8192)] = 512
+    compressed_context: dict[str, Any] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def brief_is_coherent(self) -> "GenerationBrief":

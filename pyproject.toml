@@ -19,6 +19,7 @@ cpp-export-schemas = "character_performance.cli.export_schemas:main"
 cpp-perform = "character_performance.cli.perform:main"
 cpp-blind-review = "character_performance.cli.blind_review:main"
 cpp-behavior-memory = "character_performance.cli.behavior_memory:main"
+cpp-behavior = "character_performance.cli.behavior:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

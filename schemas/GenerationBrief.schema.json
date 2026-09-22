@@ -323,6 +323,18 @@
       "minimum": 0,
       "title": "Memory Revision",
       "type": "integer"
+    },
+    "token_budget": {
+      "default": 512,
+      "exclusiveMinimum": 0,
+      "maximum": 8192,
+      "title": "Token Budget",
+      "type": "integer"
+    },
+    "compressed_context": {
+      "additionalProperties": true,
+      "title": "Compressed Context",
+      "type": "object"
     }
   },
   "required": [

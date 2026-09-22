@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import sqlite3
+import tempfile
 from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
@@ -27,7 +28,7 @@ from character_performance.domain.behavior_models import (
 )
 from character_performance.domain.models import HistoryEntry, SceneState, WorldState
 
-from .migration import migrate
+from .migration import CURRENT_SCHEMA_VERSION, migrate
 from .queries import OCCURRENCE_COLUMNS
 from .repository import (
     BehaviorMemorySnapshot,
@@ -572,52 +573,58 @@ class SQLiteBehaviorMemory:
         base = "book_id=? AND global_beat_index<?"
         values: tuple[object, ...] = (position.book_id, position.global_beat_index)
         with self._lock:
-            immediate = self._query_occurrences(
-                f"{base} AND actor_id=?", values + (actor_id,), limit=limits.immediate
-            )
-            scene = self._query_occurrences(
-                f"{base} AND scene_id=? AND actor_id=?",
-                values + (position.scene_id, actor_id),
-            )
-            chapter = self._query_occurrences(
-                f"{base} AND chapter_id=? AND actor_id=?",
-                values + (position.chapter_id, actor_id),
-            )
-            chapter_rows = self._db.execute(
-                """SELECT chapter_id, MAX(global_beat_index) AS latest
-                   FROM behavior_occurrences
-                   WHERE book_id=? AND actor_id=? AND global_beat_index<?
-                   GROUP BY chapter_id ORDER BY latest DESC LIMIT ?""",
-                (
-                    position.book_id,
-                    actor_id,
-                    position.global_beat_index,
-                    limits.recent_chapters,
-                ),
-            ).fetchall()
-            chapter_ids = tuple(row["chapter_id"] for row in chapter_rows)
-            if chapter_ids:
-                placeholders = ",".join("?" for _ in chapter_ids)
-                recent_chapters = self._query_occurrences(
-                    f"{base} AND actor_id=? AND chapter_id IN ({placeholders})",
-                    values + (actor_id,) + chapter_ids,
+            self._db.execute("BEGIN")
+            try:
+                immediate = self._query_occurrences(
+                    f"{base} AND actor_id=?", values + (actor_id,), limit=limits.immediate
                 )
-            else:
-                recent_chapters = ()
-            if position.volume_id is None:
-                volume_condition = f"{base} AND volume_id IS NULL AND actor_id=?"
-                volume_values = values + (actor_id,)
-            else:
-                volume_condition = f"{base} AND volume_id=? AND actor_id=?"
-                volume_values = values + (position.volume_id, actor_id)
-            volume = self._query_occurrences(volume_condition, volume_values)
-            book = self._query_occurrences(
-                f"{base} AND actor_id=?", values + (actor_id,)
-            )
-            ensemble = self._query_occurrences(
-                f"{base} AND scene_id=?", values + (position.scene_id,), limit=limits.ensemble
-            )
-            revision = self._memory_revision(position.book_id)
+                scene = self._query_occurrences(
+                    f"{base} AND scene_id=? AND actor_id=?",
+                    values + (position.scene_id, actor_id),
+                )
+                chapter = self._query_occurrences(
+                    f"{base} AND chapter_id=? AND actor_id=?",
+                    values + (position.chapter_id, actor_id),
+                )
+                chapter_rows = self._db.execute(
+                    """SELECT chapter_id, MAX(global_beat_index) AS latest
+                       FROM behavior_occurrences
+                       WHERE book_id=? AND actor_id=? AND global_beat_index<?
+                       GROUP BY chapter_id ORDER BY latest DESC LIMIT ?""",
+                    (
+                        position.book_id,
+                        actor_id,
+                        position.global_beat_index,
+                        limits.recent_chapters,
+                    ),
+                ).fetchall()
+                chapter_ids = tuple(row["chapter_id"] for row in chapter_rows)
+                if chapter_ids:
+                    placeholders = ",".join("?" for _ in chapter_ids)
+                    recent_chapters = self._query_occurrences(
+                        f"{base} AND actor_id=? AND chapter_id IN ({placeholders})",
+                        values + (actor_id,) + chapter_ids,
+                    )
+                else:
+                    recent_chapters = ()
+                if position.volume_id is None:
+                    volume_condition = f"{base} AND volume_id IS NULL AND actor_id=?"
+                    volume_values = values + (actor_id,)
+                else:
+                    volume_condition = f"{base} AND volume_id=? AND actor_id=?"
+                    volume_values = values + (position.volume_id, actor_id)
+                volume = self._query_occurrences(volume_condition, volume_values)
+                book = self._query_occurrences(
+                    f"{base} AND actor_id=?", values + (actor_id,)
+                )
+                ensemble = self._query_occurrences(
+                    f"{base} AND scene_id=?", values + (position.scene_id,), limit=limits.ensemble
+                )
+                revision = self._memory_revision(position.book_id)
+                self._db.commit()
+            except Exception:
+                self._db.rollback()
+                raise
         return BehaviorMemorySnapshot(
             memory_revision=revision,
             immediate=immediate,
@@ -741,8 +748,15 @@ class SQLiteBehaviorMemory:
                 result = target.execute("PRAGMA integrity_check").fetchone()[0]
                 if result != "ok":
                     raise sqlite3.DatabaseError(f"backup integrity check failed: {result}")
-            finally:
+                self._validate_behavior_database(target)
+            except Exception:
                 target.close()
+                if destination_path.exists():
+                    destination_path.unlink()
+                raise
+            finally:
+                if target:
+                    target.close()
 
     @classmethod
     def restore_backup(
@@ -756,14 +770,26 @@ class SQLiteBehaviorMemory:
         destination_path = Path(destination)
         if not source_path.is_file():
             raise FileNotFoundError(source_path)
+        if source_path.resolve() == destination_path.resolve():
+            raise ValueError("source and destination must be different files")
         if destination_path.exists() and not overwrite:
             raise FileExistsError(destination_path)
         destination_path.parent.mkdir(parents=True, exist_ok=True)
-        temporary = destination_path.with_name(f".{destination_path.name}.restore-{os.getpid()}")
+        descriptor, temporary_name = tempfile.mkstemp(
+            prefix=f".{destination_path.name}.restore-", suffix=".tmp", dir=destination_path.parent
+        )
+        os.close(descriptor)
+        temporary = Path(temporary_name)
         try:
             source_db = sqlite3.connect(source_path)
             target = sqlite3.connect(temporary)
             try:
+                result = source_db.execute("PRAGMA integrity_check").fetchone()[0]
+                if result != "ok":
+                    raise sqlite3.DatabaseError(
+                        f"source database integrity check failed: {result}"
+                    )
+                cls._validate_behavior_database(source_db)
                 source_db.backup(target)
                 result = target.execute("PRAGMA integrity_check").fetchone()[0]
                 if result != "ok":
@@ -778,6 +804,33 @@ class SQLiteBehaviorMemory:
             if temporary.exists():
                 temporary.unlink()
         return cls(destination_path)
+
+    @staticmethod
+    def _validate_behavior_database(connection: sqlite3.Connection) -> None:
+        version = int(connection.execute("PRAGMA user_version").fetchone()[0])
+        if version != CURRENT_SCHEMA_VERSION:
+            raise sqlite3.DatabaseError(
+                f"unsupported behavior-memory schema version: {version}"
+            )
+        required = {
+            "behavior_identities",
+            "generation_runs",
+            "accepted_drafts",
+            "behavior_occurrences",
+            "behavior_memory_meta",
+            "legacy_behavior_imports",
+        }
+        names = {
+            row[0]
+            for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            )
+        }
+        missing = sorted(required - names)
+        if missing:
+            raise sqlite3.DatabaseError(
+                "unsupported behavior-memory database; missing tables: " + ", ".join(missing)
+            )
 
     def _memory_revision(self, book_id: str) -> int:
         row = self._db.execute(

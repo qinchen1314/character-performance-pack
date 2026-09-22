@@ -55,13 +55,17 @@ def main() -> None:
             memory.close()
         return
 
+    if args.command == "backup" and not args.db.is_file():
+        raise FileNotFoundError(f"behavior-memory database does not exist: {args.db}")
+    mappings = _load_mappings(args.mapping) if args.command == "migrate-legacy" else None
+
     memory = SQLiteBehaviorMemory(args.db)
     try:
         if args.command == "backup":
             memory.backup(args.output)
             print(json.dumps({"backup": str(args.output)}))
             return
-        occurrences = memory.import_legacy_history(_load_mappings(args.mapping))
+        occurrences = memory.import_legacy_history(mappings or ())
         print(
             json.dumps(
                 {

@@ -141,16 +141,17 @@ def migrate(
     migrations: Sequence[Migration] = DEFAULT_MIGRATIONS,
 ) -> int:
     """Apply all pending migrations in one rollback-safe transaction."""
-    current = int(connection.execute("PRAGMA user_version").fetchone()[0])
     target = len(migrations)
-    if current > target:
-        raise RuntimeError(
-            f"database schema version {current} is newer than supported version {target}"
-        )
-    if current == target:
-        return current
     try:
         connection.execute("BEGIN IMMEDIATE")
+        # Read the version after acquiring the write lock. Two processes opening
+        # a new database concurrently must not both observe version zero and
+        # race through non-idempotent index creation.
+        current = int(connection.execute("PRAGMA user_version").fetchone()[0])
+        if current > target:
+            raise RuntimeError(
+                f"database schema version {current} is newer than supported version {target}"
+            )
         for version in range(current + 1, target + 1):
             migrations[version - 1](connection)
             connection.execute(f"PRAGMA user_version = {version}")

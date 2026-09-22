@@ -48,7 +48,8 @@ def main() -> None:
         "rejected_count": len(rejected),
         "rejected": rejected,
     }
-    output = ROOT / "docs" / "evaluation" / "editorial-preclean.json"
+    output = ROOT / "output" / "evaluation" / "editorial-preclean.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = [
         "# 编辑预清理报告",

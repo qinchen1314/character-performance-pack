@@ -7,6 +7,7 @@ from .repository import (
     LegacyHistoryMapping,
     RevisionImpact,
     RunStatus,
+    StoredRun,
 )
 from .sqlite import (
     BehaviorMemoryError,
@@ -28,6 +29,7 @@ __all__ = [
     "LegacyHistoryMapping",
     "RevisionImpact",
     "RunStatus",
+    "StoredRun",
     "MemoryRevisionConflict",
     "RunStateConflict",
     "SceneRevisionConflict",

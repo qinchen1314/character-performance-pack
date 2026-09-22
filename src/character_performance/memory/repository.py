@@ -64,6 +64,19 @@ class BehaviorMemorySnapshot:
     ensemble: tuple[BehaviorOccurrence, ...]
 
 
+@dataclass(frozen=True, slots=True)
+class StoredRun:
+    """Durable run payload used by coordinators after a process restart."""
+
+    run_id: str
+    status: RunStatus
+    request: GenerationRequest
+    brief: GenerationBrief
+    draft: GeneratedDraft | None = None
+    audit: AuditResult | None = None
+    extraction: ExtractionResult | None = None
+
+
 class LegacyHistoryMapping(BaseModel):
     """Caller-supplied information missing from one legacy ``history`` row."""
 
@@ -103,6 +116,8 @@ class BehaviorMemory(Protocol):
     def abandon_run(self, run_id: str) -> None: ...
 
     def run_status(self, run_id: str) -> RunStatus: ...
+
+    def load_run(self, run_id: str) -> StoredRun: ...
 
     def revision_impact(self, run_id: str) -> RevisionImpact: ...
 

@@ -35,6 +35,7 @@ from .repository import (
     LegacyHistoryMapping,
     RevisionImpact,
     RunStatus,
+    StoredRun,
 )
 
 
@@ -224,6 +225,27 @@ class SQLiteBehaviorMemory:
         if row is None:
             raise KeyError(f"unknown run: {run_id}")
         return RunStatus(row["status"])
+
+    def load_run(self, run_id: str) -> StoredRun:
+        """Load all persisted run material for restart-safe orchestration."""
+        with self._lock:
+            row = self._db.execute(
+                """SELECT status, request, brief, audited_draft,
+                          audit_result, extraction_result
+                   FROM generation_runs WHERE run_id=?""",
+                (run_id,),
+            ).fetchone()
+        if row is None:
+            raise KeyError(f"unknown run: {run_id}")
+        return StoredRun(
+            run_id=run_id,
+            status=RunStatus(row["status"]),
+            request=GenerationRequest.model_validate_json(row["request"]),
+            brief=GenerationBrief.model_validate_json(row["brief"]),
+            draft=GeneratedDraft.model_validate_json(row["audited_draft"]) if row["audited_draft"] else None,
+            audit=AuditResult.model_validate_json(row["audit_result"]) if row["audit_result"] else None,
+            extraction=ExtractionResult.model_validate_json(row["extraction_result"]) if row["extraction_result"] else None,
+        )
 
     def revision_impact(self, run_id: str) -> RevisionImpact:
         with self._lock:

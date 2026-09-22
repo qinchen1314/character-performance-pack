@@ -29,7 +29,12 @@ from character_performance.domain.models import HistoryEntry, SceneState, WorldS
 
 from .migration import migrate
 from .queries import OCCURRENCE_COLUMNS
-from .repository import BehaviorMemorySnapshot, HistoryWindowLimits, LegacyHistoryMapping
+from .repository import (
+    BehaviorMemorySnapshot,
+    HistoryWindowLimits,
+    LegacyHistoryMapping,
+    RunStatus,
+)
 
 
 def _utc_now() -> str:
@@ -126,7 +131,7 @@ class SQLiteBehaviorMemory:
                            run_id, book_id, volume_id, chapter_id, scene_id,
                            global_beat_index, actor_id, request, brief,
                            memory_revision, status, created_at, updated_at
-                       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'prepared', ?, ?)""",
+                       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                     (
                         request.run_id,
                         position.book_id,
@@ -138,6 +143,7 @@ class SQLiteBehaviorMemory:
                         request.model_dump_json(),
                         brief.model_dump_json(),
                         current,
+                        RunStatus.PREPARED.value,
                         now,
                         now,
                     ),
@@ -146,6 +152,77 @@ class SQLiteBehaviorMemory:
             except Exception:
                 self._db.rollback()
                 raise
+
+    def record_draft(self, run_id: str, draft: GeneratedDraft) -> None:
+        self._transition_draft(
+            run_id, draft, allowed={RunStatus.PREPARED}, target=RunStatus.DRAFTED
+        )
+
+    def record_rewrite(self, run_id: str, draft: GeneratedDraft) -> None:
+        self._transition_draft(
+            run_id,
+            draft,
+            allowed={RunStatus.AUDITED_FAILED},
+            target=RunStatus.REWRITTEN,
+        )
+
+    def _transition_draft(
+        self,
+        run_id: str,
+        draft: GeneratedDraft,
+        *,
+        allowed: set[RunStatus],
+        target: RunStatus,
+    ) -> None:
+        with self._lock:
+            try:
+                self._db.execute("BEGIN IMMEDIATE")
+                row = self._db.execute(
+                    "SELECT status FROM generation_runs WHERE run_id=?", (run_id,)
+                ).fetchone()
+                if row is None:
+                    raise KeyError(f"unknown run: {run_id}")
+                status = RunStatus(row["status"])
+                if status not in allowed:
+                    raise RunStateConflict(
+                        f"RUN_STATE_CONFLICT: cannot move {status.value} to {target.value}"
+                    )
+                self._db.execute(
+                    """UPDATE generation_runs
+                       SET status=?, audited_draft=?, audit_result=NULL,
+                           extraction_result=NULL, updated_at=? WHERE run_id=?""",
+                    (target.value, draft.model_dump_json(), _utc_now(), run_id),
+                )
+                self._db.commit()
+            except Exception:
+                self._db.rollback()
+                raise
+
+    def abandon_run(self, run_id: str) -> None:
+        with self._lock, self._db:
+            row = self._db.execute(
+                "SELECT status FROM generation_runs WHERE run_id=?", (run_id,)
+            ).fetchone()
+            if row is None:
+                raise KeyError(f"unknown run: {run_id}")
+            status = RunStatus(row["status"])
+            if status is not RunStatus.AUDITED_FAILED:
+                raise RunStateConflict(
+                    f"RUN_STATE_CONFLICT: cannot abandon run in {status.value} state"
+                )
+            self._db.execute(
+                "UPDATE generation_runs SET status=?, updated_at=? WHERE run_id=?",
+                (RunStatus.ABANDONED.value, _utc_now(), run_id),
+            )
+
+    def run_status(self, run_id: str) -> RunStatus:
+        with self._lock:
+            row = self._db.execute(
+                "SELECT status FROM generation_runs WHERE run_id=?", (run_id,)
+            ).fetchone()
+        if row is None:
+            raise KeyError(f"unknown run: {run_id}")
+        return RunStatus(row["status"])
 
     def record_audit(
         self,
@@ -160,28 +237,38 @@ class SQLiteBehaviorMemory:
             try:
                 self._db.execute("BEGIN IMMEDIATE")
                 run = self._db.execute(
-                    "SELECT status, memory_revision FROM generation_runs WHERE run_id=?",
+                    """SELECT status, memory_revision, book_id
+                       FROM generation_runs WHERE run_id=?""",
                     (audit.run_id,),
                 ).fetchone()
                 if run is None:
                     raise KeyError(f"unknown run: {audit.run_id}")
-                if run["status"] == "committed":
-                    raise RunStateConflict("RUN_STATE_CONFLICT: committed run cannot be audited")
-                if audit.memory_revision != run["memory_revision"]:
-                    raise MemoryRevisionConflict(
-                        "BEHAVIOR_MEMORY_REVISION_CONFLICT: audit revision differs from run"
+                status = RunStatus(run["status"])
+                if status not in {RunStatus.DRAFTED, RunStatus.REWRITTEN}:
+                    raise RunStateConflict(
+                        f"RUN_STATE_CONFLICT: cannot audit run in {status.value} state"
                     )
-                status = "audited_passed" if audit.accepted else "audited_failed"
+                current_revision = self._memory_revision(run["book_id"])
+                if audit.memory_revision != current_revision:
+                    raise MemoryRevisionConflict(
+                        "BEHAVIOR_MEMORY_REVISION_CONFLICT: audit did not use current history"
+                    )
+                next_status = (
+                    RunStatus.AUDITED_PASSED
+                    if audit.accepted
+                    else RunStatus.AUDITED_FAILED
+                )
                 self._db.execute(
                     """UPDATE generation_runs
                        SET status=?, audited_draft=?, audit_result=?,
-                           extraction_result=?, updated_at=?
+                           extraction_result=?, memory_revision=?, updated_at=?
                        WHERE run_id=?""",
                     (
-                        status,
+                        next_status.value,
                         draft.model_dump_json(),
                         audit.model_dump_json(),
                         extraction.model_dump_json(),
+                        current_revision,
                         _utc_now(),
                         audit.run_id,
                     ),
@@ -241,7 +328,7 @@ class SQLiteBehaviorMemory:
                         occurrence_ids=ids,
                         idempotent_replay=True,
                     )
-                if run["status"] != "audited_passed":
+                if RunStatus(run["status"]) is not RunStatus.AUDITED_PASSED:
                     raise RunStateConflict(
                         f"RUN_STATE_CONFLICT: cannot commit run in {run['status']} state"
                     )
@@ -259,9 +346,20 @@ class SQLiteBehaviorMemory:
                         "DRAFT_HASH_MISMATCH: commit text differs from audited text"
                     )
                 current_revision = self._memory_revision(run["book_id"])
-                if (
-                    accepted.memory_revision != current_revision
-                    or audit.memory_revision != current_revision
+                audited_revision = audit.memory_revision
+                if accepted.memory_revision != audited_revision:
+                    raise MemoryRevisionConflict(
+                        "BEHAVIOR_MEMORY_REVISION_CONFLICT: accepted draft and audit differ"
+                    )
+                if audited_revision > current_revision:
+                    raise MemoryRevisionConflict(
+                        "BEHAVIOR_MEMORY_REVISION_CONFLICT: audit revision is in the future"
+                    )
+                if audited_revision != current_revision and self._has_relevant_changes(
+                    run["book_id"],
+                    audited_revision,
+                    run["actor_id"],
+                    run["scene_id"],
                 ):
                     raise MemoryRevisionConflict(
                         "BEHAVIOR_MEMORY_REVISION_CONFLICT: behavior history changed"
@@ -269,8 +367,13 @@ class SQLiteBehaviorMemory:
                 position_owner = self._db.execute(
                     """SELECT run_id FROM generation_runs
                        WHERE book_id=? AND global_beat_index=?
-                         AND status='committed' AND run_id<>?""",
-                    (run["book_id"], run["global_beat_index"], run_id),
+                         AND status=? AND run_id<>?""",
+                    (
+                        run["book_id"],
+                        run["global_beat_index"],
+                        RunStatus.COMMITTED.value,
+                        run_id,
+                    ),
                 ).fetchone()
                 if position_owner is not None:
                     raise BehaviorCommitConflict(
@@ -279,12 +382,16 @@ class SQLiteBehaviorMemory:
                 latest_position = self._db.execute(
                     """SELECT MAX(global_beat_index) FROM (
                            SELECT global_beat_index FROM generation_runs
-                           WHERE book_id=? AND status='committed'
+                           WHERE book_id=? AND status=?
                            UNION ALL
                            SELECT global_beat_index FROM behavior_occurrences
                            WHERE book_id=?
                        )""",
-                    (run["book_id"], run["book_id"]),
+                    (
+                        run["book_id"],
+                        RunStatus.COMMITTED.value,
+                        run["book_id"],
+                    ),
                 ).fetchone()[0]
                 if latest_position is not None and run["global_beat_index"] <= latest_position:
                     raise BehaviorCommitConflict(
@@ -293,6 +400,7 @@ class SQLiteBehaviorMemory:
                 self._validate_occurrences(
                     run, accepted.text, occurrences, accepted_revision
                 )
+                self._validate_extraction_occurrences(extraction, occurrences)
                 new_revision = current_revision + 1
                 now = _utc_now()
                 self._db.execute(
@@ -322,9 +430,9 @@ class SQLiteBehaviorMemory:
                 )
                 self._db.execute(
                     """UPDATE generation_runs
-                       SET status='committed', accepted_revision=?, updated_at=?
+                       SET status=?, accepted_revision=?, updated_at=?
                        WHERE run_id=?""",
-                    (accepted_revision, now, run_id),
+                    (RunStatus.COMMITTED.value, accepted_revision, now, run_id),
                 )
                 self._db.commit()
                 return CommitResult(
@@ -609,6 +717,22 @@ class SQLiteBehaviorMemory:
         ).fetchone()
         return int(row[0]) if row else 0
 
+    def _has_relevant_changes(
+        self,
+        book_id: str,
+        since_revision: int,
+        actor_id: str,
+        scene_id: str,
+    ) -> bool:
+        row = self._db.execute(
+            """SELECT 1 FROM behavior_occurrences
+               WHERE book_id=? AND memory_revision>?
+                 AND (actor_id=? OR scene_id=?)
+               LIMIT 1""",
+            (book_id, since_revision, actor_id, scene_id),
+        ).fetchone()
+        return row is not None
+
     def _commit_scene_state(
         self, run: sqlite3.Row, state: SceneState, world: WorldState
     ) -> None:
@@ -670,6 +794,42 @@ class SQLiteBehaviorMemory:
                 raise ValueError("occurrence text_span must match accepted draft")
             if occurrence.source not in {"extracted", "human_confirmed"}:
                 raise ValueError("only accepted occurrences may enter behavior memory")
+
+    @staticmethod
+    def _validate_extraction_occurrences(
+        extraction: ExtractionResult,
+        occurrences: tuple[BehaviorOccurrence, ...],
+    ) -> None:
+        extracted_occurrences = [
+            occurrence for occurrence in occurrences if occurrence.source == "extracted"
+        ]
+        if len(extracted_occurrences) != len(extraction.behaviors):
+            raise ValueError(
+                "extracted occurrences must correspond one-to-one with extraction behaviors"
+            )
+        unmatched = list(extracted_occurrences)
+        for behavior in extraction.behaviors:
+            for index, occurrence in enumerate(unmatched):
+                fingerprint = occurrence.fingerprint
+                if (
+                    occurrence.actor_id == behavior.actor_id
+                    and occurrence.target_ids == behavior.target_ids
+                    and occurrence.text_span == behavior.text_span
+                    and fingerprint.unit_id == behavior.matched_unit_id
+                    and fingerprint.semantic_groups == behavior.semantic_groups
+                    and fingerprint.channel == behavior.channel
+                    and fingerprint.narrative_functions == behavior.narrative_functions
+                    and fingerprint.strategy_id == behavior.strategy_id
+                    and fingerprint.syntax_features == behavior.syntax_features
+                    and fingerprint.lexical_lemmas == behavior.lexical_lemmas
+                    and occurrence.confidence == behavior.confidence
+                ):
+                    unmatched.pop(index)
+                    break
+            else:
+                raise ValueError(
+                    "extracted occurrence does not match the audited extraction result"
+                )
 
     def _insert_occurrence(
         self, occurrence: BehaviorOccurrence, memory_revision: int, created_at: str

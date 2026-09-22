@@ -10,6 +10,7 @@ import yaml
 
 from character_performance.domain.behavior_models import (
     AcceptedDraft,
+    AuditIssue,
     AuditMetrics,
     AuditResult,
     BehaviorFingerprint,
@@ -22,6 +23,7 @@ from character_performance.domain.behavior_models import (
     GenerationRequest,
     NarrativePosition,
     ReactionStrategyPlan,
+    SourceSpan,
     StyleContext,
     SyntaxFeatures,
     TextSpan,
@@ -33,6 +35,8 @@ from character_performance.memory import (
     HistoryWindowLimits,
     LegacyHistoryMapping,
     MemoryRevisionConflict,
+    RunStateConflict,
+    RunStatus,
     SceneRevisionConflict,
     SQLiteBehaviorMemory,
 )
@@ -210,6 +214,7 @@ def test_atomic_commit_is_queryable_and_idempotent(tmp_path) -> None:
         request, brief = _request(), _brief()
         draft, audit, extraction, accepted, occurrence = _accepted_bundle()
         memory.create_run(request, brief)
+        memory.record_draft(request.run_id, draft)
         memory.record_audit(draft, audit, extraction)
 
         committed = memory.commit_accepted(
@@ -247,6 +252,7 @@ def test_concurrent_stale_audit_is_rejected_without_partial_commit(tmp_path) -> 
     )
     for memory, request, bundle in zip((first, second), requests, bundles):
         memory.create_run(request, _brief(request.run_id))
+        memory.record_draft(request.run_id, bundle[0])
         memory.record_audit(bundle[0], bundle[1], bundle[2])
 
     def commit(memory, request, bundle):
@@ -287,6 +293,7 @@ def _commit_behavior(
     request = _request(run_id, position, actor_id)
     bundle = _accepted_bundle(run_id, revision, position, actor_id)
     memory.create_run(request, _brief(run_id, revision))
+    memory.record_draft(run_id, bundle[0])
     memory.record_audit(bundle[0], bundle[1], bundle[2])
     memory.commit_accepted(run_id, bundle[3], (bundle[4],), accepted_revision=1)
     return bundle[4]
@@ -415,6 +422,7 @@ def test_scene_state_failure_rolls_back_draft_occurrence_and_revision(tmp_path) 
     request = _request("run.atomic", _position(beat=20))
     bundle = _accepted_bundle("run.atomic", position=_position(beat=20))
     memory.create_run(request, _brief("run.atomic"))
+    memory.record_draft(request.run_id, bundle[0])
     memory.record_audit(bundle[0], bundle[1], bundle[2])
     invalid_state = request.scene_state.model_copy(update={"revision": 2})
     try:
@@ -466,6 +474,7 @@ def test_committed_global_position_cannot_be_overwritten(tmp_path) -> None:
             "run.competing", 1, _position(beat=30), "char.other"
         )
         memory.create_run(request, _brief("run.competing", 1))
+        memory.record_draft(request.run_id, bundle[0])
         memory.record_audit(bundle[0], bundle[1], bundle[2])
         with pytest.raises(BehaviorCommitConflict, match="BEHAVIOR_COMMIT_CONFLICT"):
             memory.commit_accepted(
@@ -514,6 +523,7 @@ def test_idempotent_replay_returns_original_commit_revision(tmp_path) -> None:
     try:
         first = _accepted_bundle("run.original", position=_position(beat=40))
         memory.create_run(_request("run.original", _position(beat=40)), _brief("run.original"))
+        memory.record_draft("run.original", first[0])
         memory.record_audit(first[0], first[1], first[2])
         original = memory.commit_accepted(
             "run.original", first[3], (first[4],), accepted_revision=1
@@ -593,5 +603,111 @@ def test_legacy_migration_cli_imports_validated_mapping(tmp_path) -> None:
     memory = SQLiteBehaviorMemory(database)
     try:
         assert len(memory.query_history(position.model_copy(update={"global_beat_index": 71}), "char.luo_han").book) == 1
+    finally:
+        memory.close()
+
+
+def test_stale_audit_commits_when_intervening_history_is_unrelated(tmp_path) -> None:
+    memory = SQLiteBehaviorMemory(tmp_path / "story.db")
+    first_position = _position(chapter="chapter.0050", scene="scene.0050.01", beat=50)
+    second_position = _position(chapter="chapter.0050", scene="scene.0050.02", beat=51)
+    first = _accepted_bundle("run.related", 0, first_position, "char.luo_han")
+    second = _accepted_bundle("run.unrelated", 0, second_position, "char.other")
+    try:
+        for run_id, position, actor_id, bundle in (
+            ("run.related", first_position, "char.luo_han", first),
+            ("run.unrelated", second_position, "char.other", second),
+        ):
+            memory.create_run(_request(run_id, position, actor_id), _brief(run_id, 0))
+            memory.record_draft(run_id, bundle[0])
+            memory.record_audit(bundle[0], bundle[1], bundle[2])
+        memory.commit_accepted("run.related", first[3], (first[4],), accepted_revision=1)
+
+        result = memory.commit_accepted(
+            "run.unrelated", second[3], (second[4],), accepted_revision=1
+        )
+
+        assert result.memory_revision == 2
+        assert memory.query_history(_position(beat=52), "char.other").book == (second[4],)
+    finally:
+        memory.close()
+
+
+def test_commit_rejects_occurrence_not_present_in_audited_extraction(tmp_path) -> None:
+    memory = SQLiteBehaviorMemory(tmp_path / "story.db")
+    request = _request("run.tampered", _position(beat=60))
+    bundle = _accepted_bundle("run.tampered", 0, _position(beat=60))
+    memory.create_run(request, _brief(request.run_id))
+    memory.record_draft(request.run_id, bundle[0])
+    memory.record_audit(bundle[0], bundle[1], bundle[2])
+    tampered_fingerprint = bundle[4].fingerprint.model_copy(
+        update={"semantic_groups": frozenset({"invented_behavior"})}
+    )
+    tampered = bundle[4].model_copy(update={"fingerprint": tampered_fingerprint})
+    try:
+        with pytest.raises(ValueError, match="audited extraction"):
+            memory.commit_accepted(
+                request.run_id, bundle[3], (tampered,), accepted_revision=1
+            )
+        assert memory.query_history(_position(beat=61), "char.luo_han").book == ()
+        assert memory.run_status(request.run_id) is RunStatus.AUDITED_PASSED
+    finally:
+        memory.close()
+
+
+def test_run_state_machine_supports_rewrite_and_blocks_abandoned_runs(tmp_path) -> None:
+    memory = SQLiteBehaviorMemory(tmp_path / "story.db")
+    request = _request("run.lifecycle", _position(beat=70))
+    draft, passing_audit, extraction, accepted, occurrence = _accepted_bundle(
+        "run.lifecycle", 0, _position(beat=70)
+    )
+    failed_audit = passing_audit.model_copy(
+        update={
+            "accepted": False,
+            "issues": (
+                AuditIssue(
+                    issue_id="issue.repeat",
+                    severity="rewrite",
+                    code="semantic_repeat",
+                    spans=(SourceSpan(start=0, end=len(draft.text)),),
+                ),
+            ),
+            "auto_rewrite_allowed": True,
+        }
+    )
+    memory.create_run(request, _brief(request.run_id))
+    try:
+        with pytest.raises(RunStateConflict, match="cannot audit"):
+            memory.record_audit(draft, passing_audit, extraction)
+        memory.record_draft(request.run_id, draft)
+        assert memory.run_status(request.run_id) is RunStatus.DRAFTED
+        memory.record_audit(draft, failed_audit, extraction)
+        assert memory.run_status(request.run_id) is RunStatus.AUDITED_FAILED
+        memory.record_rewrite(request.run_id, draft)
+        assert memory.run_status(request.run_id) is RunStatus.REWRITTEN
+        memory.record_audit(draft, passing_audit, extraction)
+        assert memory.run_status(request.run_id) is RunStatus.AUDITED_PASSED
+        memory.commit_accepted(
+            request.run_id, accepted, (occurrence,), accepted_revision=1
+        )
+        assert memory.run_status(request.run_id) is RunStatus.COMMITTED
+        with pytest.raises(RunStateConflict, match="cannot move committed"):
+            memory.record_rewrite(request.run_id, draft)
+
+        abandoned_request = _request("run.abandoned", _position(beat=71))
+        abandoned = _accepted_bundle("run.abandoned", 1, _position(beat=71))
+        memory.create_run(abandoned_request, _brief("run.abandoned", 1))
+        memory.record_draft("run.abandoned", abandoned[0])
+        failed_at_current = failed_audit.model_copy(
+            update={"run_id": "run.abandoned", "memory_revision": 1}
+        )
+        abandoned_extraction = abandoned[2]
+        memory.record_audit(abandoned[0], failed_at_current, abandoned_extraction)
+        memory.abandon_run("run.abandoned")
+        assert memory.run_status("run.abandoned") is RunStatus.ABANDONED
+        with pytest.raises(RunStateConflict, match="cannot commit"):
+            memory.commit_accepted(
+                "run.abandoned", abandoned[3], (abandoned[4],), accepted_revision=1
+            )
     finally:
         memory.close()

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from enum import StrEnum
 from typing import Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -33,6 +34,16 @@ class HistoryWindowLimits:
     def __post_init__(self) -> None:
         if self.immediate < 1 or self.recent_chapters < 1 or self.ensemble < 1:
             raise ValueError("history window limits must be positive")
+
+
+class RunStatus(StrEnum):
+    PREPARED = "prepared"
+    DRAFTED = "drafted"
+    AUDITED_FAILED = "audited_failed"
+    REWRITTEN = "rewritten"
+    AUDITED_PASSED = "audited_passed"
+    COMMITTED = "committed"
+    ABANDONED = "abandoned"
 
 
 @dataclass(frozen=True, slots=True)
@@ -78,6 +89,14 @@ class BehaviorMemory(Protocol):
     ) -> BehaviorIdentity | None: ...
 
     def create_run(self, request: GenerationRequest, brief: GenerationBrief) -> None: ...
+
+    def record_draft(self, run_id: str, draft: GeneratedDraft) -> None: ...
+
+    def record_rewrite(self, run_id: str, draft: GeneratedDraft) -> None: ...
+
+    def abandon_run(self, run_id: str) -> None: ...
+
+    def run_status(self, run_id: str) -> RunStatus: ...
 
     def record_audit(
         self,

@@ -5,6 +5,8 @@ from __future__ import annotations
 import sqlite3
 from collections.abc import Callable, Sequence
 
+from .repository import RunStatus
+
 
 CURRENT_SCHEMA_VERSION = 1
 Migration = Callable[[sqlite3.Connection], None]
@@ -44,7 +46,10 @@ _SCHEMA_V1 = (
         request TEXT NOT NULL,
         brief TEXT NOT NULL,
         memory_revision INTEGER NOT NULL CHECK(memory_revision >= 0),
-        status TEXT NOT NULL,
+        status TEXT NOT NULL CHECK(status IN (
+            'prepared', 'drafted', 'audited_failed', 'rewritten',
+            'audited_passed', 'committed', 'abandoned'
+        )),
         accepted_revision INTEGER,
         audited_draft TEXT,
         audit_result TEXT,
@@ -110,7 +115,7 @@ _SCHEMA_V1 = (
     "CREATE INDEX idx_behavior_actor_unit ON behavior_occurrences(book_id, actor_id, unit_id)",
     "CREATE INDEX idx_behavior_actor_channel ON behavior_occurrences(book_id, actor_id, channel)",
     "CREATE INDEX idx_behavior_scene_position ON behavior_occurrences(book_id, scene_id, global_beat_index DESC)",
-    "CREATE UNIQUE INDEX idx_committed_book_position ON generation_runs(book_id, global_beat_index) WHERE status = 'committed'",
+    f"CREATE UNIQUE INDEX idx_committed_book_position ON generation_runs(book_id, global_beat_index) WHERE status = '{RunStatus.COMMITTED.value}'",
 )
 
 

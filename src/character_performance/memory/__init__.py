@@ -5,6 +5,7 @@ from .repository import (
     BehaviorMemorySnapshot,
     HistoryWindowLimits,
     LegacyHistoryMapping,
+    RunStatus,
 )
 from .sqlite import (
     BehaviorMemoryError,
@@ -24,6 +25,7 @@ __all__ = [
     "DraftHashMismatch",
     "HistoryWindowLimits",
     "LegacyHistoryMapping",
+    "RunStatus",
     "MemoryRevisionConflict",
     "RunStateConflict",
     "SceneRevisionConflict",

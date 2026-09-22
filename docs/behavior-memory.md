@@ -4,7 +4,9 @@
 
 ## Transaction guarantees
 
-A formal commit writes the accepted draft, validated audit and extraction JSON, behavior occurrences, optional scene/world state, run status, and the next book revision in one `BEGIN IMMEDIATE` transaction. A stale audit raises `BEHAVIOR_MEMORY_REVISION_CONFLICT`; a reused formal position raises `BEHAVIOR_COMMIT_CONFLICT`. Replaying the same `run_id + accepted_revision + content_hash` returns the original commit result without adding rows.
+A formal commit writes the accepted draft, validated audit and extraction JSON, behavior occurrences, optional scene/world state, run status, and the next book revision in one `BEGIN IMMEDIATE` transaction. Every `extracted` occurrence must match one audited extraction behavior; human-confirmed additions use their explicit source instead. A stale audit raises `BEHAVIOR_MEMORY_REVISION_CONFLICT` when intervening history affects the same actor or current-scene ensemble; unrelated changes may commit safely. A reused formal position raises `BEHAVIOR_COMMIT_CONFLICT`. Replaying the same `run_id + accepted_revision + content_hash` returns the original commit result without adding rows.
+
+Persisted run transitions are constrained to `prepared → drafted → audited_failed → rewritten → audited_passed → committed`, with a passing first audit allowing `drafted → audited_passed` and a failed audit allowing `audited_failed → abandoned`. Illegal transitions raise `RUN_STATE_CONFLICT` and survive process restarts without ambiguity.
 
 The seven query windows are returned by `query_history`: `immediate`, `scene`, `chapter`, `recent_chapters`, `volume`, `book`, and `ensemble`. `explain_history_query_plans` exposes the SQLite plans used to verify the five required compound indexes.
 

@@ -21,6 +21,9 @@ def test_build_pack_emits_manifest_and_json_schemas(tmp_path: Path) -> None:
     assert result.manifest["schema_version"] == "1.0.0"
     assert result.manifest["emotion_count"] >= 9
     assert len(result.manifest["content_hash"]) == 64
+    schema_names = {path.name for path in result.schema_paths}
+    assert "PerformanceRequest.schema.json" in schema_names
+    assert "SceneState.schema.json" in schema_names
 
 
 def test_build_pack_rejects_unapproved_source_reference(tmp_path: Path) -> None:
@@ -31,4 +34,3 @@ def test_build_pack_rejects_unapproved_source_reference(tmp_path: Path) -> None:
             policy=BuildPolicy(commercial=False, redistribution=False),
             extra_source_ids=("src.samm.v1",),
         )
-

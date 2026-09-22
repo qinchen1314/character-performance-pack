@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from character_performance.domain.models import VAD
+from character_performance.domain.models import Appraisal, EmotionState, VAD
 from character_performance.ontology.emotion import EmotionOntology, UnknownEmotionError
 
 
@@ -33,3 +33,24 @@ def test_unknown_emotion_fails_explicitly() -> None:
 
     with pytest.raises(UnknownEmotionError, match="not registered"):
         ontology.resolve("schadenfreude")
+
+
+def test_emotion_state_must_reference_registered_labels_and_families() -> None:
+    ontology = EmotionOntology.from_yaml(ONTOLOGY)
+    state = EmotionState(
+        primary="anger",
+        secondary="invented_emotion",
+        families={"conflict"},
+        intensity=0.7,
+        vad=VAD(valence=-0.6, arousal=0.7, dominance=0.5),
+        decay_half_life_ms=90_000,
+        appraisal=Appraisal(
+            goal_congruence=-0.8,
+            controllability=0.6,
+            responsibility="target",
+            certainty=0.9,
+        ),
+    )
+
+    with pytest.raises(UnknownEmotionError, match="secondary"):
+        ontology.validate_state(state)

@@ -3,9 +3,15 @@ sources:
   - id: src.personachat.v1
     name: PersonaChat
     source_type: academic_dataset
+    official_url: https://github.com/facebookresearch/ParlAI/tree/main/parlai/tasks/personachat
     version: parlai-personachat-2026-09-snapshot
+    retrieved_at: 2026-09-21
+    concepts_used: [persona-conditioning]
     usage_mode: transform_allowed
     review_status: approved
+    reviewer: project-owner
+    reviewed_at: 2026-09-21
+    content_hash: null
     license:
       identifier: CC-BY-4.0
       commercial_use: true
@@ -17,9 +23,15 @@ sources:
   - id: src.original.core.v1
     name: Character Performance Pack original concepts
     source_type: original
+    official_url: project://character-performance-pack
     version: 0.1.0
+    retrieved_at: 2026-09-21
+    concepts_used: [canonical-schema]
     usage_mode: original
     review_status: approved
+    reviewer: project-owner
+    reviewed_at: 2026-09-21
+    content_hash: null
     license:
       identifier: project-license
       commercial_use: true
@@ -30,9 +42,15 @@ sources:
   - id: src.emobank.v1
     name: EmoBank
     source_type: academic_dataset
+    official_url: https://github.com/JULIELab/EmoBank
     version: "1.0"
+    retrieved_at: 2026-09-21
+    concepts_used: [vad]
     usage_mode: transform_allowed
     review_status: approved
+    reviewer: project-owner
+    reviewed_at: 2026-09-21
+    content_hash: null
     isolation: share_alike
     license:
       identifier: CC-BY-SA-4.0
@@ -45,9 +63,15 @@ sources:
   - id: src.samm.v1
     name: SAMM
     source_type: academic_dataset
+    official_url: https://personalpages.manchester.ac.uk/staff/adrian.davison/SAMM.html
     version: access-agreement
+    retrieved_at: 2026-09-21
+    concepts_used: [micro-expression-timing]
     usage_mode: reference_only
     review_status: pending
+    reviewer: project-owner
+    reviewed_at: 2026-09-21
+    content_hash: null
     license:
       identifier: custom-research-agreement
       commercial_use: false
@@ -56,3 +80,23 @@ sources:
       share_alike: false
       evidence_urls:
         - https://personalpages.manchester.ac.uk/staff/adrian.davison/SAMM.html
+  - id: src.facs.v1
+    name: FACS
+    source_type: behavioral_model
+    official_url: https://www.paulekman.com/facial-action-coding-system/
+    version: concept-reference
+    retrieved_at: 2026-09-21
+    concepts_used: [action-unit-concept]
+    usage_mode: reference_only
+    review_status: approved
+    reviewer: project-owner
+    reviewed_at: 2026-09-21
+    content_hash: null
+    license:
+      identifier: proprietary-reference-only
+      commercial_use: false
+      redistribution: false
+      attribution_required: true
+      share_alike: false
+      evidence_urls:
+        - https://www.paulekman.com/facial-action-coding-system/

@@ -33,6 +33,7 @@ from .repository import (
     BehaviorMemorySnapshot,
     HistoryWindowLimits,
     LegacyHistoryMapping,
+    RevisionImpact,
     RunStatus,
 )
 
@@ -224,6 +225,26 @@ class SQLiteBehaviorMemory:
             raise KeyError(f"unknown run: {run_id}")
         return RunStatus(row["status"])
 
+    def revision_impact(self, run_id: str) -> RevisionImpact:
+        with self._lock:
+            run = self._db.execute(
+                """SELECT book_id, actor_id, scene_id, memory_revision
+                   FROM generation_runs WHERE run_id=?""",
+                (run_id,),
+            ).fetchone()
+            if run is None:
+                raise KeyError(f"unknown run: {run_id}")
+            current = self._memory_revision(run["book_id"])
+            if current == run["memory_revision"]:
+                return RevisionImpact.CURRENT
+            relevant = self._has_relevant_changes(
+                run["book_id"],
+                run["memory_revision"],
+                run["actor_id"],
+                run["scene_id"],
+            )
+        return RevisionImpact.RELEVANT if relevant else RevisionImpact.UNRELATED
+
     def record_audit(
         self,
         draft: GeneratedDraft,
@@ -237,16 +258,25 @@ class SQLiteBehaviorMemory:
             try:
                 self._db.execute("BEGIN IMMEDIATE")
                 run = self._db.execute(
-                    """SELECT status, memory_revision, book_id
+                    """SELECT status, memory_revision, book_id, audited_draft
                        FROM generation_runs WHERE run_id=?""",
                     (audit.run_id,),
                 ).fetchone()
                 if run is None:
                     raise KeyError(f"unknown run: {audit.run_id}")
                 status = RunStatus(run["status"])
-                if status not in {RunStatus.DRAFTED, RunStatus.REWRITTEN}:
+                if status not in {
+                    RunStatus.DRAFTED,
+                    RunStatus.REWRITTEN,
+                    RunStatus.AUDITED_PASSED,
+                }:
                     raise RunStateConflict(
                         f"RUN_STATE_CONFLICT: cannot audit run in {status.value} state"
+                    )
+                saved_draft = GeneratedDraft.model_validate_json(run["audited_draft"])
+                if saved_draft != draft:
+                    raise DraftHashMismatch(
+                        "DRAFT_HASH_MISMATCH: audit draft differs from recorded draft"
                     )
                 current_revision = self._memory_revision(run["book_id"])
                 if audit.memory_revision != current_revision:
@@ -355,14 +385,17 @@ class SQLiteBehaviorMemory:
                     raise MemoryRevisionConflict(
                         "BEHAVIOR_MEMORY_REVISION_CONFLICT: audit revision is in the future"
                     )
-                if audited_revision != current_revision and self._has_relevant_changes(
-                    run["book_id"],
-                    audited_revision,
-                    run["actor_id"],
-                    run["scene_id"],
-                ):
+                if audited_revision != current_revision:
+                    relevant = self._has_relevant_changes(
+                        run["book_id"],
+                        audited_revision,
+                        run["actor_id"],
+                        run["scene_id"],
+                    )
+                    impact = "relevant" if relevant else "unrelated"
                     raise MemoryRevisionConflict(
-                        "BEHAVIOR_MEMORY_REVISION_CONFLICT: behavior history changed"
+                        "BEHAVIOR_MEMORY_REVISION_CONFLICT: "
+                        f"{impact} history changed; re-audit the recorded draft"
                     )
                 position_owner = self._db.execute(
                     """SELECT run_id FROM generation_runs

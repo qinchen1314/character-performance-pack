@@ -32,9 +32,11 @@ from character_performance.domain.behavior_models import (
 from character_performance.domain.models import CharacterProfile, HistoryEntry, SceneState
 from character_performance.memory import (
     BehaviorCommitConflict,
+    DraftHashMismatch,
     HistoryWindowLimits,
     LegacyHistoryMapping,
     MemoryRevisionConflict,
+    RevisionImpact,
     RunStateConflict,
     RunStatus,
     SceneRevisionConflict,
@@ -623,8 +625,16 @@ def test_stale_audit_commits_when_intervening_history_is_unrelated(tmp_path) -> 
             memory.record_audit(bundle[0], bundle[1], bundle[2])
         memory.commit_accepted("run.related", first[3], (first[4],), accepted_revision=1)
 
+        assert memory.revision_impact("run.unrelated") is RevisionImpact.UNRELATED
+        with pytest.raises(MemoryRevisionConflict, match="unrelated history changed"):
+            memory.commit_accepted(
+                "run.unrelated", second[3], (second[4],), accepted_revision=1
+            )
+        refreshed_audit = second[1].model_copy(update={"memory_revision": 1})
+        memory.record_audit(second[0], refreshed_audit, second[2])
+        refreshed_accepted = second[3].model_copy(update={"memory_revision": 1})
         result = memory.commit_accepted(
-            "run.unrelated", second[3], (second[4],), accepted_revision=1
+            "run.unrelated", refreshed_accepted, (second[4],), accepted_revision=1
         )
 
         assert result.memory_revision == 2
@@ -681,6 +691,12 @@ def test_run_state_machine_supports_rewrite_and_blocks_abandoned_runs(tmp_path) 
             memory.record_audit(draft, passing_audit, extraction)
         memory.record_draft(request.run_id, draft)
         assert memory.run_status(request.run_id) is RunStatus.DRAFTED
+        changed_draft = GeneratedDraft(text="他没有看向窗外。")
+        changed_audit = passing_audit.model_copy(
+            update={"draft_hash": content_hash(changed_draft.text)}
+        )
+        with pytest.raises(DraftHashMismatch, match="recorded draft"):
+            memory.record_audit(changed_draft, changed_audit, extraction)
         memory.record_audit(draft, failed_audit, extraction)
         assert memory.run_status(request.run_id) is RunStatus.AUDITED_FAILED
         memory.record_rewrite(request.run_id, draft)

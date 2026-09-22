@@ -5,6 +5,7 @@ from .repository import (
     BehaviorMemorySnapshot,
     HistoryWindowLimits,
     LegacyHistoryMapping,
+    RevisionImpact,
     RunStatus,
 )
 from .sqlite import (
@@ -25,6 +26,7 @@ __all__ = [
     "DraftHashMismatch",
     "HistoryWindowLimits",
     "LegacyHistoryMapping",
+    "RevisionImpact",
     "RunStatus",
     "MemoryRevisionConflict",
     "RunStateConflict",

@@ -46,6 +46,12 @@ class RunStatus(StrEnum):
     ABANDONED = "abandoned"
 
 
+class RevisionImpact(StrEnum):
+    CURRENT = "current"
+    UNRELATED = "unrelated"
+    RELEVANT = "relevant"
+
+
 @dataclass(frozen=True, slots=True)
 class BehaviorMemorySnapshot:
     memory_revision: int
@@ -97,6 +103,8 @@ class BehaviorMemory(Protocol):
     def abandon_run(self, run_id: str) -> None: ...
 
     def run_status(self, run_id: str) -> RunStatus: ...
+
+    def revision_impact(self, run_id: str) -> RevisionImpact: ...
 
     def record_audit(
         self,

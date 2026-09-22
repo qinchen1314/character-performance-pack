@@ -36,7 +36,7 @@ python -m pip install -e .
 
 后续命令默认在仓库根目录运行，以便读取 `data/` 下的表现目录。用于应用集成时，也可以通过 `--project-root` 指定仓库位置，或先编译 Pack 后通过 `--pack` 指定编译目录。
 
-安装后提供六个命令：
+安装后提供七个命令：
 
 - `cpp-perform`：根据 YAML/JSON 请求生成角色表现。
 - `cpp-build-pack`：校验并编译表现包。

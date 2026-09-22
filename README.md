@@ -42,8 +42,9 @@ python -m pip install -e .
 - `cpp-build-pack`：校验并编译表现包。
 - `cpp-export-schemas`：导出所有公开数据模型的 JSON Schema。
 - `cpp-blind-review`：生成匿名真人盲评包，或汇总多名评审的评分。
-- `cpp-behavior`：生成写作提示，或从已有正文中抽取角色行为。
+- `cpp-behavior`：执行 prepare/audit/rewrite/commit 全流程，并生成跨章节行为报告。
 - `cpp-behavior-memory`：迁移、备份和恢复跨章节行为记忆数据库。
+- `cpp-behavior-verify`：运行自动验收门禁并组织隐去角色名的真人盲评。
 
 ## 真人盲评与目录清理
 
@@ -136,6 +137,44 @@ cpp-behavior prepare examples/behavior-request.yaml \
 cpp-behavior extract examples/extraction-request.yaml \
   --output output/extraction.json
 ```
+
+正式生成链路在每一步都落盘可恢复的 JSON 产物，并输出一行结构化 JSON 日志：
+
+```bash
+cpp-behavior prepare examples/behavior-request.yaml --db story.db --output run/
+cpp-behavior audit run/brief.json draft.txt --db story.db --output run/audit.json
+cpp-behavior rewrite run/audit.json draft.txt --db story.db --output run/revised.txt
+# 重写稿必须再次 audit；以下 final-audit.json 必须是 accepted=true
+cpp-behavior commit run/final-audit.json run/revised.txt --db story.db
+cpp-behavior report --book book.demo --db story.db --output reports/behavior.html
+cpp-behavior report --book book.demo --db story.db --output reports/behavior.md
+```
+
+命令失败时 stderr 仍为单行 JSON，并包含规格中的稳定 `error_code`，例如
+`AUDIT_BLOCKED`、`DRAFT_HASH_MISMATCH`、`RUN_STATE_CONFLICT` 和
+`BEHAVIOR_MEMORY_REVISION_CONFLICT`。报告包括角色通道/策略分布、章节语义重复热点、
+句法模板热点，以及可直接进入验收报告的自动门禁值。
+
+## 全量验收与角色盲评
+
+`cpp-behavior-verify` 把机器指标与真人门禁分开记录。机器指标必须来自固定对抗集、
+故障注入、重启/并发测试和性能基准，不应手工臆造。准备盲评时，公开 packet 只包含
+匿名标签与片段，真实角色映射单独保存在 answer key：
+
+```bash
+cpp-behavior-verify prepare-human review/character-samples.yaml \
+  --output review/character-run --seed 20260922
+
+cpp-behavior-verify evaluate reports/automatic-evidence.json \
+  --key review/character-run/answer-key.json \
+  --ratings review/reader-a.json review/reader-b.json \
+  --output reports/acceptance.md
+```
+
+自动报告逐项检查重复率、俗套组占比、通道集中度、抽取召回率/精确率、span 准确率、
+重写保持率、幂等/故障注入、确定性和四项 P95 性能目标。没有至少两名独立评审的完整
+评分时，总体状态固定为 `pending_human`；只有自动门禁与真人门禁全部通过，报告中的
+`completion_claim_allowed` 才会为 `true`。
 
 示例中的“他皱眉。”会被识别为 `facial.brow_contract`，并给出精确文本区间、语义家族、叙事功能和置信度。应用也可以注入自己的 JSON 模型客户端；仓库不绑定供应商 SDK，也不读取 API Key。
 
@@ -292,4 +331,4 @@ character-performance-pack/
 
 ## 版本
 
-当前版本为 **0.5.0**。
+当前版本为 **0.6.0**。

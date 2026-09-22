@@ -30,4 +30,4 @@ __all__ = [
     "PromptBriefBuilder", "PythonGenerationBriefAdapter", "estimate_prompt_tokens",
     "HybridBehaviorExtractor", "LLMBehaviorExtractor", "RuleBasedBehaviorExtractor",
 ]
-__version__ = "0.5.0"
+__version__ = "0.6.0"

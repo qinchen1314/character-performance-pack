@@ -636,6 +636,19 @@ class SQLiteBehaviorMemory:
             ensemble=ensemble,
         )
 
+    def list_book_occurrences(self, book_id: str) -> tuple[BehaviorOccurrence, ...]:
+        """Return validated accepted history in narrative order for reporting."""
+        if not book_id:
+            raise ValueError("book_id must not be empty")
+        with self._lock:
+            rows = self._db.execute(
+                f"""SELECT {OCCURRENCE_COLUMNS} FROM behavior_occurrences
+                    WHERE book_id=?
+                    ORDER BY global_beat_index, text_start, occurrence_id""",
+                (book_id,),
+            ).fetchall()
+        return tuple(self._occurrence_from_row(row) for row in rows)
+
     def import_legacy_history(
         self, mappings: tuple[LegacyHistoryMapping, ...]
     ) -> tuple[BehaviorOccurrence, ...]:

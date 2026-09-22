@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "character-performance-pack"
-version = "0.5.0"
+version = "0.6.0"
 description = "Deterministic character performance ontology and composition engine"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -20,6 +20,7 @@ cpp-perform = "character_performance.cli.perform:main"
 cpp-blind-review = "character_performance.cli.blind_review:main"
 cpp-behavior-memory = "character_performance.cli.behavior_memory:main"
 cpp-behavior = "character_performance.cli.behavior:main"
+cpp-behavior-verify = "character_performance.cli.acceptance:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

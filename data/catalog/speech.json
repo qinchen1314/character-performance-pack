@@ -645,6 +645,9 @@
   },
   {
     "id": "speech.articulation_separate",
+    "editorial_status": "rejected",
+    "editorial_note": "把音拆开属于作者解释而非可感知表现，正文中机械感明显",
+    "replacement_id": "speech.consonants_clipped",
     "category": "speech",
     "channel": "speech",
     "parts": [
@@ -1072,6 +1075,9 @@
   },
   {
     "id": "speech.rephrase_syntax",
+    "editorial_status": "rejected",
+    "editorial_note": "改句式和重新组织是语言学说明，不是可直接采用的小说句子",
+    "replacement_id": "speech.false_start_abandon",
     "category": "speech",
     "channel": "speech",
     "parts": [
@@ -1705,6 +1711,9 @@
   },
   {
     "id": "speech.callback_previous",
+    "editorial_status": "rejected",
+    "editorial_note": "那个话头指代空泛，独立输出没有信息且容易形成套话",
+    "replacement_id": "speech.return_after_aside",
     "category": "speech",
     "channel": "speech",
     "parts": [

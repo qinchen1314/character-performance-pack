@@ -1,0 +1,45 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "subject_opening": {
+      "default": "unknown",
+      "enum": [
+        "actor",
+        "body_part",
+        "object",
+        "environment",
+        "dialogue",
+        "other",
+        "unknown"
+      ],
+      "title": "Subject Opening",
+      "type": "string"
+    },
+    "temporal_shape": {
+      "default": "unknown",
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Temporal Shape",
+      "type": "string"
+    },
+    "reset_pattern": {
+      "default": false,
+      "title": "Reset Pattern",
+      "type": "boolean"
+    },
+    "dialogue_position": {
+      "default": "unknown",
+      "enum": [
+        "before_dialogue",
+        "during_dialogue",
+        "after_dialogue",
+        "no_dialogue",
+        "unknown"
+      ],
+      "title": "Dialogue Position",
+      "type": "string"
+    }
+  },
+  "title": "SyntaxFeatures",
+  "type": "object"
+}

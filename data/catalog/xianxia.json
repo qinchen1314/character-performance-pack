@@ -97,6 +97,9 @@
   },
   {
     "id": "world.qi_cycle_finish",
+    "editorial_status": "rejected",
+    "editorial_note": "归回丹田搭配生硬，整句像修炼步骤说明而非人物表现",
+    "replacement_id": "world.qi_cycle_close",
     "category": "world_specific",
     "channel": "world",
     "parts": [
@@ -1055,6 +1058,9 @@
   },
   {
     "id": "world.sense_filter_release",
+    "editorial_status": "rejected",
+    "editorial_note": "隔层与回响的关系抽象难懂，试读时需要反向解释动作",
+    "replacement_id": "world.sense_merge_attention",
     "category": "world_specific",
     "channel": "world",
     "parts": [

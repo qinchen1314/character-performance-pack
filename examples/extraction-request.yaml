@@ -1,0 +1,12 @@
+run_id: run.demo.extraction
+text: 他皱眉。
+known_characters:
+  - id: char.hero
+position:
+  book_id: book.demo
+  volume_id: volume.01
+  chapter_id: chapter.01
+  scene_id: scene.demo.01
+  paragraph_index: 0
+  beat_index: 0
+  global_beat_index: 1

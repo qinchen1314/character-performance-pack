@@ -1667,6 +1667,9 @@
   },
   {
     "id": "spatial.shoulder_angle_partial",
+    "editorial_status": "rejected",
+    "editorial_note": "肩膀回到原来的朝向近似参数复位，不符合自然叙事表达",
+    "replacement_id": "spatial.turn_away_boundary",
     "category": "spatial",
     "channel": "spatial",
     "parts": [
@@ -1780,6 +1783,9 @@
   },
   {
     "id": "spatial.floor_tilt_balance",
+    "editorial_status": "rejected",
+    "editorial_note": "重新分脚底的力口吻技术化，人物表现价值不足",
+    "replacement_id": "body.foot_catch_balance",
     "category": "spatial",
     "channel": "spatial",
     "parts": [
@@ -2369,6 +2375,9 @@
   },
   {
     "id": "spatial.wall_echo_listen",
+    "editorial_status": "rejected",
+    "editorial_note": "回到原向措辞僵硬，整句更像动作标注而不是小说正文",
+    "replacement_id": "spatial.outside_room_listen",
     "category": "spatial",
     "channel": "spatial",
     "parts": [

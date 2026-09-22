@@ -1,8 +1,6 @@
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.pytest-review-navigation/
-.pytest-tmp/
+.pytest*/
 .venv/
 .kim-orchestrator/
 dist/
@@ -11,9 +9,41 @@ build/
 data/compiled*/
 examples/output/
 examples/output-*/
+examples/output_*/
+examples/test_*
 examples/*.db
 examples/*.db-journal
 
 # Local development and planning materials are intentionally not published.
 tests/
 docs/
+
+# Local writing, generated outputs, reviewer identities and machine settings.
+/runtime/
+/output/
+/outputs/
+/review/
+/private/
+/local/
+.publish*/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.log
+*.bak
+*.tmp
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+secrets*.json
+secrets*.yaml
+secrets*.yml

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "wuxia.terse.gatekeeper",
+    "genre": "武侠",
+    "style": "冷硬短句",
+    "character": "守关多年的寡言刀客",
+    "subject_name": "燕七",
+    "lead_in": "来人报出旧主名号。",
+    "follow_up": "山门前仍无人让路。",
+    "categories": ["facial", "gaze", "micro_expression", "body", "spatial", "physiology", "speech"]
+  },
+  {
+    "id": "urban.restrained.heiress",
+    "genre": "都市情感",
+    "style": "细腻克制",
+    "character": "被迫接管家业的年轻继承人",
+    "subject_name": "程雾",
+    "lead_in": "那份协议被推到她面前。",
+    "follow_up": "窗外车声恰好盖过沉默。",
+    "categories": ["facial", "gaze", "micro_expression", "body", "spatial", "physiology", "speech"]
+  },
+  {
+    "id": "crime.plain.detective",
+    "genre": "刑侦",
+    "style": "冷峻白描",
+    "character": "疲惫但谨慎的老刑警",
+    "subject_name": "周沉",
+    "lead_in": "证人第三次改了口供。",
+    "follow_up": "记录仪的红灯还亮着。",
+    "categories": ["facial", "gaze", "micro_expression", "body", "spatial", "physiology", "speech"]
+  },
+  {
+    "id": "school.bright.teenager",
+    "genre": "校园成长",
+    "style": "明快自然",
+    "character": "嘴硬心软的竞赛生",
+    "subject_name": "林朝",
+    "lead_in": "同桌把道歉纸条塞了过来。",
+    "follow_up": "预备铃在这时响了。",
+    "categories": ["facial", "gaze", "micro_expression", "body", "spatial", "physiology", "speech"]
+  },
+  {
+    "id": "historical.elegant.lady",
+    "genre": "古言",
+    "style": "清雅含蓄",
+    "character": "处境艰难的世家长女",
+    "subject_name": "沈蘅",
+    "lead_in": "掌事嬷嬷当众宣完了口信。",
+    "follow_up": "满堂人都在等她答话。",
+    "categories": ["facial", "gaze", "micro_expression", "body", "spatial", "physiology", "speech"]
+  },
+  {
+    "id": "scifi.clean.pilot",
+    "genre": "科幻",
+    "style": "简洁理性",
+    "character": "刚从事故中生还的试飞员",
+    "subject_name": "顾惟",
+    "lead_in": "舱外警报终于停止。",
+    "follow_up": "控制台仍在等待确认。",
+    "categories": ["facial", "gaze", "micro_expression", "body", "spatial", "physiology", "speech"]
+  },
+  {
+    "id": "xianxia.austere.swordsman",
+    "genre": "仙侠",
+    "style": "清峻古典",
+    "character": "守律而寡言的金丹剑修",
+    "subject_name": "谢停云",
+    "lead_in": "传音符在案上化作灰烬。",
+    "follow_up": "殿外松涛未歇。",
+    "categories": ["world_specific"]
+  },
+  {
+    "id": "xianxia.vivid.healer",
+    "genre": "仙侠",
+    "style": "明快通俗",
+    "character": "胆大心细的筑基医修",
+    "subject_name": "唐小满",
+    "lead_in": "禁制另一头忽然传来异响。",
+    "follow_up": "药圃里的灵草簌簌摇动。",
+    "categories": ["world_specific"]
+  },
+  {
+    "id": "fantasy.forceful.wanderer",
+    "genre": "东方玄幻",
+    "style": "热烈通俗",
+    "character": "靠自己闯出名声的年轻散修",
+    "subject_name": "陆野",
+    "lead_in": "遗迹深处的灵机忽然倒卷。",
+    "follow_up": "石壁上的旧阵纹仍在明灭。",
+    "categories": ["world_specific"]
+  }
+]

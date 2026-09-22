@@ -401,6 +401,20 @@
       "title": "Status",
       "type": "string"
     },
+    "replacement_id": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Replacement Id"
+    },
     "effects": {
       "additionalProperties": true,
       "title": "Effects",

@@ -1,0 +1,25 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "dialogue_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Dialogue Hash",
+      "type": "string"
+    },
+    "required_facts": {
+      "title": "Required Facts",
+      "type": "boolean"
+    },
+    "scene_state": {
+      "title": "Scene State",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "dialogue_hash",
+    "required_facts",
+    "scene_state"
+  ],
+  "title": "PreservationChecks",
+  "type": "object"
+}

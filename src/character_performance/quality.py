@@ -27,7 +27,7 @@ def normalized_phrase(text):
 
 
 def catalog_report(pack: PerformancePack):
-    units = pack.all()
+    units = tuple(unit for unit in pack.all() if unit.status == "active")
     counts = Counter(unit.category for unit in units if unit.invocation != "blocking")
     kinds = Counter(modifier.kind for modifier in pack.modifiers)
     actual = dict(counts, emotions=len(pack.ontology), facial_gaze=counts["facial"] + counts["gaze"],
@@ -49,6 +49,7 @@ def catalog_report(pack: PerformancePack):
     emotion_coverage = {emotion.id: {"candidates": sum(emotion.id in unit.emotion_affinity for unit in units),
         "channels": sorted({unit.channel for unit in units if emotion.id in unit.emotion_affinity})} for emotion in pack.ontology.all()}
     return {"pack_hash": pack.content_hash, "targets": TARGETS, "actual": actual,
+        "deprecated_count": sum(unit.status == "deprecated" for unit in pack.all()),
         "quantity_gates": {key: actual.get(key, 0) >= target for key, target in TARGETS.items()},
         "exact_duplicate_pairs": exact, "near_duplicate_pairs": near,
         "near_duplicate_unit_fraction": round(len(affected) / len(units), 4),

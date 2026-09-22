@@ -1038,6 +1038,9 @@
   },
   {
     "id": "micro_expression.lid_unexpected_hold",
+    "editorial_status": "rejected",
+    "editorial_note": "眼睑撑开的解剖描述突兀，多个文风下都显得刻意和机械",
+    "replacement_id": "micro_expression.lid_half_blink",
     "category": "micro_expression",
     "channel": "facial",
     "parts": [
@@ -2750,6 +2753,9 @@
   },
   {
     "id": "micro_expression.jaw_tuck_release",
+    "editorial_status": "rejected",
+    "editorial_note": "下颌放回原处是机械复位措辞，画面不自然且正文收益很低",
+    "replacement_id": "micro_expression.jaw_drop_catch",
     "category": "micro_expression",
     "channel": "facial",
     "parts": [

@@ -1,0 +1,32 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "semantic_group": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Semantic Group",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "block",
+        "rewrite",
+        "warning"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+    }
+  },
+  "required": [
+    "semantic_group",
+    "severity",
+    "reason"
+  ],
+  "title": "OverusedBehavior",
+  "type": "object"
+}

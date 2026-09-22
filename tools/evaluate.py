@@ -78,7 +78,7 @@ def evaluate() -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=ROOT / "docs/evaluation/latest.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "output/evaluation/latest.json")
     parser.add_argument("--run-tests", action="store_true")
     args = parser.parse_args()
     args.output.parent.mkdir(parents=True, exist_ok=True)

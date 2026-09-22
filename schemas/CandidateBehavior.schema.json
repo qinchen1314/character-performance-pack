@@ -1,0 +1,54 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "unit_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Unit Id",
+      "type": "string"
+    },
+    "purpose": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Purpose",
+      "type": "string"
+    },
+    "realization_guidance": {
+      "minLength": 1,
+      "title": "Realization Guidance",
+      "type": "string"
+    },
+    "channel": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Channel"
+    },
+    "semantic_groups": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Semantic Groups",
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "unit_id",
+    "purpose",
+    "realization_guidance"
+  ],
+  "title": "CandidateBehavior",
+  "type": "object"
+}

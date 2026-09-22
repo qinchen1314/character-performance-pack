@@ -13,7 +13,8 @@ from character_performance.quality import catalog_report, require_catalog_qualit
 def main():
     report = catalog_report(PerformancePack.from_project(ROOT))
     require_catalog_quality(report)
-    output = ROOT / "docs/evaluation/catalog-quality.json"
+    output = ROOT / "output/evaluation/catalog-quality.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     markdown = ["# 目录质量报告", "", "## 十类覆盖", "", "| 类别 | 目标 | 实际 |", "|---|---:|---:|"]
     markdown.extend(f"| {key} | {minimum} | {report['actual'][key]} |" for key, minimum in report["targets"].items())

@@ -1,0 +1,179 @@
+{
+  "$defs": {
+    "SyntaxFeatures": {
+      "additionalProperties": false,
+      "properties": {
+        "subject_opening": {
+          "default": "unknown",
+          "enum": [
+            "actor",
+            "body_part",
+            "object",
+            "environment",
+            "dialogue",
+            "other",
+            "unknown"
+          ],
+          "title": "Subject Opening",
+          "type": "string"
+        },
+        "temporal_shape": {
+          "default": "unknown",
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Temporal Shape",
+          "type": "string"
+        },
+        "reset_pattern": {
+          "default": false,
+          "title": "Reset Pattern",
+          "type": "boolean"
+        },
+        "dialogue_position": {
+          "default": "unknown",
+          "enum": [
+            "before_dialogue",
+            "during_dialogue",
+            "after_dialogue",
+            "no_dialogue",
+            "unknown"
+          ],
+          "title": "Dialogue Position",
+          "type": "string"
+        }
+      },
+      "title": "SyntaxFeatures",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "unit_id": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Unit Id"
+    },
+    "semantic_groups": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Semantic Groups",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "channel": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Channel",
+      "type": "string"
+    },
+    "narrative_functions": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Narrative Functions",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "strategy_id": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Strategy Id"
+    },
+    "actor_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "target_ids": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Target Ids",
+      "type": "array"
+    },
+    "visibility": {
+      "default": "unknown",
+      "enum": [
+        "hidden",
+        "very_subtle",
+        "subtle",
+        "noticeable",
+        "obvious",
+        "unknown"
+      ],
+      "title": "Visibility",
+      "type": "string"
+    },
+    "amplitude_band": {
+      "default": "unknown",
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ],
+      "title": "Amplitude Band",
+      "type": "string"
+    },
+    "syntax_features": {
+      "$ref": "#/$defs/SyntaxFeatures",
+      "default": {
+        "subject_opening": "unknown",
+        "temporal_shape": "unknown",
+        "reset_pattern": false,
+        "dialogue_position": "unknown"
+      }
+    },
+    "lexical_lemmas": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Lexical Lemmas",
+      "type": "array"
+    }
+  },
+  "required": [
+    "semantic_groups",
+    "channel",
+    "narrative_functions",
+    "actor_id"
+  ],
+  "title": "BehaviorFingerprint",
+  "type": "object"
+}

@@ -1,0 +1,55 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "accepted_revision": {
+      "minimum": 1,
+      "title": "Accepted Revision",
+      "type": "integer"
+    },
+    "content_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "memory_revision": {
+      "minimum": 1,
+      "title": "Memory Revision",
+      "type": "integer"
+    },
+    "occurrence_ids": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Occurrence Ids",
+      "type": "array"
+    },
+    "idempotent_replay": {
+      "title": "Idempotent Replay",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "run_id",
+    "accepted_revision",
+    "content_hash",
+    "memory_revision",
+    "idempotent_replay"
+  ],
+  "title": "CommitResult",
+  "type": "object"
+}

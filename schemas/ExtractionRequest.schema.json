@@ -1,0 +1,387 @@
+{
+  "$defs": {
+    "BigFive": {
+      "additionalProperties": false,
+      "properties": {
+        "openness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Openness",
+          "type": "number"
+        },
+        "conscientiousness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Conscientiousness",
+          "type": "number"
+        },
+        "extraversion": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Extraversion",
+          "type": "number"
+        },
+        "agreeableness": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Agreeableness",
+          "type": "number"
+        },
+        "neuroticism": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Neuroticism",
+          "type": "number"
+        }
+      },
+      "title": "BigFive",
+      "type": "object"
+    },
+    "CandidateBehavior": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "purpose": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Purpose",
+          "type": "string"
+        },
+        "realization_guidance": {
+          "minLength": 1,
+          "title": "Realization Guidance",
+          "type": "string"
+        },
+        "channel": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Channel"
+        },
+        "semantic_groups": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Semantic Groups",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "unit_id",
+        "purpose",
+        "realization_guidance"
+      ],
+      "title": "CandidateBehavior",
+      "type": "object"
+    },
+    "CharacterProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "personality": {
+          "$ref": "#/$defs/Personality",
+          "default": {
+            "big_five": {
+              "agreeableness": 0.5,
+              "conscientiousness": 0.5,
+              "extraversion": 0.5,
+              "neuroticism": 0.5,
+              "openness": 0.5
+            }
+          }
+        },
+        "expression_baseline": {
+          "$ref": "#/$defs/ExpressionBaseline",
+          "default": {
+            "amplitude": 0.5,
+            "initiative": 0.5,
+            "speech_volume": 0.5,
+            "gaze_duration": 0.5
+          }
+        },
+        "capabilities": {
+          "default": [
+            "hearing",
+            "left_hand_use",
+            "right_hand_use",
+            "speech",
+            "vision",
+            "walking"
+          ],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Capabilities",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "signature_behaviours": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SignatureBehaviour"
+          },
+          "title": "Signature Behaviours",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "CharacterProfile",
+      "type": "object"
+    },
+    "ExpressionBaseline": {
+      "additionalProperties": false,
+      "properties": {
+        "amplitude": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Amplitude",
+          "type": "number"
+        },
+        "initiative": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Initiative",
+          "type": "number"
+        },
+        "speech_volume": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Speech Volume",
+          "type": "number"
+        },
+        "gaze_duration": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Gaze Duration",
+          "type": "number"
+        }
+      },
+      "title": "ExpressionBaseline",
+      "type": "object"
+    },
+    "NarrativePosition": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "book_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Book Id",
+          "type": "string"
+        },
+        "volume_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Volume Id"
+        },
+        "chapter_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Chapter Id",
+          "type": "string"
+        },
+        "scene_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "paragraph_index": {
+          "minimum": 0,
+          "title": "Paragraph Index",
+          "type": "integer"
+        },
+        "beat_index": {
+          "minimum": 0,
+          "title": "Beat Index",
+          "type": "integer"
+        },
+        "global_beat_index": {
+          "minimum": 0,
+          "title": "Global Beat Index",
+          "type": "integer"
+        },
+        "timeline_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timeline Ms"
+        }
+      },
+      "required": [
+        "book_id",
+        "chapter_id",
+        "scene_id",
+        "paragraph_index",
+        "beat_index",
+        "global_beat_index"
+      ],
+      "title": "NarrativePosition",
+      "type": "object"
+    },
+    "Personality": {
+      "additionalProperties": false,
+      "properties": {
+        "big_five": {
+          "$ref": "#/$defs/BigFive",
+          "default": {
+            "openness": 0.5,
+            "conscientiousness": 0.5,
+            "extraversion": 0.5,
+            "agreeableness": 0.5,
+            "neuroticism": 0.5
+          }
+        }
+      },
+      "title": "Personality",
+      "type": "object"
+    },
+    "SignatureBehaviour": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "affinity": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Affinity",
+          "type": "number"
+        },
+        "cooldown_turns": {
+          "default": 9,
+          "minimum": 0,
+          "title": "Cooldown Turns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "unit_id"
+      ],
+      "title": "SignatureBehaviour",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "known_characters": {
+      "items": {
+        "$ref": "#/$defs/CharacterProfile"
+      },
+      "title": "Known Characters",
+      "type": "array"
+    },
+    "position": {
+      "$ref": "#/$defs/NarrativePosition"
+    },
+    "scene_facts": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Scene Facts",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "candidate_behaviors": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/CandidateBehavior"
+      },
+      "title": "Candidate Behaviors",
+      "type": "array"
+    },
+    "pack_summary": {
+      "additionalProperties": true,
+      "title": "Pack Summary",
+      "type": "object"
+    }
+  },
+  "required": [
+    "run_id",
+    "text",
+    "known_characters",
+    "position"
+  ],
+  "title": "ExtractionRequest",
+  "type": "object"
+}

@@ -1,0 +1,70 @@
+{
+  "$defs": {
+    "TextReplacement": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "TextReplacement",
+      "type": "object"
+    },
+    "TextSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 1,
+          "title": "End",
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "text"
+      ],
+      "title": "TextSpan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "original": {
+      "$ref": "#/$defs/TextSpan"
+    },
+    "replacement": {
+      "$ref": "#/$defs/TextReplacement"
+    },
+    "resolved_issue_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Resolved Issue Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "original",
+    "replacement",
+    "resolved_issue_ids"
+  ],
+  "title": "ChangedSpan",
+  "type": "object"
+}

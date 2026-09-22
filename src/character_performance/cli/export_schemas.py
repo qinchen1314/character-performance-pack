@@ -10,11 +10,51 @@ from character_performance.domain.models import (
     ActiveAction, BlockingGoal, SceneLayout,
 )
 from character_performance.modifiers import Modifier
+from character_performance.domain.behavior_models import (
+    AcceptedDraft,
+    ArcState,
+    AuditIssue,
+    AuditMetrics,
+    AuditResult,
+    BehaviorFingerprint,
+    BehaviorIdentity,
+    BehaviorOccurrence,
+    CandidateBehavior,
+    ChangedSpan,
+    CommitRequest,
+    CommitResult,
+    ExtractedBehavior,
+    ExtractionRequest,
+    ExtractionResult,
+    GeneratedDraft,
+    GenerationBrief,
+    GenerationRequest,
+    NarrativePosition,
+    OverusedBehavior,
+    PreservationChecks,
+    ReactionStrategyPlan,
+    RelationshipStrategyOverride,
+    RewriteRequest,
+    RewriteResult,
+    SignatureFamily,
+    SourceSpan,
+    StyleContext,
+    SyntaxFeatures,
+    TextReplacement,
+    TextSpan,
+)
 
 SCHEMA_MODELS = (
     EmotionState, PerformanceUnit, PerformanceRequest, PerformancePlan,
     CharacterProfile, SceneState, WorldState, RenderContext, RenderResult, Modifier,
     ActiveAction, BlockingGoal, SceneLayout,
+    NarrativePosition, SignatureFamily, RelationshipStrategyOverride, ArcState,
+    BehaviorIdentity, ReactionStrategyPlan, SyntaxFeatures, BehaviorFingerprint,
+    TextSpan, BehaviorOccurrence, StyleContext, GenerationRequest,
+    OverusedBehavior, CandidateBehavior, GenerationBrief, ExtractionRequest,
+    ExtractedBehavior, ExtractionResult, GeneratedDraft, SourceSpan, AuditIssue, AuditMetrics,
+    AuditResult, RewriteRequest, TextReplacement, ChangedSpan,
+    PreservationChecks, RewriteResult, AcceptedDraft, CommitRequest, CommitResult,
 )
 
 

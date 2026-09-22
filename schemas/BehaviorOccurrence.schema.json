@@ -1,0 +1,418 @@
+{
+  "$defs": {
+    "BehaviorFingerprint": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "unit_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit Id"
+        },
+        "semantic_groups": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Semantic Groups",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "channel": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Channel",
+          "type": "string"
+        },
+        "narrative_functions": {
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Narrative Functions",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "strategy_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Id"
+        },
+        "actor_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "target_ids": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_.-]*$",
+            "type": "string"
+          },
+          "title": "Target Ids",
+          "type": "array"
+        },
+        "visibility": {
+          "default": "unknown",
+          "enum": [
+            "hidden",
+            "very_subtle",
+            "subtle",
+            "noticeable",
+            "obvious",
+            "unknown"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "amplitude_band": {
+          "default": "unknown",
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "unknown"
+          ],
+          "title": "Amplitude Band",
+          "type": "string"
+        },
+        "syntax_features": {
+          "$ref": "#/$defs/SyntaxFeatures",
+          "default": {
+            "subject_opening": "unknown",
+            "temporal_shape": "unknown",
+            "reset_pattern": false,
+            "dialogue_position": "unknown"
+          }
+        },
+        "lexical_lemmas": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Lexical Lemmas",
+          "type": "array"
+        }
+      },
+      "required": [
+        "semantic_groups",
+        "channel",
+        "narrative_functions",
+        "actor_id"
+      ],
+      "title": "BehaviorFingerprint",
+      "type": "object"
+    },
+    "NarrativePosition": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "book_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Book Id",
+          "type": "string"
+        },
+        "volume_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_.-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Volume Id"
+        },
+        "chapter_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Chapter Id",
+          "type": "string"
+        },
+        "scene_id": {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "paragraph_index": {
+          "minimum": 0,
+          "title": "Paragraph Index",
+          "type": "integer"
+        },
+        "beat_index": {
+          "minimum": 0,
+          "title": "Beat Index",
+          "type": "integer"
+        },
+        "global_beat_index": {
+          "minimum": 0,
+          "title": "Global Beat Index",
+          "type": "integer"
+        },
+        "timeline_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timeline Ms"
+        }
+      },
+      "required": [
+        "book_id",
+        "chapter_id",
+        "scene_id",
+        "paragraph_index",
+        "beat_index",
+        "global_beat_index"
+      ],
+      "title": "NarrativePosition",
+      "type": "object"
+    },
+    "SyntaxFeatures": {
+      "additionalProperties": false,
+      "properties": {
+        "subject_opening": {
+          "default": "unknown",
+          "enum": [
+            "actor",
+            "body_part",
+            "object",
+            "environment",
+            "dialogue",
+            "other",
+            "unknown"
+          ],
+          "title": "Subject Opening",
+          "type": "string"
+        },
+        "temporal_shape": {
+          "default": "unknown",
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "title": "Temporal Shape",
+          "type": "string"
+        },
+        "reset_pattern": {
+          "default": false,
+          "title": "Reset Pattern",
+          "type": "boolean"
+        },
+        "dialogue_position": {
+          "default": "unknown",
+          "enum": [
+            "before_dialogue",
+            "during_dialogue",
+            "after_dialogue",
+            "no_dialogue",
+            "unknown"
+          ],
+          "title": "Dialogue Position",
+          "type": "string"
+        }
+      },
+      "title": "SyntaxFeatures",
+      "type": "object"
+    },
+    "TextSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 1,
+          "title": "End",
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "text"
+      ],
+      "title": "TextSpan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "else": {
+        "properties": {
+          "accepted_revision": {
+            "type": "null"
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "source": {
+            "enum": [
+              "extracted",
+              "human_confirmed"
+            ]
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "then": {
+        "properties": {
+          "accepted_revision": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "accepted_revision"
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "occurrence_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Occurrence Id",
+      "type": "string"
+    },
+    "book_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Book Id",
+      "type": "string"
+    },
+    "position": {
+      "$ref": "#/$defs/NarrativePosition"
+    },
+    "actor_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "target_ids": {
+      "default": [],
+      "items": {
+        "minLength": 1,
+        "pattern": "^[a-z][a-z0-9_.-]*$",
+        "type": "string"
+      },
+      "title": "Target Ids",
+      "type": "array"
+    },
+    "fingerprint": {
+      "$ref": "#/$defs/BehaviorFingerprint"
+    },
+    "source": {
+      "enum": [
+        "planned",
+        "rendered",
+        "extracted",
+        "human_confirmed"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "text_span": {
+      "$ref": "#/$defs/TextSpan"
+    },
+    "confidence": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "generation_run_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Generation Run Id",
+      "type": "string"
+    },
+    "accepted_revision": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Accepted Revision"
+    }
+  },
+  "required": [
+    "occurrence_id",
+    "book_id",
+    "position",
+    "actor_id",
+    "fingerprint",
+    "source",
+    "text_span",
+    "confidence",
+    "generation_run_id"
+  ],
+  "title": "BehaviorOccurrence",
+  "type": "object"
+}

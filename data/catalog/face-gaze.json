@@ -1224,6 +1224,9 @@
   },
   {
     "id": "facial.face_grimace_drop",
+    "editorial_status": "rejected",
+    "editorial_note": "眉眼重新归于自然是概括性结论，不是值得保留的具体表现",
+    "replacement_id": "facial.brow_slow_flatten",
     "category": "facial",
     "channel": "facial",
     "parts": [
@@ -1716,6 +1719,9 @@
   },
   {
     "id": "gaze.portrait_face_search",
+    "editorial_status": "rejected",
+    "editorial_note": "像要重新认一遍直接解释意图，跨角色试读时显得用力过度",
+    "replacement_id": "gaze.familiar_handwriting",
     "category": "gaze",
     "channel": "gaze",
     "parts": [
@@ -2617,6 +2623,9 @@
   },
   {
     "id": "gaze.cloth_signal",
+    "editorial_status": "rejected",
+    "editorial_note": "查看旗面再查看队伍是流程记录，缺少可进入正文的表现价值",
+    "replacement_id": "gaze.map_route",
     "category": "gaze",
     "channel": "gaze",
     "parts": [

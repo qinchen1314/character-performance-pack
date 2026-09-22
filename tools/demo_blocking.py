@@ -15,7 +15,7 @@ from character_performance.domain import PerformanceRequest, RenderContext
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=ROOT / "docs/evaluation/blocking.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "output/blocking.json")
     args = parser.parse_args()
     pack = PerformancePack.from_project(ROOT)
     engine = PerformanceEngine(pack)

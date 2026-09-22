@@ -1,0 +1,81 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "book_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Book Id",
+      "type": "string"
+    },
+    "volume_id": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_.-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Volume Id"
+    },
+    "chapter_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Chapter Id",
+      "type": "string"
+    },
+    "scene_id": {
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9_.-]*$",
+      "title": "Scene Id",
+      "type": "string"
+    },
+    "paragraph_index": {
+      "minimum": 0,
+      "title": "Paragraph Index",
+      "type": "integer"
+    },
+    "beat_index": {
+      "minimum": 0,
+      "title": "Beat Index",
+      "type": "integer"
+    },
+    "global_beat_index": {
+      "minimum": 0,
+      "title": "Global Beat Index",
+      "type": "integer"
+    },
+    "timeline_ms": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Timeline Ms"
+    }
+  },
+  "required": [
+    "book_id",
+    "chapter_id",
+    "scene_id",
+    "paragraph_index",
+    "beat_index",
+    "global_beat_index"
+  ],
+  "title": "NarrativePosition",
+  "type": "object"
+}

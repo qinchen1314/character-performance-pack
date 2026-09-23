@@ -1,5 +1,37 @@
 {
   "$defs": {
+    "CalibrationCharacter": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "aliases": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Aliases",
+          "type": "array"
+        },
+        "signature_groups": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Signature Groups",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "CalibrationCharacter",
+      "type": "object"
+    },
     "CalibrationSample": {
       "additionalProperties": false,
       "properties": {
@@ -12,6 +44,7 @@
           "enum": [
             "quality",
             "formulaic",
+            "synthetic_formulaic",
             "system_off",
             "system_on",
             "sweep"
@@ -86,6 +119,14 @@
             "type": "number"
           },
           "title": "Naturalness Ratings",
+          "type": "array"
+        },
+        "characters": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CalibrationCharacter"
+          },
+          "title": "Characters",
           "type": "array"
         }
       },

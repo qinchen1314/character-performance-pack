@@ -32,7 +32,14 @@ from .reporting import calculate_memory_gate_values
 
 
 MetricName = Literal["repeat_rate", "cliche_share", "channel_concentration"]
-Role = Literal["quality", "formulaic", "system_off", "system_on", "sweep"]
+Role = Literal[
+    "quality",
+    "formulaic",
+    "synthetic_formulaic",
+    "system_off",
+    "system_on",
+    "sweep",
+]
 _METRICS: tuple[MetricName, ...] = (
     "repeat_rate",
     "cliche_share",
@@ -63,6 +70,12 @@ class SyntheticFormulaicConfig(DomainModel):
     stock_repetitions_per_chapter: int = Field(default=8, ge=1, le=100)
 
 
+class CalibrationCharacter(DomainModel):
+    id: str = Field(min_length=1)
+    aliases: tuple[str, ...] = ()
+    signature_groups: frozenset[str] = frozenset()
+
+
 class CalibrationSample(DomainModel):
     id: str = Field(min_length=1)
     role: Role
@@ -75,11 +88,12 @@ class CalibrationSample(DomainModel):
     )
     strength: float | None = Field(default=None, ge=0, le=1)
     naturalness_ratings: tuple[float, ...] = ()
+    characters: tuple[CalibrationCharacter, ...] = ()
 
     @model_validator(mode="after")
     def role_fields_are_coherent(self) -> "CalibrationSample":
-        if self.role == "quality" and not self.human_accepted:
-            raise ValueError("quality samples must be human_accepted")
+        if self.role in {"quality", "formulaic"} and not self.human_accepted:
+            raise ValueError("quality and formulaic samples must be human_accepted")
         if self.role in {"system_off", "system_on"} and (
             not self.pair_id or not self.control_fingerprint
         ):
@@ -95,6 +109,9 @@ class CalibrationSample(DomainModel):
                 raise ValueError("naturalness ratings must be between 1 and 5")
         elif self.strength is not None or self.naturalness_ratings:
             raise ValueError("strength and naturalness_ratings are only valid for sweep samples")
+        character_ids = [character.id for character in self.characters]
+        if len(character_ids) != len(set(character_ids)):
+            raise ValueError("sample characters must have unique ids")
         return self
 
 
@@ -213,9 +230,7 @@ class CalibrationReport(DomainModel):
     missing_evidence: tuple[str, ...] = ()
 
     def policy_payload(self) -> dict[str, object]:
-        digest = sha256(
-            self.model_dump_json().encode("utf-8")
-        ).hexdigest()
+        digest = sha256(self.canonical_bytes()).hexdigest()
         return {
             "schema_version": "1.0.0",
             "status": self.status,
@@ -228,6 +243,12 @@ class CalibrationReport(DomainModel):
 
     def policy_json(self) -> str:
         return json.dumps(self.policy_payload(), ensure_ascii=False, indent=2) + "\n"
+
+    def canonical_json(self) -> str:
+        return self.model_dump_json(indent=2) + "\n"
+
+    def canonical_bytes(self) -> bytes:
+        return self.canonical_json().encode("utf-8")
 
 
 def _quantile(values: list[float], probability: float) -> float:
@@ -285,12 +306,25 @@ def _analyze_chapters(
 ) -> list[ChapterMetrics]:
     extractor = RuleBasedBehaviorExtractor()
     rows: list[ChapterMetrics] = []
-    character = CharacterProfile(id="char.calibration_subject")
+    character_specs = sample.characters or (
+        CalibrationCharacter(id="char.calibration_subject"),
+    )
+    characters = tuple(CharacterProfile(id=item.id) for item in character_specs)
+    aliases = {
+        alias: item.id
+        for item in character_specs
+        for alias in item.aliases
+    }
+    signatures = {
+        item.id: item.signature_groups
+        for item in character_specs
+        if item.signature_groups
+    }
     for index, (title, body) in enumerate(chapters, start=1):
         request = ExtractionRequest(
             run_id=f"calibration.{sample.id}.{index}",
             text=body,
-            known_characters=(character,),
+            known_characters=characters,
             position=NarrativePosition(
                 book_id=f"book.{sample.id}",
                 chapter_id=f"chapter.{index}",
@@ -299,6 +333,7 @@ def _analyze_chapters(
                 beat_index=0,
                 global_beat_index=index,
             ),
+            pack_summary={"character_aliases": aliases},
         )
         result = extractor.extract(request)
         behaviors = result.behaviors
@@ -331,7 +366,9 @@ def _analyze_chapters(
             )
             for behavior_index, behavior in enumerate(behaviors)
         )
-        gate_values = calculate_memory_gate_values(occurrences)
+        gate_values = calculate_memory_gate_values(
+            occurrences, signature_groups_by_actor=signatures
+        )
         rows.append(
             ChapterMetrics(
                 sample_id=sample.id,
@@ -377,9 +414,10 @@ def _synthetic_formulaic_sample(
     )
     derived = CalibrationSample(
         id=f"synthetic.formulaic.{source_sample.id}",
-        role="formulaic",
+        role="synthetic_formulaic",
         path=f"derived://{source_sample.id}",
         human_accepted=False,
+        characters=source_sample.characters,
     )
     rows = _analyze_chapters(
         derived,
@@ -595,6 +633,8 @@ def calibrate_manifest(path: Path) -> CalibrationReport:
         missing.append("formulaic_distribution")
     if len(paired) < req.minimum_pairs:
         missing.append("system_on_off_pairs")
+    if any(not sample.characters for sample in manifest.samples):
+        missing.append("actor_attribution")
     sweep_strengths: dict[str, set[float]] = defaultdict(set)
     for sample in manifest.samples:
         if (
@@ -644,6 +684,9 @@ def render_calibration_markdown(report: CalibrationReport) -> str:
     lines.extend(["", "## 公式化正文分布", ""])
     formulaic = report.distributions.get("formulaic")
     lines.extend(_distribution_lines(formulaic) if formulaic else ["暂无合格样本。"]) 
+    lines.extend(["", "## 合成公式化敏感性诊断", ""])
+    synthetic = report.distributions.get("synthetic_formulaic")
+    lines.extend(_distribution_lines(synthetic) if synthetic else ["未启用合成诊断。"])
     lines.extend(["", "## 系统开启/关闭配对对照", ""])
     if report.paired_comparisons:
         lines.append("| 配对 | 重复率改善 | 俗套占比改善 | 通道集中度改善 |")
@@ -688,6 +731,7 @@ __all__ = [
     "CalibrationManifest",
     "CalibrationReport",
     "CalibrationSample",
+    "CalibrationCharacter",
     "ChapterMetrics",
     "SyntheticFormulaicConfig",
     "calibrate_manifest",

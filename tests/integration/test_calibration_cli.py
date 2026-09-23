@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from hashlib import sha256
 
 import yaml
 
@@ -46,4 +47,8 @@ def test_calibrate_command_writes_json_markdown_and_policy(tmp_path, monkeypatch
 
     assert json.loads(output.read_text(encoding="utf-8"))["status"] == "provisional"
     assert "优质正文分布" in markdown.read_text(encoding="utf-8")
-    assert json.loads(policy.read_text(encoding="utf-8"))["status"] == "provisional"
+    policy_payload = json.loads(policy.read_text(encoding="utf-8"))
+    assert policy_payload["status"] == "provisional"
+    assert policy_payload["source_report_sha256"] == (
+        "sha256:" + sha256(output.read_bytes()).hexdigest()
+    )

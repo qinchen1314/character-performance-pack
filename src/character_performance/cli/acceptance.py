@@ -89,7 +89,7 @@ def calibrate_thresholds(
 ) -> tuple[Path, Path | None, Path | None]:
     report = calibrate_manifest(manifest)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(report.model_dump_json(indent=2) + "\n", encoding="utf-8")
+    output.write_bytes(report.canonical_bytes())
     if markdown is not None:
         markdown.parent.mkdir(parents=True, exist_ok=True)
         markdown.write_text(render_calibration_markdown(report), encoding="utf-8")

@@ -2,7 +2,7 @@
 
 - 状态：provisional
 - 来源文件：2
-- 缺失证据：formulaic_distribution、system_on_off_pairs、naturalness_tradeoff_curve
+- 缺失证据：formulaic_distribution、system_on_off_pairs、actor_attribution、naturalness_tradeoff_curve
 - 合成公式化样本：仅用于检测器敏感性检查，不计入真人标注负样本或 ready 判定。
 - provisional 策略：只能审阅，验收与行为报告拒绝加载。
 
@@ -17,6 +17,10 @@
 | 通道集中度 | 0.6266 | 0.6667 | 0.8750 | 1.0000 | 1.0000 |
 
 ## 公式化正文分布
+
+暂无合格样本。
+
+## 合成公式化敏感性诊断
 
 - 纳入章节：498；排除章节：0
 

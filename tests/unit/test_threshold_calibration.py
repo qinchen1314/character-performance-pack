@@ -21,6 +21,7 @@ def _write_book(path, chapters: list[str]) -> None:
 
 def test_calibration_builds_all_four_evidence_views_and_publishable_policy(tmp_path) -> None:
     control = "sha256:" + "1" * 64
+    characters = [{"id": "char.a", "aliases": ["他", "她"]}]
     quality = tmp_path / "quality.txt"
     formulaic = tmp_path / "formulaic.txt"
     off = tmp_path / "off.txt"
@@ -49,13 +50,13 @@ def test_calibration_builds_all_four_evidence_views_and_publishable_policy(tmp_p
                     "minimum_ratings_per_strength": 2,
                 },
                 "samples": [
-                    {"id": "quality", "role": "quality", "path": quality.name, "human_accepted": True},
-                    {"id": "formulaic", "role": "formulaic", "path": formulaic.name, "human_accepted": True},
-                    {"id": "pair.off", "role": "system_off", "path": off.name, "pair_id": "pair.1", "control_fingerprint": control},
-                    {"id": "pair.on", "role": "system_on", "path": on.name, "pair_id": "pair.1", "control_fingerprint": control},
-                    {"id": "sweep.0", "role": "sweep", "path": sweep_low.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.0, "naturalness_ratings": [2, 3]},
-                    {"id": "sweep.5", "role": "sweep", "path": sweep_mid.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.5, "naturalness_ratings": [4, 4]},
-                    {"id": "sweep.1", "role": "sweep", "path": sweep_high.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 1.0, "naturalness_ratings": [3, 4]},
+                    {"id": "quality", "role": "quality", "path": quality.name, "human_accepted": True, "characters": characters},
+                    {"id": "formulaic", "role": "formulaic", "path": formulaic.name, "human_accepted": True, "characters": characters},
+                    {"id": "pair.off", "role": "system_off", "path": off.name, "pair_id": "pair.1", "control_fingerprint": control, "characters": characters},
+                    {"id": "pair.on", "role": "system_on", "path": on.name, "pair_id": "pair.1", "control_fingerprint": control, "characters": characters},
+                    {"id": "sweep.0", "role": "sweep", "path": sweep_low.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.0, "naturalness_ratings": [2, 3], "characters": characters},
+                    {"id": "sweep.5", "role": "sweep", "path": sweep_mid.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.5, "naturalness_ratings": [4, 4], "characters": characters},
+                    {"id": "sweep.1", "role": "sweep", "path": sweep_high.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 1.0, "naturalness_ratings": [3, 4], "characters": characters},
                 ],
             },
             allow_unicode=True,
@@ -106,7 +107,8 @@ def test_quality_only_baseline_is_provisional_and_cannot_be_published(tmp_path) 
 
     assert report.status == "provisional"
     assert "formulaic_distribution" in report.missing_evidence
-    assert report.distributions["formulaic"].chapter_count == 2
+    assert "formulaic" not in report.distributions
+    assert report.distributions["synthetic_formulaic"].chapter_count == 2
     assert any(source.path.startswith("derived://") for source in report.sources)
     policy = json.loads(report.policy_json())
     assert policy["status"] == "provisional"
@@ -135,3 +137,26 @@ def test_pair_controls_must_share_the_same_input_fingerprint() -> None:
                 ],
             }
         )
+
+
+def test_gate_policy_rejects_non_finite_rate_threshold(tmp_path) -> None:
+    policy = tmp_path / "thresholds.json"
+    policy.write_text(
+        json.dumps(
+            {
+                "schema_version": "1.0.0",
+                "status": "ready",
+                "source_report_sha256": "sha256:" + "a" * 64,
+                "gates": {
+                    "CLICHE_GROUP_SHARE": {
+                        "threshold": float("inf"),
+                        "comparator": "<=",
+                    }
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="invalid threshold"):
+        load_gate_policy(policy)

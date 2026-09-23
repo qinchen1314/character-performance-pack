@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict, deque
 from html import escape
+import math
 from typing import Iterable, Literal
 
 from pydantic import Field
@@ -17,6 +18,24 @@ from .memory.repository import BehaviorMemory
 CLICHE_GROUPS = frozenset(
     {"brow_tension", "hand_tension", "deep_breath", "mouth_change", "gaze_flash"}
 )
+CALIBRATED_GATE_CODES = (
+    "IMMEDIATE_EXACT_REPEAT_RATE",
+    "CLICHE_GROUP_SHARE",
+    "MAX_CHARACTER_CHANNEL_SHARE",
+)
+
+
+def _percentile_95(values: list[float]) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    position = (len(ordered) - 1) * 0.95
+    lower = math.floor(position)
+    upper = math.ceil(position)
+    if lower == upper:
+        return ordered[lower]
+    weight = position - lower
+    return ordered[lower] * (1 - weight) + ordered[upper] * weight
 
 
 def calculate_memory_gate_values(
@@ -116,6 +135,30 @@ def calculate_memory_gate_values(
             cross_chapter_repeat_count / max(1, comparable_cross_chapter),
             comparable_cross_chapter,
         ),
+    }
+
+
+def calculate_chapter_calibrated_gate_values(
+    occurrences: Iterable[BehaviorOccurrence],
+    *,
+    signature_groups_by_actor: dict[str, frozenset[str]] | None = None,
+) -> dict[str, tuple[float, int]]:
+    """Return chapter-P95 values for the three corpus-calibrated gates."""
+    by_chapter: dict[str, list[BehaviorOccurrence]] = defaultdict(list)
+    for item in occurrences:
+        by_chapter[item.position.chapter_id].append(item)
+    chapter_values = [
+        calculate_memory_gate_values(
+            rows, signature_groups_by_actor=signature_groups_by_actor
+        )
+        for rows in by_chapter.values()
+    ]
+    return {
+        code: (
+            _percentile_95([values[code][0] for values in chapter_values]),
+            len(chapter_values),
+        )
+        for code in CALIBRATED_GATE_CODES
     }
 
 
@@ -239,6 +282,11 @@ def build_behavior_report(
     gate_values = calculate_memory_gate_values(
         rows, signature_groups_by_actor=signature_groups_by_actor
     )
+    gate_values.update(
+        calculate_chapter_calibrated_gate_values(
+            rows, signature_groups_by_actor=signature_groups_by_actor
+        )
+    )
     gate_specs = gate_policy.apply_ready(MEMORY_GATE_SPECS) if gate_policy else MEMORY_GATE_SPECS
     gates = tuple(
         MetricGate(
@@ -338,4 +386,4 @@ def render_html(report: BehaviorReport) -> str:
     return f"<!doctype html><html lang=\"zh-CN\"><head><meta charset=\"utf-8\"><title>{escape(report.book_id)} 行为控制报告</title><style>body{{font-family:system-ui,sans-serif;max-width:960px;margin:2rem auto;line-height:1.6}}table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #bbb;padding:.4rem;text-align:left}}</style></head><body>{body}</body></html>\n"
 
 
-__all__ = ["BehaviorReport", "BehaviorReportBuilder", "DistributionRow", "HotspotRow", "MetricGate", "build_behavior_report", "calculate_memory_gate_values", "render_html", "render_markdown"]
+__all__ = ["BehaviorReport", "BehaviorReportBuilder", "CALIBRATED_GATE_CODES", "DistributionRow", "HotspotRow", "MetricGate", "build_behavior_report", "calculate_chapter_calibrated_gate_values", "calculate_memory_gate_values", "render_html", "render_markdown"]

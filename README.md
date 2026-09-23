@@ -200,6 +200,9 @@ cpp-behavior-verify calibrate docs/evaluation/threshold-calibration-zhanyao.yaml
 
 `control_fingerprint` 是 `sha256:` 加 64 位十六进制摘要，应由提示、seed、剧情事实和角色
 状态的规范化输入共同计算。校准器会拒绝把控制指纹不同的输出伪装成开关配对或强度扫描。
+每个可用于正式校准的样本还应填写 `characters`，为角色声明稳定 ID、正文别名和可选
+`signature_groups`；没有角色归属的 TXT 仍可生成描述性报告，但会保留 `actor_attribution`
+缺口，不能晋升为 ready。
 
 `synthetic_formulaic` 可从优质章节追加固定俗套动作，验证检测器确实会响应退化文本；它只
 是敏感性对照，不会冒充人工确认的公式化作品。只有优质章节、人工公式化章节、系统开关
@@ -218,7 +221,9 @@ cpp-behavior report --book book.demo --db story.db \
 ```
 
 报告会保留每个语料文件的 SHA-256、纳入/排除章节数、完整分位数、优质误杀率、公式化
-召回率、开关配对改善量、Pareto 点和建议排重强度。原始小说正文不会写入报告或策略文件。
+召回率、开关配对改善量、Pareto 点和建议排重强度。三个可校准门禁在校准端与生产报告
+端都使用章节级指标的 P95，避免拿单章分布去比较全书聚合值。原始小说正文不会写入报告或
+策略文件。
 
 示例中的“他皱眉。”会被识别为 `facial.brow_contract`，并给出精确文本区间、语义家族、叙事功能和置信度。应用也可以注入自己的 JSON 模型客户端；仓库不绑定供应商 SDK，也不读取 API Key。
 

@@ -11,6 +11,7 @@
           "enum": [
             "quality",
             "formulaic",
+            "synthetic_formulaic",
             "system_off",
             "system_on",
             "sweep"

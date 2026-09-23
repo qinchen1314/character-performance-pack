@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import json
+import math
 from pathlib import Path
+import re
 from typing import Literal
 
 
@@ -45,13 +47,17 @@ class GatePolicy:
 
 def load_gate_policy(path: Path, *, require_ready: bool = True) -> GatePolicy:
     payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("schema_version") != "1.0.0":
+        raise ValueError("unsupported threshold policy schema_version")
     status = payload.get("status")
     if status not in {"provisional", "ready"}:
         raise ValueError("threshold policy status must be provisional or ready")
     if require_ready and status != "ready":
         raise ValueError("provisional threshold policy cannot replace acceptance gates")
     source_hash = payload.get("source_report_sha256", "")
-    if not isinstance(source_hash, str) or not source_hash.startswith("sha256:"):
+    if not isinstance(source_hash, str) or re.fullmatch(
+        r"sha256:[0-9a-f]{64}", source_hash
+    ) is None:
         raise ValueError("threshold policy requires source_report_sha256")
     known = {spec.code: spec for spec in AUTOMATIC_GATE_SPECS}
     overrides: list[GateSpec] = []
@@ -65,8 +71,24 @@ def load_gate_policy(path: Path, *, require_ready: bool = True) -> GatePolicy:
         threshold = item.get("threshold")
         if comparator != known[code].comparator:
             raise ValueError(f"threshold comparator cannot change for {code}")
-        if not isinstance(threshold, (int, float)) or threshold < 0:
+        if (
+            not isinstance(threshold, (int, float))
+            or isinstance(threshold, bool)
+            or not math.isfinite(threshold)
+            or threshold < 0
+        ):
             raise ValueError(f"invalid threshold for {code}")
+        if code in {
+            "IMMEDIATE_EXACT_REPEAT_RATE",
+            "CLICHE_GROUP_SHARE",
+            "MAX_CHARACTER_CHANNEL_SHARE",
+            "CROSS_CHAPTER_FUNCTION_CHANNEL_REPEAT_RATE",
+            "SEMANTIC_REPEAT_RECALL",
+            "SEMANTIC_REPEAT_PRECISION",
+            "SPAN_ACCURACY",
+            "REWRITE_PRESERVATION",
+        } and threshold > 1:
+            raise ValueError(f"rate threshold must be between 0 and 1 for {code}")
         overrides.append(
             GateSpec(code, known[code].evidence_field, float(threshold), comparator)
         )

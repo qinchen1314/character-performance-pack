@@ -10978,49 +10978,6 @@
     }
   ],
   "distributions": {
-    "formulaic": {
-      "chapter_count": 498,
-      "excluded_chapter_count": 0,
-      "sample_ids": [
-        "synthetic.formulaic.quality.zhanyao-1-500"
-      ],
-      "repeat_rate": {
-        "count": 498,
-        "minimum": 0.6764705882352942,
-        "p25": 0.8275862068965517,
-        "median": 0.8518518518518519,
-        "p75": 0.88,
-        "p90": 0.8888888888888888,
-        "p95": 0.9166666666666665,
-        "maximum": 0.92,
-        "mean": 0.8498318940325327,
-        "standard_deviation": 0.03947033937116836
-      },
-      "cliche_share": {
-        "count": 498,
-        "minimum": 0.425,
-        "p25": 0.5517241379310345,
-        "median": 0.5925925925925926,
-        "p75": 0.6296296296296297,
-        "p90": 0.64,
-        "p95": 0.6666666666666666,
-        "maximum": 0.68,
-        "mean": 0.5890490586081455,
-        "standard_deviation": 0.048659500841685646
-      },
-      "channel_concentration": {
-        "count": 498,
-        "minimum": 0.425,
-        "p25": 0.5517241379310345,
-        "median": 0.5925925925925926,
-        "p75": 0.6153846153846154,
-        "p90": 0.64,
-        "p95": 0.6666666666666666,
-        "maximum": 0.68,
-        "mean": 0.5861348503930424,
-        "standard_deviation": 0.048896887843853716
-      }
-    },
     "quality": {
       "chapter_count": 351,
       "excluded_chapter_count": 147,
@@ -11063,6 +11020,49 @@
         "mean": 0.6265731696287252,
         "standard_deviation": 0.19169048908622138
       }
+    },
+    "synthetic_formulaic": {
+      "chapter_count": 498,
+      "excluded_chapter_count": 0,
+      "sample_ids": [
+        "synthetic.formulaic.quality.zhanyao-1-500"
+      ],
+      "repeat_rate": {
+        "count": 498,
+        "minimum": 0.6764705882352942,
+        "p25": 0.8275862068965517,
+        "median": 0.8518518518518519,
+        "p75": 0.88,
+        "p90": 0.8888888888888888,
+        "p95": 0.9166666666666665,
+        "maximum": 0.92,
+        "mean": 0.8498318940325327,
+        "standard_deviation": 0.03947033937116836
+      },
+      "cliche_share": {
+        "count": 498,
+        "minimum": 0.425,
+        "p25": 0.5517241379310345,
+        "median": 0.5925925925925926,
+        "p75": 0.6296296296296297,
+        "p90": 0.64,
+        "p95": 0.6666666666666666,
+        "maximum": 0.68,
+        "mean": 0.5890490586081455,
+        "standard_deviation": 0.048659500841685646
+      },
+      "channel_concentration": {
+        "count": 498,
+        "minimum": 0.425,
+        "p25": 0.5517241379310345,
+        "median": 0.5925925925925926,
+        "p75": 0.6153846153846154,
+        "p90": 0.64,
+        "p95": 0.6666666666666666,
+        "maximum": 0.68,
+        "mean": 0.5861348503930424,
+        "standard_deviation": 0.048896887843853716
+      }
     }
   },
   "recommended_thresholds": {
@@ -11091,6 +11091,7 @@
   "missing_evidence": [
     "formulaic_distribution",
     "system_on_off_pairs",
+    "actor_attribution",
     "naturalness_tradeoff_curve"
   ]
 }

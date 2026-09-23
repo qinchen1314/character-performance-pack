@@ -22,6 +22,11 @@ def _write_book(path, chapters: list[str]) -> None:
 def test_calibration_builds_all_four_evidence_views_and_publishable_policy(tmp_path) -> None:
     control = "sha256:" + "1" * 64
     characters = [{"id": "char.a", "aliases": ["他", "她"]}]
+    attribution = {
+        "characters": characters,
+        "actor_attribution_reviewed": True,
+        "single_actor_text": True,
+    }
     quality = tmp_path / "quality.txt"
     formulaic = tmp_path / "formulaic.txt"
     off = tmp_path / "off.txt"
@@ -50,13 +55,13 @@ def test_calibration_builds_all_four_evidence_views_and_publishable_policy(tmp_p
                     "minimum_ratings_per_strength": 2,
                 },
                 "samples": [
-                    {"id": "quality", "role": "quality", "path": quality.name, "human_accepted": True, "characters": characters},
-                    {"id": "formulaic", "role": "formulaic", "path": formulaic.name, "human_accepted": True, "characters": characters},
-                    {"id": "pair.off", "role": "system_off", "path": off.name, "pair_id": "pair.1", "control_fingerprint": control, "characters": characters},
-                    {"id": "pair.on", "role": "system_on", "path": on.name, "pair_id": "pair.1", "control_fingerprint": control, "characters": characters},
-                    {"id": "sweep.0", "role": "sweep", "path": sweep_low.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.0, "naturalness_ratings": [2, 3], "characters": characters},
-                    {"id": "sweep.5", "role": "sweep", "path": sweep_mid.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.5, "naturalness_ratings": [4, 4], "characters": characters},
-                    {"id": "sweep.1", "role": "sweep", "path": sweep_high.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 1.0, "naturalness_ratings": [3, 4], "characters": characters},
+                    {"id": "quality", "role": "quality", "path": quality.name, "human_accepted": True, **attribution},
+                    {"id": "formulaic", "role": "formulaic", "path": formulaic.name, "human_accepted": True, **attribution},
+                    {"id": "pair.off", "role": "system_off", "path": off.name, "pair_id": "pair.1", "control_fingerprint": control, **attribution},
+                    {"id": "pair.on", "role": "system_on", "path": on.name, "pair_id": "pair.1", "control_fingerprint": control, **attribution},
+                    {"id": "sweep.0", "role": "sweep", "path": sweep_low.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.0, "naturalness_ratings": [2, 3], **attribution},
+                    {"id": "sweep.5", "role": "sweep", "path": sweep_mid.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.5, "naturalness_ratings": [4, 4], **attribution},
+                    {"id": "sweep.1", "role": "sweep", "path": sweep_high.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 1.0, "naturalness_ratings": [3, 4], **attribution},
                 ],
             },
             allow_unicode=True,

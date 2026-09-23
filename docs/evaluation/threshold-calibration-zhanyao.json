@@ -8,7 +8,10 @@
       "path": "../../../从斩妖除魔开始长生不死(1-500章).txt",
       "sha256": "sha256:0016356e986a0b6df37e035a8bcecb7ce388a9a20894cc9951b1977b0c03309c",
       "human_accepted": true,
-      "chapter_count": 498
+      "chapter_count": 498,
+      "declared_character_count": 0,
+      "actor_attribution_reviewed": false,
+      "actor_attribution_coverage": 0.335812066925807
     },
     {
       "sample_id": "synthetic.formulaic.quality.zhanyao-1-500",
@@ -16,7 +19,10 @@
       "path": "derived://quality.zhanyao-1-500",
       "sha256": "sha256:6c73e2bc11fbd4954f9e4ad2e9b3018119e315f633757fea358ac0c4fcbb3ee0",
       "human_accepted": false,
-      "chapter_count": 498
+      "chapter_count": 498,
+      "declared_character_count": 0,
+      "actor_attribution_reviewed": false,
+      "actor_attribution_coverage": 0.7800660361519951
     }
   ],
   "chapter_metrics": [

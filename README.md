@@ -201,8 +201,9 @@ cpp-behavior-verify calibrate docs/evaluation/threshold-calibration-zhanyao.yaml
 `control_fingerprint` 是 `sha256:` 加 64 位十六进制摘要，应由提示、seed、剧情事实和角色
 状态的规范化输入共同计算。校准器会拒绝把控制指纹不同的输出伪装成开关配对或强度扫描。
 每个可用于正式校准的样本还应填写 `characters`，为角色声明稳定 ID、正文别名和可选
-`signature_groups`；没有角色归属的 TXT 仍可生成描述性报告，但会保留 `actor_attribution`
-缺口，不能晋升为 ready。
+`signature_groups`，并在人工核对归属后设置 `actor_attribution_reviewed: true`。单角色文本还需
+显式设置 `single_actor_text: true`；角色别名缺失或归属覆盖率低于清单门槛都会保留
+`actor_attribution` 缺口，不能晋升为 ready。
 
 `synthetic_formulaic` 可从优质章节追加固定俗套动作，验证检测器确实会响应退化文本；它只
 是敏感性对照，不会冒充人工确认的公式化作品。只有优质章节、人工公式化章节、系统开关
@@ -219,6 +220,9 @@ cpp-behavior-verify evaluate reports/automatic-evidence.json \
 cpp-behavior report --book book.demo --db story.db \
   --thresholds reports/thresholds.json --output reports/behavior.md
 ```
+
+使用 ready 策略时，自动证据中的 `prose_gate_scope` 必须为 `chapter_p95`；旧版
+`legacy_aggregate` 全书聚合值会被拒绝，防止同名指标在不同统计口径间误用。
 
 报告会保留每个语料文件的 SHA-256、纳入/排除章节数、完整分位数、优质误杀率、公式化
 召回率、开关配对改善量、Pareto 点和建议排重强度。三个可校准门禁在校准端与生产报告

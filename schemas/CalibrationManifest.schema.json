@@ -128,6 +128,16 @@
           },
           "title": "Characters",
           "type": "array"
+        },
+        "actor_attribution_reviewed": {
+          "default": false,
+          "title": "Actor Attribution Reviewed",
+          "type": "boolean"
+        },
+        "single_actor_text": {
+          "default": false,
+          "title": "Single Actor Text",
+          "type": "boolean"
         }
       },
       "required": [
@@ -170,6 +180,13 @@
           "minimum": 1,
           "title": "Minimum Ratings Per Strength",
           "type": "integer"
+        },
+        "minimum_actor_attribution_coverage": {
+          "default": 0.8,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimum Actor Attribution Coverage",
+          "type": "number"
         }
       },
       "title": "ReadinessRequirements",
@@ -217,7 +234,8 @@
         "minimum_formulaic_chapters": 30,
         "minimum_pairs": 10,
         "minimum_sweep_strengths": 3,
-        "minimum_ratings_per_strength": 2
+        "minimum_ratings_per_strength": 2,
+        "minimum_actor_attribution_coverage": 0.8
       }
     },
     "synthetic_formulaic": {

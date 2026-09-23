@@ -3,6 +3,10 @@
 `cpp-behavior-verify evaluate` 接受一个 JSON/YAML 对象。每个值都必须来自同一待发布
 版本的自动测试或基准运行：
 
+使用校准阈值策略时，证据必须声明 `prose_gate_scope: chapter_p95`，且重复率、俗套占比、
+通道集中度均为章节级指标的 P95。未加载校准策略时保留的旧证据可使用
+`legacy_aggregate`；两种口径不得混用。
+
 证据必须包含 `provenance`：生产者固定为 `cpp-behavior-verification-suite`，记录 Git
 提交、生成时间、总历史行数（至少 100 万）、单书 occurrence 数（至少 20 万），以及
 unit/property/integration/scenario/chapter_benchmark/fault_injection/performance 七类测试的

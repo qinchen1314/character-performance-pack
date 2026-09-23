@@ -352,6 +352,7 @@ class EvidenceProvenance(DomainModel):
 
 class AutomaticEvidence(DomainModel):
     provenance: EvidenceProvenance
+    prose_gate_scope: Literal["legacy_aggregate", "chapter_p95"] = "legacy_aggregate"
     immediate_exact_repeat_rate: float = Field(ge=0, le=1)
     chapter_semantic_over_limit: int = Field(ge=0)
     cliche_group_share: float = Field(ge=0, le=1)
@@ -389,6 +390,7 @@ class AcceptanceReport(DomainModel):
 
 class AcceptanceEvaluator:
     def __init__(self, *, gate_policy: GatePolicy | None = None) -> None:
+        self.uses_calibrated_policy = gate_policy is not None
         self.gate_specs = (
             gate_policy.apply_ready(AUTOMATIC_GATE_SPECS)
             if gate_policy is not None
@@ -400,6 +402,10 @@ class AcceptanceEvaluator:
         automatic: AutomaticEvidence,
         human: HumanBlindSummary | None = None,
     ) -> AcceptanceReport:
+        if self.uses_calibrated_policy and automatic.prose_gate_scope != "chapter_p95":
+            raise ValueError(
+                "calibrated threshold policies require prose_gate_scope=chapter_p95"
+            )
         gates = tuple(
             AcceptanceGate(
                 code=spec.code,

@@ -70,7 +70,8 @@ def test_acceptance_cli_keeps_answer_key_separate_and_reports_pending_human(tmp_
 
 def test_acceptance_cli_loads_ready_threshold_policy(tmp_path) -> None:
     automatic = tmp_path / "automatic.json"
-    automatic.write_text(_automatic().model_dump_json(indent=2), encoding="utf-8")
+    evidence = _automatic().model_copy(update={"prose_gate_scope": "chapter_p95"})
+    automatic.write_text(evidence.model_dump_json(indent=2), encoding="utf-8")
     thresholds = tmp_path / "thresholds.json"
     thresholds.write_text(
         json.dumps(

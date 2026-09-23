@@ -61,6 +61,7 @@ class ReadinessRequirements(DomainModel):
     minimum_pairs: int = Field(default=10, ge=1)
     minimum_sweep_strengths: int = Field(default=3, ge=3)
     minimum_ratings_per_strength: int = Field(default=2, ge=1)
+    minimum_actor_attribution_coverage: float = Field(default=0.80, ge=0, le=1)
 
 
 class SyntheticFormulaicConfig(DomainModel):
@@ -89,6 +90,8 @@ class CalibrationSample(DomainModel):
     strength: float | None = Field(default=None, ge=0, le=1)
     naturalness_ratings: tuple[float, ...] = ()
     characters: tuple[CalibrationCharacter, ...] = ()
+    actor_attribution_reviewed: bool = False
+    single_actor_text: bool = False
 
     @model_validator(mode="after")
     def role_fields_are_coherent(self) -> "CalibrationSample":
@@ -215,6 +218,9 @@ class CalibrationSource(DomainModel):
     sha256: str
     human_accepted: bool
     chapter_count: int
+    declared_character_count: int = Field(ge=0)
+    actor_attribution_reviewed: bool
+    actor_attribution_coverage: float = Field(ge=0, le=1)
 
 
 class CalibrationReport(DomainModel):
@@ -390,6 +396,8 @@ def _analyze_sample(sample: CalibrationSample, path: Path) -> tuple[list[Chapter
     text = raw.decode("utf-8-sig")
     chapters = _split_chapters(text)
     rows = _analyze_chapters(sample, chapters)
+    resolved = sum(row.occurrence_count for row in rows)
+    unresolved = sum(row.unresolved_count for row in rows)
     source = CalibrationSource(
         sample_id=sample.id,
         role=sample.role,
@@ -397,6 +405,9 @@ def _analyze_sample(sample: CalibrationSample, path: Path) -> tuple[list[Chapter
         sha256=f"sha256:{sha256(raw).hexdigest()}",
         human_accepted=sample.human_accepted,
         chapter_count=len(rows),
+        declared_character_count=len(sample.characters),
+        actor_attribution_reviewed=sample.actor_attribution_reviewed,
+        actor_attribution_coverage=resolved / max(1, resolved + unresolved),
     )
     return rows, source
 
@@ -418,6 +429,8 @@ def _synthetic_formulaic_sample(
         path=f"derived://{source_sample.id}",
         human_accepted=False,
         characters=source_sample.characters,
+        actor_attribution_reviewed=source_sample.actor_attribution_reviewed,
+        single_actor_text=source_sample.single_actor_text,
     )
     rows = _analyze_chapters(
         derived,
@@ -431,6 +444,15 @@ def _synthetic_formulaic_sample(
         sha256=f"sha256:{sha256(digest_material).hexdigest()}",
         human_accepted=False,
         chapter_count=len(rows),
+        declared_character_count=len(derived.characters),
+        actor_attribution_reviewed=derived.actor_attribution_reviewed,
+        actor_attribution_coverage=(
+            sum(row.occurrence_count for row in rows)
+            / max(
+                1,
+                sum(row.occurrence_count + row.unresolved_count for row in rows),
+            )
+        ),
     )
     return derived, rows, source
 
@@ -633,7 +655,16 @@ def calibrate_manifest(path: Path) -> CalibrationReport:
         missing.append("formulaic_distribution")
     if len(paired) < req.minimum_pairs:
         missing.append("system_on_off_pairs")
-    if any(not sample.characters for sample in manifest.samples):
+    source_by_id = {source.sample_id: source for source in sources}
+    if any(
+        not sample.characters
+        or not sample.actor_attribution_reviewed
+        or any(not character.aliases for character in sample.characters)
+        or (len(sample.characters) == 1 and not sample.single_actor_text)
+        or source_by_id[sample.id].actor_attribution_coverage
+        < req.minimum_actor_attribution_coverage
+        for sample in manifest.samples
+    ):
         missing.append("actor_attribution")
     sweep_strengths: dict[str, set[float]] = defaultdict(set)
     for sample in manifest.samples:

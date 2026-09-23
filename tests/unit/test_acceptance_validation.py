@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from character_performance.acceptance import (
     AcceptanceEvaluator,
     AutomaticEvidence,
@@ -155,9 +157,21 @@ def test_acceptance_evaluator_uses_ready_calibrated_gate_policy() -> None:
         ),
     )
 
-    report = AcceptanceEvaluator(gate_policy=policy).evaluate(_passing_automatic())
+    evidence = _passing_automatic().model_copy(update={"prose_gate_scope": "chapter_p95"})
+    report = AcceptanceEvaluator(gate_policy=policy).evaluate(evidence)
 
     gate = next(item for item in report.automatic_gates if item.code == "CLICHE_GROUP_SHARE")
     assert gate.threshold == 0.10
     assert not gate.passed
     assert report.automatic_status == "failed"
+
+
+def test_calibrated_policy_rejects_legacy_aggregate_evidence() -> None:
+    policy = GatePolicy(
+        status="ready",
+        source_report_sha256="sha256:" + "a" * 64,
+        overrides=(),
+    )
+
+    with pytest.raises(ValueError, match="prose_gate_scope=chapter_p95"):
+        AcceptanceEvaluator(gate_policy=policy).evaluate(_passing_automatic())

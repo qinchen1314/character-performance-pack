@@ -34,6 +34,21 @@
         "chapter_count": {
           "title": "Chapter Count",
           "type": "integer"
+        },
+        "declared_character_count": {
+          "minimum": 0,
+          "title": "Declared Character Count",
+          "type": "integer"
+        },
+        "actor_attribution_reviewed": {
+          "title": "Actor Attribution Reviewed",
+          "type": "boolean"
+        },
+        "actor_attribution_coverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Actor Attribution Coverage",
+          "type": "number"
         }
       },
       "required": [
@@ -42,7 +57,10 @@
         "path",
         "sha256",
         "human_accepted",
-        "chapter_count"
+        "chapter_count",
+        "declared_character_count",
+        "actor_attribution_reviewed",
+        "actor_attribution_coverage"
       ],
       "title": "CalibrationSource",
       "type": "object"

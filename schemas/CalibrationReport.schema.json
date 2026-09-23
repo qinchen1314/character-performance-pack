@@ -1,0 +1,496 @@
+{
+  "$defs": {
+    "CalibrationSource": {
+      "additionalProperties": false,
+      "properties": {
+        "sample_id": {
+          "title": "Sample Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "quality",
+            "formulaic",
+            "system_off",
+            "system_on",
+            "sweep"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        },
+        "human_accepted": {
+          "title": "Human Accepted",
+          "type": "boolean"
+        },
+        "chapter_count": {
+          "title": "Chapter Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sample_id",
+        "role",
+        "path",
+        "sha256",
+        "human_accepted",
+        "chapter_count"
+      ],
+      "title": "CalibrationSource",
+      "type": "object"
+    },
+    "ChapterMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "sample_id": {
+          "title": "Sample Id",
+          "type": "string"
+        },
+        "chapter_id": {
+          "title": "Chapter Id",
+          "type": "string"
+        },
+        "chapter_title": {
+          "title": "Chapter Title",
+          "type": "string"
+        },
+        "character_count": {
+          "minimum": 0,
+          "title": "Character Count",
+          "type": "integer"
+        },
+        "occurrence_count": {
+          "minimum": 0,
+          "title": "Occurrence Count",
+          "type": "integer"
+        },
+        "unresolved_count": {
+          "minimum": 0,
+          "title": "Unresolved Count",
+          "type": "integer"
+        },
+        "repeat_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Repeat Rate",
+          "type": "number"
+        },
+        "cliche_share": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Cliche Share",
+          "type": "number"
+        },
+        "channel_concentration": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Channel Concentration",
+          "type": "number"
+        }
+      },
+      "required": [
+        "sample_id",
+        "chapter_id",
+        "chapter_title",
+        "character_count",
+        "occurrence_count",
+        "unresolved_count",
+        "repeat_rate",
+        "cliche_share",
+        "channel_concentration"
+      ],
+      "title": "ChapterMetrics",
+      "type": "object"
+    },
+    "CorpusDistribution": {
+      "additionalProperties": false,
+      "properties": {
+        "chapter_count": {
+          "minimum": 0,
+          "title": "Chapter Count",
+          "type": "integer"
+        },
+        "excluded_chapter_count": {
+          "minimum": 0,
+          "title": "Excluded Chapter Count",
+          "type": "integer"
+        },
+        "sample_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sample Ids",
+          "type": "array"
+        },
+        "repeat_rate": {
+          "$ref": "#/$defs/MetricDistribution"
+        },
+        "cliche_share": {
+          "$ref": "#/$defs/MetricDistribution"
+        },
+        "channel_concentration": {
+          "$ref": "#/$defs/MetricDistribution"
+        }
+      },
+      "required": [
+        "chapter_count",
+        "excluded_chapter_count",
+        "sample_ids",
+        "repeat_rate",
+        "cliche_share",
+        "channel_concentration"
+      ],
+      "title": "CorpusDistribution",
+      "type": "object"
+    },
+    "MetricDistribution": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "minimum": 0,
+          "title": "Count",
+          "type": "integer"
+        },
+        "minimum": {
+          "default": 0,
+          "title": "Minimum",
+          "type": "number"
+        },
+        "p25": {
+          "default": 0,
+          "title": "P25",
+          "type": "number"
+        },
+        "median": {
+          "default": 0,
+          "title": "Median",
+          "type": "number"
+        },
+        "p75": {
+          "default": 0,
+          "title": "P75",
+          "type": "number"
+        },
+        "p90": {
+          "default": 0,
+          "title": "P90",
+          "type": "number"
+        },
+        "p95": {
+          "default": 0,
+          "title": "P95",
+          "type": "number"
+        },
+        "maximum": {
+          "default": 0,
+          "title": "Maximum",
+          "type": "number"
+        },
+        "mean": {
+          "default": 0,
+          "title": "Mean",
+          "type": "number"
+        },
+        "standard_deviation": {
+          "default": 0,
+          "title": "Standard Deviation",
+          "type": "number"
+        }
+      },
+      "required": [
+        "count"
+      ],
+      "title": "MetricDistribution",
+      "type": "object"
+    },
+    "PairedComparison": {
+      "additionalProperties": false,
+      "properties": {
+        "pair_id": {
+          "title": "Pair Id",
+          "type": "string"
+        },
+        "repeat_rate_off": {
+          "title": "Repeat Rate Off",
+          "type": "number"
+        },
+        "repeat_rate_on": {
+          "title": "Repeat Rate On",
+          "type": "number"
+        },
+        "repeat_rate_delta": {
+          "title": "Repeat Rate Delta",
+          "type": "number"
+        },
+        "cliche_share_off": {
+          "title": "Cliche Share Off",
+          "type": "number"
+        },
+        "cliche_share_on": {
+          "title": "Cliche Share On",
+          "type": "number"
+        },
+        "cliche_share_delta": {
+          "title": "Cliche Share Delta",
+          "type": "number"
+        },
+        "channel_concentration_off": {
+          "title": "Channel Concentration Off",
+          "type": "number"
+        },
+        "channel_concentration_on": {
+          "title": "Channel Concentration On",
+          "type": "number"
+        },
+        "channel_concentration_delta": {
+          "title": "Channel Concentration Delta",
+          "type": "number"
+        }
+      },
+      "required": [
+        "pair_id",
+        "repeat_rate_off",
+        "repeat_rate_on",
+        "repeat_rate_delta",
+        "cliche_share_off",
+        "cliche_share_on",
+        "cliche_share_delta",
+        "channel_concentration_off",
+        "channel_concentration_on",
+        "channel_concentration_delta"
+      ],
+      "title": "PairedComparison",
+      "type": "object"
+    },
+    "ThresholdRecommendation": {
+      "additionalProperties": false,
+      "properties": {
+        "threshold": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Threshold",
+          "type": "number"
+        },
+        "method": {
+          "enum": [
+            "separation",
+            "quality_p95"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "quality_false_positive_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Quality False Positive Rate",
+          "type": "number"
+        },
+        "formulaic_true_positive_rate": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Formulaic True Positive Rate"
+        }
+      },
+      "required": [
+        "threshold",
+        "method",
+        "quality_false_positive_rate"
+      ],
+      "title": "ThresholdRecommendation",
+      "type": "object"
+    },
+    "TradeoffPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "strength": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Strength",
+          "type": "number"
+        },
+        "sample_count": {
+          "minimum": 1,
+          "title": "Sample Count",
+          "type": "integer"
+        },
+        "rating_count": {
+          "minimum": 0,
+          "title": "Rating Count",
+          "type": "integer"
+        },
+        "naturalness": {
+          "anyOf": [
+            {
+              "maximum": 5,
+              "minimum": 1,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Naturalness"
+        },
+        "repeat_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Repeat Rate",
+          "type": "number"
+        },
+        "cliche_share": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Cliche Share",
+          "type": "number"
+        },
+        "channel_concentration": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Channel Concentration",
+          "type": "number"
+        },
+        "risk_score": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Risk Score",
+          "type": "number"
+        },
+        "utility_score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Utility Score"
+        },
+        "pareto_optimal": {
+          "default": false,
+          "title": "Pareto Optimal",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "strength",
+        "sample_count",
+        "rating_count",
+        "repeat_rate",
+        "cliche_share",
+        "channel_concentration",
+        "risk_score"
+      ],
+      "title": "TradeoffPoint",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "provisional",
+        "ready"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/CalibrationSource"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "chapter_metrics": {
+      "items": {
+        "$ref": "#/$defs/ChapterMetrics"
+      },
+      "title": "Chapter Metrics",
+      "type": "array"
+    },
+    "distributions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/CorpusDistribution"
+      },
+      "title": "Distributions",
+      "type": "object"
+    },
+    "recommended_thresholds": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ThresholdRecommendation"
+      },
+      "title": "Recommended Thresholds",
+      "type": "object"
+    },
+    "paired_comparisons": {
+      "items": {
+        "$ref": "#/$defs/PairedComparison"
+      },
+      "title": "Paired Comparisons",
+      "type": "array"
+    },
+    "tradeoff_curve": {
+      "items": {
+        "$ref": "#/$defs/TradeoffPoint"
+      },
+      "title": "Tradeoff Curve",
+      "type": "array"
+    },
+    "recommended_strength": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Recommended Strength"
+    },
+    "missing_evidence": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+    }
+  },
+  "required": [
+    "status",
+    "sources",
+    "chapter_metrics",
+    "distributions",
+    "recommended_thresholds",
+    "paired_comparisons",
+    "tradeoff_curve"
+  ],
+  "title": "CalibrationReport",
+  "type": "object"
+}

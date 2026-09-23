@@ -9,6 +9,7 @@ from character_performance.acceptance import (
     build_character_blind_packet,
     EvidenceProvenance,
 )
+from character_performance.gate_policy import GatePolicy, GateSpec
 
 
 def _passing_automatic() -> AutomaticEvidence:
@@ -143,3 +144,20 @@ def test_each_required_automatic_threshold_is_a_hard_gate() -> None:
         report = AcceptanceEvaluator().evaluate(evidence)
         assert report.automatic_status == "failed", field
         assert not report.completion_claim_allowed
+
+
+def test_acceptance_evaluator_uses_ready_calibrated_gate_policy() -> None:
+    policy = GatePolicy(
+        status="ready",
+        source_report_sha256="sha256:" + "a" * 64,
+        overrides=(
+            GateSpec("CLICHE_GROUP_SHARE", "cliche_group_share", 0.10, "<="),
+        ),
+    )
+
+    report = AcceptanceEvaluator(gate_policy=policy).evaluate(_passing_automatic())
+
+    gate = next(item for item in report.automatic_gates if item.code == "CLICHE_GROUP_SHARE")
+    assert gate.threshold == 0.10
+    assert not gate.passed
+    assert report.automatic_status == "failed"

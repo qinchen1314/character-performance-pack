@@ -26,6 +26,7 @@ from character_performance.domain.behavior_models import (
     content_hash,
 )
 from character_performance.extraction import RuleBasedBehaviorExtractor
+from character_performance.gate_policy import load_gate_policy
 from character_performance.memory import (
     BehaviorCommitConflict,
     DraftHashMismatch,
@@ -253,7 +254,8 @@ def _report(args: argparse.Namespace) -> None:
     started = perf_counter()
     memory = SQLiteBehaviorMemory(args.db)
     try:
-        report = BehaviorReportBuilder(memory).build(args.book)
+        gate_policy = load_gate_policy(args.thresholds) if args.thresholds else None
+        report = BehaviorReportBuilder(memory, gate_policy=gate_policy).build(args.book)
         suffix = args.output.suffix.lower()
         if suffix in {".md", ".markdown"}:
             rendered = render_markdown(report)
@@ -316,6 +318,7 @@ def _parser() -> argparse.ArgumentParser:
     report.add_argument("--book", required=True)
     report.add_argument("--db", type=Path, required=True)
     report.add_argument("--output", type=Path, required=True)
+    report.add_argument("--thresholds", type=Path)
     report.set_defaults(handler=_report)
     return parser
 

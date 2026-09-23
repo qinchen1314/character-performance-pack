@@ -6,6 +6,8 @@ from character_performance.domain.behavior_models import (
     TextSpan,
 )
 from character_performance.reporting import build_behavior_report
+from character_performance.gate_policy import GatePolicy, GateSpec
+import pytest
 
 
 def _occurrence(
@@ -78,3 +80,37 @@ def test_cross_chapter_metric_does_not_count_repetition_inside_current_chapter()
     assert gate.sample_size == 0
     assert gate.value == 0
     assert gate.passed
+
+
+def test_behavior_report_uses_calibrated_gate_policy() -> None:
+    policy = GatePolicy(
+        status="ready",
+        source_report_sha256="sha256:" + "b" * 64,
+        overrides=(
+            GateSpec("MAX_CHARACTER_CHANNEL_SHARE", "maximum_character_channel_share", 0.40, "<="),
+        ),
+    )
+
+    report = build_behavior_report(
+        "book.report",
+        (
+            _occurrence(1, chapter="chapter.1", channel="gaze", group="gaze_hold"),
+            _occurrence(2, chapter="chapter.2", channel="hands", group="object_handling"),
+        ),
+        gate_policy=policy,
+    )
+
+    gate = next(item for item in report.gates if item.code == "MAX_CHARACTER_CHANNEL_SHARE")
+    assert gate.threshold == 0.40
+    assert not gate.passed
+
+
+def test_behavior_report_rejects_provisional_gate_policy() -> None:
+    policy = GatePolicy(
+        status="provisional",
+        source_report_sha256="sha256:" + "d" * 64,
+        overrides=(),
+    )
+
+    with pytest.raises(ValueError, match="only ready"):
+        build_behavior_report("book.report", (), gate_policy=policy)

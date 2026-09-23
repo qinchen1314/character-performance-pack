@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import json
+from pathlib import Path
 from typing import Literal
 
 
@@ -23,6 +25,47 @@ def gate_passes(value: float, spec: GateSpec) -> bool:
     if spec.comparator == ">=":
         return value >= spec.threshold
     return value == spec.threshold
+
+
+@dataclass(frozen=True, slots=True)
+class GatePolicy:
+    status: Literal["provisional", "ready"]
+    source_report_sha256: str
+    overrides: tuple[GateSpec, ...]
+
+    def apply(self, specs: tuple[GateSpec, ...]) -> tuple[GateSpec, ...]:
+        by_code = {spec.code: spec for spec in self.overrides}
+        return tuple(by_code.get(spec.code, spec) for spec in specs)
+
+
+def load_gate_policy(path: Path, *, require_ready: bool = True) -> GatePolicy:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    status = payload.get("status")
+    if status not in {"provisional", "ready"}:
+        raise ValueError("threshold policy status must be provisional or ready")
+    if require_ready and status != "ready":
+        raise ValueError("provisional threshold policy cannot replace acceptance gates")
+    source_hash = payload.get("source_report_sha256", "")
+    if not isinstance(source_hash, str) or not source_hash.startswith("sha256:"):
+        raise ValueError("threshold policy requires source_report_sha256")
+    known = {spec.code: spec for spec in AUTOMATIC_GATE_SPECS}
+    overrides: list[GateSpec] = []
+    gates = payload.get("gates")
+    if not isinstance(gates, dict) or not gates:
+        raise ValueError("threshold policy requires non-empty gates")
+    for code, item in gates.items():
+        if code not in known or not isinstance(item, dict):
+            raise ValueError(f"unknown threshold gate: {code}")
+        comparator = item.get("comparator")
+        threshold = item.get("threshold")
+        if comparator != known[code].comparator:
+            raise ValueError(f"threshold comparator cannot change for {code}")
+        if not isinstance(threshold, (int, float)) or threshold < 0:
+            raise ValueError(f"invalid threshold for {code}")
+        overrides.append(
+            GateSpec(code, known[code].evidence_field, float(threshold), comparator)
+        )
+    return GatePolicy(status, source_hash, tuple(overrides))
 
 
 MEMORY_GATE_SPECS = (
@@ -49,4 +92,4 @@ AUTOMATIC_GATE_SPECS = MEMORY_GATE_SPECS + (
 )
 
 
-__all__ = ["AUTOMATIC_GATE_SPECS", "MEMORY_GATE_SPECS", "Comparator", "GateSpec", "gate_passes"]
+__all__ = ["AUTOMATIC_GATE_SPECS", "MEMORY_GATE_SPECS", "Comparator", "GatePolicy", "GateSpec", "gate_passes", "load_gate_policy"]

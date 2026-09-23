@@ -1,0 +1,15 @@
+version: 1
+minimum_occurrences_per_chapter: 3
+synthetic_formulaic:
+  stock_repetitions_per_chapter: 8
+readiness:
+  minimum_quality_chapters: 30
+  minimum_formulaic_chapters: 30
+  minimum_pairs: 10
+  minimum_sweep_strengths: 3
+  minimum_ratings_per_strength: 2
+samples:
+  - id: quality.zhanyao-1-500
+    role: quality
+    path: ../../../从斩妖除魔开始长生不死(1-500章).txt
+    human_accepted: true

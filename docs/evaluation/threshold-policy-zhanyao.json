@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "status": "provisional",
+  "source_report_sha256": "sha256:e6d8e258309ccef8e3e4ef6fa8e963bb3685733c8ed89bad85a9cca87b5bd4f4",
+  "gates": {
+    "CLICHE_GROUP_SHARE": {
+      "threshold": 0.3333333333333333,
+      "comparator": "<="
+    },
+    "IMMEDIATE_EXACT_REPEAT_RATE": {
+      "threshold": 0.6666666666666666,
+      "comparator": "<="
+    },
+    "MAX_CHARACTER_CHANNEL_SHARE": {
+      "threshold": 1.0,
+      "comparator": "<="
+    }
+  }
+}

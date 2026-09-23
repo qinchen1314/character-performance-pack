@@ -44,7 +44,7 @@ python -m pip install -e .
 - `cpp-blind-review`：生成匿名真人盲评包，或汇总多名评审的评分。
 - `cpp-behavior`：执行 prepare/audit/rewrite/commit 全流程，并生成跨章节行为报告。
 - `cpp-behavior-memory`：迁移、备份和恢复跨章节行为记忆数据库。
-- `cpp-behavior-verify`：运行自动验收门禁并组织隐去角色名的真人盲评。
+- `cpp-behavior-verify`：校准阈值、运行自动验收门禁并组织隐去角色名的真人盲评。
 
 ## 真人盲评与目录清理
 
@@ -175,6 +175,47 @@ cpp-behavior-verify evaluate reports/automatic-evidence.json \
 重写保持率、幂等/故障注入、确定性和四项 P95 性能目标。没有至少两名独立评审的完整
 评分时，总体状态固定为 `pending_human`；只有自动门禁与真人门禁全部通过，报告中的
 `completion_claim_allowed` 才会为 `true`。
+
+## 真实正文阈值校准
+
+重复率、俗套占比和通道集中度不再只能使用代码内的经验常量。`calibrate` 子命令接受一份
+语料清单，按章节运行与正式报告相同的行为抽取口径，并同时生成机器可读报告、人工审阅
+报告和门禁策略：
+
+```bash
+cpp-behavior-verify calibrate docs/evaluation/threshold-calibration-zhanyao.yaml \
+  --output docs/evaluation/threshold-calibration-zhanyao.json \
+  --markdown docs/evaluation/threshold-calibration-zhanyao.md \
+  --policy-output docs/evaluation/threshold-policy-zhanyao.json
+```
+
+清单中的 `samples` 支持五类样本：
+
+| `role` | 用途 | 必需附加字段 |
+|---|---|---|
+| `quality` | 人工认可、市场验证的优质正文分布 | `human_accepted: true` |
+| `formulaic` | 人工确认的公式化正文负样本 | `human_accepted: true` |
+| `system_off` / `system_on` | 相同提示、seed 和剧情约束下的开关配对 | 相同 `pair_id` |
+| `sweep` | 不同排重强度的输出 | `strength`、`naturalness_ratings` |
+
+`synthetic_formulaic` 可从优质章节追加固定俗套动作，验证检测器确实会响应退化文本；它只
+是敏感性对照，不会冒充人工确认的公式化作品。只有优质章节、人工公式化章节、系统开关
+配对和至少三个强度点的真人自然度评分全部达到清单中的样本量要求，策略状态才会成为
+`ready`。证据不全时仍会产出 `provisional` 报告，但正式验收和行为报告会拒绝加载该策略，
+避免用单本作品直接覆盖生产门禁。
+
+ready 策略可以接入两个正式入口：
+
+```bash
+cpp-behavior-verify evaluate reports/automatic-evidence.json \
+  --thresholds reports/thresholds.json --output reports/acceptance.md
+
+cpp-behavior report --book book.demo --db story.db \
+  --thresholds reports/thresholds.json --output reports/behavior.md
+```
+
+报告会保留每个语料文件的 SHA-256、纳入/排除章节数、完整分位数、优质误杀率、公式化
+召回率、开关配对改善量、Pareto 点和建议排重强度。原始小说正文不会写入报告或策略文件。
 
 示例中的“他皱眉。”会被识别为 `facial.brow_contract`，并给出精确文本区间、语义家族、叙事功能和置信度。应用也可以注入自己的 JSON 模型客户端；仓库不绑定供应商 SDK，也不读取 API Key。
 

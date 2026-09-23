@@ -14,7 +14,7 @@ from pydantic import Field, model_validator
 
 from .domain.behavior_models import ExtractionRequest, ExtractionResult
 from .domain.models import DomainModel
-from .gate_policy import AUTOMATIC_GATE_SPECS, gate_passes
+from .gate_policy import AUTOMATIC_GATE_SPECS, GatePolicy, gate_passes
 
 
 class ExtractionAdapter(Protocol):
@@ -388,6 +388,15 @@ class AcceptanceReport(DomainModel):
 
 
 class AcceptanceEvaluator:
+    def __init__(self, *, gate_policy: GatePolicy | None = None) -> None:
+        if gate_policy is not None and gate_policy.status != "ready":
+            raise ValueError("only ready gate policies can drive acceptance")
+        self.gate_specs = (
+            gate_policy.apply(AUTOMATIC_GATE_SPECS)
+            if gate_policy is not None
+            else AUTOMATIC_GATE_SPECS
+        )
+
     def evaluate(
         self,
         automatic: AutomaticEvidence,
@@ -401,7 +410,7 @@ class AcceptanceEvaluator:
                 comparator=spec.comparator,
                 passed=gate_passes(value, spec),
             )
-            for spec in AUTOMATIC_GATE_SPECS
+            for spec in self.gate_specs
             for value in (float(getattr(automatic, spec.evidence_field)),)
         )
         automatic_status = "passed" if all(gate.passed for gate in gates) else "failed"

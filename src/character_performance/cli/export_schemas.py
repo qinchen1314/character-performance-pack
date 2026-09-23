@@ -10,6 +10,7 @@ from character_performance.domain.models import (
     ActiveAction, BlockingGoal, SceneLayout,
 )
 from character_performance.modifiers import Modifier
+from character_performance.calibration import CalibrationManifest, CalibrationReport
 from character_performance.domain.behavior_models import (
     AcceptedDraft,
     ArcState,
@@ -55,6 +56,7 @@ SCHEMA_MODELS = (
     ExtractedBehavior, ExtractionResult, GeneratedDraft, SourceSpan, AuditIssue, AuditMetrics,
     AuditResult, RewriteRequest, TextReplacement, ChangedSpan,
     PreservationChecks, RewriteResult, AcceptedDraft, CommitRequest, CommitResult,
+    CalibrationManifest, CalibrationReport,
 )
 
 

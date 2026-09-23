@@ -10,7 +10,7 @@ from pydantic import Field
 
 from .domain.behavior_models import BehaviorOccurrence
 from .domain.models import DomainModel
-from .gate_policy import MEMORY_GATE_SPECS, gate_passes
+from .gate_policy import GatePolicy, MEMORY_GATE_SPECS, gate_passes
 from .memory.repository import BehaviorMemory
 
 
@@ -77,7 +77,10 @@ def build_behavior_report(
     occurrences: Iterable[BehaviorOccurrence],
     *,
     signature_groups_by_actor: dict[str, frozenset[str]] | None = None,
+    gate_policy: GatePolicy | None = None,
 ) -> BehaviorReport:
+    if gate_policy is not None and gate_policy.status != "ready":
+        raise ValueError("only ready gate policies can drive behavior reports")
     rows = tuple(sorted(occurrences, key=lambda item: (item.position.global_beat_index, item.text_span.start, item.occurrence_id)))
     if any(item.book_id != book_id for item in rows):
         raise ValueError("all occurrences must belong to the requested book")
@@ -179,6 +182,7 @@ def build_behavior_report(
             comparable_cross_chapter,
         ),
     }
+    gate_specs = gate_policy.apply(MEMORY_GATE_SPECS) if gate_policy else MEMORY_GATE_SPECS
     gates = tuple(
         MetricGate(
             code=spec.code,
@@ -188,7 +192,7 @@ def build_behavior_report(
             passed=(gate_passes(gate_values[spec.code][0], spec) or total == 0),
             sample_size=gate_values[spec.code][1],
         )
-        for spec in MEMORY_GATE_SPECS
+        for spec in gate_specs
     )
     return BehaviorReport(
         book_id=book_id,
@@ -202,8 +206,9 @@ def build_behavior_report(
 
 
 class BehaviorReportBuilder:
-    def __init__(self, memory: BehaviorMemory) -> None:
+    def __init__(self, memory: BehaviorMemory, *, gate_policy: GatePolicy | None = None) -> None:
         self.memory = memory
+        self.gate_policy = gate_policy
 
     def build(self, book_id: str) -> BehaviorReport:
         occurrences = self.memory.list_book_occurrences(book_id)
@@ -218,6 +223,7 @@ class BehaviorReportBuilder:
             book_id,
             occurrences,
             signature_groups_by_actor=signature_groups,
+            gate_policy=self.gate_policy,
         )
 
 

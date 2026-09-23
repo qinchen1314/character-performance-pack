@@ -66,3 +66,30 @@ def test_acceptance_cli_keeps_answer_key_separate_and_reports_pending_human(tmp_
     report = AcceptanceReport.model_validate_json(output.read_text(encoding="utf-8"))
     assert report.overall_status == "pending_human"
     assert not report.completion_claim_allowed
+
+
+def test_acceptance_cli_loads_ready_threshold_policy(tmp_path) -> None:
+    automatic = tmp_path / "automatic.json"
+    automatic.write_text(_automatic().model_dump_json(indent=2), encoding="utf-8")
+    thresholds = tmp_path / "thresholds.json"
+    thresholds.write_text(
+        json.dumps(
+            {
+                "schema_version": "1.0.0",
+                "status": "ready",
+                "source_report_sha256": "sha256:" + "c" * 64,
+                "gates": {
+                    "CLICHE_GROUP_SHARE": {"threshold": 0.05, "comparator": "<="}
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    output = tmp_path / "acceptance.json"
+
+    evaluate_acceptance_files(automatic, output, threshold_policy_path=thresholds)
+
+    report = AcceptanceReport.model_validate_json(output.read_text(encoding="utf-8"))
+    assert report.automatic_status == "failed"
+    gate = next(item for item in report.automatic_gates if item.code == "CLICHE_GROUP_SHARE")
+    assert gate.threshold == 0.05

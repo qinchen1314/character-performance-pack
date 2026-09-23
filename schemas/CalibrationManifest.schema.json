@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "CalibrationSample": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "quality",
+            "formulaic",
+            "system_off",
+            "system_on",
+            "sweep"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "human_accepted": {
+          "default": false,
+          "title": "Human Accepted",
+          "type": "boolean"
+        },
+        "pair_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pair Id"
+        },
+        "strength": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strength"
+        },
+        "naturalness_ratings": {
+          "default": [],
+          "items": {
+            "type": "number"
+          },
+          "title": "Naturalness Ratings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "role",
+        "path"
+      ],
+      "title": "CalibrationSample",
+      "type": "object"
+    },
+    "ReadinessRequirements": {
+      "additionalProperties": false,
+      "properties": {
+        "minimum_quality_chapters": {
+          "default": 30,
+          "minimum": 1,
+          "title": "Minimum Quality Chapters",
+          "type": "integer"
+        },
+        "minimum_formulaic_chapters": {
+          "default": 30,
+          "minimum": 1,
+          "title": "Minimum Formulaic Chapters",
+          "type": "integer"
+        },
+        "minimum_pairs": {
+          "default": 10,
+          "minimum": 1,
+          "title": "Minimum Pairs",
+          "type": "integer"
+        },
+        "minimum_sweep_strengths": {
+          "default": 3,
+          "minimum": 3,
+          "title": "Minimum Sweep Strengths",
+          "type": "integer"
+        },
+        "minimum_ratings_per_strength": {
+          "default": 2,
+          "minimum": 1,
+          "title": "Minimum Ratings Per Strength",
+          "type": "integer"
+        }
+      },
+      "title": "ReadinessRequirements",
+      "type": "object"
+    },
+    "SyntheticFormulaicConfig": {
+      "additionalProperties": false,
+      "description": "Detector sensitivity control; never counts as human-labelled evidence.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "stock_repetitions_per_chapter": {
+          "default": 8,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Stock Repetitions Per Chapter",
+          "type": "integer"
+        }
+      },
+      "title": "SyntheticFormulaicConfig",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1,
+      "default": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "minimum_occurrences_per_chapter": {
+      "default": 3,
+      "minimum": 1,
+      "title": "Minimum Occurrences Per Chapter",
+      "type": "integer"
+    },
+    "readiness": {
+      "$ref": "#/$defs/ReadinessRequirements",
+      "default": {
+        "minimum_quality_chapters": 30,
+        "minimum_formulaic_chapters": 30,
+        "minimum_pairs": 10,
+        "minimum_sweep_strengths": 3,
+        "minimum_ratings_per_strength": 2
+      }
+    },
+    "synthetic_formulaic": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SyntheticFormulaicConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "samples": {
+      "items": {
+        "$ref": "#/$defs/CalibrationSample"
+      },
+      "title": "Samples",
+      "type": "array"
+    }
+  },
+  "required": [
+    "samples"
+  ],
+  "title": "CalibrationManifest",
+  "type": "object"
+}

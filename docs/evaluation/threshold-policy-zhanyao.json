@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "status": "provisional",
-  "source_report_sha256": "sha256:e6d8e258309ccef8e3e4ef6fa8e963bb3685733c8ed89bad85a9cca87b5bd4f4",
+  "source_report_sha256": "sha256:77eeb1b8d4a1ab0ce9d1183ab78ee87f16a81cd651ec3178d27e2a4501c30b78",
   "gates": {
     "CLICHE_GROUP_SHARE": {
       "threshold": 0.3333333333333333,

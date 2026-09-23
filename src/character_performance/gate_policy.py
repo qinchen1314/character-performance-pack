@@ -37,6 +37,11 @@ class GatePolicy:
         by_code = {spec.code: spec for spec in self.overrides}
         return tuple(by_code.get(spec.code, spec) for spec in specs)
 
+    def apply_ready(self, specs: tuple[GateSpec, ...]) -> tuple[GateSpec, ...]:
+        if self.status != "ready":
+            raise ValueError("only ready gate policies can drive acceptance")
+        return self.apply(specs)
+
 
 def load_gate_policy(path: Path, *, require_ready: bool = True) -> GatePolicy:
     payload = json.loads(path.read_text(encoding="utf-8"))

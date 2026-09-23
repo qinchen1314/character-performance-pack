@@ -19,6 +19,106 @@ CLICHE_GROUPS = frozenset(
 )
 
 
+def calculate_memory_gate_values(
+    occurrences: Iterable[BehaviorOccurrence],
+    *,
+    signature_groups_by_actor: dict[str, frozenset[str]] | None = None,
+) -> dict[str, tuple[float, int]]:
+    """Calculate the exact metrics consumed by the memory acceptance gates."""
+    rows = tuple(
+        sorted(
+            occurrences,
+            key=lambda item: (
+                item.position.global_beat_index,
+                item.text_span.start,
+                item.occurrence_id,
+            ),
+        )
+    )
+    by_actor: dict[str, list[BehaviorOccurrence]] = defaultdict(list)
+    chapter_groups: Counter[tuple[str, str]] = Counter()
+    cliche_count = 0
+    for item in rows:
+        by_actor[item.actor_id].append(item)
+        for group in item.fingerprint.semantic_groups:
+            chapter_groups[(item.position.chapter_id, group)] += 1
+        if item.fingerprint.semantic_groups & CLICHE_GROUPS:
+            cliche_count += 1
+
+    signature_groups_by_actor = signature_groups_by_actor or {}
+    max_channel_share = 0.0
+    exact_repeat_count = 0
+    cross_chapter_repeat_count = 0
+    comparable_cross_chapter = 0
+    for actor_id, actor_rows in by_actor.items():
+        signature_groups = signature_groups_by_actor.get(actor_id, frozenset())
+        non_signature_rows = [
+            item
+            for item in actor_rows
+            if not (item.fingerprint.semantic_groups & signature_groups)
+        ]
+        non_signature_channels = Counter(
+            item.fingerprint.channel for item in non_signature_rows
+        )
+        share = max(non_signature_channels.values(), default=0) / max(
+            1, len(non_signature_rows)
+        )
+        max_channel_share = max(max_channel_share, share)
+
+        recent: deque[BehaviorOccurrence] = deque(maxlen=3)
+        prior_by_chapter: dict[str, list[BehaviorOccurrence]] = defaultdict(list)
+        chapter_order: list[str] = []
+        for item in actor_rows:
+            if item.fingerprint.unit_id and any(
+                previous.fingerprint.unit_id == item.fingerprint.unit_id
+                for previous in recent
+            ):
+                exact_repeat_count += 1
+            recent.append(item)
+            chapter = item.position.chapter_id
+            previous_chapters = [
+                previous for previous in chapter_order if previous != chapter
+            ][-3:]
+            candidates = [
+                old
+                for old_chapter in previous_chapters
+                for old in prior_by_chapter[old_chapter]
+            ]
+            if candidates:
+                comparable_cross_chapter += 1
+                if any(
+                    old.fingerprint.channel == item.fingerprint.channel
+                    and bool(
+                        old.fingerprint.narrative_functions
+                        & item.fingerprint.narrative_functions
+                    )
+                    for old in candidates
+                ):
+                    cross_chapter_repeat_count += 1
+            if chapter not in prior_by_chapter:
+                chapter_order.append(chapter)
+            prior_by_chapter[chapter].append(item)
+
+    semantic_over_limit = sum(max(0, count - 2) for count in chapter_groups.values())
+    total = len(rows)
+    return {
+        "IMMEDIATE_EXACT_REPEAT_RATE": (
+            exact_repeat_count / max(1, total),
+            total,
+        ),
+        "CHAPTER_SEMANTIC_OVER_LIMIT": (
+            float(semantic_over_limit),
+            sum(chapter_groups.values()),
+        ),
+        "CLICHE_GROUP_SHARE": (cliche_count / max(1, total), total),
+        "MAX_CHARACTER_CHANNEL_SHARE": (max_channel_share, total),
+        "CROSS_CHAPTER_FUNCTION_CHANNEL_REPEAT_RATE": (
+            cross_chapter_repeat_count / max(1, comparable_cross_chapter),
+            comparable_cross_chapter,
+        ),
+    }
+
+
 class DistributionRow(DomainModel):
     actor_id: str = Field(min_length=1)
     occurrence_count: int = Field(ge=0)
@@ -79,8 +179,6 @@ def build_behavior_report(
     signature_groups_by_actor: dict[str, frozenset[str]] | None = None,
     gate_policy: GatePolicy | None = None,
 ) -> BehaviorReport:
-    if gate_policy is not None and gate_policy.status != "ready":
-        raise ValueError("only ready gate policies can drive behavior reports")
     rows = tuple(sorted(occurrences, key=lambda item: (item.position.global_beat_index, item.text_span.start, item.occurrence_id)))
     if any(item.book_id != book_id for item in rows):
         raise ValueError("all occurrences must belong to the requested book")
@@ -88,15 +186,12 @@ def build_behavior_report(
     by_actor: dict[str, list[BehaviorOccurrence]] = defaultdict(list)
     chapter_groups: Counter[tuple[str, str]] = Counter()
     syntax_counts: Counter[tuple[str, str]] = Counter()
-    cliche_count = 0
     for item in rows:
         by_actor[item.actor_id].append(item)
         for group in item.fingerprint.semantic_groups:
             chapter_groups[(item.position.chapter_id, group)] += 1
         for key in _syntax_keys(item):
             syntax_counts[(item.position.chapter_id, key)] += 1
-        if item.fingerprint.semantic_groups & CLICHE_GROUPS:
-            cliche_count += 1
 
     distributions: list[DistributionRow] = []
     max_channel_share = 0.0
@@ -140,49 +235,11 @@ def build_behavior_report(
         if count > 1
     )
 
-    exact_repeat_count = 0
-    cross_chapter_repeat_count = 0
-    comparable_cross_chapter = 0
-    for actor_rows in by_actor.values():
-        recent: deque[BehaviorOccurrence] = deque(maxlen=3)
-        prior_by_chapter: dict[str, list[BehaviorOccurrence]] = defaultdict(list)
-        chapter_order: list[str] = []
-        for item in actor_rows:
-            if item.fingerprint.unit_id and any(
-                previous.fingerprint.unit_id == item.fingerprint.unit_id for previous in recent
-            ):
-                exact_repeat_count += 1
-            recent.append(item)
-            chapter = item.position.chapter_id
-            previous_chapters = [
-                previous for previous in chapter_order if previous != chapter
-            ][-3:]
-            candidates = [old for old_chapter in previous_chapters for old in prior_by_chapter[old_chapter]]
-            if candidates:
-                comparable_cross_chapter += 1
-                if any(
-                    old.fingerprint.channel == item.fingerprint.channel
-                    and bool(old.fingerprint.narrative_functions & item.fingerprint.narrative_functions)
-                    for old in candidates
-                ):
-                    cross_chapter_repeat_count += 1
-            if chapter not in prior_by_chapter:
-                chapter_order.append(chapter)
-            prior_by_chapter[chapter].append(item)
-
-    semantic_over_limit = sum(max(0, count - 2) for count in chapter_groups.values())
     total = len(rows)
-    gate_values = {
-        "IMMEDIATE_EXACT_REPEAT_RATE": (exact_repeat_count / max(1, total), total),
-        "CHAPTER_SEMANTIC_OVER_LIMIT": (float(semantic_over_limit), sum(chapter_groups.values())),
-        "CLICHE_GROUP_SHARE": (cliche_count / max(1, total), total),
-        "MAX_CHARACTER_CHANNEL_SHARE": (max_channel_share, total),
-        "CROSS_CHAPTER_FUNCTION_CHANNEL_REPEAT_RATE": (
-            cross_chapter_repeat_count / max(1, comparable_cross_chapter),
-            comparable_cross_chapter,
-        ),
-    }
-    gate_specs = gate_policy.apply(MEMORY_GATE_SPECS) if gate_policy else MEMORY_GATE_SPECS
+    gate_values = calculate_memory_gate_values(
+        rows, signature_groups_by_actor=signature_groups_by_actor
+    )
+    gate_specs = gate_policy.apply_ready(MEMORY_GATE_SPECS) if gate_policy else MEMORY_GATE_SPECS
     gates = tuple(
         MetricGate(
             code=spec.code,
@@ -281,4 +338,4 @@ def render_html(report: BehaviorReport) -> str:
     return f"<!doctype html><html lang=\"zh-CN\"><head><meta charset=\"utf-8\"><title>{escape(report.book_id)} 行为控制报告</title><style>body{{font-family:system-ui,sans-serif;max-width:960px;margin:2rem auto;line-height:1.6}}table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #bbb;padding:.4rem;text-align:left}}</style></head><body>{body}</body></html>\n"
 
 
-__all__ = ["BehaviorReport", "BehaviorReportBuilder", "DistributionRow", "HotspotRow", "MetricGate", "build_behavior_report", "render_html", "render_markdown"]
+__all__ = ["BehaviorReport", "BehaviorReportBuilder", "DistributionRow", "HotspotRow", "MetricGate", "build_behavior_report", "calculate_memory_gate_values", "render_html", "render_markdown"]

@@ -195,8 +195,11 @@ cpp-behavior-verify calibrate docs/evaluation/threshold-calibration-zhanyao.yaml
 |---|---|---|
 | `quality` | 人工认可、市场验证的优质正文分布 | `human_accepted: true` |
 | `formulaic` | 人工确认的公式化正文负样本 | `human_accepted: true` |
-| `system_off` / `system_on` | 相同提示、seed 和剧情约束下的开关配对 | 相同 `pair_id` |
-| `sweep` | 不同排重强度的输出 | `strength`、`naturalness_ratings` |
+| `system_off` / `system_on` | 相同提示、seed 和剧情约束下的开关配对 | 相同 `pair_id`、`control_fingerprint` |
+| `sweep` | 不同排重强度的输出 | 相同 `sweep_id`、`control_fingerprint`，以及 `strength`、`naturalness_ratings` |
+
+`control_fingerprint` 是 `sha256:` 加 64 位十六进制摘要，应由提示、seed、剧情事实和角色
+状态的规范化输入共同计算。校准器会拒绝把控制指纹不同的输出伪装成开关配对或强度扫描。
 
 `synthetic_formulaic` 可从优质章节追加固定俗套动作，验证检测器确实会响应退化文本；它只
 是敏感性对照，不会冒充人工确认的公式化作品。只有优质章节、人工公式化章节、系统开关

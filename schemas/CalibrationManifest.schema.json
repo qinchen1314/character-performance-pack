@@ -41,6 +41,31 @@
           "default": null,
           "title": "Pair Id"
         },
+        "sweep_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sweep Id"
+        },
+        "control_fingerprint": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Control Fingerprint"
+        },
         "strength": {
           "anyOf": [
             {

@@ -3,8 +3,9 @@ from __future__ import annotations
 import json
 
 import yaml
+import pytest
 
-from character_performance.calibration import calibrate_manifest
+from character_performance.calibration import CalibrationManifest, calibrate_manifest
 from character_performance.gate_policy import load_gate_policy
 
 
@@ -19,6 +20,7 @@ def _write_book(path, chapters: list[str]) -> None:
 
 
 def test_calibration_builds_all_four_evidence_views_and_publishable_policy(tmp_path) -> None:
+    control = "sha256:" + "1" * 64
     quality = tmp_path / "quality.txt"
     formulaic = tmp_path / "formulaic.txt"
     off = tmp_path / "off.txt"
@@ -49,11 +51,11 @@ def test_calibration_builds_all_four_evidence_views_and_publishable_policy(tmp_p
                 "samples": [
                     {"id": "quality", "role": "quality", "path": quality.name, "human_accepted": True},
                     {"id": "formulaic", "role": "formulaic", "path": formulaic.name, "human_accepted": True},
-                    {"id": "pair.off", "role": "system_off", "path": off.name, "pair_id": "pair.1"},
-                    {"id": "pair.on", "role": "system_on", "path": on.name, "pair_id": "pair.1"},
-                    {"id": "sweep.0", "role": "sweep", "path": sweep_low.name, "strength": 0.0, "naturalness_ratings": [2, 3]},
-                    {"id": "sweep.5", "role": "sweep", "path": sweep_mid.name, "strength": 0.5, "naturalness_ratings": [4, 4]},
-                    {"id": "sweep.1", "role": "sweep", "path": sweep_high.name, "strength": 1.0, "naturalness_ratings": [3, 4]},
+                    {"id": "pair.off", "role": "system_off", "path": off.name, "pair_id": "pair.1", "control_fingerprint": control},
+                    {"id": "pair.on", "role": "system_on", "path": on.name, "pair_id": "pair.1", "control_fingerprint": control},
+                    {"id": "sweep.0", "role": "sweep", "path": sweep_low.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.0, "naturalness_ratings": [2, 3]},
+                    {"id": "sweep.5", "role": "sweep", "path": sweep_mid.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 0.5, "naturalness_ratings": [4, 4]},
+                    {"id": "sweep.1", "role": "sweep", "path": sweep_high.name, "sweep_id": "sweep.1", "control_fingerprint": control, "strength": 1.0, "naturalness_ratings": [3, 4]},
                 ],
             },
             allow_unicode=True,
@@ -108,3 +110,28 @@ def test_quality_only_baseline_is_provisional_and_cannot_be_published(tmp_path) 
     assert any(source.path.startswith("derived://") for source in report.sources)
     policy = json.loads(report.policy_json())
     assert policy["status"] == "provisional"
+
+
+def test_pair_controls_must_share_the_same_input_fingerprint() -> None:
+    with pytest.raises(ValueError, match="share one control_fingerprint"):
+        CalibrationManifest.model_validate(
+            {
+                "version": 1,
+                "samples": [
+                    {
+                        "id": "off",
+                        "role": "system_off",
+                        "path": "off.txt",
+                        "pair_id": "pair.1",
+                        "control_fingerprint": "sha256:" + "1" * 64,
+                    },
+                    {
+                        "id": "on",
+                        "role": "system_on",
+                        "path": "on.txt",
+                        "pair_id": "pair.1",
+                        "control_fingerprint": "sha256:" + "2" * 64,
+                    },
+                ],
+            }
+        )

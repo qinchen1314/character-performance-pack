@@ -389,10 +389,8 @@ class AcceptanceReport(DomainModel):
 
 class AcceptanceEvaluator:
     def __init__(self, *, gate_policy: GatePolicy | None = None) -> None:
-        if gate_policy is not None and gate_policy.status != "ready":
-            raise ValueError("only ready gate policies can drive acceptance")
         self.gate_specs = (
-            gate_policy.apply(AUTOMATIC_GATE_SPECS)
+            gate_policy.apply_ready(AUTOMATIC_GATE_SPECS)
             if gate_policy is not None
             else AUTOMATIC_GATE_SPECS
         )

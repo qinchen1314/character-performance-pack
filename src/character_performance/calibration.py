@@ -20,10 +20,15 @@ from typing import Literal
 from pydantic import Field, model_validator
 import yaml
 
-from .domain.behavior_models import ExtractionRequest, NarrativePosition
+from .domain.behavior_models import (
+    BehaviorFingerprint,
+    BehaviorOccurrence,
+    ExtractionRequest,
+    NarrativePosition,
+)
 from .domain.models import CharacterProfile, DomainModel
 from .extraction import RuleBasedBehaviorExtractor
-from .reporting import CLICHE_GROUPS
+from .reporting import calculate_memory_gate_values
 
 
 MetricName = Literal["repeat_rate", "cliche_share", "channel_concentration"]
@@ -64,16 +69,28 @@ class CalibrationSample(DomainModel):
     path: str = Field(min_length=1)
     human_accepted: bool = False
     pair_id: str | None = None
+    sweep_id: str | None = None
+    control_fingerprint: str | None = Field(
+        default=None, pattern=r"^sha256:[0-9a-f]{64}$"
+    )
     strength: float | None = Field(default=None, ge=0, le=1)
     naturalness_ratings: tuple[float, ...] = ()
 
     @model_validator(mode="after")
     def role_fields_are_coherent(self) -> "CalibrationSample":
-        if self.role in {"system_off", "system_on"} and not self.pair_id:
-            raise ValueError("system_on/system_off samples require pair_id")
+        if self.role == "quality" and not self.human_accepted:
+            raise ValueError("quality samples must be human_accepted")
+        if self.role in {"system_off", "system_on"} and (
+            not self.pair_id or not self.control_fingerprint
+        ):
+            raise ValueError(
+                "system_on/system_off samples require pair_id and control_fingerprint"
+            )
         if self.role == "sweep":
-            if self.strength is None:
-                raise ValueError("sweep samples require strength")
+            if self.strength is None or not self.sweep_id or not self.control_fingerprint:
+                raise ValueError(
+                    "sweep samples require sweep_id, control_fingerprint and strength"
+                )
             if any(value < 1 or value > 5 for value in self.naturalness_ratings):
                 raise ValueError("naturalness ratings must be between 1 and 5")
         elif self.strength is not None or self.naturalness_ratings:
@@ -93,6 +110,17 @@ class CalibrationManifest(DomainModel):
         ids = [sample.id for sample in self.samples]
         if not ids or len(ids) != len(set(ids)):
             raise ValueError("calibration samples must have unique non-empty ids")
+        pairs: dict[str, set[str]] = defaultdict(set)
+        sweeps: dict[str, set[str]] = defaultdict(set)
+        for sample in self.samples:
+            if sample.pair_id and sample.control_fingerprint:
+                pairs[sample.pair_id].add(sample.control_fingerprint)
+            if sample.sweep_id and sample.control_fingerprint:
+                sweeps[sample.sweep_id].add(sample.control_fingerprint)
+        if any(len(values) > 1 for values in pairs.values()):
+            raise ValueError("paired system samples must share one control_fingerprint")
+        if any(len(values) > 1 for values in sweeps.values()):
+            raise ValueError("each strength sweep must share one control_fingerprint")
         return self
 
 
@@ -186,7 +214,7 @@ class CalibrationReport(DomainModel):
 
     def policy_payload(self) -> dict[str, object]:
         digest = sha256(
-            self.model_dump_json(exclude={"chapter_metrics"}).encode("utf-8")
+            self.model_dump_json().encode("utf-8")
         ).hexdigest()
         return {
             "schema_version": "1.0.0",
@@ -274,11 +302,36 @@ def _analyze_chapters(
         )
         result = extractor.extract(request)
         behaviors = result.behaviors
-        keys = [item.matched_unit_id or item.canonical_action for item in behaviors]
-        repeats = sum(key in keys[max(0, i - 3) : i] for i, key in enumerate(keys))
-        cliches = sum(bool(item.semantic_groups & CLICHE_GROUPS) for item in behaviors)
-        channels = Counter(item.channel for item in behaviors)
         total = len(behaviors)
+        occurrences = tuple(
+            BehaviorOccurrence(
+                occurrence_id=f"calibration.{sample.id}.{index}.{behavior_index}",
+                book_id=request.position.book_id,
+                position=request.position.model_copy(
+                    update={"beat_index": behavior_index, "global_beat_index": behavior_index}
+                ),
+                actor_id=behavior.actor_id,
+                target_ids=behavior.target_ids,
+                fingerprint=BehaviorFingerprint(
+                    unit_id=behavior.matched_unit_id,
+                    semantic_groups=behavior.semantic_groups,
+                    channel=behavior.channel,
+                    narrative_functions=behavior.narrative_functions,
+                    strategy_id=behavior.strategy_id,
+                    actor_id=behavior.actor_id,
+                    target_ids=behavior.target_ids,
+                    syntax_features=behavior.syntax_features,
+                    lexical_lemmas=behavior.lexical_lemmas,
+                ),
+                source="extracted",
+                text_span=behavior.text_span,
+                confidence=behavior.confidence,
+                generation_run_id=request.run_id,
+                accepted_revision=1,
+            )
+            for behavior_index, behavior in enumerate(behaviors)
+        )
+        gate_values = calculate_memory_gate_values(occurrences)
         rows.append(
             ChapterMetrics(
                 sample_id=sample.id,
@@ -287,9 +340,9 @@ def _analyze_chapters(
                 character_count=len(body),
                 occurrence_count=total,
                 unresolved_count=len(result.unresolved_spans),
-                repeat_rate=repeats / max(1, total),
-                cliche_share=cliches / max(1, total),
-                channel_concentration=max(channels.values(), default=0) / max(1, total),
+                repeat_rate=gate_values["IMMEDIATE_EXACT_REPEAT_RATE"][0],
+                cliche_share=gate_values["CLICHE_GROUP_SHARE"][0],
+                channel_concentration=gate_values["MAX_CHARACTER_CHANNEL_SHARE"][0],
             )
         )
     return rows
@@ -403,6 +456,8 @@ def _paired(samples: tuple[CalibrationSample, ...], rows_by_sample: dict[str, li
     for pair_id, roles in sorted(grouped.items()):
         if set(roles) != {"system_off", "system_on"}:
             continue
+        if not rows_by_sample[roles["system_off"].id] or not rows_by_sample[roles["system_on"].id]:
+            continue
         off = _mean_metrics(rows_by_sample[roles["system_off"].id])
         on = _mean_metrics(rows_by_sample[roles["system_on"].id])
         result.append(
@@ -430,6 +485,8 @@ def _tradeoff(samples: tuple[CalibrationSample, ...], rows_by_sample: dict[str, 
     draft: list[TradeoffPoint] = []
     for strength, group in sorted(grouped.items()):
         rows = [row for sample in group for row in rows_by_sample[sample.id]]
+        if not rows:
+            continue
         metrics = _mean_metrics(rows)
         ratings = [rating for sample in group for rating in sample.naturalness_ratings]
         naturalness = fmean(ratings) if ratings else None
@@ -538,11 +595,20 @@ def calibrate_manifest(path: Path) -> CalibrationReport:
         missing.append("formulaic_distribution")
     if len(paired) < req.minimum_pairs:
         missing.append("system_on_off_pairs")
-    sufficiently_rated = [
-        point for point in curve
-        if point.rating_count >= req.minimum_ratings_per_strength
-    ]
-    if len(sufficiently_rated) < req.minimum_sweep_strengths:
+    sweep_strengths: dict[str, set[float]] = defaultdict(set)
+    for sample in manifest.samples:
+        if (
+            sample.role == "sweep"
+            and sample.sweep_id is not None
+            and sample.strength is not None
+            and qualified_by_sample[sample.id]
+            and len(sample.naturalness_ratings) >= req.minimum_ratings_per_strength
+        ):
+            sweep_strengths[sample.sweep_id].add(sample.strength)
+    if not any(
+        len(strengths) >= req.minimum_sweep_strengths
+        for strengths in sweep_strengths.values()
+    ):
         missing.append("naturalness_tradeoff_curve")
     return CalibrationReport(
         status="ready" if not missing else "provisional",

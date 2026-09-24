@@ -21,7 +21,13 @@ from .domain.behavior_models import (
 from .domain.models import SceneState, WorldState
 from .memory.repository import BehaviorMemory, BehaviorMemorySnapshot, RunStatus
 from .memory.sqlite import SQLiteBehaviorMemory
-from .rewrite import HumanReviewRequired, RewriteContext, RewriteResult, TargetedRewriter
+from .rewrite import (
+    HumanReviewRequired,
+    RewriteContext,
+    RewriteResult,
+    TargetedRewriter,
+    detect_required_facts,
+)
 from .prompt_brief import PromptBriefBuilder
 
 
@@ -231,7 +237,7 @@ class BehaviorControlSystem:
             request=request,
             brief=brief,
             history=snapshot,
-            required_facts=frozenset(fact for fact in brief.required_facts if fact in draft.text),
+            required_facts=detect_required_facts(draft.text, brief.required_facts),
         )
         audit, extraction = self.auditor.audit_with_extraction(context, draft, rewrite_attempts=(draft.revision - 1 if status is RunStatus.REWRITTEN else 0))
         self.repository.record_audit(draft, audit, extraction)
@@ -244,11 +250,10 @@ class BehaviorControlSystem:
         if audit.run_id != run_id:
             raise ValueError("RUN_STATE_CONFLICT: audit belongs to another run")
         result: RewriteResult
+        preserved_facts = detect_required_facts(draft.text, brief.required_facts)
         if isinstance(self.rewriter, TargetedRewriter):
-            preserved_facts = frozenset(fact for fact in brief.required_facts if fact in draft.text)
             result = self.rewriter.rewrite(RewriteContext(request=request, brief=brief, required_facts=preserved_facts), draft, audit)
         else:
-            preserved_facts = frozenset(fact for fact in brief.required_facts if fact in draft.text)
             result = TargetedRewriter(self.rewriter, max_attempts=self.policy.max_rewrite_attempts).rewrite(RewriteContext(request=request, brief=brief, required_facts=preserved_facts), draft, audit)
         self.repository.record_rewrite(run_id, GeneratedDraft(text=result.text, revision=result.rewrite_attempt + 1))
         reaudit = self.audit(run_id, result.text)

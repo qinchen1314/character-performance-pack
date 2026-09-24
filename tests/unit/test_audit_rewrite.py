@@ -20,9 +20,13 @@ from character_performance.domain.behavior_models import (
     StyleContext,
     SyntaxFeatures,
     TextSpan,
+    PreservationChecks,
+    RewriteResult,
+    ChangedSpan,
+    TextReplacement,
     content_hash,
 )
-from character_performance.domain.models import CharacterProfile, SceneState
+from character_performance.domain.models import CharacterProfile, PhysicalState, SceneState
 from character_performance.memory.repository import BehaviorMemorySnapshot
 from character_performance.rewrite import HumanReviewRequired, RewriteContext, TargetedRewriter
 
@@ -210,7 +214,7 @@ def test_default_rewriter_repairs_orphan_subject_before_preserved_dialogue() -> 
                 issue_id="issue.repeat",
                 severity="rewrite",
                 code="cross_chapter_semantic_repeat",
-                spans=(SourceSpan(start=1, end=3),),
+                spans=(SourceSpan(start=1, end=4),),
                 preserve={"dialogue", "required_facts", "scene_state"},
             ),
         ),
@@ -268,7 +272,7 @@ def test_default_rewriter_repairs_clause_punctuation_after_span_deletion() -> No
                 issue_id="issue.repeat",
                 severity="rewrite",
                 code="cross_chapter_semantic_repeat",
-                spans=(SourceSpan(start=1, end=3),),
+                spans=(SourceSpan(start=1, end=4),),
             ),
         ),
         metrics=AuditMetrics(semantic_repeat_score=1.0),
@@ -538,4 +542,289 @@ def test_targeted_rewriter_returns_human_handoff_for_block_or_exhaustion() -> No
     with pytest.raises(HumanReviewRequired, match="REWRITE_EXHAUSTED"):
         TargetedRewriter().rewrite(
             RewriteContext(request=_request()), GeneratedDraft(text=text), exhausted
+        )
+
+
+def test_rewriter_rejects_actual_edits_outside_the_audited_span() -> None:
+    text = "洛寒握拳。阿青站在门边。"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=2, end=4),),
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    with pytest.raises(HumanReviewRequired, match="outside allowed spans"):
+        TargetedRewriter(lambda _: "洛寒抬头。阿青坐在门边。").rewrite(
+            RewriteContext(request=_request()), GeneratedDraft(text=text), audit
+        )
+
+
+def test_default_rewriter_also_keeps_actual_diff_inside_the_audited_span() -> None:
+    text = "他握拳。‘好。’"
+    audit = _whole_text_audit(text).model_copy(
+        update={
+            "issues": (
+                AuditIssue(
+                    issue_id="issue.repeat",
+                    severity="rewrite",
+                    code="cross_chapter_semantic_repeat",
+                    spans=(SourceSpan(start=1, end=3),),
+                ),
+            )
+        }
+    )
+
+    result = TargetedRewriter().rewrite(
+        RewriteRequest(run_id="run.current", text=text, audit=audit, attempt=1)
+    )
+
+    assert result.text == "他开口。‘好。’"
+    assert result.changed_spans[0].original.start == 1
+    assert result.changed_spans[0].original.end == 3
+
+
+def _whole_text_audit(text: str) -> AuditResult:
+    return AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=0, end=len(text)),),
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+
+def _claiming_result(before: str, after: str) -> RewriteResult:
+    return RewriteResult(
+        run_id="run.current",
+        original_text=before,
+        text=after,
+        changed_spans=(
+            ChangedSpan(
+                original=TextSpan(start=0, end=len(before), text=before),
+                replacement=TextReplacement(text=after),
+                resolved_issue_ids=("issue.repeat",),
+            ),
+        ),
+        requested_issue_ids=("issue.repeat",),
+        preserved_checks=PreservationChecks(
+            dialogue_hash="sha256:" + "0" * 64,
+            required_facts=True,
+            scene_state=True,
+            grammar_complete=True,
+            punctuation_balanced=True,
+            reference_continuity=True,
+        ),
+        rewrite_attempt=1,
+    )
+
+
+@pytest.mark.parametrize(
+    ("before", "after", "scene", "physical"),
+    (
+        (
+            "洛寒站在门边。",
+            "洛寒坐在门边。",
+            SceneState(scene_id="scene.2", pose="standing", position="door"),
+            PhysicalState(),
+        ),
+        (
+            "洛寒站在门边。",
+            "洛寒站在窗边。",
+            SceneState(scene_id="scene.2", pose="standing", position="door"),
+            PhysicalState(),
+        ),
+        (
+            "洛寒站在门边。",
+            "洛寒离开门边。",
+            SceneState(scene_id="scene.2", pose="standing", position="door"),
+            PhysicalState(),
+        ),
+        (
+            "洛寒右手握着佩剑。",
+            "洛寒右手握着酒杯。",
+            SceneState(
+                scene_id="scene.2",
+                held_objects={"right_hand": "object.sword"},
+            ),
+            PhysicalState(),
+        ),
+        (
+            "洛寒右手握着佩剑。",
+            "洛寒右手放下佩剑。",
+            SceneState(
+                scene_id="scene.2",
+                held_objects={"right_hand": "object.sword"},
+            ),
+            PhysicalState(),
+        ),
+        (
+            "洛寒左肩伤口仍在渗血。",
+            "洛寒左肩已经痊愈。",
+            SceneState(scene_id="scene.2"),
+            PhysicalState(injuries=({"body_part": "left_shoulder", "severity": 0.5},)),
+        ),
+    ),
+)
+def test_rewriter_reparses_scene_state_instead_of_trusting_adapter_claims(
+    before: str,
+    after: str,
+    scene: SceneState,
+    physical: PhysicalState,
+) -> None:
+    audit = _whole_text_audit(before)
+    request = _request().model_copy(
+        update={"scene_state": scene, "physical_state": physical}
+    )
+
+    with pytest.raises(HumanReviewRequired, match="SCENE_STATE_PRESERVATION_FAILED"):
+        TargetedRewriter(lambda _: _claiming_result(before, after)).rewrite(
+            RewriteContext(request=request),
+            GeneratedDraft(text=before),
+            audit,
+        )
+
+
+@pytest.mark.parametrize(
+    ("before", "after"),
+    (
+        ("洛寒站在门边。", "洛寒抬头。"),
+        ("洛寒站在门边。", "洛寒站在门边，又走到窗边。"),
+        (
+            "洛寒站在门边。阿青坐在窗边。",
+            "洛寒坐在窗边。阿青站在门边。",
+        ),
+        (
+            "欧阳锋站在门边。欧阳康坐在窗边。",
+            "欧阳锋坐在窗边。欧阳康站在门边。",
+        ),
+        ("洛寒左肩伤口仍在渗血。", "洛寒左肩骨折了。"),
+        ("洛寒站在门边。", "洛寒站在门边。阿青放下酒杯。"),
+    ),
+)
+def test_rewriter_rejects_deleted_or_character_swapped_state(
+    before: str, after: str
+) -> None:
+    audit = _whole_text_audit(before)
+
+    with pytest.raises(HumanReviewRequired, match="SCENE_STATE_PRESERVATION_FAILED"):
+        TargetedRewriter(lambda _: _claiming_result(before, after)).rewrite(
+            RewriteContext(request=_request()), GeneratedDraft(text=before), audit
+        )
+
+
+def test_scene_state_actor_binding_ignores_intervening_action_words() -> None:
+    before = "洛寒咬牙站起。"
+    after = "洛寒忍痛站起。"
+    audit = _whole_text_audit(before)
+
+    result = TargetedRewriter(lambda _: _claiming_result(before, after)).rewrite(
+        RewriteContext(request=_request()), GeneratedDraft(text=before), audit
+    )
+
+    assert result.text == after
+
+
+def test_rewriter_matches_structured_required_facts_instead_of_fact_id_substrings() -> None:
+    before = "洛寒右手握着佩剑。"
+    after = "洛寒右手握着酒杯。held.right.sword。"
+    audit = _whole_text_audit(before)
+    request = _request().model_copy(
+        update={
+            "scene_state": SceneState(
+                scene_id="scene.2",
+                held_objects={"right_hand": "object.sword"},
+            )
+        }
+    )
+
+    with pytest.raises(HumanReviewRequired, match="REQUIRED_FACT_PRESERVATION_FAILED"):
+        TargetedRewriter(lambda _: _claiming_result(before, after)).rewrite(
+            RewriteContext(request=request, required_facts=frozenset({"held.right.sword"})),
+            GeneratedDraft(text=before),
+            audit,
+        )
+
+
+def test_rewriter_recomputes_adapter_preservation_flags() -> None:
+    before = "洛寒握拳。"
+    after = "洛寒抬头。"
+    audit = _whole_text_audit(before)
+    payload = _claiming_result(before, after).model_dump(mode="json")
+    payload["preserved_checks"] = {
+        "dialogue_hash": "sha256:" + "f" * 64,
+        "required_facts": False,
+        "scene_state": False,
+        "grammar_complete": False,
+        "punctuation_balanced": False,
+        "reference_continuity": False,
+    }
+
+    result = TargetedRewriter(lambda _: payload).rewrite(
+        RewriteContext(request=_request()), GeneratedDraft(text=before), audit
+    )
+
+    assert result.preserved_checks.required_facts
+    assert result.preserved_checks.scene_state
+    assert result.preserved_checks.grammar_complete
+    assert result.preserved_checks.dialogue_hash == content_hash("")
+
+
+def test_adapter_cannot_succeed_without_authoritative_rewrite_context() -> None:
+    before = "洛寒握拳。"
+    audit = _whole_text_audit(before)
+
+    with pytest.raises(HumanReviewRequired, match="RewriteContext is required"):
+        TargetedRewriter(lambda _: "洛寒抬头。").rewrite(
+            RewriteRequest(run_id="run.current", text=before, audit=audit, attempt=1)
+        )
+
+
+@pytest.mark.parametrize(
+    "after",
+    (
+        "洛寒说：‘别走。’随后又说：“留下。”",
+        "洛寒说：“留下，别走。”",
+        "洛寒说：“他说别走。”",
+    ),
+)
+def test_rewriter_compares_dialogue_order_splits_and_nesting(after: str) -> None:
+    before = "洛寒说：“留下。”随后又说：‘别走。’"
+    if "他说" in after:
+        before = "洛寒说：“他说‘别走’。”"
+    audit = _whole_text_audit(before)
+
+    with pytest.raises(HumanReviewRequired, match="DIALOGUE_PRESERVATION_FAILED"):
+        TargetedRewriter(lambda _: after).rewrite(
+            RewriteRequest(run_id="run.current", text=before, audit=audit, attempt=1)
+        )
+
+
+def test_rewriter_rejects_moving_unchanged_dialogue_across_narration() -> None:
+    before = "洛寒说：“留下。”随后转身。"
+    after = "“留下。”洛寒说，随后转身。"
+    audit = _whole_text_audit(before)
+
+    with pytest.raises(HumanReviewRequired, match="DIALOGUE_PRESERVATION_FAILED"):
+        TargetedRewriter(lambda _: after).rewrite(
+            RewriteRequest(run_id="run.current", text=before, audit=audit, attempt=1)
         )

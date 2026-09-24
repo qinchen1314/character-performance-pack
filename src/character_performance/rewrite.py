@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from difflib import SequenceMatcher
 import re
 from typing import Any, Protocol
 
@@ -37,16 +38,380 @@ class RewriteContext:
     request: GenerationRequest
     brief: GenerationBrief | None = None
     required_facts: frozenset[str] = frozenset()
-    scene_state_valid: bool = True
+
+
+@dataclass(frozen=True, slots=True)
+class _ParsedSceneState:
+    positions: frozenset[str]
+    departed_positions: frozenset[str]
+    poses: frozenset[str]
+    held_objects: frozenset[tuple[str, str]]
+    released_objects: frozenset[tuple[str, str]]
+    injuries: frozenset[str]
+    healed_injuries: frozenset[str]
+    actor_claims: frozenset[tuple[str, str, str, str]]
+
+
+_POSE_PATTERNS = {
+    "standing": re.compile(r"(?:站着|站立|站在|起身|站起|伫立|立在)"),
+    "seated": re.compile(r"(?:坐着|坐下|落座|坐在)"),
+    "leaning_wall": re.compile(r"(?:倚着?墙|靠着?墙|背靠着?墙)"),
+    "lying": re.compile(r"(?:躺着|躺下|躺在|卧在)"),
+}
+_POSITION_PATTERN = re.compile(
+    r"(?:身处|位于|来到|走到|退到|挪到|站在|坐在|靠在|躺在)"
+    r"(?P<value>[a-zA-Z0-9_.\-\u3400-\u9fff]{1,24}?)(?=[，。！？；、]|$)"
+)
+_DEPARTED_POSITION_PATTERN = re.compile(
+    r"(?:离开|走出|退出|远离)"
+    r"(?P<value>[a-zA-Z0-9_.\-\u3400-\u9fff]{1,24}?)(?=[，。！？；、]|$)"
+)
+_HELD_PATTERN = re.compile(
+    r"(?P<hand>右手|左手|双手|两手)?\s*(?:正|仍|还)?"
+    r"(?:握着|握住|握紧|手持|持着|拿着|提着|捧着|托着|攥着|抱着)"
+    r"(?P<object>[a-zA-Z0-9_.\-\u3400-\u9fff]{1,20}?)(?=[，。！？；、]|$)"
+)
+_RELEASED_OBJECT_PATTERN = re.compile(
+    r"(?P<hand>右手|左手|双手|两手)?\s*(?:已经|随即|终于)?"
+    r"(?:放下|丢下|松开|扔下|交出)"
+    r"(?P<object>[a-zA-Z0-9_.\-\u3400-\u9fff]{1,20}?)(?=[，。！？；、]|$)"
+)
+_INJURY_PATTERN = re.compile(
+    r"(?P<body>左肩|右肩|左膝|右膝|左臂|右臂|左手|右手|左腿|右腿|肩膀|膝盖|手臂|腿|胸口|腹部|后背|背部|头部|额头)"
+    r"[^，。！？；]{0,8}?(?P<condition>受伤|伤口|伤势|疼|痛|流血|渗血|骨折|断了)"
+)
+_HEALED_INJURY_PATTERN = re.compile(
+    r"(?P<body>左肩|右肩|左膝|右膝|左臂|右臂|左手|右手|左腿|右腿|肩膀|膝盖|手臂|腿|胸口|腹部|后背|背部|头部|额头)"
+    r"[^，。！？；]{0,8}?(?:痊愈|愈合|无伤|不再疼|已经好了)"
+)
+
+_TOKEN_ALIASES = {
+    "sword": frozenset({"sword", "剑", "佩剑", "长剑"}),
+    "cup": frozenset({"cup", "杯", "酒杯", "茶杯"}),
+    "book": frozenset({"book", "书", "册", "书册"}),
+    "tray": frozenset({"tray", "托盘"}),
+    "door": frozenset({"door", "门", "门边", "门口"}),
+    "wall": frozenset({"wall", "墙", "墙边"}),
+    "hall": frozenset({"hall", "大厅", "堂内"}),
+    "left_shoulder": frozenset({"left_shoulder", "左肩"}),
+    "right_shoulder": frozenset({"right_shoulder", "右肩"}),
+    "left_knee": frozenset({"left_knee", "左膝", "左膝盖"}),
+    "right_knee": frozenset({"right_knee", "右膝", "右膝盖"}),
+}
+
+
+def _normalise_token(value: str) -> str:
+    return value.strip(" 的着了正仍还一把一柄一个").lower()
+
+
+def _token_key(value: str) -> str:
+    normalized = _normalise_token(value)
+    segments = normalized.split(".")
+    suffix = segments[-1]
+    for key, aliases in _TOKEN_ALIASES.items():
+        if normalized in aliases or suffix in aliases or any(alias in normalized for alias in aliases):
+            return key
+    return suffix
+
+
+def _actor_before(text: str, start: int) -> str:
+    boundary = max(text.rfind(mark, 0, start) for mark in "。！？；\n")
+    prefix = text[boundary + 1 : start].strip(" ，、：")
+    prefix = re.sub(r"(?:缓缓|慢慢|仍然|依旧|正|还|独自)$", "", prefix)
+    pronoun = re.match(r"(他们|她们|它们|自己|他|她|它)", prefix)
+    if pronoun:
+        return pronoun.group(1)
+    prefix = re.split(
+        r"(?:咬牙|忍痛|缓缓|慢慢|仍然|依旧|独自|随即|忽然|终于)",
+        prefix,
+        maxsplit=1,
+    )[0].rstrip("的")
+    chinese = re.fullmatch(r"([\u3400-\u9fff]{1,8})", prefix)
+    if chinese:
+        return chinese.group(1)
+    identifier = re.match(r"([a-zA-Z][a-zA-Z0-9_.-]*)", prefix)
+    return identifier.group(1) if identifier else "<implicit>"
+
+
+def _parse_scene_state(text: str) -> _ParsedSceneState:
+    claims: set[tuple[str, str, str, str]] = set()
+    poses: set[str] = set()
+    for pose, pattern in _POSE_PATTERNS.items():
+        for match in pattern.finditer(text):
+            poses.add(pose)
+            claims.add((_actor_before(text, match.start()), "pose", "", pose))
+    positions: set[str] = set()
+    for match in _POSITION_PATTERN.finditer(text):
+        value = _token_key(match.group("value"))
+        positions.add(value)
+        claims.add((_actor_before(text, match.start()), "position", "", value))
+    departed: set[str] = set()
+    for match in _DEPARTED_POSITION_PATTERN.finditer(text):
+        value = _token_key(match.group("value"))
+        departed.add(value)
+        claims.add(
+            (
+                _actor_before(text, match.start()),
+                "position_departed",
+                "",
+                value,
+            )
+        )
+    held: set[tuple[str, str]] = set()
+    for match in _HELD_PATTERN.finditer(text):
+        hand = {"右手": "right_hand", "左手": "left_hand", "双手": "both", "两手": "both"}.get(
+            match.group("hand") or "", "unspecified"
+        )
+        value = _token_key(match.group("object"))
+        held.add((hand, value))
+        claims.add((_actor_before(text, match.start()), "held", hand, value))
+    released: set[tuple[str, str]] = set()
+    for match in _RELEASED_OBJECT_PATTERN.finditer(text):
+        hand = {"右手": "right_hand", "左手": "left_hand", "双手": "both", "两手": "both"}.get(
+            match.group("hand") or "", "unspecified"
+        )
+        value = _token_key(match.group("object"))
+        released.add((hand, value))
+        claims.add((_actor_before(text, match.start()), "released", hand, value))
+    injuries: set[str] = set()
+    for match in _INJURY_PATTERN.finditer(text):
+        value = _token_key(match.group("body"))
+        injuries.add(value)
+        claims.add(
+            (
+                _actor_before(text, match.start()),
+                "injury",
+                match.group("condition"),
+                value,
+            )
+        )
+    healed_values: set[str] = set()
+    for match in _HEALED_INJURY_PATTERN.finditer(text):
+        value = _token_key(match.group("body"))
+        healed_values.add(value)
+        claims.add(
+            (
+                _actor_before(text, match.start()),
+                "injury_healed",
+                "",
+                value,
+            )
+        )
+    return _ParsedSceneState(
+        frozenset(positions),
+        frozenset(departed),
+        frozenset(poses),
+        frozenset(held),
+        frozenset(released),
+        frozenset(injuries),
+        frozenset(healed_values),
+        frozenset(claims),
+    )
+
+
+def _hand_matches(claimed: str, expected: str) -> bool:
+    return claimed in {expected, "unspecified", "both"} or (
+        expected == "both" and claimed in {"left_hand", "right_hand"}
+    )
+
+
+def _fact_preserved(fact: str, text: str, parsed: _ParsedSceneState) -> bool:
+    normalized = fact.lower()
+    parts = normalized.split(".")
+    if parts[0] == "held" and len(parts) >= 3:
+        hand = {"right": "right_hand", "left": "left_hand", "both": "both"}.get(parts[1], parts[1])
+        expected_object = _token_key(parts[-1])
+        return any(_hand_matches(claimed_hand, hand) and value == expected_object for claimed_hand, value in parsed.held_objects)
+    pose = parts[-1]
+    if pose in _POSE_PATTERNS:
+        return pose in parsed.poses
+    if parts[0] in {"position", "location"} and len(parts) >= 2:
+        return _token_key(parts[-1]) in parsed.positions
+    if "injur" in normalized:
+        body = normalized.removeprefix("fact.").removesuffix("_injured").removesuffix(".injured")
+        return _token_key(body) in parsed.injuries
+    if normalized in {"fact.back_against_wall", "body.back_against_wall"}:
+        return "leaning_wall" in parsed.poses
+    if normalized.endswith(".reachable"):
+        object_key = _token_key(parts[-2]) if len(parts) >= 2 else ""
+        return object_key in _token_key(text) and re.search(r"(?:触手可及|伸手可及|够得到|可触及)", text) is not None
+    # Opaque application-specific facts have no shared grammar.  Preserve
+    # their exact marker as a final fallback, never ahead of known structures.
+    return fact in text
+
+
+def detect_required_facts(text: str, facts: frozenset[str]) -> frozenset[str]:
+    """Find required facts actually expressed by prose, including symbolic IDs."""
+
+    parsed = _parse_scene_state(text)
+    return frozenset(fact for fact in facts if _fact_preserved(fact, text, parsed))
+
+
+def _scene_state_preserved(context: RewriteContext, before_text: str, after_text: str) -> bool:
+    before = _parse_scene_state(before_text)
+    after = _parse_scene_state(after_text)
+    scene = context.request.scene_state
+    expected_position = _token_key(scene.position) if scene.position is not None else None
+
+    # Requiring each actor-bound positive claim to survive prevents both
+    # deleting the evidence and swapping otherwise identical state sets
+    # between characters.
+    if before.actor_claims != after.actor_claims:
+        return False
+
+    if before.positions and after.positions and before.positions.isdisjoint(after.positions):
+        return False
+    if before.positions & after.departed_positions:
+        return False
+    if after.positions and expected_position is not None and expected_position not in after.positions:
+        return False
+    if expected_position is not None and expected_position in after.departed_positions:
+        return False
+    if before.poses and after.poses and before.poses != after.poses:
+        return False
+    if after.poses and scene.pose != "unknown" and scene.pose not in after.poses:
+        return False
+
+    expected_held = {
+        hand: {_token_key(value), *(_token_key(tag) for tag in scene.object_tags.get(value, frozenset()))}
+        for hand, value in scene.held_objects.items()
+    }
+    for hand, value in after.held_objects:
+        if hand in expected_held and value not in expected_held[hand]:
+            return False
+        if hand == "both" and expected_held and not any(value in values for values in expected_held.values()):
+            return False
+    for hand, value in after.released_objects:
+        if hand in expected_held and value in expected_held[hand]:
+            return False
+        if hand in {"both", "unspecified"} and any(value in values for values in expected_held.values()):
+            return False
+    for before_hand, before_value in before.held_objects:
+        if any(
+            _hand_matches(hand, before_hand) and value == before_value
+            for hand, value in after.released_objects
+        ):
+            return False
+        conflicting = {
+            value for hand, value in after.held_objects if _hand_matches(hand, before_hand)
+        }
+        if conflicting and before_value not in conflicting:
+            return False
+
+    expected_injuries = {_token_key(injury.body_part) for injury in context.request.physical_state.injuries}
+    if expected_injuries & after.healed_injuries:
+        return False
+    if before.injuries & after.healed_injuries:
+        return False
+    return True
+
+
+@dataclass(frozen=True, slots=True)
+class _DialogueNode:
+    opener: str
+    closer: str
+    parts: tuple[str | "_DialogueNode", ...]
+
+
+_QUOTE_PAIRS = {"“": "”", "‘": "’", "「": "」", "『": "』", '"': '"'}
+
+
+def _dialogue_document(text: str) -> tuple[str | _DialogueNode, ...]:
+    """Parse quotation nesting while retaining top-level narrative slots."""
+
+    def parse_sequence(index: int, closer: str | None) -> tuple[tuple[str | _DialogueNode, ...], int]:
+        parts: list[str | _DialogueNode] = []
+        literal: list[str] = []
+
+        def flush() -> None:
+            if literal:
+                parts.append("".join(literal))
+                literal.clear()
+
+        while index < len(text):
+            character = text[index]
+            if closer is not None and character == closer:
+                flush()
+                return tuple(parts), index + 1
+            if character in _QUOTE_PAIRS:
+                flush()
+                nested_closer = _QUOTE_PAIRS[character]
+                nested, index = parse_sequence(index + 1, nested_closer)
+                parts.append(_DialogueNode(character, nested_closer, nested))
+                continue
+            literal.append(character)
+            index += 1
+        flush()
+        if closer is not None:
+            raise ValueError("unclosed quotation")
+        return tuple(parts), index
+
+    document, _ = parse_sequence(0, None)
+    return document
+
+
+def _dialogue_signature(text: str) -> tuple[object, ...]:
+    """Return ordered dialogue trees, retaining splits and nested quotes."""
+
+    def node_signature(node: _DialogueNode) -> tuple[object, ...]:
+        return (
+            "quote",
+            node.opener,
+            node.closer,
+            tuple(
+                ("text", part) if isinstance(part, str) else node_signature(part)
+                for part in node.parts
+            ),
+        )
+
+    return tuple(
+        node_signature(part)
+        for part in _dialogue_document(text)
+        if isinstance(part, _DialogueNode)
+    )
 
 
 def _dialogue_parts(text: str) -> tuple[str, ...]:
-    # Preserve dialogue order while allowing the surrounding action to move.
-    pattern = re.compile(r"“([^”]*)”|‘([^’]*)’|\"([^\"]*)\"|「([^」]*)」|『([^』]*)』")
-    return tuple(
-        next(group for group in match.groups() if group is not None)
-        for match in pattern.finditer(text)
-    )
+    """Flatten dialogue trees for the backwards-compatible dialogue hash."""
+
+    values: list[str] = []
+
+    def visit(node: _DialogueNode) -> None:
+        values.append("".join(part for part in node.parts if isinstance(part, str)))
+        for part in node.parts:
+            if isinstance(part, _DialogueNode):
+                visit(part)
+
+    for part in _dialogue_document(text):
+        if isinstance(part, _DialogueNode):
+            visit(part)
+    return tuple(values)
+
+
+def _top_level_quote_spans(text: str) -> tuple[tuple[int, int], ...]:
+    spans: list[tuple[int, int]] = []
+    stack: list[tuple[str, int]] = []
+    for index, character in enumerate(text):
+        if stack and character == stack[-1][0]:
+            _, start = stack.pop()
+            if not stack:
+                spans.append((start, index + 1))
+        elif character in _QUOTE_PAIRS:
+            stack.append((_QUOTE_PAIRS[character], index))
+    if stack:
+        raise ValueError("unclosed quotation")
+    return tuple(spans)
+
+
+def _narrative_slots(text: str) -> tuple[str, ...]:
+    spans = _top_level_quote_spans(text)
+    cursor = 0
+    slots: list[str] = []
+    for start, end in spans:
+        slots.append(re.sub(r"[\W_]+", "", text[cursor:start]))
+        cursor = end
+    slots.append(re.sub(r"[\W_]+", "", text[cursor:]))
+    return tuple(slots)
 
 
 _PRONOUN_SUBJECT_SOURCE = r"(?:他们|她们|它们|自己|他|她|它)"
@@ -70,15 +435,34 @@ class _TextIntegrity:
             )
         )
 
-    def preservation_checks(self, original_text: str) -> PreservationChecks:
+    def preservation_checks(
+        self,
+        original_text: str,
+        *,
+        required_facts: bool = True,
+        scene_state: bool = True,
+    ) -> PreservationChecks:
         return PreservationChecks(
             dialogue_hash=content_hash("\u0000".join(_dialogue_parts(original_text))),
-            required_facts=True,
-            scene_state=True,
+            required_facts=required_facts,
+            scene_state=scene_state,
             grammar_complete=self.grammar_complete,
             punctuation_balanced=self.punctuation_balanced,
             reference_continuity=self.reference_continuity,
         )
+
+
+def _provisional_preservation_checks(original_text: str) -> PreservationChecks:
+    """Build schema-valid placeholders that are replaced before returning."""
+
+    return PreservationChecks(
+        dialogue_hash=content_hash("\u0000".join(_dialogue_parts(original_text))),
+        required_facts=True,
+        scene_state=True,
+        grammar_complete=True,
+        punctuation_balanced=True,
+        reference_continuity=True,
+    )
 
 
 def _quotes_balanced(text: str) -> bool:
@@ -191,6 +575,85 @@ def _require_safe_integrity(request: RewriteRequest, text: str) -> _TextIntegrit
     return integrity
 
 
+def _actual_changes_within_issue_spans(request: RewriteRequest, text: str) -> bool:
+    """Return whether every source-side edit is contained by one rewrite span.
+
+    Adapter supplied ``changed_spans`` are evidence, not authority.  The
+    opcodes are therefore always recomputed from the two complete texts.
+    Insertions use the source cursor as their coordinate and may occur at
+    either edge of an allowed span.
+    """
+
+    allowed = tuple(
+        span
+        for issue in request.audit.issues
+        if issue.severity == "rewrite"
+        for span in issue.spans
+    )
+    for operation, before_start, before_end, _, _ in SequenceMatcher(
+        None, request.text, text, autojunk=False
+    ).get_opcodes():
+        if operation == "equal":
+            continue
+        if before_start == before_end:
+            if not any(span.start <= before_start <= span.end for span in allowed):
+                return False
+        elif not any(
+            span.start <= before_start and before_end <= span.end for span in allowed
+        ):
+            return False
+    return True
+
+
+def _dialogue_preserved(before: str, after: str) -> bool:
+    try:
+        if _dialogue_signature(before) != _dialogue_signature(after):
+            return False
+        before_slots = _narrative_slots(before)
+        after_slots = _narrative_slots(after)
+        removed_slots = {
+            index
+            for index, (before_slot, after_slot) in enumerate(zip(before_slots, after_slots))
+            if before_slot and not after_slot
+        }
+        introduced_slots = {
+            index
+            for index, (before_slot, after_slot) in enumerate(zip(before_slots, after_slots))
+            if not before_slot and after_slot
+        }
+        if introduced_slots:
+            return False
+        if removed_slots and any(
+            before_slots[index] != after_slots[index]
+            for index in range(len(before_slots))
+            if index not in removed_slots
+        ):
+            return False
+        for before_index, before_slot in enumerate(before_slots):
+            if not before_slot:
+                continue
+            if any(
+                after_index != before_index
+                and len(before_slot) >= 2
+                and before_slot in after_slot
+                for after_index, after_slot in enumerate(after_slots)
+            ):
+                return False
+        equal_ranges = tuple(
+            (before_start, before_end)
+            for operation, before_start, before_end, _, _ in SequenceMatcher(
+                None, before, after, autojunk=False
+            ).get_opcodes()
+            if operation == "equal"
+        )
+        return all(
+            any(equal_start <= start and end <= equal_end for equal_start, equal_end in equal_ranges)
+            for start, end in _top_level_quote_spans(before)
+        )
+    except ValueError:
+        return False
+
+
 class TargetedRewriter:
     """Rewrite only issue spans and verify the resulting contract."""
 
@@ -249,15 +712,36 @@ class TargetedRewriter:
         elif isinstance(result, str):
             checked = self._from_text(request, result)
         elif isinstance(result, dict):
-            checked = RewriteResult.model_validate(result)
+            # Adapter-owned preservation booleans are deliberately discarded;
+            # this boundary recomputes every check from the resulting prose.
+            payload = dict(result)
+            payload["preserved_checks"] = _provisional_preservation_checks(request.text)
+            checked = RewriteResult.model_validate(payload)
         else:
             raise TypeError("rewrite adapter must return RewriteResult, text, or mapping")
-        _require_safe_integrity(request, checked.text)
         try:
+            if checked.run_id != request.run_id or checked.original_text != request.text:
+                raise ValueError("RUN_STATE_CONFLICT: rewrite result is bound to another draft")
+            if checked.rewrite_attempt != request.attempt:
+                raise ValueError("RUN_STATE_CONFLICT: invalid rewrite attempt")
+            if not _integrity_checks(
+                checked.text, original_text=request.text
+            ).reference_continuity:
+                raise HumanReviewRequired(
+                    audit,
+                    "REWRITE_UNSAFE: grammar, punctuation, or reference continuity failed",
+                )
+            if not _dialogue_preserved(request.text, checked.text):
+                raise ValueError("DIALOGUE_PRESERVATION_FAILED: rewrite changed dialogue structure")
+            if not _actual_changes_within_issue_spans(request, checked.text):
+                raise ValueError("REWRITE_CONTRACT_FAILED: actual diff falls outside allowed spans")
+            integrity = _require_safe_integrity(request, checked.text)
+            if context is None and self.adapter is not None:
+                raise ValueError(
+                    "REWRITE_CONTRACT_FAILED: RewriteContext is required to verify Adapter output"
+                )
             if context is not None:
                 self._verify(context, request, checked)
-            elif _dialogue_parts(request.text) != _dialogue_parts(checked.text):
-                raise ValueError("DIALOGUE_PRESERVATION_FAILED: rewrite changed dialogue")
         except ValueError as exc:
             if str(exc).startswith(
                 (
@@ -269,7 +753,11 @@ class TargetedRewriter:
             ):
                 raise HumanReviewRequired(audit, f"REWRITE_UNSAFE: {exc}") from exc
             raise
-        return checked
+        # Preservation flags supplied by an Adapter are never authoritative.
+        # Return checks derived by this boundary from the actual output text.
+        return checked.model_copy(
+            update={"preserved_checks": integrity.preservation_checks(request.text)}
+        )
 
     def rewrite_text(
         self,
@@ -293,19 +781,19 @@ class TargetedRewriter:
             if (
                 issue.replacement_text is None
                 and subject_before
-                and end < len(request.text) - 1
-                and request.text[end] == "。"
-                and request.text[end + 1] in _QUOTE_OPENERS
+                and request.text[span.start:end].endswith("。")
+                and end < len(request.text)
+                and request.text[end] in _QUOTE_OPENERS
             ):
-                end += 1
                 replacement = "说："
             elif (
                 issue.replacement_text is None
                 and subject_before
-                and end < len(request.text)
-                and request.text[end] in "，、"
+                and end < len(request.text) - 1
+                and request.text[end] == "。"
+                and request.text[end + 1] in _QUOTE_OPENERS
             ):
-                end += 1
+                replacement = "开口"
             selected.append((span.start, end, replacement, (issue.issue_id,)))
         if not selected:
             raise HumanReviewRequired(request.audit, "REWRITE_EXHAUSTED: no rewrite issue span")
@@ -345,14 +833,15 @@ class TargetedRewriter:
         text = "".join(parts)
         if not text.strip():
             raise HumanReviewRequired(request.audit, "REWRITE_EXHAUSTED: rewrite removed the complete draft")
-        integrity = _require_safe_integrity(request, text)
         return RewriteResult(
             run_id=request.run_id,
             original_text=request.text,
             text=text,
             changed_spans=tuple(changed),
             requested_issue_ids=tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite"),
-            preserved_checks=integrity.preservation_checks(request.text),
+            # Provisional only: ``rewrite`` recomputes these checks after it
+            # validates the actual diff against the audit spans.
+            preserved_checks=_provisional_preservation_checks(request.text),
             rewrite_attempt=request.attempt,
         )
 
@@ -382,36 +871,31 @@ class TargetedRewriter:
         issue_ids = tuple(issue.issue_id for issue in request.audit.issues if any(s.start <= prefix < s.end or s.start == prefix for s in issue.spans))
         if not issue_ids:
             issue_ids = tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite")
-        integrity = _require_safe_integrity(request, text)
         return RewriteResult(
             run_id=request.run_id,
             original_text=request.text,
             text=text,
             changed_spans=(ChangedSpan(original=TextSpan(start=prefix, end=end, text=request.text[prefix:end]), replacement=TextReplacement(text=replacement), resolved_issue_ids=issue_ids),),
             requested_issue_ids=tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite"),
-            preserved_checks=integrity.preservation_checks(request.text),
+            preserved_checks=_provisional_preservation_checks(request.text),
             rewrite_attempt=request.attempt,
         )
 
     def _verify(self, context: RewriteContext, request: RewriteRequest, result: RewriteResult) -> None:
-        if result.run_id != request.run_id or result.original_text != request.text:
-            raise ValueError("RUN_STATE_CONFLICT: rewrite result is bound to another draft")
-        if result.rewrite_attempt != request.attempt:
-            raise ValueError("RUN_STATE_CONFLICT: invalid rewrite attempt")
-        before_dialogue = _dialogue_parts(request.text)
-        after_dialogue = _dialogue_parts(result.text)
-        if before_dialogue != after_dialogue:
-            raise ValueError("DIALOGUE_PRESERVATION_FAILED: rewrite changed dialogue")
-        if any(fact not in result.text for fact in context.required_facts):
+        parsed_after = _parse_scene_state(result.text)
+        if any(not _fact_preserved(fact, result.text, parsed_after) for fact in context.required_facts):
             raise ValueError("REQUIRED_FACT_PRESERVATION_FAILED: rewrite removed a required fact")
-        if not context.scene_state_valid:
-            raise ValueError("SCENE_STATE_PRESERVATION_FAILED: scene state is already invalid")
-        if result.preserved_checks.dialogue_hash != content_hash("\u0000".join(before_dialogue)):
-            raise ValueError("DIALOGUE_PRESERVATION_FAILED: dialogue hash mismatch")
-        if not result.preserved_checks.required_facts or not result.preserved_checks.scene_state:
-            raise ValueError("REWRITE_CONTRACT_FAILED: preservation checks are false")
+        if not _scene_state_preserved(context, request.text, result.text):
+            raise ValueError("SCENE_STATE_PRESERVATION_FAILED: parsed scene state changed")
 
 
 LocalRewriter = TargetedRewriter
 
-__all__ = ["HumanReviewRequired", "RewriteAdapter", "RewriteContext", "TargetedRewriter", "LocalRewriter"]
+__all__ = [
+    "HumanReviewRequired",
+    "RewriteAdapter",
+    "RewriteContext",
+    "TargetedRewriter",
+    "LocalRewriter",
+    "detect_required_facts",
+]

@@ -721,7 +721,9 @@ class AutomaticEvidence(DomainModel):
     semantic_repeat_recall: float = Field(ge=0, le=1)
     semantic_repeat_precision: float = Field(ge=0, le=1)
     span_accuracy: float = Field(ge=0, le=1)
-    rewrite_preservation_rate: float = Field(ge=0, le=1)
+    rewrite_grammar_integrity_rate: float = Field(ge=0, le=1)
+    rewrite_dialogue_preservation_rate: float = Field(ge=0, le=1)
+    rewrite_fact_preservation_rate: float = Field(ge=0, le=1)
     duplicate_history_count: int = Field(ge=0)
     fault_injection_passed: bool
     prepare_p95_ms: float = Field(ge=0)

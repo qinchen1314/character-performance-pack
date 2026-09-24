@@ -86,7 +86,9 @@ def load_gate_policy(path: Path, *, require_ready: bool = True) -> GatePolicy:
             "SEMANTIC_REPEAT_RECALL",
             "SEMANTIC_REPEAT_PRECISION",
             "SPAN_ACCURACY",
-            "REWRITE_PRESERVATION",
+            "REWRITE_GRAMMAR_INTEGRITY",
+            "REWRITE_DIALOGUE_PRESERVATION",
+            "REWRITE_FACT_PRESERVATION",
         } and threshold > 1:
             raise ValueError(f"rate threshold must be between 0 and 1 for {code}")
         overrides.append(
@@ -108,7 +110,14 @@ AUTOMATIC_GATE_SPECS = MEMORY_GATE_SPECS + (
     GateSpec("SEMANTIC_REPEAT_RECALL", "semantic_repeat_recall", 0.90, ">="),
     GateSpec("SEMANTIC_REPEAT_PRECISION", "semantic_repeat_precision", 0.85, ">="),
     GateSpec("SPAN_ACCURACY", "span_accuracy", 0.98, ">="),
-    GateSpec("REWRITE_PRESERVATION", "rewrite_preservation_rate", 1.0, ">="),
+    GateSpec("REWRITE_GRAMMAR_INTEGRITY", "rewrite_grammar_integrity_rate", 1.0, ">="),
+    GateSpec(
+        "REWRITE_DIALOGUE_PRESERVATION",
+        "rewrite_dialogue_preservation_rate",
+        1.0,
+        ">=",
+    ),
+    GateSpec("REWRITE_FACT_PRESERVATION", "rewrite_fact_preservation_rate", 1.0, ">="),
     GateSpec("DUPLICATE_HISTORY_COUNT", "duplicate_history_count", 0.0, "=="),
     GateSpec("FAULT_INJECTION", "fault_injection_passed", 1.0, "=="),
     GateSpec("PREPARE_P95_MS", "prepare_p95_ms", 100.0, "<="),

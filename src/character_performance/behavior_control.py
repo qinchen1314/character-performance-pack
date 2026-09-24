@@ -201,7 +201,24 @@ class BehaviorControlSystem:
         if status is RunStatus.PREPARED:
             self.repository.record_draft(run_id, draft)
         elif status is RunStatus.AUDITED_FAILED:
+            recorded = self.recover(run_id)
+            if (
+                recorded.draft is not None
+                and recorded.draft.revision > 1
+                and recorded.draft.text == draft.text
+                and recorded.audit is not None
+            ):
+                return recorded.audit
             raise ValueError("RUN_STATE_CONFLICT: rewrite must precede the next audit")
+        elif status is RunStatus.AUDITED_PASSED:
+            recorded = self.recover(run_id)
+            if (
+                recorded.draft is not None
+                and recorded.draft.text == draft.text
+                and recorded.audit is not None
+            ):
+                return recorded.audit
+            raise ValueError("DRAFT_HASH_MISMATCH: audit draft differs from accepted audit")
         elif status is RunStatus.REWRITTEN:
             recorded = self.recover(run_id).draft
             if recorded is None or recorded.text != draft.text:
@@ -234,6 +251,15 @@ class BehaviorControlSystem:
             preserved_facts = frozenset(fact for fact in brief.required_facts if fact in draft.text)
             result = TargetedRewriter(self.rewriter, max_attempts=self.policy.max_rewrite_attempts).rewrite(RewriteContext(request=request, brief=brief, required_facts=preserved_facts), draft, audit)
         self.repository.record_rewrite(run_id, GeneratedDraft(text=result.text, revision=result.rewrite_attempt + 1))
+        reaudit = self.audit(run_id, result.text)
+        if not reaudit.accepted and (
+            not reaudit.auto_rewrite_allowed
+            or reaudit.rewrite_attempts >= self.policy.max_rewrite_attempts
+        ):
+            raise HumanReviewRequired(
+                reaudit,
+                "REWRITE_UNSAFE: rewritten draft still fails audit",
+            )
         return result.text
 
     def commit(

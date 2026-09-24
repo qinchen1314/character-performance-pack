@@ -128,13 +128,14 @@ def test_cli_audit_commit_and_reports_form_one_durable_workflow(
         assert "句法模板热点" in text
 
 
-def test_cli_rewrite_is_targeted_and_requires_reaudit(tmp_path, monkeypatch, capsys) -> None:
+def test_cli_rewrite_is_targeted_reaudited_and_ready_to_commit(tmp_path, monkeypatch, capsys) -> None:
     database = tmp_path / "story.db"
     run_dir = tmp_path / "run"
     request_path = tmp_path / "request.yaml"
     draft_path = tmp_path / "draft.txt"
     audit_path = run_dir / "audit.json"
     revised_path = run_dir / "revised.txt"
+    revised_audit_path = run_dir / "revised-audit.json"
     request_path.write_text(
         yaml.safe_dump(_request("run.cli.rewrite").model_dump(mode="json"), allow_unicode=True),
         encoding="utf-8",
@@ -144,12 +145,40 @@ def test_cli_rewrite_is_targeted_and_requires_reaudit(tmp_path, monkeypatch, cap
     audited = _invoke(monkeypatch, capsys, "audit", str(run_dir / "brief.json"), str(draft_path), "--db", str(database), "--output", str(audit_path))
     assert audited["accepted"] is False
 
-    rewritten = _invoke(monkeypatch, capsys, "rewrite", str(audit_path), str(draft_path), "--db", str(database), "--output", str(revised_path))
+    rewritten = _invoke(
+        monkeypatch,
+        capsys,
+        "rewrite",
+        str(audit_path),
+        str(draft_path),
+        "--db",
+        str(database),
+        "--output",
+        str(revised_path),
+        "--audit-output",
+        str(revised_audit_path),
+    )
     assert rewritten["event"] == "behavior.rewrite.completed"
+    assert rewritten["reaudited"] is True
+    assert rewritten["accepted"] is True
     assert "好" in revised_path.read_text(encoding="utf-8")
+    assert AuditResult.model_validate_json(
+        revised_audit_path.read_text(encoding="utf-8")
+    ).accepted
 
     with pytest.raises(SystemExit) as exc:
         _invoke(monkeypatch, capsys, "commit", str(audit_path), str(revised_path), "--db", str(database))
     assert exc.value.code == 2
     error = json.loads(capsys.readouterr().err)
     assert error["error_code"] == "AUDIT_BLOCKED"
+
+    committed = _invoke(
+        monkeypatch,
+        capsys,
+        "commit",
+        str(revised_audit_path),
+        str(revised_path),
+        "--db",
+        str(database),
+    )
+    assert committed["event"] == "behavior.commit.completed"

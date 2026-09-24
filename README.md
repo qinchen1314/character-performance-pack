@@ -143,8 +143,9 @@ cpp-behavior extract examples/extraction-request.yaml \
 ```bash
 cpp-behavior prepare examples/behavior-request.yaml --db story.db --output run/
 cpp-behavior audit run/brief.json draft.txt --db story.db --output run/audit.json
-cpp-behavior rewrite run/audit.json draft.txt --db story.db --output run/revised.txt
-# 重写稿必须再次 audit；以下 final-audit.json 必须是 accepted=true
+cpp-behavior rewrite run/audit.json draft.txt --db story.db \
+  --output run/revised.txt --audit-output run/final-audit.json
+# rewrite 已重新抽取并审查；final-audit.json 必须是 accepted=true
 cpp-behavior commit run/final-audit.json run/revised.txt --db story.db
 cpp-behavior report --book book.demo --db story.db --output reports/behavior.html
 cpp-behavior report --book book.demo --db story.db --output reports/behavior.md
@@ -172,7 +173,8 @@ cpp-behavior-verify evaluate reports/automatic-evidence.json \
 ```
 
 自动报告逐项检查重复率、俗套组占比、通道集中度、抽取召回率/精确率、span 准确率、
-重写保持率、幂等/故障注入、确定性和四项 P95 性能目标。没有至少两名独立评审的完整
+重写语法完整率、台词保持率、事实保持率、幂等/故障注入、确定性和四项 P95 性能目标。
+没有至少两名独立评审的完整
 评分时，总体状态固定为 `pending_human`；只有自动门禁与真人门禁全部通过，报告中的
 `completion_claim_allowed` 才会为 `true`。
 
@@ -369,7 +371,9 @@ cpp-perform examples/novel-scene.yaml --pack data/compiled --name 洛寒
 - 普通现实题材默认禁用修仙表现。修仙能力必须由世界类型、境界、角色能力和导演许可共同授权。
 - `context.facts` 用于显式授权物件、前态、环境和话轮信息；持物事实还必须与场景持物状态一致。
 - 当前场景布局在一次会话内固定，导航目标仅支持站立或就座；动态障碍、任意持续动作和开放式文风生成不在当前版本范围内。
-- 默认局部改写器采取保守策略：删除最小问题片段，不负责把句子润色成最终文学成稿；需要更自然的替换时可注入外部改写适配器。
+- 默认局部改写器支持显式 span 替换或保守删除，并修复删除造成的孤立主语、分句标点和
+  台词衔接；随后检查句末与引号、指代连续性、台词及必需事实，并自动重新抽取和审查。
+  复杂句无法安全修复时会交回人工；更自然的文学改写仍可注入外部适配器。
 
 ## 数据与隐私
 

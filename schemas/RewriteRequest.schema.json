@@ -70,6 +70,19 @@
           },
           "title": "Alternatives",
           "type": "array"
+        },
+        "replacement_text": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Replacement Text"
         }
       },
       "required": [

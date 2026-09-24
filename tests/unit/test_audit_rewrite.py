@@ -199,6 +199,147 @@ def test_targeted_rewriter_deletes_only_issue_span_and_preserves_dialogue() -> N
     assert result.rewrite_attempt == 1
 
 
+def test_default_rewriter_repairs_orphan_subject_before_preserved_dialogue() -> None:
+    text = "他握拳。‘好。’"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=1, end=3),),
+                preserve={"dialogue", "required_facts", "scene_state"},
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    result = TargetedRewriter().rewrite(
+        RewriteRequest(run_id="run.current", text=text, audit=audit, attempt=1)
+    )
+
+    assert result.text == "他说：‘好。’"
+    assert result.preserved_checks.grammar_complete
+    assert result.preserved_checks.punctuation_balanced
+    assert result.preserved_checks.reference_continuity
+
+
+def test_default_rewriter_uses_an_explicit_safe_span_replacement() -> None:
+    text = "他握拳。"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=1, end=3),),
+                replacement_text="松开手",
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    result = TargetedRewriter().rewrite(
+        RewriteRequest(run_id="run.current", text=text, audit=audit, attempt=1)
+    )
+
+    assert result.text == "他松开手。"
+    assert result.changed_spans[0].replacement.text == "松开手"
+
+
+def test_default_rewriter_repairs_clause_punctuation_after_span_deletion() -> None:
+    text = "他握拳，又抬头。"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=1, end=3),),
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    result = TargetedRewriter().rewrite(
+        RewriteRequest(run_id="run.current", text=text, audit=audit, attempt=1)
+    )
+
+    assert result.text == "他又抬头。"
+
+
+def test_default_rewriter_hands_off_when_deletion_leaves_no_safe_predicate() -> None:
+    text = "他握拳。"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=1, end=3),),
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    with pytest.raises(HumanReviewRequired, match="REWRITE_UNSAFE"):
+        TargetedRewriter().rewrite(
+            RewriteRequest(run_id="run.current", text=text, audit=audit, attempt=1)
+        )
+
+
+def test_rewriter_hands_off_when_adapter_changes_facts_or_dialogue_order() -> None:
+    text = "他握住佩剑。“留下。”“别走。”"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=1, end=5),),
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    with pytest.raises(HumanReviewRequired, match="REQUIRED_FACT_PRESERVATION_FAILED"):
+        TargetedRewriter(lambda _: "他离开。“留下。”“别走。”").rewrite(
+            RewriteContext(request=_request(), required_facts=frozenset({"佩剑"})),
+            GeneratedDraft(text=text),
+            audit,
+        )
+
+    with pytest.raises(HumanReviewRequired, match="DIALOGUE_PRESERVATION_FAILED"):
+        TargetedRewriter(lambda _: "他握住佩剑。“别走。”“留下。”").rewrite(
+            RewriteRequest(run_id="run.current", text=text, audit=audit, attempt=1)
+        )
+
+
 def test_targeted_rewriter_returns_human_handoff_for_block_or_exhaustion() -> None:
     text = "他皱眉。"
     block = AuditResult(

@@ -208,12 +208,27 @@ def _rewrite(args: argparse.Namespace) -> None:
             )
         revised = system.rewrite(audit.run_id, draft, audit)
         _write_output(args.output, revised)
+        recovery = system.recover(audit.run_id)
+        if recovery.audit is None or recovery.extraction is None:
+            raise BehaviorCommandError(
+                "EXTRACTION_INCOMPLETE", "rewrite did not produce a durable reaudit"
+            )
+        if args.audit_output is not None:
+            args.audit_output.parent.mkdir(parents=True, exist_ok=True)
+            args.audit_output.write_text(
+                recovery.audit.model_dump_json(indent=2) + "\n", encoding="utf-8"
+            )
         _emit(
             "behavior.rewrite.completed",
             started=started,
             run_id=audit.run_id,
             changed=revised != draft,
+            reaudited=True,
+            accepted=recovery.audit.accepted,
+            issue_count=len(recovery.audit.issues),
+            behavior_count=len(recovery.extraction.behaviors),
             output=str(args.output),
+            audit_output=str(args.audit_output) if args.audit_output else None,
         )
     finally:
         system.close()
@@ -306,6 +321,7 @@ def _parser() -> argparse.ArgumentParser:
     rewrite.add_argument("draft", type=Path)
     rewrite.add_argument("--db", type=Path, required=True)
     rewrite.add_argument("--output", type=Path, required=True)
+    rewrite.add_argument("--audit-output", type=Path)
     rewrite.add_argument("--pack-root", type=Path, default=None)
     rewrite.set_defaults(handler=_rewrite)
     commit = commands.add_parser("commit", help="atomically commit an accepted draft")

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import re
 from typing import Any, Protocol
 
 from .domain.behavior_models import (
@@ -40,22 +41,58 @@ class RewriteContext:
 
 
 def _dialogue_parts(text: str) -> tuple[str, ...]:
-    # Support common Chinese and ASCII quote pairs.  Returning the content
-    # rather than offsets makes the check robust when a preceding action moves.
-    pairs = (("“", "”"), ("‘", "’"), ('"', '"'), ("「", "」"), ("『", "』"))
-    found: list[str] = []
-    for left, right in pairs:
-        start = 0
-        while True:
-            begin = text.find(left, start)
-            if begin < 0:
-                break
-            end = text.find(right, begin + len(left))
-            if end < 0:
-                break
-            found.append(text[begin + len(left) : end])
-            start = end + len(right)
-    return tuple(sorted(found))
+    # Preserve dialogue order while allowing the surrounding action to move.
+    pattern = re.compile(r"“([^”]*)”|‘([^’]*)’|\"([^\"]*)\"|「([^」]*)」|『([^』]*)』")
+    return tuple(
+        next(group for group in match.groups() if group is not None)
+        for match in pattern.finditer(text)
+    )
+
+
+_SUBJECT = r"(?:他|她|它|他们|她们|它们|自己)"
+_QUOTE_OPENERS = "“‘「『\""
+
+
+def _quotes_balanced(text: str) -> bool:
+    for left, right in (("“", "”"), ("‘", "’"), ("「", "」"), ("『", "』")):
+        depth = 0
+        for character in text:
+            if character == left:
+                depth += 1
+            elif character == right:
+                depth -= 1
+                if depth < 0:
+                    return False
+        if depth:
+            return False
+    return text.count('"') % 2 == 0
+
+
+def _grammar_complete(text: str) -> bool:
+    orphan = re.compile(rf"(?:^|[。！？；\n])\s*{_SUBJECT}\s*[。！？；]")
+    broken_clause = re.compile(rf"(?:^|[。！？；\n])\s*{_SUBJECT}\s*[，、]")
+    return (
+        orphan.search(text) is None
+        and broken_clause.search(text) is None
+        and text[-1] in "。！？!?….”’」』\""
+    )
+
+
+def _reference_continuity(text: str) -> bool:
+    before_quote = re.compile(rf"(?:^|[。！？；\n])\s*{_SUBJECT}\s*(?=[{_QUOTE_OPENERS}])")
+    return before_quote.search(text) is None
+
+
+def _integrity_checks(text: str) -> tuple[bool, bool, bool]:
+    punctuation_balanced = _quotes_balanced(text) and not re.search(
+        r"(?:^|[。！？!?；])\s*[，、：；]", text
+    )
+    return _grammar_complete(text), punctuation_balanced, _reference_continuity(text)
+
+
+def _subject_before_span(text: str, start: int) -> bool:
+    boundary = max(text.rfind(mark, 0, start) for mark in "。！？；\n")
+    return re.fullmatch(_SUBJECT, text[boundary + 1 : start].strip()) is not None
 
 
 class TargetedRewriter:
@@ -119,11 +156,28 @@ class TargetedRewriter:
             checked = RewriteResult.model_validate(result)
         else:
             raise TypeError("rewrite adapter must return RewriteResult, text, or mapping")
-        if context is not None:
-            self._verify(context, request, checked)
-        else:
-            if _dialogue_parts(request.text) != _dialogue_parts(checked.text):
+        grammar, punctuation, references = _integrity_checks(checked.text)
+        if not (grammar and punctuation and references):
+            raise HumanReviewRequired(
+                audit,
+                "REWRITE_UNSAFE: grammar, punctuation, or reference continuity failed",
+            )
+        try:
+            if context is not None:
+                self._verify(context, request, checked)
+            elif _dialogue_parts(request.text) != _dialogue_parts(checked.text):
                 raise ValueError("DIALOGUE_PRESERVATION_FAILED: rewrite changed dialogue")
+        except ValueError as exc:
+            if str(exc).startswith(
+                (
+                    "DIALOGUE_PRESERVATION_FAILED",
+                    "REQUIRED_FACT_PRESERVATION_FAILED",
+                    "SCENE_STATE_PRESERVATION_FAILED",
+                    "REWRITE_CONTRACT_FAILED",
+                )
+            ):
+                raise HumanReviewRequired(audit, f"REWRITE_UNSAFE: {exc}") from exc
+            raise
         return checked
 
     def rewrite_text(
@@ -142,8 +196,26 @@ class TargetedRewriter:
             if issue.severity != "rewrite":
                 continue
             span = min(issue.spans, key=lambda item: (item.end - item.start, item.start))
-            replacement = ""
-            selected.append((span.start, span.end, replacement, (issue.issue_id,)))
+            replacement = issue.replacement_text or ""
+            end = span.end
+            subject_before = _subject_before_span(request.text, span.start)
+            if (
+                issue.replacement_text is None
+                and subject_before
+                and end < len(request.text) - 1
+                and request.text[end] == "。"
+                and request.text[end + 1] in _QUOTE_OPENERS
+            ):
+                end += 1
+                replacement = "说："
+            elif (
+                issue.replacement_text is None
+                and subject_before
+                and end < len(request.text)
+                and request.text[end] in "，、"
+            ):
+                end += 1
+            selected.append((span.start, end, replacement, (issue.issue_id,)))
         if not selected:
             raise HumanReviewRequired(request.audit, "REWRITE_EXHAUSTED: no rewrite issue span")
         selected.sort()
@@ -172,6 +244,12 @@ class TargetedRewriter:
         text = "".join(parts)
         if not text.strip():
             raise HumanReviewRequired(request.audit, "REWRITE_EXHAUSTED: rewrite removed the complete draft")
+        grammar, punctuation, references = _integrity_checks(text)
+        if not (grammar and punctuation and references):
+            raise HumanReviewRequired(
+                request.audit,
+                "REWRITE_UNSAFE: grammar, punctuation, or reference continuity failed",
+            )
         return RewriteResult(
             run_id=request.run_id,
             original_text=request.text,
@@ -182,6 +260,9 @@ class TargetedRewriter:
                 dialogue_hash=content_hash("\u0000".join(_dialogue_parts(request.text))),
                 required_facts=True,
                 scene_state=True,
+                grammar_complete=grammar,
+                punctuation_balanced=punctuation,
+                reference_continuity=references,
             ),
             rewrite_attempt=request.attempt,
         )
@@ -212,13 +293,26 @@ class TargetedRewriter:
         issue_ids = tuple(issue.issue_id for issue in request.audit.issues if any(s.start <= prefix < s.end or s.start == prefix for s in issue.spans))
         if not issue_ids:
             issue_ids = tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite")
+        grammar, punctuation, references = _integrity_checks(text)
+        if not (grammar and punctuation and references):
+            raise HumanReviewRequired(
+                request.audit,
+                "REWRITE_UNSAFE: grammar, punctuation, or reference continuity failed",
+            )
         return RewriteResult(
             run_id=request.run_id,
             original_text=request.text,
             text=text,
             changed_spans=(ChangedSpan(original=TextSpan(start=prefix, end=end, text=request.text[prefix:end]), replacement=TextReplacement(text=replacement), resolved_issue_ids=issue_ids),),
             requested_issue_ids=tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite"),
-            preserved_checks=PreservationChecks(dialogue_hash=content_hash("\u0000".join(_dialogue_parts(request.text))), required_facts=True, scene_state=True),
+            preserved_checks=PreservationChecks(
+                dialogue_hash=content_hash("\u0000".join(_dialogue_parts(request.text))),
+                required_facts=True,
+                scene_state=True,
+                grammar_complete=grammar,
+                punctuation_balanced=punctuation,
+                reference_continuity=references,
+            ),
             rewrite_attempt=request.attempt,
         )
 

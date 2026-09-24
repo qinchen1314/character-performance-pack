@@ -317,6 +317,9 @@ def test_rewrite_result_resolves_only_known_issues_and_preserves_hashes() -> Non
                 dialogue_hash="sha256:" + "0" * 64,
                 required_facts=True,
                 scene_state=True,
+                grammar_complete=True,
+                punctuation_balanced=True,
+                reference_continuity=True,
             ),
             rewrite_attempt=1,
         )
@@ -346,6 +349,9 @@ def test_rewrite_result_must_reproduce_text_and_preserve_required_state() -> Non
                 dialogue_hash="sha256:" + "0" * 64,
                 required_facts=True,
                 scene_state=True,
+                grammar_complete=True,
+                punctuation_balanced=True,
+                reference_continuity=True,
             ),
         )
 
@@ -357,6 +363,9 @@ def test_rewrite_result_must_reproduce_text_and_preserve_required_state() -> Non
                 dialogue_hash="sha256:" + "0" * 64,
                 required_facts=False,
                 scene_state=True,
+                grammar_complete=True,
+                punctuation_balanced=True,
+                reference_continuity=True,
             ),
         )
 
@@ -529,6 +538,9 @@ def test_every_top_level_behavior_contract_round_trips_through_json() -> None:
             dialogue_hash="sha256:" + "0" * 64,
             required_facts=True,
             scene_state=True,
+            grammar_complete=True,
+            punctuation_balanced=True,
+            reference_continuity=True,
         ),
         rewrite_attempt=1,
     )

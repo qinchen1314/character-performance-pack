@@ -13,12 +13,27 @@
     "scene_state": {
       "title": "Scene State",
       "type": "boolean"
+    },
+    "grammar_complete": {
+      "title": "Grammar Complete",
+      "type": "boolean"
+    },
+    "punctuation_balanced": {
+      "title": "Punctuation Balanced",
+      "type": "boolean"
+    },
+    "reference_continuity": {
+      "title": "Reference Continuity",
+      "type": "boolean"
     }
   },
   "required": [
     "dialogue_hash",
     "required_facts",
-    "scene_state"
+    "scene_state",
+    "grammar_complete",
+    "punctuation_balanced",
+    "reference_continuity"
   ],
   "title": "PreservationChecks",
   "type": "object"

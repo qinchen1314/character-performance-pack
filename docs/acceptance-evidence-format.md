@@ -21,7 +21,9 @@ unit/property/integration/scenario/chapter_benchmark/fault_injection/performance
 | `cross_chapter_function_channel_repeat_rate` | 三章内同功能同通道重复率 | `≤ 0.10` |
 | `semantic_repeat_recall` / `semantic_repeat_precision` | 固定对抗集 | `≥ 0.90 / ≥ 0.85` |
 | `span_accuracy` | 独立人工标注 span | `≥ 0.98` |
-| `rewrite_preservation_rate` | 台词哈希与必需事实校验 | `1.0` |
+| `rewrite_grammar_integrity_rate` | 重写后主谓结构、句末标点及引号完整性校验 | `1.0` |
+| `rewrite_dialogue_preservation_rate` | 重写前后台词内容与顺序保持率 | `1.0` |
+| `rewrite_fact_preservation_rate` | 重写前后必需事实保持率 | `1.0` |
 | `duplicate_history_count` | 并发、重启、重试后的重复 occurrence 数 | `0` |
 | `fault_injection_passed` | 原子回滚、外部 Adapter 失败和恢复测试 | `true` |
 | `prepare_p95_ms` | 不含外部 LLM | `≤ 100` |
@@ -29,6 +31,9 @@ unit/property/integration/scenario/chapter_benchmark/fault_injection/performance
 | `history_query_p95_ms` | 规定数据规模下七窗口查询 | `≤ 30` |
 | `commit_p95_ms` | 原子提交 | `≤ 50` |
 | `deterministic_replay_passed` | 相同输入、Pack、Identity、revision、seed | `true` |
+
+旧的聚合字段 `rewrite_preservation_rate` 已拆为三个独立硬门禁，不能再用一项综合比例掩盖
+残句、台词变化或事实丢失。三项都必须来自同一版本的固定重写对抗集，且分别达到 100%。
 
 抽取对抗集通过 `benchmark_extractor` 使用独立的 `ExtractionTruth` 计算，不从抽取器输出
 反推期望值。每条 truth 必须独立标注 actor、targets、canonical action、semantic group 和

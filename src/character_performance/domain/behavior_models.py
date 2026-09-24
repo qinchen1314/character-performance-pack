@@ -470,6 +470,7 @@ class AuditIssue(DomainModel):
     evidence: dict[str, Any] = Field(default_factory=dict)
     preserve: frozenset[NonEmptyId] = frozenset()
     alternatives: tuple[NonEmptyId, ...] = ()
+    replacement_text: NonEmptyText | None = None
 
     @model_validator(mode="after")
     def issue_has_location(self) -> "AuditIssue":
@@ -560,6 +561,9 @@ class PreservationChecks(DomainModel):
     dialogue_hash: ContentHash
     required_facts: bool
     scene_state: bool
+    grammar_complete: bool
+    punctuation_balanced: bool
+    reference_continuity: bool
 
 
 class RewriteResult(DomainModel):
@@ -600,8 +604,16 @@ class RewriteResult(DomainModel):
         parts.append(self.original_text[cursor:])
         if "".join(parts) != self.text:
             raise ValueError("changed_spans must reproduce the rewritten text")
-        if not self.preserved_checks.required_facts or not self.preserved_checks.scene_state:
-            raise ValueError("rewrite must preserve required facts and scene state")
+        if not all(
+            (
+                self.preserved_checks.required_facts,
+                self.preserved_checks.scene_state,
+                self.preserved_checks.grammar_complete,
+                self.preserved_checks.punctuation_balanced,
+                self.preserved_checks.reference_continuity,
+            )
+        ):
+            raise ValueError("rewrite must preserve required state and pass text integrity checks")
         return self
 
 

@@ -120,6 +120,12 @@ def test_rewrite_can_be_reaudited_with_documented_text_only_draft_shape(tmp_path
     failed = system.audit(request.run_id, original)
     assert not failed.accepted and failed.auto_rewrite_allowed
     revised = system.rewrite(request.run_id, original, failed)
+    recovery = system.recover(request.run_id)
+
+    assert recovery.status is RunStatus.AUDITED_PASSED
+    assert recovery.audit is not None and recovery.audit.accepted
+    assert recovery.extraction is not None
+
     passed = system.audit(request.run_id, revised)
 
     assert passed.accepted

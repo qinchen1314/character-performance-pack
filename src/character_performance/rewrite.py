@@ -51,6 +51,7 @@ def _dialogue_parts(text: str) -> tuple[str, ...]:
 
 _SUBJECT = r"(?:他|她|它|他们|她们|它们|自己)"
 _QUOTE_OPENERS = "“‘「『\""
+_PRONOUN_PATTERN = re.compile(_SUBJECT)
 
 
 def _quotes_balanced(text: str) -> bool:
@@ -78,16 +79,43 @@ def _grammar_complete(text: str) -> bool:
     )
 
 
-def _reference_continuity(text: str) -> bool:
+def _reference_continuity(text: str, *, original_text: str | None = None) -> bool:
     before_quote = re.compile(rf"(?:^|[。！？；\n])\s*{_SUBJECT}\s*(?=[{_QUOTE_OPENERS}])")
-    return before_quote.search(text) is None
+    # A short name/noun phrase stranded as a complete sentence immediately
+    # before dialogue is just as unsafe as an orphan pronoun (for example,
+    # ``洛寒。‘好。’``).  Do not guess that the fragment is a speaker tag.
+    named_fragment_before_quote = re.compile(
+        rf"(?:^|[。！？；\n])\s*(?!{_SUBJECT})[\u3400-\u9fff]{{2,4}}[。！？]\s*(?=[{_QUOTE_OPENERS}])"
+    )
+    if before_quote.search(text) is not None or named_fragment_before_quote.search(text) is not None:
+        return False
+    if original_text is not None:
+        # A targeted action rewrite must not silently change who a pronoun
+        # refers to.  Names/coreference need semantic resolution, so adapters
+        # that alter this deterministic signature are handed back to a human.
+        before_pronouns = tuple(_PRONOUN_PATTERN.findall(original_text))
+        after_pronouns = tuple(_PRONOUN_PATTERN.findall(text))
+        # Removing an entire action span may also remove its subject, which is
+        # safe when no pronoun remains.  A surviving but changed pronoun is a
+        # real continuity break (``他`` -> ``她``), so reject that case.
+        if before_pronouns and after_pronouns and before_pronouns != after_pronouns:
+            return False
+    return True
 
 
-def _integrity_checks(text: str) -> tuple[bool, bool, bool]:
+def _integrity_checks(
+    text: str,
+    *,
+    original_text: str | None = None,
+) -> tuple[bool, bool, bool]:
     punctuation_balanced = _quotes_balanced(text) and not re.search(
         r"(?:^|[。！？!?；])\s*[，、：；]", text
     )
-    return _grammar_complete(text), punctuation_balanced, _reference_continuity(text)
+    return (
+        _grammar_complete(text),
+        punctuation_balanced,
+        _reference_continuity(text, original_text=original_text),
+    )
 
 
 def _subject_before_span(text: str, start: int) -> bool:
@@ -156,7 +184,10 @@ class TargetedRewriter:
             checked = RewriteResult.model_validate(result)
         else:
             raise TypeError("rewrite adapter must return RewriteResult, text, or mapping")
-        grammar, punctuation, references = _integrity_checks(checked.text)
+        grammar, punctuation, references = _integrity_checks(
+            checked.text,
+            original_text=request.text,
+        )
         if not (grammar and punctuation and references):
             raise HumanReviewRequired(
                 audit,
@@ -223,6 +254,16 @@ class TargetedRewriter:
         for start, end, text, ids in selected:
             if merged and start < merged[-1][1]:
                 previous = merged[-1]
+                same_replacement = (
+                    start == previous[0]
+                    and end == previous[1]
+                    and text == previous[2]
+                )
+                if (text or previous[2]) and not same_replacement:
+                    raise HumanReviewRequired(
+                        request.audit,
+                        "REWRITE_UNSAFE: conflicting overlapping replacements require human review",
+                    )
                 merged[-1] = (previous[0], max(previous[1], end), previous[2], previous[3] | set(ids))
             else:
                 merged.append((start, end, text, set(ids)))
@@ -244,7 +285,10 @@ class TargetedRewriter:
         text = "".join(parts)
         if not text.strip():
             raise HumanReviewRequired(request.audit, "REWRITE_EXHAUSTED: rewrite removed the complete draft")
-        grammar, punctuation, references = _integrity_checks(text)
+        grammar, punctuation, references = _integrity_checks(
+            text,
+            original_text=request.text,
+        )
         if not (grammar and punctuation and references):
             raise HumanReviewRequired(
                 request.audit,
@@ -293,7 +337,10 @@ class TargetedRewriter:
         issue_ids = tuple(issue.issue_id for issue in request.audit.issues if any(s.start <= prefix < s.end or s.start == prefix for s in issue.spans))
         if not issue_ids:
             issue_ids = tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite")
-        grammar, punctuation, references = _integrity_checks(text)
+        grammar, punctuation, references = _integrity_checks(
+            text,
+            original_text=request.text,
+        )
         if not (grammar and punctuation and references):
             raise HumanReviewRequired(
                 request.audit,

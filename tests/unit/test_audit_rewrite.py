@@ -340,6 +340,85 @@ def test_rewriter_hands_off_when_adapter_changes_facts_or_dialogue_order() -> No
         )
 
 
+def test_rewriter_hands_off_for_named_subject_residual_or_changed_pronoun() -> None:
+    text = "洛寒握拳。‘好。’"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=2, end=4),),
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    with pytest.raises(HumanReviewRequired, match="REWRITE_UNSAFE"):
+        TargetedRewriter().rewrite(
+            RewriteRequest(run_id="run.current", text=text, audit=audit, attempt=1)
+        )
+
+    pronoun_text = "他握拳。"
+    pronoun_audit = audit.model_copy(
+        update={
+            "draft_hash": content_hash(pronoun_text),
+            "issues": (
+                audit.issues[0].model_copy(
+                    update={"spans": (SourceSpan(start=1, end=3),)}
+                ),
+            ),
+        }
+    )
+    with pytest.raises(HumanReviewRequired, match="reference continuity"):
+        TargetedRewriter(lambda _: "她离开。").rewrite(
+            RewriteRequest(
+                run_id="run.current",
+                text=pronoun_text,
+                audit=pronoun_audit,
+                attempt=1,
+            )
+        )
+
+
+def test_rewriter_hands_off_for_conflicting_overlapping_replacements() -> None:
+    text = "他握拳后离开。"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.first",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=1, end=3),),
+                replacement_text="抬头",
+            ),
+            AuditIssue(
+                issue_id="issue.second",
+                severity="rewrite",
+                code="syntax_template_repeat",
+                spans=(SourceSpan(start=2, end=4),),
+                replacement_text="停步",
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    with pytest.raises(HumanReviewRequired, match="overlapping replacements"):
+        TargetedRewriter().rewrite(
+            RewriteRequest(run_id="run.current", text=text, audit=audit, attempt=1)
+        )
+
+
 def test_targeted_rewriter_returns_human_handoff_for_block_or_exhaustion() -> None:
     text = "他皱眉。"
     block = AuditResult(

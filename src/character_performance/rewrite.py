@@ -49,43 +49,95 @@ def _dialogue_parts(text: str) -> tuple[str, ...]:
     )
 
 
-_SUBJECT = r"(?:他们|她们|它们|自己|他|她|它)"
+_PRONOUN_SUBJECT_SOURCE = r"(?:他们|她们|它们|自己|他|她|它)"
 _QUOTE_OPENERS = "“‘「『\""
-_PRONOUN_PATTERN = re.compile(_SUBJECT)
+_PRONOUN_PATTERN = re.compile(_PRONOUN_SUBJECT_SOURCE)
+
+
+@dataclass(frozen=True, slots=True)
+class _TextIntegrity:
+    grammar_complete: bool
+    punctuation_balanced: bool
+    reference_continuity: bool
+
+    @property
+    def safe(self) -> bool:
+        return all(
+            (
+                self.grammar_complete,
+                self.punctuation_balanced,
+                self.reference_continuity,
+            )
+        )
+
+    def preservation_checks(self, original_text: str) -> PreservationChecks:
+        return PreservationChecks(
+            dialogue_hash=content_hash("\u0000".join(_dialogue_parts(original_text))),
+            required_facts=True,
+            scene_state=True,
+            grammar_complete=self.grammar_complete,
+            punctuation_balanced=self.punctuation_balanced,
+            reference_continuity=self.reference_continuity,
+        )
 
 
 def _quotes_balanced(text: str) -> bool:
-    for left, right in (("“", "”"), ("‘", "’"), ("「", "」"), ("『", "』")):
-        depth = 0
-        for character in text:
-            if character == left:
-                depth += 1
-            elif character == right:
-                depth -= 1
-                if depth < 0:
-                    return False
-        if depth:
-            return False
-    return text.count('"') % 2 == 0
+    pairs = {"“": "”", "‘": "’", "「": "」", "『": "』"}
+    closing = {right: left for left, right in pairs.items()}
+    stack: list[str] = []
+    for character in text:
+        if character == '"':
+            if stack and stack[-1] == character:
+                stack.pop()
+            else:
+                stack.append(character)
+        elif character in pairs:
+            stack.append(character)
+        elif character in closing:
+            if not stack or stack[-1] != closing[character]:
+                return False
+            stack.pop()
+    return not stack
 
 
 def _grammar_complete(text: str) -> bool:
-    orphan = re.compile(rf"(?:^|[。！？；\n])\s*{_SUBJECT}\s*[。！？；]")
-    broken_clause = re.compile(rf"(?:^|[。！？；\n])\s*{_SUBJECT}\s*[，、]")
+    orphan = re.compile(rf"(?:^|[。！？；\n])\s*{_PRONOUN_SUBJECT_SOURCE}\s*[。！？；]")
+    broken_clause = re.compile(rf"(?:^|[。！？；\n])\s*{_PRONOUN_SUBJECT_SOURCE}\s*[，、]")
+    dangling_function_word = re.compile(
+        r"(?:^|[。！？；\n])\s*[\u3400-\u9fff]*[的地得把被向在与和及]\s*[。！？；]"
+    )
     return (
         orphan.search(text) is None
         and broken_clause.search(text) is None
+        and dangling_function_word.search(text) is None
         and text[-1] in "。！？!?….”’」』\""
     )
 
 
+def _pronoun_contexts(text: str) -> tuple[tuple[str, str], ...]:
+    contexts: list[tuple[str, str]] = []
+    boundaries = "。！？；\n"
+    for match in _PRONOUN_PATTERN.finditer(text):
+        sentence_start = max(text.rfind(mark, 0, match.start()) for mark in boundaries)
+        context = text[sentence_start + 1 : match.start()].strip()
+        if not context and sentence_start >= 0:
+            previous_start = max(
+                text.rfind(mark, 0, sentence_start) for mark in boundaries
+            )
+            context = text[previous_start + 1 : sentence_start].strip()
+        contexts.append((match.group(), re.sub(r"\s+", "", context)))
+    return tuple(contexts)
+
+
 def _reference_continuity(text: str, *, original_text: str | None = None) -> bool:
-    before_quote = re.compile(rf"(?:^|[。！？；\n])\s*{_SUBJECT}\s*(?=[{_QUOTE_OPENERS}])")
+    before_quote = re.compile(
+        rf"(?:^|[。！？；\n])\s*{_PRONOUN_SUBJECT_SOURCE}\s*(?=[{_QUOTE_OPENERS}])"
+    )
     # A short name/noun phrase stranded as a complete sentence immediately
     # before dialogue is just as unsafe as an orphan pronoun (for example,
     # ``洛寒。‘好。’``).  Do not guess that the fragment is a speaker tag.
     named_fragment_before_quote = re.compile(
-        rf"(?:^|[。！？；\n])\s*(?!{_SUBJECT})[\u3400-\u9fff]{{2,4}}[。！？]\s*(?=[{_QUOTE_OPENERS}])"
+        rf"(?:^|[。！？；\n])\s*(?!{_PRONOUN_SUBJECT_SOURCE})[\u3400-\u9fff]{{1,4}}[。！？]\s*(?=[{_QUOTE_OPENERS}])"
     )
     if before_quote.search(text) is not None or named_fragment_before_quote.search(text) is not None:
         return False
@@ -93,8 +145,8 @@ def _reference_continuity(text: str, *, original_text: str | None = None) -> boo
         # A targeted action rewrite must not silently change who a pronoun
         # refers to.  Names/coreference need semantic resolution, so adapters
         # that alter this deterministic signature are handed back to a human.
-        before_pronouns = tuple(_PRONOUN_PATTERN.findall(original_text))
-        after_pronouns = tuple(_PRONOUN_PATTERN.findall(text))
+        before_pronouns = _pronoun_contexts(original_text)
+        after_pronouns = _pronoun_contexts(text)
         # Removing an entire action span may also remove its subject, which is
         # safe when no pronoun remains.  A surviving but changed pronoun is a
         # real continuity break (``他`` -> ``她``), so reject that case.
@@ -107,20 +159,36 @@ def _integrity_checks(
     text: str,
     *,
     original_text: str | None = None,
-) -> tuple[bool, bool, bool]:
+) -> _TextIntegrity:
     punctuation_balanced = _quotes_balanced(text) and not re.search(
         r"(?:^|[。！？!?；])\s*[，、：；]", text
     )
-    return (
-        _grammar_complete(text),
-        punctuation_balanced,
-        _reference_continuity(text, original_text=original_text),
+    return _TextIntegrity(
+        grammar_complete=_grammar_complete(text),
+        punctuation_balanced=punctuation_balanced,
+        reference_continuity=_reference_continuity(
+            text,
+            original_text=original_text,
+        ),
     )
 
 
 def _subject_before_span(text: str, start: int) -> bool:
     boundary = max(text.rfind(mark, 0, start) for mark in "。！？；\n")
-    return re.fullmatch(_SUBJECT, text[boundary + 1 : start].strip()) is not None
+    return re.fullmatch(
+        _PRONOUN_SUBJECT_SOURCE,
+        text[boundary + 1 : start].strip(),
+    ) is not None
+
+
+def _require_safe_integrity(request: RewriteRequest, text: str) -> _TextIntegrity:
+    integrity = _integrity_checks(text, original_text=request.text)
+    if not integrity.safe:
+        raise HumanReviewRequired(
+            request.audit,
+            "REWRITE_UNSAFE: grammar, punctuation, or reference continuity failed",
+        )
+    return integrity
 
 
 class TargetedRewriter:
@@ -184,15 +252,7 @@ class TargetedRewriter:
             checked = RewriteResult.model_validate(result)
         else:
             raise TypeError("rewrite adapter must return RewriteResult, text, or mapping")
-        grammar, punctuation, references = _integrity_checks(
-            checked.text,
-            original_text=request.text,
-        )
-        if not (grammar and punctuation and references):
-            raise HumanReviewRequired(
-                audit,
-                "REWRITE_UNSAFE: grammar, punctuation, or reference continuity failed",
-            )
+        _require_safe_integrity(request, checked.text)
         try:
             if context is not None:
                 self._verify(context, request, checked)
@@ -285,29 +345,14 @@ class TargetedRewriter:
         text = "".join(parts)
         if not text.strip():
             raise HumanReviewRequired(request.audit, "REWRITE_EXHAUSTED: rewrite removed the complete draft")
-        grammar, punctuation, references = _integrity_checks(
-            text,
-            original_text=request.text,
-        )
-        if not (grammar and punctuation and references):
-            raise HumanReviewRequired(
-                request.audit,
-                "REWRITE_UNSAFE: grammar, punctuation, or reference continuity failed",
-            )
+        integrity = _require_safe_integrity(request, text)
         return RewriteResult(
             run_id=request.run_id,
             original_text=request.text,
             text=text,
             changed_spans=tuple(changed),
             requested_issue_ids=tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite"),
-            preserved_checks=PreservationChecks(
-                dialogue_hash=content_hash("\u0000".join(_dialogue_parts(request.text))),
-                required_facts=True,
-                scene_state=True,
-                grammar_complete=grammar,
-                punctuation_balanced=punctuation,
-                reference_continuity=references,
-            ),
+            preserved_checks=integrity.preservation_checks(request.text),
             rewrite_attempt=request.attempt,
         )
 
@@ -337,29 +382,14 @@ class TargetedRewriter:
         issue_ids = tuple(issue.issue_id for issue in request.audit.issues if any(s.start <= prefix < s.end or s.start == prefix for s in issue.spans))
         if not issue_ids:
             issue_ids = tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite")
-        grammar, punctuation, references = _integrity_checks(
-            text,
-            original_text=request.text,
-        )
-        if not (grammar and punctuation and references):
-            raise HumanReviewRequired(
-                request.audit,
-                "REWRITE_UNSAFE: grammar, punctuation, or reference continuity failed",
-            )
+        integrity = _require_safe_integrity(request, text)
         return RewriteResult(
             run_id=request.run_id,
             original_text=request.text,
             text=text,
             changed_spans=(ChangedSpan(original=TextSpan(start=prefix, end=end, text=request.text[prefix:end]), replacement=TextReplacement(text=replacement), resolved_issue_ids=issue_ids),),
             requested_issue_ids=tuple(issue.issue_id for issue in request.audit.issues if issue.severity == "rewrite"),
-            preserved_checks=PreservationChecks(
-                dialogue_hash=content_hash("\u0000".join(_dialogue_parts(request.text))),
-                required_facts=True,
-                scene_state=True,
-                grammar_complete=grammar,
-                punctuation_balanced=punctuation,
-                reference_continuity=references,
-            ),
+            preserved_checks=integrity.preservation_checks(request.text),
             rewrite_attempt=request.attempt,
         )
 

@@ -407,6 +407,71 @@ def test_rewriter_hands_off_for_named_subject_residual_or_changed_pronoun() -> N
         )
 
 
+def test_rewriter_hands_off_for_dangling_particle_or_single_character_subject() -> None:
+    text = "洛寒握拳。"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=2, end=4),),
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    for unsafe_text in ("洛寒的。", "周。‘好。’"):
+        with pytest.raises(HumanReviewRequired, match="REWRITE_UNSAFE"):
+            TargetedRewriter(lambda _, value=unsafe_text: value).rewrite(
+                RewriteRequest(
+                    run_id="run.current",
+                    text=text,
+                    audit=audit,
+                    attempt=1,
+                )
+            )
+
+
+def test_rewriter_hands_off_for_crossed_quotes_or_changed_antecedent() -> None:
+    text = "洛寒看着阿青。他笑了。"
+    audit = AuditResult(
+        run_id="run.current",
+        draft_hash=content_hash(text),
+        accepted=False,
+        issues=(
+            AuditIssue(
+                issue_id="issue.repeat",
+                severity="rewrite",
+                code="cross_chapter_semantic_repeat",
+                spans=(SourceSpan(start=2, end=4),),
+            ),
+        ),
+        metrics=AuditMetrics(semantic_repeat_score=1.0),
+        memory_revision=7,
+        auto_rewrite_allowed=True,
+    )
+
+    for unsafe_text in (
+        "洛寒看着阿青。他说：“『好”』。",
+        "阿青看着洛寒。他笑了。",
+    ):
+        with pytest.raises(HumanReviewRequired, match="REWRITE_UNSAFE"):
+            TargetedRewriter(lambda _, value=unsafe_text: value).rewrite(
+                RewriteRequest(
+                    run_id="run.current",
+                    text=text,
+                    audit=audit,
+                    attempt=1,
+                )
+            )
+
+
 def test_rewriter_hands_off_for_conflicting_overlapping_replacements() -> None:
     text = "他握拳后离开。"
     audit = AuditResult(

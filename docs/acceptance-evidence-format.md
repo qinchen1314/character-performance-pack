@@ -42,6 +42,8 @@ group 且区间 IoU 达到门槛（默认 0.5）才算命中；匹配使用全�
 - `micro`：汇总全部 truth/prediction 后的 precision、recall、F1；
 - `macro`：逐 case 计算后等权平均的 precision、recall、F1；
 - `error_counts`：actor、target、action、semantic group、span、漏检、孤立误报七类诊断计数；
+- `error_type_confusion_matrix`：actor/target/action/semantic/span 五个维度的
+  correct/incorrect 矩阵，以及 detection 的 TP/FP/FN 行；同一诊断对可贡献多个字段错误；
 - `identity_confusion_matrix`：联合身份标签的 truth→prediction 矩阵，含 `__missing__` 和
   `__spurious__`；
 - `calibration`：非空等宽置信度分箱、每箱平均置信度/实际准确率，以及 ECE 和 Brier score。

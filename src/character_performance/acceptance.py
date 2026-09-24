@@ -13,7 +13,7 @@ from typing import Literal, Protocol, Sequence
 from pydantic import Field, model_validator
 
 from .domain.behavior_models import ExtractedBehavior, ExtractionRequest, ExtractionResult
-from .domain.models import DomainModel
+from .domain.models import DomainModel, NonEmptyId
 from .gate_policy import AUTOMATIC_GATE_SPECS, GatePolicy, gate_passes
 
 
@@ -22,10 +22,10 @@ class ExtractionAdapter(Protocol):
 
 
 class ExtractionTruth(DomainModel):
-    actor_id: str = Field(min_length=1)
-    target_ids: tuple[str, ...] = ()
-    canonical_action: str = Field(min_length=1)
-    semantic_group: str = Field(min_length=1)
+    actor_id: NonEmptyId
+    target_ids: tuple[NonEmptyId, ...] = ()
+    canonical_action: NonEmptyId
+    semantic_group: NonEmptyId
     start: int = Field(ge=0)
     end: int = Field(gt=0)
 
@@ -93,6 +93,7 @@ class ExtractionBenchmarkResult(DomainModel):
     micro: ExtractionMetrics
     macro: ExtractionMetrics
     error_counts: dict[str, int]
+    error_type_confusion_matrix: dict[str, dict[str, int]]
     identity_confusion_matrix: dict[str, dict[str, int]]
     calibration: ConfidenceCalibration
 
@@ -104,16 +105,21 @@ def _span_iou(truth: ExtractionTruth, prediction: ExtractedBehavior) -> float:
     return intersection / union if union else 0.0
 
 
-def _jointly_compatible(
+def _identity_mismatches(
     truth: ExtractionTruth, prediction: ExtractedBehavior, *, minimum_iou: float
-) -> bool:
-    return (
-        prediction.actor_id == truth.actor_id
-        and frozenset(prediction.target_ids) == frozenset(truth.target_ids)
-        and prediction.canonical_action == truth.canonical_action
-        and truth.semantic_group in prediction.semantic_groups
-        and _span_iou(truth, prediction) >= minimum_iou
-    )
+) -> frozenset[str]:
+    mismatches: set[str] = set()
+    if prediction.actor_id != truth.actor_id:
+        mismatches.add("actor")
+    if sorted(prediction.target_ids) != sorted(truth.target_ids):
+        mismatches.add("target")
+    if prediction.canonical_action != truth.canonical_action:
+        mismatches.add("action")
+    if truth.semantic_group not in prediction.semantic_groups:
+        mismatches.add("semantic_group")
+    if _span_iou(truth, prediction) < minimum_iou:
+        mismatches.add("span")
+    return frozenset(mismatches)
 
 
 def _maximum_weight_assignment(weights: Sequence[Sequence[float]]) -> list[tuple[int, int]]:
@@ -193,7 +199,9 @@ def _optimal_matches(
     weights = [
         [
             cardinality_weight + _span_iou(truth, prediction)
-            if _jointly_compatible(truth, prediction, minimum_iou=minimum_iou)
+            if not _identity_mismatches(
+                truth, prediction, minimum_iou=minimum_iou
+            )
             else 0.0
             for prediction in predictions
         ]
@@ -222,12 +230,19 @@ def _truth_label(truth: ExtractionTruth) -> str:
     )
 
 
-def _prediction_label(prediction: ExtractedBehavior) -> str:
+def _prediction_label(
+    prediction: ExtractedBehavior, *, compared_semantic_group: str | None = None
+) -> str:
+    groups = (
+        (compared_semantic_group,)
+        if compared_semantic_group in prediction.semantic_groups
+        else tuple(prediction.semantic_groups)
+    )
     return _identity_label(
         prediction.actor_id,
         prediction.target_ids,
         prediction.canonical_action,
-        tuple(prediction.semantic_groups),
+        groups,
     )
 
 
@@ -242,7 +257,7 @@ def _diagnostic_matches(
             cardinality_weight
             + _span_iou(truth, prediction)
             + int(truth.actor_id == prediction.actor_id)
-            + int(frozenset(truth.target_ids) == frozenset(prediction.target_ids))
+            + int(sorted(truth.target_ids) == sorted(prediction.target_ids))
             + int(truth.canonical_action == prediction.canonical_action)
             + int(truth.semantic_group in prediction.semantic_groups)
             if _span_iou(truth, prediction) > 0
@@ -336,6 +351,10 @@ def benchmark_extractor(
         "missed_truth": 0,
         "spurious_prediction": 0,
     }
+    error_type_confusion = {
+        dimension: {"correct": 0, "incorrect": 0}
+        for dimension in ("actor", "target", "action", "semantic_group", "span")
+    }
     confusion: dict[str, dict[str, int]] = {}
     calibration_observations: list[tuple[float, bool]] = []
     for case in cases:
@@ -357,7 +376,15 @@ def benchmark_extractor(
                 and prediction.text_span.end == truth.end
             )
             matched_ious.append(_span_iou(truth, prediction))
-            _record_confusion(confusion, _truth_label(truth), _prediction_label(prediction))
+            _record_confusion(
+                confusion,
+                _truth_label(truth),
+                _prediction_label(
+                    prediction, compared_semantic_group=truth.semantic_group
+                ),
+            )
+            for row in error_type_confusion.values():
+                row["correct"] += 1
 
         remaining_truth_indices = [
             index for index in range(len(case.truths)) if index not in matched_truths
@@ -375,22 +402,21 @@ def benchmark_extractor(
         for truth_index, prediction_index in diagnostic_matches:
             truth = remaining_truths[truth_index]
             prediction = remaining_predictions[prediction_index]
-            _record_confusion(confusion, _truth_label(truth), _prediction_label(prediction))
-            categorical_error = False
-            if truth.actor_id != prediction.actor_id:
-                error_counts["actor_mismatch"] += 1
-                categorical_error = True
-            if frozenset(truth.target_ids) != frozenset(prediction.target_ids):
-                error_counts["target_mismatch"] += 1
-                categorical_error = True
-            if truth.canonical_action != prediction.canonical_action:
-                error_counts["action_mismatch"] += 1
-                categorical_error = True
-            if truth.semantic_group not in prediction.semantic_groups:
-                error_counts["semantic_group_mismatch"] += 1
-                categorical_error = True
-            if not categorical_error and _span_iou(truth, prediction) < minimum_iou:
-                error_counts["span_mismatch"] += 1
+            _record_confusion(
+                confusion,
+                _truth_label(truth),
+                _prediction_label(
+                    prediction, compared_semantic_group=truth.semantic_group
+                ),
+            )
+            mismatches = _identity_mismatches(
+                truth, prediction, minimum_iou=minimum_iou
+            )
+            for dimension, row in error_type_confusion.items():
+                outcome = "incorrect" if dimension in mismatches else "correct"
+                row[outcome] += 1
+            for mismatch in mismatches:
+                error_counts[f"{mismatch}_mismatch"] += 1
         for index, truth in enumerate(remaining_truths):
             if index in diagnosed_truths:
                 continue
@@ -407,6 +433,11 @@ def benchmark_extractor(
         )
     false_positives = prediction_count - true_positives
     false_negatives = truth_count - true_positives
+    error_type_confusion["detection"] = {
+        "true_positive": true_positives,
+        "false_positive": false_positives,
+        "false_negative": false_negatives,
+    }
     micro = _metrics(true_positives, prediction_count, truth_count)
     macro = ExtractionMetrics(
         precision=fmean(item.precision for item in case_metrics),
@@ -427,6 +458,7 @@ def benchmark_extractor(
         micro=micro,
         macro=macro,
         error_counts=error_counts,
+        error_type_confusion_matrix=error_type_confusion,
         identity_confusion_matrix=confusion,
         calibration=_confidence_calibration(
             calibration_observations, bin_count=calibration_bins

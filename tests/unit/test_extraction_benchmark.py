@@ -119,6 +119,7 @@ def test_extraction_benchmark_requires_joint_identity_and_minimum_span_iou() -> 
                 _behavior(target_ids=("char.c",), start=0, end=4),
                 _behavior(canonical_action="look_away", start=0, end=4),
                 _behavior(start=4, end=8),
+                _behavior(target_ids=("char.b", "char.b"), start=0, end=4),
                 _behavior(start=0, end=3),
             )
         ),
@@ -141,9 +142,9 @@ def test_extraction_benchmark_requires_joint_identity_and_minimum_span_iou() -> 
     )
 
     assert result.true_positives == 1
-    assert result.false_positives == 3
+    assert result.false_positives == 4
     assert result.false_negatives == 0
-    assert result.micro.precision == 0.25
+    assert result.micro.precision == 0.2
     assert result.mean_span_iou == 0.75
     assert result.span_accuracy == 0
 
@@ -271,7 +272,7 @@ def test_extraction_benchmark_attributes_nearby_errors_by_field() -> None:
     result = benchmark_extractor(
         _FixedExtractor(
             (
-                _behavior(actor_id="char.c", start=0, end=2),
+                _behavior(actor_id="char.c", start=0, end=1),
                 _behavior(target_ids=("char.c",), start=2, end=4),
                 _behavior(canonical_action="look_away", start=4, end=6),
                 _behavior(semantic_groups=frozenset({"gaze_avoidance"}), start=6, end=8),
@@ -292,6 +293,7 @@ def test_extraction_benchmark_attributes_nearby_errors_by_field() -> None:
                 ),
             ),
         ),
+        minimum_iou=0.75,
     )
 
     assert result.error_counts == {
@@ -299,9 +301,21 @@ def test_extraction_benchmark_attributes_nearby_errors_by_field() -> None:
         "target_mismatch": 1,
         "action_mismatch": 1,
         "semantic_group_mismatch": 1,
-        "span_mismatch": 1,
+        "span_mismatch": 2,
         "missed_truth": 1,
         "spurious_prediction": 1,
+    }
+    assert result.error_type_confusion_matrix == {
+        "actor": {"correct": 4, "incorrect": 1},
+        "target": {"correct": 4, "incorrect": 1},
+        "action": {"correct": 4, "incorrect": 1},
+        "semantic_group": {"correct": 4, "incorrect": 1},
+        "span": {"correct": 3, "incorrect": 2},
+        "detection": {
+            "true_positive": 0,
+            "false_positive": 6,
+            "false_negative": 6,
+        },
     }
     assert sum(result.identity_confusion_matrix["__spurious__"].values()) == 1
     assert sum(
@@ -359,6 +373,55 @@ def test_extraction_benchmark_reports_confidence_calibration_curve() -> None:
     assert result.calibration.bins[1].empirical_accuracy == 0.5
     assert result.calibration.expected_calibration_error == pytest.approx(0.2666666667)
     assert result.calibration.brier_score == pytest.approx(0.22)
+
+
+def test_true_positive_with_extra_semantic_groups_stays_on_confusion_diagonal() -> None:
+    request = ExtractionRequest(
+        run_id="run.multi-group",
+        text="abcdefgh",
+        known_characters=(CharacterProfile(id="char.a"), CharacterProfile(id="char.b")),
+        position=NarrativePosition(
+            book_id="book.a",
+            chapter_id="chapter.multi-group",
+            scene_id="scene.1",
+            paragraph_index=0,
+            beat_index=0,
+            global_beat_index=1,
+        ),
+    )
+    result = benchmark_extractor(
+        _FixedExtractor(
+            (
+                _behavior(
+                    semantic_groups=frozenset({"hand_tension", "restraint_leak"}),
+                    start=0,
+                    end=2,
+                ),
+            )
+        ),
+        (
+            ExtractionBenchmarkCase(
+                request=request,
+                truths=(
+                    ExtractionTruth(
+                        actor_id="char.a",
+                        target_ids=("char.b",),
+                        canonical_action="hand_clench",
+                        semantic_group="hand_tension",
+                        start=0,
+                        end=2,
+                    ),
+                ),
+            ),
+        ),
+    )
+
+    assert result.true_positives == 1
+    assert result.identity_confusion_matrix == {
+        "actor=char.a|targets=char.b|action=hand_clench|groups=hand_tension": {
+            "actor=char.a|targets=char.b|action=hand_clench|groups=hand_tension": 1
+        }
+    }
 
 
 def test_percentile_is_nearest_rank_and_rejects_empty_samples() -> None:

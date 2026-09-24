@@ -178,7 +178,8 @@ cpp-behavior-verify evaluate reports/automatic-evidence.json \
 
 抽取基准按 actor、target、canonical action、semantic group 与 span IoU 联合判定，并用
 全局一对一最优匹配处理同句多动作。结果同时提供 micro/macro 指标、联合身份混淆矩阵、
-actor/target/action/semantic/span 等错误计数，以及置信度校准曲线、ECE 和 Brier score；
+按 actor/target/action/semantic/span 维度组织的错误矩阵与计数，以及置信度校准曲线、
+ECE 和 Brier score；
 不会再把仅角色与语义组相同的近邻 span 自动算作命中。
 
 ## 真实正文阈值校准

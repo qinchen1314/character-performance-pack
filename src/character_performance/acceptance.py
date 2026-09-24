@@ -12,7 +12,7 @@ from typing import Literal, Protocol, Sequence
 
 from pydantic import Field, model_validator
 
-from .domain.behavior_models import ExtractionRequest, ExtractionResult
+from .domain.behavior_models import ExtractedBehavior, ExtractionRequest, ExtractionResult
 from .domain.models import DomainModel
 from .gate_policy import AUTOMATIC_GATE_SPECS, GatePolicy, gate_passes
 
@@ -23,6 +23,8 @@ class ExtractionAdapter(Protocol):
 
 class ExtractionTruth(DomainModel):
     actor_id: str = Field(min_length=1)
+    target_ids: tuple[str, ...] = ()
+    canonical_action: str = Field(min_length=1)
     semantic_group: str = Field(min_length=1)
     start: int = Field(ge=0)
     end: int = Field(gt=0)
@@ -31,6 +33,10 @@ class ExtractionTruth(DomainModel):
     def ordered(self) -> "ExtractionTruth":
         if self.end <= self.start:
             raise ValueError("truth span end must be greater than start")
+        if self.actor_id in self.target_ids:
+            raise ValueError("truth actor cannot also be a target")
+        if len(self.target_ids) != len(set(self.target_ids)):
+            raise ValueError("truth target ids must be unique")
         return self
 
 
@@ -44,9 +50,33 @@ class ExtractionBenchmarkCase(DomainModel):
         for truth in self.truths:
             if truth.actor_id not in known:
                 raise ValueError("truth actor must be a known character")
+            unknown_targets = set(truth.target_ids) - known
+            if unknown_targets:
+                raise ValueError("truth targets must be known characters")
             if truth.end > len(self.request.text):
                 raise ValueError("truth span exceeds source text")
         return self
+
+
+class ExtractionMetrics(DomainModel):
+    precision: float = Field(ge=0, le=1)
+    recall: float = Field(ge=0, le=1)
+    f1: float = Field(ge=0, le=1)
+
+
+class ConfidenceCalibrationBin(DomainModel):
+    lower_bound: float = Field(ge=0, le=1)
+    upper_bound: float = Field(ge=0, le=1)
+    count: int = Field(ge=1)
+    mean_confidence: float = Field(ge=0, le=1)
+    empirical_accuracy: float = Field(ge=0, le=1)
+    absolute_gap: float = Field(ge=0, le=1)
+
+
+class ConfidenceCalibration(DomainModel):
+    bins: tuple[ConfidenceCalibrationBin, ...]
+    expected_calibration_error: float = Field(ge=0, le=1)
+    brier_score: float = Field(ge=0, le=1)
 
 
 class ExtractionBenchmarkResult(DomainModel):
@@ -59,42 +89,330 @@ class ExtractionBenchmarkResult(DomainModel):
     precision: float = Field(ge=0, le=1)
     recall: float = Field(ge=0, le=1)
     span_accuracy: float = Field(ge=0, le=1)
+    mean_span_iou: float = Field(ge=0, le=1)
+    micro: ExtractionMetrics
+    macro: ExtractionMetrics
+    error_counts: dict[str, int]
+    identity_confusion_matrix: dict[str, dict[str, int]]
+    calibration: ConfidenceCalibration
+
+
+def _span_iou(truth: ExtractionTruth, prediction: ExtractedBehavior) -> float:
+    span = prediction.text_span
+    intersection = max(0, min(truth.end, span.end) - max(truth.start, span.start))
+    union = max(truth.end, span.end) - min(truth.start, span.start)
+    return intersection / union if union else 0.0
+
+
+def _jointly_compatible(
+    truth: ExtractionTruth, prediction: ExtractedBehavior, *, minimum_iou: float
+) -> bool:
+    return (
+        prediction.actor_id == truth.actor_id
+        and frozenset(prediction.target_ids) == frozenset(truth.target_ids)
+        and prediction.canonical_action == truth.canonical_action
+        and truth.semantic_group in prediction.semantic_groups
+        and _span_iou(truth, prediction) >= minimum_iou
+    )
+
+
+def _maximum_weight_assignment(weights: Sequence[Sequence[float]]) -> list[tuple[int, int]]:
+    """Return a deterministic maximum-weight one-to-one assignment.
+
+    The implementation is the O(n^3) Hungarian algorithm. Zero-weight edges are
+    padding/incompatible pairs and are omitted from the returned assignment.
+    """
+    row_count = len(weights)
+    column_count = len(weights[0]) if row_count else 0
+    size = max(row_count, column_count)
+    if size == 0:
+        return []
+    costs = [
+        [-(weights[row][column] if row < row_count and column < column_count else 0.0)
+         for column in range(size)]
+        for row in range(size)
+    ]
+    row_potential = [0.0] * (size + 1)
+    column_potential = [0.0] * (size + 1)
+    matched_row = [0] * (size + 1)
+    predecessor = [0] * (size + 1)
+    for row in range(1, size + 1):
+        matched_row[0] = row
+        column = 0
+        minimum = [float("inf")] * (size + 1)
+        used = [False] * (size + 1)
+        while True:
+            used[column] = True
+            active_row = matched_row[column]
+            delta = float("inf")
+            next_column = 0
+            for candidate in range(1, size + 1):
+                if used[candidate]:
+                    continue
+                reduced = (
+                    costs[active_row - 1][candidate - 1]
+                    - row_potential[active_row]
+                    - column_potential[candidate]
+                )
+                if reduced < minimum[candidate]:
+                    minimum[candidate] = reduced
+                    predecessor[candidate] = column
+                if minimum[candidate] < delta:
+                    delta = minimum[candidate]
+                    next_column = candidate
+            for candidate in range(size + 1):
+                if used[candidate]:
+                    row_potential[matched_row[candidate]] += delta
+                    column_potential[candidate] -= delta
+                else:
+                    minimum[candidate] -= delta
+            column = next_column
+            if matched_row[column] == 0:
+                break
+        while True:
+            previous = predecessor[column]
+            matched_row[column] = matched_row[previous]
+            column = previous
+            if column == 0:
+                break
+    assignment = [(matched_row[column] - 1, column - 1) for column in range(1, size + 1)]
+    return [
+        (row, column)
+        for row, column in assignment
+        if row < row_count and column < column_count and weights[row][column] > 0
+    ]
+
+
+def _optimal_matches(
+    truths: Sequence[ExtractionTruth],
+    predictions: Sequence[ExtractedBehavior],
+    *,
+    minimum_iou: float,
+) -> list[tuple[int, int]]:
+    cardinality_weight = max(len(truths), len(predictions)) + 1
+    weights = [
+        [
+            cardinality_weight + _span_iou(truth, prediction)
+            if _jointly_compatible(truth, prediction, minimum_iou=minimum_iou)
+            else 0.0
+            for prediction in predictions
+        ]
+        for truth in truths
+    ]
+    return _maximum_weight_assignment(weights)
+
+
+def _identity_label(
+    actor_id: str,
+    target_ids: Sequence[str],
+    canonical_action: str,
+    semantic_groups: Sequence[str],
+) -> str:
+    targets = ",".join(sorted(target_ids)) or "-"
+    groups = ",".join(sorted(semantic_groups))
+    return f"actor={actor_id}|targets={targets}|action={canonical_action}|groups={groups}"
+
+
+def _truth_label(truth: ExtractionTruth) -> str:
+    return _identity_label(
+        truth.actor_id,
+        truth.target_ids,
+        truth.canonical_action,
+        (truth.semantic_group,),
+    )
+
+
+def _prediction_label(prediction: ExtractedBehavior) -> str:
+    return _identity_label(
+        prediction.actor_id,
+        prediction.target_ids,
+        prediction.canonical_action,
+        tuple(prediction.semantic_groups),
+    )
+
+
+def _diagnostic_matches(
+    truths: Sequence[ExtractionTruth],
+    predictions: Sequence[ExtractedBehavior],
+) -> list[tuple[int, int]]:
+    size = max(len(truths), len(predictions))
+    cardinality_weight = size * 5 + 1
+    weights = [
+        [
+            cardinality_weight
+            + _span_iou(truth, prediction)
+            + int(truth.actor_id == prediction.actor_id)
+            + int(frozenset(truth.target_ids) == frozenset(prediction.target_ids))
+            + int(truth.canonical_action == prediction.canonical_action)
+            + int(truth.semantic_group in prediction.semantic_groups)
+            if _span_iou(truth, prediction) > 0
+            else 0.0
+            for prediction in predictions
+        ]
+        for truth in truths
+    ]
+    return _maximum_weight_assignment(weights)
+
+
+def _record_confusion(
+    matrix: dict[str, dict[str, int]], truth_label: str, prediction_label: str
+) -> None:
+    row = matrix.setdefault(truth_label, {})
+    row[prediction_label] = row.get(prediction_label, 0) + 1
+
+
+def _confidence_calibration(
+    observations: Sequence[tuple[float, bool]], *, bin_count: int
+) -> ConfidenceCalibration:
+    buckets: list[list[tuple[float, bool]]] = [[] for _ in range(bin_count)]
+    for confidence, correct in observations:
+        buckets[min(int(confidence * bin_count), bin_count - 1)].append(
+            (confidence, correct)
+        )
+    points: list[ConfidenceCalibrationBin] = []
+    for index, bucket in enumerate(buckets):
+        if not bucket:
+            continue
+        mean_confidence = fmean(confidence for confidence, _ in bucket)
+        empirical_accuracy = fmean(int(correct) for _, correct in bucket)
+        points.append(
+            ConfidenceCalibrationBin(
+                lower_bound=index / bin_count,
+                upper_bound=(index + 1) / bin_count,
+                count=len(bucket),
+                mean_confidence=mean_confidence,
+                empirical_accuracy=empirical_accuracy,
+                absolute_gap=abs(mean_confidence - empirical_accuracy),
+            )
+        )
+    total = len(observations)
+    return ConfidenceCalibration(
+        bins=tuple(points),
+        expected_calibration_error=(
+            sum(point.count * point.absolute_gap for point in points) / total
+            if total
+            else 0.0
+        ),
+        brier_score=(
+            fmean((confidence - int(correct)) ** 2 for confidence, correct in observations)
+            if observations
+            else 0.0
+        ),
+    )
+
+
+def _metrics(true_positives: int, prediction_count: int, truth_count: int) -> ExtractionMetrics:
+    precision = true_positives / prediction_count if prediction_count else 0.0
+    recall = true_positives / truth_count if truth_count else 0.0
+    return ExtractionMetrics(
+        precision=precision,
+        recall=recall,
+        f1=2 * precision * recall / (precision + recall) if precision + recall else 0.0,
+    )
 
 
 def benchmark_extractor(
-    extractor: ExtractionAdapter, cases: Sequence[ExtractionBenchmarkCase]
+    extractor: ExtractionAdapter,
+    cases: Sequence[ExtractionBenchmarkCase],
+    *,
+    minimum_iou: float = 0.5,
+    calibration_bins: int = 10,
 ) -> ExtractionBenchmarkResult:
     if not cases:
         raise ValueError("at least one extraction benchmark case is required")
+    if not 0 < minimum_iou <= 1:
+        raise ValueError("minimum_iou must be in (0, 1]")
+    if calibration_bins < 1:
+        raise ValueError("calibration_bins must be at least 1")
     truth_count = prediction_count = true_positives = exact_spans = 0
+    matched_ious: list[float] = []
+    case_metrics: list[ExtractionMetrics] = []
+    error_counts = {
+        "actor_mismatch": 0,
+        "target_mismatch": 0,
+        "action_mismatch": 0,
+        "semantic_group_mismatch": 0,
+        "span_mismatch": 0,
+        "missed_truth": 0,
+        "spurious_prediction": 0,
+    }
+    confusion: dict[str, dict[str, int]] = {}
+    calibration_observations: list[tuple[float, bool]] = []
     for case in cases:
         result = extractor.extract(case.request)
         case.request.validate_result(result)
         predictions = list(result.behaviors)
         prediction_count += len(predictions)
         truth_count += len(case.truths)
-        unmatched = set(range(len(predictions)))
-        for truth in case.truths:
-            compatible = [
-                index
-                for index in unmatched
-                if predictions[index].actor_id == truth.actor_id
-                and truth.semantic_group in predictions[index].semantic_groups
-            ]
-            if not compatible:
+        matches = _optimal_matches(case.truths, predictions, minimum_iou=minimum_iou)
+        matched_truths = {truth_index for truth_index, _ in matches}
+        matched_predictions = {prediction_index for _, prediction_index in matches}
+        true_positives += len(matches)
+        case_metrics.append(_metrics(len(matches), len(predictions), len(case.truths)))
+        for truth_index, prediction_index in matches:
+            truth = case.truths[truth_index]
+            prediction = predictions[prediction_index]
+            exact_spans += int(
+                prediction.text_span.start == truth.start
+                and prediction.text_span.end == truth.end
+            )
+            matched_ious.append(_span_iou(truth, prediction))
+            _record_confusion(confusion, _truth_label(truth), _prediction_label(prediction))
+
+        remaining_truth_indices = [
+            index for index in range(len(case.truths)) if index not in matched_truths
+        ]
+        remaining_prediction_indices = [
+            index for index in range(len(predictions)) if index not in matched_predictions
+        ]
+        remaining_truths = [case.truths[index] for index in remaining_truth_indices]
+        remaining_predictions = [predictions[index] for index in remaining_prediction_indices]
+        diagnostic_matches = _diagnostic_matches(remaining_truths, remaining_predictions)
+        diagnosed_truths = {truth_index for truth_index, _ in diagnostic_matches}
+        diagnosed_predictions = {
+            prediction_index for _, prediction_index in diagnostic_matches
+        }
+        for truth_index, prediction_index in diagnostic_matches:
+            truth = remaining_truths[truth_index]
+            prediction = remaining_predictions[prediction_index]
+            _record_confusion(confusion, _truth_label(truth), _prediction_label(prediction))
+            categorical_error = False
+            if truth.actor_id != prediction.actor_id:
+                error_counts["actor_mismatch"] += 1
+                categorical_error = True
+            if frozenset(truth.target_ids) != frozenset(prediction.target_ids):
+                error_counts["target_mismatch"] += 1
+                categorical_error = True
+            if truth.canonical_action != prediction.canonical_action:
+                error_counts["action_mismatch"] += 1
+                categorical_error = True
+            if truth.semantic_group not in prediction.semantic_groups:
+                error_counts["semantic_group_mismatch"] += 1
+                categorical_error = True
+            if not categorical_error and _span_iou(truth, prediction) < minimum_iou:
+                error_counts["span_mismatch"] += 1
+        for index, truth in enumerate(remaining_truths):
+            if index in diagnosed_truths:
                 continue
-            exact = [
-                index
-                for index in compatible
-                if predictions[index].text_span.start == truth.start
-                and predictions[index].text_span.end == truth.end
-            ]
-            chosen = exact[0] if exact else compatible[0]
-            unmatched.remove(chosen)
-            true_positives += 1
-            exact_spans += int(chosen in exact)
+            error_counts["missed_truth"] += 1
+            _record_confusion(confusion, _truth_label(truth), "__missing__")
+        for index, prediction in enumerate(remaining_predictions):
+            if index in diagnosed_predictions:
+                continue
+            error_counts["spurious_prediction"] += 1
+            _record_confusion(confusion, "__spurious__", _prediction_label(prediction))
+        calibration_observations.extend(
+            (prediction.confidence, index in matched_predictions)
+            for index, prediction in enumerate(predictions)
+        )
     false_positives = prediction_count - true_positives
     false_negatives = truth_count - true_positives
+    micro = _metrics(true_positives, prediction_count, truth_count)
+    macro = ExtractionMetrics(
+        precision=fmean(item.precision for item in case_metrics),
+        recall=fmean(item.recall for item in case_metrics),
+        f1=fmean(item.f1 for item in case_metrics),
+    )
     return ExtractionBenchmarkResult(
         case_count=len(cases),
         truth_count=truth_count,
@@ -102,9 +420,17 @@ def benchmark_extractor(
         true_positives=true_positives,
         false_positives=false_positives,
         false_negatives=false_negatives,
-        precision=true_positives / prediction_count if prediction_count else 0.0,
-        recall=true_positives / truth_count,
+        precision=micro.precision,
+        recall=micro.recall,
         span_accuracy=exact_spans / true_positives if true_positives else 0.0,
+        mean_span_iou=fmean(matched_ious) if matched_ious else 0.0,
+        micro=micro,
+        macro=macro,
+        error_counts=error_counts,
+        identity_confusion_matrix=confusion,
+        calibration=_confidence_calibration(
+            calibration_observations, bin_count=calibration_bins
+        ),
     )
 
 
@@ -474,6 +800,7 @@ def render_acceptance_markdown(report: AcceptanceReport) -> str:
 
 __all__ = [
     "AcceptanceEvaluator", "AcceptanceGate", "AcceptanceReport", "AutomaticEvidence", "EvidenceProvenance",
+    "ConfidenceCalibration", "ConfidenceCalibrationBin", "ExtractionMetrics",
     "CharacterBlindItem", "CharacterBlindKey", "CharacterBlindPacket", "CharacterBlindRating",
     "CharacterBlindSample", "ExtractionBenchmarkCase", "ExtractionBenchmarkResult", "ExtractionTruth",
     "HumanBlindSummary", "aggregate_character_blind_ratings", "benchmark_extractor",

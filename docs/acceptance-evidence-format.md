@@ -31,7 +31,25 @@ unit/property/integration/scenario/chapter_benchmark/fault_injection/performance
 | `deterministic_replay_passed` | 相同输入、Pack、Identity、revision、seed | `true` |
 
 抽取对抗集通过 `benchmark_extractor` 使用独立的 `ExtractionTruth` 计算，不从抽取器输出
-反推期望值。真人评分文件是 JSON/YAML 数组，每项包含 `sample_id`、`reviewer_id`、
+反推期望值。每条 truth 必须独立标注 actor、targets、canonical action、semantic group 和
+半开区间 `[start, end)`。预测只有同时满足 actor、无序 targets 集合、action、semantic
+group 且区间 IoU 达到门槛（默认 0.5）才算命中；匹配使用全局一对一最优分配，先最大化
+命中数，再最大化总 IoU，避免 truth 顺序或多动作预测影响分数。
+
+`ExtractionBenchmarkResult` 同时保留兼容字段 `precision`、`recall`、`span_accuracy`，并输出：
+
+- `mean_span_iou`：已匹配项的平均 IoU；`span_accuracy` 仍表示已匹配项中的完全区间一致率；
+- `micro`：汇总全部 truth/prediction 后的 precision、recall、F1；
+- `macro`：逐 case 计算后等权平均的 precision、recall、F1；
+- `error_counts`：actor、target、action、semantic group、span、漏检、孤立误报七类诊断计数；
+- `identity_confusion_matrix`：联合身份标签的 truth→prediction 矩阵，含 `__missing__` 和
+  `__spurious__`；
+- `calibration`：非空等宽置信度分箱、每箱平均置信度/实际准确率，以及 ECE 和 Brier score。
+
+混淆诊断只在剩余 truth 与 prediction 的区间有交集时配对；无交集项分别记作漏检和孤立
+误报，避免把相距很远的动作强行解释为分类混淆。置信度正确性采用上述完整联合命中定义。
+
+真人评分文件是 JSON/YAML 数组，每项包含 `sample_id`、`reviewer_id`、
 `guessed_label`、三项 1—5 分评分，以及可选的 `mechanical`、`formulaic`、
 `indistinguishable`、`contrived_variation` 标记。每名评审必须恰好覆盖 packet 中全部
 样本。样本必须提供真实 `character_name` 和可选 `aliases`；公开 packet 会统一替换为

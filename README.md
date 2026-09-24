@@ -176,6 +176,11 @@ cpp-behavior-verify evaluate reports/automatic-evidence.json \
 评分时，总体状态固定为 `pending_human`；只有自动门禁与真人门禁全部通过，报告中的
 `completion_claim_allowed` 才会为 `true`。
 
+抽取基准按 actor、target、canonical action、semantic group 与 span IoU 联合判定，并用
+全局一对一最优匹配处理同句多动作。结果同时提供 micro/macro 指标、联合身份混淆矩阵、
+actor/target/action/semantic/span 等错误计数，以及置信度校准曲线、ECE 和 Brier score；
+不会再把仅角色与语义组相同的近邻 span 自动算作命中。
+
 ## 真实正文阈值校准
 
 重复率、俗套占比和通道集中度不再只能使用代码内的经验常量。`calibrate` 子命令接受一份

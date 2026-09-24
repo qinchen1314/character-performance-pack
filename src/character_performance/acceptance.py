@@ -256,10 +256,12 @@ def _diagnostic_matches(
         [
             cardinality_weight
             + _span_iou(truth, prediction)
-            + int(truth.actor_id == prediction.actor_id)
-            + int(sorted(truth.target_ids) == sorted(prediction.target_ids))
-            + int(truth.canonical_action == prediction.canonical_action)
-            + int(truth.semantic_group in prediction.semantic_groups)
+            + 4
+            - len(
+                _identity_mismatches(
+                    truth, prediction, minimum_iou=0.0
+                )
+            )
             if _span_iou(truth, prediction) > 0
             else 0.0
             for prediction in predictions

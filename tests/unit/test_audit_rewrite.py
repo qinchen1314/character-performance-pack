@@ -385,6 +385,27 @@ def test_rewriter_hands_off_for_named_subject_residual_or_changed_pronoun() -> N
             )
         )
 
+    plural_text = "他们握拳。"
+    plural_audit = audit.model_copy(
+        update={
+            "draft_hash": content_hash(plural_text),
+            "issues": (
+                audit.issues[0].model_copy(
+                    update={"spans": (SourceSpan(start=2, end=4),)}
+                ),
+            ),
+        }
+    )
+    with pytest.raises(HumanReviewRequired, match="reference continuity"):
+        TargetedRewriter(lambda _: "他离开。").rewrite(
+            RewriteRequest(
+                run_id="run.current",
+                text=plural_text,
+                audit=plural_audit,
+                attempt=1,
+            )
+        )
+
 
 def test_rewriter_hands_off_for_conflicting_overlapping_replacements() -> None:
     text = "他握拳后离开。"

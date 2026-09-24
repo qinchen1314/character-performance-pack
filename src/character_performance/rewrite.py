@@ -49,7 +49,7 @@ def _dialogue_parts(text: str) -> tuple[str, ...]:
     )
 
 
-_SUBJECT = r"(?:他|她|它|他们|她们|它们|自己)"
+_SUBJECT = r"(?:他们|她们|它们|自己|他|她|它)"
 _QUOTE_OPENERS = "“‘「『\""
 _PRONOUN_PATTERN = re.compile(_SUBJECT)
 
